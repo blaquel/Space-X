@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX | Users</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:20px;
+padding-bottom:100px;
+overflow-x:hidden;
+}
+
+.header{
+display:flex;
+align-items:center;
+gap:16px;
+margin-bottom:25px;
+}
+
+.back-btn{
+width:52px;
+height:52px;
+border-radius:50%;
+border:2px solid #fff;
+background:transparent;
+color:#fff;
+font-size:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.back-btn:hover{
+background:#fff;
+color:#000;
+}
+
+.header h1{
+font-size:32px;
+font-weight:700;
+}
+
+.summary-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:22px;
+padding:22px;
+text-align:center;
+margin-bottom:22px;
+box-shadow:0 10px 30px rgba(255,255,255,.05);
+}
+
+.summary-card p{
+color:#888;
+font-size:15px;
+margin-bottom:8px;
+}
+
+.summary-card h2{
+font-size:40px;
+font-weight:700;
+}
+
+.search-box{
+position:relative;
+margin-bottom:22px;
+}
+
+.search-box i{
+position:absolute;
+left:18px;
+top:50%;
+transform:translateY(-50%);
+color:#777;
+font-size:18px;
+}
+
+.search-box input{
+width:100%;
+height:56px;
+background:#111;
+border:1px solid #333;
+border-radius:16px;
+padding-left:50px;
+padding-right:15px;
+font-size:16px;
+color:#fff;
+outline:none;
+}
+
+.search-box input:focus{
+border-color:#fff;
+}
+
+.users-list{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.user-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 25px rgba(255,255,255,.04);
+}
+
+.user-name{
+font-size:20px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.info-row{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+font-size:15px;
+}
+
+.info-row span:first-child{
+color:#888;
+}
+
+.loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loader{
+width:65px;
+height:65px;
+border:6px solid #222;
+border-top:6px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.loading h2{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.loading p{
+color:#888;
+}
+
+.empty{
+background:#111;
+border:1px dashed #333;
+border-radius:20px;
+padding:40px 20px;
+text-align:center;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Loading -->
+
+<div class="loading" id="loading">
+
+<div class="loader"></div>
+
+<h2>Loading Users</h2>
+
+<p>Please wait while we retrieve registered users...</p>
+
+</div>
+
+<!-- Header -->
+
+<div class="header">
+
+<button
+class="back-btn"
+onclick="location.href='admin.html'">
+
+<i class="bi bi-arrow-left"></i>
+
+</button>
+
+<h1>Users</h1>
+
+</div>
+
+<!-- Total Users -->
+
+<div class="summary-card">
+
+<p>Total Registered Users</p>
+
+<h2 id="totalUsers">
+
+0
+
+</h2>
+
+</div>
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="bi bi-search"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search by fullname, username or email...">
+
+</div>
+
+<!-- Users List -->
+
+<div
+id="usersList"
+class="users-list">
+
+<div class="empty">
+
+<i
+class="bi bi-people-fill"
+style="
+font-size:60px;
+display:block;
+margin-bottom:15px;
+">
+</i>
+
+<h2
+style="
+margin-bottom:10px;
+">
+
+No Users Found
+
+</h2>
+
+<p>
+
+Registered users will automatically appear here.
+
+</p>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const loading=document.getElementById("loading");
+const usersList=document.getElementById("usersList");
+const totalUsers=document.getElementById("totalUsers");
+const searchInput=document.getElementById("searchInput");
+
+let users=[];
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+location.href="admin-login.html";
+return;
+}
+
+loading.style.display="flex";
+
+onSnapshot(collection(db,"users"),(snapshot)=>{
+
+users=[];
+
+snapshot.forEach(doc=>{
+
+users.push(doc.data());
+
+});
+
+loading.style.display="none";
+
+totalUsers.innerText=users.length;
+
+displayUsers(users);
+
+});
+
+});
+
+searchInput.addEventListener("input",()=>{
+
+const keyword=searchInput.value.toLowerCase();
+
+const filtered=users.filter(user=>
+
+(user.fullname||"").toLowerCase().includes(keyword)||
+
+(user.username||"").toLowerCase().includes(keyword)
+
+);
+
+displayUsers(filtered);
+
+});
+
+function displayUsers(list){
+
+usersList.innerHTML="";
+
+if(list.length===0){
+
+usersList.innerHTML=`
+<div class="empty">
+<h2>No Users Found</h2>
+</div>
+`;
+
+return;
+
+}
+
+list.forEach(user=>{
+
+usersList.innerHTML+=`
+
+<div class="user-card">
+
+<div class="user-name">
+
+${user.username||"Unknown User"}
+
+</div>
+
+<div class="info-row">
+
+<span>Balance</span>
+
+<span>$${Number(user.balance||0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+})}</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

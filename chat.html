@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>NovaX Support Chat</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+.header{
+height:70px;
+display:flex;
+align-items:center;
+gap:15px;
+padding:15px 20px;
+background:#111;
+border-bottom:1px solid #222;
+}
+
+.back{
+width:42px;
+height:42px;
+border:1px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:20px;
+}
+
+.admin-avatar{
+width:45px;
+height:45px;
+border-radius:50%;
+background:#fff;
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+font-size:18px;
+}
+
+.header-info h3{
+font-size:18px;
+}
+
+.header-info p{
+font-size:13px;
+color:#00ff88;
+}
+
+.messages{
+flex:1;
+overflow-y:auto;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+background:#000;
+}
+
+.message{
+max-width:80%;
+padding:14px;
+border-radius:18px;
+line-height:1.6;
+word-break:break-word;
+}
+
+.user{
+align-self:flex-end;
+background:#fff;
+color:#000;
+border-bottom-right-radius:5px;
+}
+
+.admin{
+align-self:flex-start;
+background:#111;
+border:1px solid #333;
+border-bottom-left-radius:5px;
+}
+
+.time{
+margin-top:8px;
+font-size:11px;
+opacity:.7;
+}
+
+.input-area{
+display:flex;
+gap:10px;
+padding:15px;
+background:#111;
+border-top:1px solid #222;
+}
+
+.input-area input{
+flex:1;
+height:52px;
+background:#000;
+border:1px solid #333;
+border-radius:15px;
+padding:0 15px;
+color:#fff;
+outline:none;
+font-size:15px;
+}
+
+.input-area button{
+width:85px;
+border:none;
+border-radius:15px;
+background:#fff;
+color:#000;
+font-weight:600;
+cursor:pointer;
+}
+
+.loading{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100%;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="back"
+onclick="location.href='support.html'">
+
+←
+
+</div>
+
+<div class="admin-avatar">
+
+N
+
+</div>
+
+<div class="header-info">
+
+<h3>SpaceX Support</h3>
+
+<p>Online</p>
+
+</div>
+
+</div>
+
+<div
+id="messages"
+class="messages">
+
+<div class="loading">
+
+Connecting to support...
+
+</div>
+
+</div>
+
+<div class="input-area">
+
+<input
+id="messageInput"
+placeholder="Type your message...">
+
+<button
+id="sendBtn">
+
+Send
+
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc,
+updateDoc,
+collection,
+addDoc,
+query,
+where,
+limit,
+getDocs,
+orderBy,
+onSnapshot,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const messages=document.getElementById("messages");
+const input=document.getElementById("messageInput");
+const sendBtn=document.getElementById("sendBtn");
+
+let chatId=null;
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+
+location.href="login.html";
+return;
+
+}
+
+// Get user information
+
+const userSnap=await getDoc(doc(db,"users",user.uid));
+
+if(!userSnap.exists()) return;
+
+const userData=userSnap.data();
+
+// Check whether this user already has a chat
+
+const q=query(
+collection(db,"supportChats"),
+where("userId","==",user.uid),
+limit(1)
+);
+
+const result=await getDocs(q);
+
+if(result.empty){
+
+chatId=user.uid;
+
+// Create chat document
+
+await setDoc(doc(db,"supportChats",chatId),{
+
+userId:user.uid,
+username:userData.username||"",
+fullname:userData.fullname||"",
+lastMessage:"",
+updatedAt:serverTimestamp(),
+unreadForAdmin:false,
+unreadForUser:false
+
+});
+
+}else{
+
+chatId=result.docs[0].id;
+
+}
+
+// Listen for messages
+
+const messageQuery=query(
+
+collection(db,"supportChats",chatId,"messages"),
+
+orderBy("createdAt","asc")
+
+);
+
+onSnapshot(messageQuery,(snapshot)=>{
+
+messages.innerHTML="";
+
+if(snapshot.empty){
+
+messages.innerHTML=`
+
+<div class="loading">
+
+Start chatting with NovaX Support 👋
+
+</div>
+
+`;
+
+return;
+
+}
+
+snapshot.forEach(doc=>{
+
+const data=doc.data();
+
+const time=data.createdAt
+?data.createdAt.toDate().toLocaleTimeString([],{
+hour:"2-digit",
+minute:"2-digit"
+})
+:"";
+
+messages.innerHTML+=`
+
+<div class="message ${data.sender}">
+
+${data.text}
+
+<div class="time">
+
+${time}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+// Mark admin replies as read
+
+updateDoc(doc(db,"supportChats",chatId),{
+
+unreadForUser:false
+
+});
+
+messages.scrollTop=messages.scrollHeight;
+
+});
+
+sendBtn.onclick=async()=>{
+
+const text=input.value.trim();
+
+if(text==="") return;
+
+await addDoc(
+
+collection(db,"supportChats",chatId,"messages"),
+
+{
+
+sender:"user",
+
+text:text,
+
+createdAt:serverTimestamp()
+
+}
+
+);
+
+await updateDoc(
+
+doc(db,"supportChats",chatId),
+
+{
+
+lastMessage:text,
+
+updatedAt:serverTimestamp(),
+
+unreadForAdmin:true,
+
+unreadForUser:false
+
+}
+
+);
+
+input.value="";
+
+};
+
+input.addEventListener("keypress",(e)=>{
+
+if(e.key==="Enter"){
+
+sendBtn.click();
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

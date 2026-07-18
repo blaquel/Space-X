@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX | Crypto Withdrawal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:22px;
+padding-bottom:100px;
+}
+
+.header{
+display:flex;
+align-items:center;
+gap:18px;
+margin-bottom:30px;
+}
+
+.back-btn{
+width:55px;
+height:55px;
+border-radius:50%;
+border:2px solid #fff;
+background:transparent;
+color:#fff;
+font-size:22px;
+cursor:pointer;
+}
+
+.header h1{
+font-size:36px;
+font-weight:700;
+}
+
+.wallet-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:28px;
+padding:30px;
+margin-bottom:28px;
+box-shadow:0 15px 40px rgba(255,255,255,.05);
+text-align:center;
+}
+
+.wallet-card p{
+font-size:17px;
+color:#888;
+margin-bottom:15px;
+}
+
+.wallet-card h2{
+font-size:52px;
+font-weight:700;
+}
+
+.form-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:28px;
+padding:28px;
+box-shadow:0 15px 40px rgba(255,255,255,.04);
+}
+
+label{
+display:block;
+margin-top:20px;
+margin-bottom:10px;
+font-size:15px;
+font-weight:500;
+color:#ddd;
+}
+
+select,
+input{
+width:100%;
+height:58px;
+background:#000;
+border:1px solid #333;
+border-radius:16px;
+padding:0 18px;
+font-size:16px;
+color:#fff;
+outline:none;
+transition:.3s;
+}
+
+select:focus,
+input:focus{
+border-color:#fff;
+}
+
+button#submitBtn{
+width:100%;
+height:58px;
+margin-top:35px;
+border:none;
+border-radius:18px;
+background:#fff;
+color:#000;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+button#submitBtn:hover{
+transform:translateY(-2px);
+}
+
+.loading-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loader{
+width:70px;
+height:70px;
+border:6px solid #222;
+border-top:6px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+.loading-overlay h2{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.loading-overlay p{
+color:#999;
+}
+
+.alert{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.85);
+z-index:100000;
+}
+
+.alert-content{
+width:90%;
+max-width:360px;
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:22px;
+padding:30px;
+text-align:center;
+}
+
+.alert-content h2{
+font-size:24px;
+margin-bottom:12px;
+}
+
+.alert-content p{
+color:#aaa;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+.alert-content button{
+width:100%;
+height:52px;
+border:none;
+border-radius:14px;
+background:#fff;
+color:#000;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Loading Overlay -->
+
+<div class="loading-overlay" id="loadingOverlay">
+
+<div class="loader"></div>
+
+<h2>Submitting Withdrawal</h2>
+
+<p>Please wait...</p>
+
+</div>
+
+<!-- Alert -->
+
+<div class="alert" id="alertBox">
+
+<div class="alert-content">
+
+<h2 id="alertTitle">Success</h2>
+
+<p id="alertMessage"></p>
+
+<button onclick="closeAlert()">OK</button>
+
+</div>
+
+</div>
+
+<!-- Header -->
+
+<div class="header">
+
+<button class="back-btn"
+onclick="location.href='withdraw.html'">
+
+<i class="bi bi-arrow-left"></i>
+
+</button>
+
+<h1>Crypto Withdrawal</h1>
+
+</div>
+
+<!-- Wallet Card -->
+
+<div class="wallet-card">
+
+<p>Available Balance</p>
+
+<h2>
+
+$
+
+<span id="balance">
+
+0.00
+
+</span>
+
+</h2>
+
+</div>
+
+<!-- Withdraw Form -->
+
+<div class="form-card">
+
+<label>
+
+Choose Cryptocurrency
+
+</label>
+
+<select id="coin">
+
+<option value="USDT">
+
+🟢 USDT (ERC20)
+
+</option>
+
+<option value="BTC">
+
+🟠 Bitcoin (BTC)
+
+</option>
+
+<option value="ETH">
+
+🔷 Ethereum (ETH)
+
+</option>
+
+</select>
+
+<label>
+
+Wallet Address
+
+</label>
+
+<input
+type="text"
+id="walletAddress"
+placeholder="Enter your wallet address">
+
+<label>
+
+Withdrawal Amount (USD)
+
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Minimum $10">
+
+<button id="submitBtn">
+
+Submit Withdrawal
+
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+onSnapshot,
+collection,
+addDoc,
+serverTimestamp,
+updateDoc,
+increment
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain: "novax-acb23.firebaseapp.com",
+projectId: "novax-acb23",
+storageBucket: "novax-acb23.firebasestorage.app",
+messagingSenderId: "203988106178",
+appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+let currentBalance = 0;
+
+const balance = document.getElementById("balance");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+location.href="login.html";
+return;
+}
+
+currentUser=user;
+
+onSnapshot(doc(db,"users",user.uid),(snap)=>{
+
+if(!snap.exists()) return;
+
+const data=snap.data();
+
+currentBalance=Number(data.balance||0);
+
+balance.innerText=currentBalance.toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+});
+
+});
+
+document.getElementById("submitBtn").onclick=async()=>{
+
+const coin=document.getElementById("coin").value;
+const wallet=document.getElementById("walletAddress").value.trim();
+const amount=Number(document.getElementById("amount").value);
+
+if(wallet===""){
+showAlert("Wallet address is required.");
+return;
+}
+
+if(amount<=0){
+showAlert("Enter a valid amount.");
+return;
+}
+
+if(amount>currentBalance){
+showAlert("Insufficient balance.");
+return;
+}
+
+document.getElementById("loadingOverlay").style.display="flex";
+
+try{
+
+const userSnap=await getDoc(doc(db,"users",currentUser.uid));
+const userData=userSnap.data();
+
+await addDoc(collection(db,"withdrawals"),{
+
+userId:currentUser.uid,
+username:userData.username||"",
+email:userData.email||"",
+currency:coin,
+walletAddress:wallet,
+amount:amount,
+type:"Crypto Withdrawal",
+status:"Pending",
+createdAt:serverTimestamp()
+
+});
+
+await addDoc(collection(db,"history"),{
+
+    userId: currentUser.uid,
+    username: userData.username || "",
+    email: userData.email || "",
+
+    type: "Crypto Withdrawal",
+    amount: amount,
+    currency: coin,
+    walletAddress: wallet,
+
+    status: "Pending",
+
+    createdAt: serverTimestamp()
+
+});
+
+await updateDoc(doc(db,"users",currentUser.uid),{
+
+balance:increment(-amount),
+totalWithdrawn:increment(amount)
+
+});
+
+document.getElementById("loadingOverlay").style.display="none";
+
+showAlert("Withdrawal request submitted successfully. It is awaiting admin approval.");
+
+document.getElementById("walletAddress").value="";
+document.getElementById("amount").value="";
+
+}catch(error){
+
+document.getElementById("loadingOverlay").style.display="none";
+
+showAlert(error.message);
+
+}
+
+};
+
+function showAlert(message){
+
+document.getElementById("alertMessage").innerText=message;
+
+document.getElementById("alertBox").style.display="flex";
+
+}
+
+window.closeAlert=function(){
+
+document.getElementById("alertBox").style.display="none";
+
+};
+
+</script>
+
+</body>
+</html>

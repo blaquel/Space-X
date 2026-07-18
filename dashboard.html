@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Dashboard</title>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#000;
+color:white;
+padding-bottom:40px;
+}
+
+
+/* Header */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+}
+
+
+.logo img{
+width:45px;
+height:45px;
+object-fit:contain;
+}
+
+
+.round-btn{
+
+width:42px;
+height:42px;
+border:1px solid white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+
+}
+
+
+
+/* Icons */
+
+.profile-icon{
+width:14px;
+height:14px;
+border:2px solid white;
+border-radius:50%;
+position:relative;
+}
+
+.profile-icon:after{
+
+content:"";
+position:absolute;
+bottom:-12px;
+left:-5px;
+width:20px;
+height:10px;
+border:2px solid white;
+border-radius:15px 15px 0 0;
+
+}
+
+
+.bell-icon{
+
+width:14px;
+height:16px;
+border:2px solid white;
+border-radius:10px;
+
+}
+
+
+
+
+
+/* Balance */
+
+.balance-box{
+
+background:linear-gradient(180deg,#111,#080808);
+
+border:1px solid #2b2b2b;
+
+border-radius:25px;
+
+padding:20px;
+
+margin-bottom:30px;
+
+box-shadow:0 10px 30px rgba(255,255,255,.05);
+
+}
+
+
+.balance-label{
+
+color:#777;
+font-size:13px;
+
+}
+
+
+.balance{
+
+font-size:38px;
+margin-top:15px;
+
+}
+
+
+.status{
+
+font-size:12px;
+color:#888;
+
+}
+
+
+
+
+
+/* Actions */
+
+.actions{
+
+display:flex;
+justify-content:center;
+gap:35px;
+margin:40px 0;
+
+}
+
+
+.action{
+
+text-align:center;
+cursor:pointer;
+
+}
+
+
+.circle{
+
+height:65px;
+width:65px;
+border-radius:50%;
+background:#000;
+border:1px solid white;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+
+.symbol{
+
+font-size:28px;
+color:white;
+
+}
+
+
+
+.invest-symbol{
+
+font-size:22px;
+
+}
+
+
+.action span{
+
+display:block;
+font-size:12px;
+color:#888;
+margin-top:10px;
+
+}
+
+
+
+
+
+/* Market */
+
+.market-box{
+
+margin:20px;
+padding:20px;
+background:#080808;
+border:1px solid #222;
+border-radius:25px;
+
+}
+
+
+
+.market-head{
+
+display:flex;
+justify-content:space-between;
+margin-bottom:15px;
+
+}
+
+
+.market-head small{
+
+color:#888;
+
+}
+
+
+#space x_chart{
+
+height:350px;
+width:100%;
+
+}
+
+html, body{
+    touch-action: manipulation;
+    overscroll-behavior: none;
+}
+
+.bottom-nav{
+
+position:fixed;
+
+bottom:15px;
+
+left:15px;
+
+right:15px;
+
+height:70px;
+
+background:#090909;
+
+border:1px solid #222;
+
+border-radius:22px;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+backdrop-filter:blur(15px);
+
+z-index:1000;
+
+}
+
+
+
+.nav-item{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+color:#777;
+
+font-size:11px;
+
+transition:.25s;
+
+}
+
+
+
+.nav-item svg{
+
+margin-bottom:6px;
+
+opacity:.7;
+
+}
+
+
+
+.nav-item.active{
+
+color:#fff;
+
+}
+
+
+
+.nav-item.active svg{
+
+opacity:1;
+
+}
+
+
+
+.nav-item:hover{
+
+color:#fff;
+
+}
+
+.round-btn{
+position:relative;
+}
+
+#notificationDot{
+
+position:absolute;
+
+top:8px;
+
+right:8px;
+
+width:10px;
+
+height:10px;
+
+background:#ff2d2d;
+
+border:2px solid #000;
+
+border-radius:50%;
+
+display:none;
+
+}
+
+.round-btn{
+    position:relative;
+}
+
+.notification-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:10px;
+    height:10px;
+    background:#ff3b30;
+    border:2px solid #000;
+    border-radius:50%;
+    display:block; /* Change to none later when using Firebase */
+}
+
+.chat-float{
+position:fixed;
+right:20px;
+bottom:95px;
+width:60px;
+height:60px;
+background:#fff;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(255,255,255,.15);
+z-index:999;
+}
+
+.chat-float svg{
+width:28px;
+height:28px;
+stroke:#000;
+}
+
+.chat-dot{
+position:absolute;
+top:5px;
+right:5px;
+width:12px;
+height:12px;
+background:#ff3b30;
+border-radius:50%;
+display:none;
+border:2px solid #000;
+}
+
+</style>
+
+</head>
+
+<div class="chat-float"
+onclick="location.href='chat.html'">
+
+<span id="chatDot" class="chat-dot"></span>
+
+<!-- Chat SVG -->
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="black"
+stroke-width="2">
+
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+
+</svg>
+
+</div>
+
+<div class="bottom-nav">
+
+<div class="nav-item" onclick="location.href='dashboard.html'">
+
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+<path d="M3 10.5L12 3l9 7.5"/>
+<path d="M5 9.5V21h14V9.5"/>
+</svg>
+
+<span>Home</span>
+
+</div>
+
+<div class="nav-item" onclick="location.href='wallet.html'">
+
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+<path d="M2 7h20v10H2z"/>
+<path d="M16 12h.01"/>
+</svg>
+
+<span>Wallet</span>
+
+</div>
+
+<div class="nav-item" onclick="location.href='history.html'">
+
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+<path d="M3 12a9 9 0 1 0 3-6.7"/>
+<path d="M3 3v6h6"/>
+<path d="M12 7v6l4 2"/>
+</svg>
+
+<span>History</span>
+
+</div>
+
+<div class="nav-item" onclick="location.href='support.html'">
+
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+<circle cx="12" cy="12" r="9"/>
+<path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2.2-2.5 4"/>
+<circle cx="12" cy="17" r=".8" fill="white"/>
+</svg>
+
+<span>Support</span>
+
+</div>
+
+</div>
+
+<body>
+
+
+
+<div class="header">
+
+
+<div class="round-btn" onclick="location.href='profile.html'">
+
+<div class="profile-icon"></div>
+
+</div>
+
+
+
+<div class="logo">
+
+<img src="logo.png">
+
+</div>
+
+
+
+<div class="round-btn" onclick="location.href='notification.html'">
+
+    <div class="bell-icon"></div>
+
+    <span id="notificationDot" class="notification-dot"></span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="balance-box">
+
+
+<div class="balance-label">
+Active Balance
+</div>
+
+
+<div class="balance">
+
+$<span id="balance">0.00</span>
+
+</div>
+
+
+<div class="status">
+Space X Account
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="actions">
+
+
+<div class="action" onclick="location.href='deposit.html'">
+
+<div class="circle">
+
+<div class="symbol">
++
+</div>
+
+</div>
+
+<span>
+Deposit
+</span>
+
+</div>
+
+
+
+
+
+
+<div class="action" onclick="location.href='invest.html'">
+
+<div class="circle">
+
+<div class="invest-symbol">
+◈
+</div>
+
+</div>
+
+<span>
+Invest
+</span>
+
+</div>
+
+
+
+
+
+
+<div class="action" onclick="location.href='withdraw.html'">
+
+<div class="circle">
+
+<div class="symbol">
+↓
+</div>
+
+</div>
+
+<span>
+Withdraw
+</span>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="market-box">
+
+
+<div class="market-head">
+
+<h3>
+Space X / USD
+</h3>
+
+
+<small>
+LIVE MARKET
+</small>
+
+
+</div>
+
+
+<div id="gold_chart"></div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<script type="module">
+
+
+import {initializeApp}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+import {
+
+getFirestore,
+
+doc,
+
+collection,
+
+query,
+
+where,
+
+onSnapshot
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain: "novax-acb23.firebaseapp.com",
+  projectId: "novax-acb23",
+  storageBucket: "novax-acb23.firebasestorage.app",
+  messagingSenderId: "203988106178",
+  appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+
+
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const db=getFirestore(app);
+
+
+
+
+
+// Firebase user balance
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+// Balance
+
+onSnapshot(
+
+doc(db,"users",user.uid),
+
+(snapshot)=>{
+
+if(snapshot.exists()){
+
+const balanceElement = document.getElementById("balance");
+
+balanceElement.innerText = Number(snapshot.data().balance || 0).toLocaleString(
+    undefined,
+    {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }
+);
+
+}
+
+}
+
+);
+
+// Notification red dot
+
+const unreadQuery=query(
+
+collection(db,"notifications"),
+
+where("userId","==",user.uid),
+
+where("isRead","==",false)
+
+);
+
+onSnapshot(doc(db,"supportChats",user.uid),(snap)=>{
+
+if(!snap.exists()) return;
+
+const data=snap.data();
+
+document.getElementById("chatDot").style.display =
+data.unreadForUser ? "block" : "none";
+
+});
+
+onSnapshot(unreadQuery,(snapshot)=>{
+
+document.getElementById("notificationDot").style.display=
+
+snapshot.empty ? "none" : "block";
+
+});
+
+}
+
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+
+<script>
+
+
+new TradingView.widget({
+
+container_id:"gold_chart",
+
+width:"100%",
+
+height:350,
+
+symbol:"OANDA:XAUUSD",
+
+interval:"5",
+
+timezone:"Etc/UTC",
+
+theme:"dark",
+
+style:"1",
+
+locale:"en",
+
+enable_publishing:false,
+
+hide_side_toolbar:false,
+
+allow_symbol_change:true
+
+});
+
+
+</script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX | Admin Withdrawals</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:20px;
+padding-bottom:120px;
+overflow-x:hidden;
+}
+
+.header{
+display:flex;
+align-items:center;
+gap:16px;
+margin-bottom:25px;
+}
+
+.back-btn{
+width:52px;
+height:52px;
+border-radius:50%;
+border:2px solid #fff;
+background:transparent;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+}
+
+.back-btn:hover{
+background:#fff;
+color:#000;
+}
+
+.header h1{
+font-size:32px;
+font-weight:700;
+}
+
+.summary-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:22px;
+padding:22px;
+text-align:center;
+margin-bottom:22px;
+box-shadow:0 10px 30px rgba(255,255,255,.05);
+}
+
+.summary-card p{
+color:#888;
+font-size:15px;
+margin-bottom:8px;
+}
+
+.summary-card h2{
+font-size:40px;
+font-weight:700;
+}
+
+.search-box{
+position:relative;
+margin-bottom:22px;
+}
+
+.search-box i{
+position:absolute;
+left:18px;
+top:50%;
+transform:translateY(-50%);
+color:#777;
+font-size:18px;
+}
+
+.search-box input{
+width:100%;
+height:56px;
+background:#111;
+border:1px solid #333;
+border-radius:16px;
+padding-left:50px;
+padding-right:16px;
+color:#fff;
+font-size:16px;
+outline:none;
+}
+
+.search-box input:focus{
+border-color:#fff;
+}
+
+.withdrawals-list{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.withdraw-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 25px rgba(255,255,255,.04);
+}
+
+.user-name{
+font-size:20px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.info-row{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+font-size:15px;
+}
+
+.info-row span:first-child{
+color:#888;
+}
+
+.status{
+display:inline-block;
+padding:6px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:600;
+margin-top:15px;
+}
+
+.pending{
+background:#ff9800;
+color:#000;
+}
+
+.approved{
+background:#00c853;
+color:#fff;
+}
+
+.rejected{
+background:#d32f2f;
+color:#fff;
+}
+
+.action-buttons{
+display:flex;
+gap:12px;
+margin-top:18px;
+}
+
+.action-buttons button{
+flex:1;
+height:48px;
+border:none;
+border-radius:14px;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.approve-btn{
+background:#00c853;
+color:#fff;
+}
+
+.reject-btn{
+background:#d32f2f;
+color:#fff;
+}
+
+.action-buttons button:hover{
+transform:translateY(-2px);
+}
+
+.loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loader{
+width:65px;
+height:65px;
+border:6px solid #222;
+border-top:6px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.loading h2{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.loading p{
+color:#888;
+}
+
+.empty{
+background:#111;
+border:1px dashed #333;
+border-radius:20px;
+padding:40px 20px;
+text-align:center;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Loading -->
+
+<div class="loading" id="loading">
+
+<div class="loader"></div>
+
+<h2>Loading Withdrawals</h2>
+
+<p>Please wait while withdrawal requests are retrieved...</p>
+
+</div>
+
+<!-- Header -->
+
+<div class="header">
+
+<button
+class="back-btn"
+onclick="location.href='admin.html'">
+
+<i class="bi bi-arrow-left"></i>
+
+</button>
+
+<h1>Withdrawals</h1>
+
+</div>
+
+<!-- Summary -->
+
+<div class="summary-card">
+
+<p>Total Withdrawal Requests</p>
+
+<h2 id="totalWithdrawals">
+
+0
+
+</h2>
+
+</div>
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="bi bi-search"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search username or email...">
+
+</div>
+
+<!-- Withdrawals List -->
+
+<div
+id="withdrawalsList"
+class="withdrawals-list">
+
+<div class="empty">
+
+<i
+class="bi bi-wallet2"
+style="
+font-size:60px;
+display:block;
+margin-bottom:15px;
+">
+</i>
+
+<h2
+style="
+margin-bottom:10px;
+">
+
+No Withdrawal Requests
+
+</h2>
+
+<p>
+
+New withdrawal requests will appear here automatically.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Confirmation Modal -->
+
+<div
+id="confirmModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+z-index:100000;
+">
+
+<div
+style="
+width:90%;
+max-width:360px;
+background:#111;
+border:1px solid #333;
+border-radius:20px;
+padding:25px;
+text-align:center;
+">
+
+<h2 id="confirmTitle">
+
+Confirm Action
+
+</h2>
+
+<p
+id="confirmMessage"
+style="
+margin:18px 0;
+color:#aaa;
+line-height:1.7;
+">
+
+Are you sure?
+
+</p>
+
+<div
+style="
+display:flex;
+gap:12px;
+">
+
+<button
+id="cancelAction"
+style="
+flex:1;
+height:48px;
+background:#222;
+color:#fff;
+border:none;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+">
+
+Cancel
+
+</button>
+
+<button
+id="confirmAction"
+style="
+flex:1;
+height:48px;
+background:#fff;
+color:#000;
+border:none;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+">
+
+Confirm
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const loading=document.getElementById("loading");
+const withdrawalsList=document.getElementById("withdrawalsList");
+const totalWithdrawals=document.getElementById("totalWithdrawals");
+const searchInput=document.getElementById("searchInput");
+
+let withdrawals=[];
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+location.href="admin-login.html";
+return;
+}
+
+loading.style.display="flex";
+
+onSnapshot(collection(db,"withdrawals"),(snapshot)=>{
+
+withdrawals=[];
+
+snapshot.forEach(doc=>{
+
+withdrawals.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+loading.style.display="none";
+
+totalWithdrawals.innerText=withdrawals.length;
+
+renderWithdrawals(withdrawals);
+
+});
+
+});
+
+searchInput.addEventListener("input",()=>{
+
+const text=searchInput.value.toLowerCase();
+
+const filtered=withdrawals.filter(w=>
+
+(w.username||"").toLowerCase().includes(text)
+
+);
+
+renderWithdrawals(filtered);
+
+});
+
+function renderWithdrawals(list){
+
+withdrawalsList.innerHTML="";
+
+if(list.length===0){
+
+withdrawalsList.innerHTML=`
+<div class="empty">
+<h2>No Withdrawals</h2>
+</div>
+`;
+
+return;
+
+}
+
+list.forEach(w=>{
+
+withdrawalsList.innerHTML+=`
+
+<div class="withdraw-card">
+
+<div class="user-name">
+
+${w.username||"Unknown"}
+
+</div>
+
+<div class="info-row">
+
+<span>Address</span>
+
+<span>${w.walletAddress||w.paypalEmail||w.cashAppTag||"-"}</span>
+
+</div>
+
+<div class="info-row">
+
+<span>Amount</span>
+
+<span>$${Number(w.amount||0).toFixed(2)}</span>
+
+</div>
+
+<div class="action-buttons">
+
+<button
+class="approve-btn"
+onclick="approveWithdrawal('${w.id}')">
+
+Approve
+
+</button>
+
+<button
+class="reject-btn"
+onclick="rejectWithdrawal('${w.id}')">
+
+Reject
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+window.approveWithdrawal = async(id)=>{
+
+try{
+
+const { doc, updateDoc } = await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js");
+
+await updateDoc(doc(db,"withdrawals",id),{
+
+status:"Approved"
+
+});
+
+alert("Withdrawal approved successfully.");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+window.rejectWithdrawal = async(id)=>{
+
+try{
+
+const { doc, updateDoc } = await import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js");
+
+await updateDoc(doc(db,"withdrawals",id),{
+
+status:"Rejected"
+
+});
+
+alert("Withdrawal rejected successfully.");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+</script>
+
+</body>
+
+</html>

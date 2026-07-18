@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Crypto Deposit</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+touch-action:manipulation;
+}
+
+body{
+padding:20px;
+padding-bottom:40px;
+}
+
+/* Header */
+
+.header{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:30px;
+
+}
+
+.back{
+
+width:45px;
+height:45px;
+border:1px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.logo img{
+
+width:45px;
+height:45px;
+object-fit:contain;
+
+}
+
+.logo h2{
+
+font-size:24px;
+
+}
+
+.space{
+
+width:45px;
+
+}
+
+/* Balance */
+
+.balanceCard{
+
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:25px;
+margin-bottom:25px;
+text-align:center;
+
+}
+
+.balanceCard small{
+
+color:#777;
+
+}
+
+.balance{
+
+font-size:34px;
+margin-top:10px;
+font-weight:bold;
+
+}
+
+/* Deposit Card */
+
+.card{
+
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:22px;
+
+}
+
+label{
+
+display:block;
+margin-bottom:8px;
+color:#888;
+font-size:14px;
+
+}
+
+select,
+input{
+
+width:100%;
+padding:15px;
+margin-bottom:20px;
+
+background:#000;
+
+border:1px solid #333;
+
+border-radius:12px;
+
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+}
+
+.addressBox{
+
+background:#000;
+border:1px solid #333;
+border-radius:12px;
+padding:18px;
+margin-bottom:18px;
+
+}
+
+.addressTitle{
+
+font-size:13px;
+color:#777;
+margin-bottom:10px;
+
+}
+
+.address{
+
+font-size:14px;
+line-height:1.6;
+word-break:break-all;
+user-select:all;
+
+}
+
+.copyBtn{
+
+width:100%;
+padding:14px;
+background:#111;
+color:white;
+border:1px solid #444;
+border-radius:12px;
+margin-bottom:20px;
+cursor:pointer;
+
+}
+
+.submitBtn{
+
+width:100%;
+padding:16px;
+background:white;
+color:black;
+border:none;
+border-radius:30px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+
+}
+
+.submitBtn:disabled{
+
+opacity:.5;
+cursor:not-allowed;
+
+}
+
+/* Loading */
+
+#loader{
+
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+
+}
+
+.spinner{
+
+width:55px;
+height:55px;
+border:4px solid #333;
+border-top:4px solid white;
+border-radius:50%;
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+.loaderText{
+
+margin-top:20px;
+color:#888;
+
+}
+
+/* Success Alert */
+
+#success{
+
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#090909;
+border:1px solid #333;
+border-radius:20px;
+padding:30px;
+width:90%;
+max-width:360px;
+text-align:center;
+z-index:1000;
+
+}
+
+#success h2{
+
+margin-bottom:15px;
+
+}
+
+#success p{
+
+color:#888;
+line-height:1.6;
+margin-bottom:20px;
+
+}
+
+#success button{
+
+width:100%;
+padding:15px;
+background:white;
+color:black;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+select{
+
+width:100%;
+
+padding:16px 18px;
+
+background:#111;
+
+color:#fff;
+
+border:2px solid #444;
+
+border-radius:14px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+appearance:none;
+
+-webkit-appearance:none;
+
+-moz-appearance:none;
+
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+
+background-repeat:no-repeat;
+
+background-position:right 18px center;
+
+background-size:18px;
+
+padding-right:55px;
+
+transition:.3s;
+
+}
+
+select:focus{
+
+border-color:white;
+
+box-shadow:0 0 12px rgba(255,255,255,.25);
+
+outline:none;
+
+}
+
+/* ===========================
+   Deposit Notice
+=========================== */
+
+.notice{
+
+background:#111;
+
+border:1px solid #2d2d2d;
+
+border-left:4px solid #00ff88;
+
+border-radius:18px;
+
+padding:18px;
+
+margin-top:22px;
+
+text-align:left;
+
+}
+
+.notice h3{
+
+font-size:18px;
+
+margin-bottom:12px;
+
+font-weight:700;
+
+color:#fff;
+
+}
+
+.notice p{
+
+font-size:14px;
+
+line-height:1.8;
+
+color:#b8b8b8;
+
+}
+
+.notice b{
+
+color:#00ff88;
+
+}
+
+/* ===========================
+   Upload Proof
+=========================== */
+
+input[type=file]{
+
+width:100%;
+
+padding:14px;
+
+background:#111;
+
+border:1px dashed #444;
+
+border-radius:14px;
+
+color:#bbb;
+
+font-size:15px;
+
+margin-bottom:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+input[type=file]:hover{
+
+border-color:#00ff88;
+
+}
+
+input[type=file]::file-selector-button{
+
+background:#00ff88;
+
+color:#000;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:10px;
+
+font-weight:700;
+
+cursor:pointer;
+
+margin-right:12px;
+
+}
+
+/* ===========================
+   Submit Button
+=========================== */
+
+.submitBtn{
+
+width:100%;
+
+height:56px;
+
+background:#00ff88;
+
+color:#000;
+
+border:none;
+
+border-radius:16px;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 10px 25px rgba(0,255,136,.18);
+
+}
+
+.submitBtn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 15px 35px rgba(0,255,136,.30);
+
+}
+
+.submitBtn:active{
+
+transform:scale(.98);
+
+}
+
+/* ===========================
+   Amount Input
+=========================== */
+
+#amount{
+
+font-size:17px;
+
+font-weight:600;
+
+}
+
+/* ===========================
+   Wallet Address
+=========================== */
+
+.address{
+
+font-size:15px;
+
+font-weight:600;
+
+letter-spacing:.3px;
+
+}
+
+/* ===========================
+   Copy Button
+=========================== */
+
+.copyBtn{
+
+transition:.3s;
+
+}
+
+.copyBtn:hover{
+
+background:#00ff88;
+
+color:#000;
+
+border-color:#00ff88;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="notice">
+
+<h3>⚠ Deposit Notice</h3>
+
+<p>
+
+Please send only
+<b id="cryptoName">USDT (TRC20)</b>
+
+to the wallet address below.
+
+<br><br>
+
+Sending funds through the wrong network may result in permanent loss of your assets.
+
+</p>
+
+</div>
+
+<div class="header">
+
+<div class="back"
+onclick="location.href='deposit.html'">
+
+←
+
+</div>
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>Crypto Deposit</h2>
+
+</div>
+
+<div class="space"></div>
+
+</div>
+
+<div class="balanceCard">
+
+<small>Available Balance</small>
+
+<div class="balance">
+
+$<span id="balance">0.00</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<label>
+
+Choose Deposit Currency
+
+</label>
+
+<small style="color:#777;display:block;margin:-3px 0 12px 2px;">
+
+Tap below to choose BTC, ETH or USDT
+
+</small>
+
+<select id="currency">
+
+<option value="USDT">
+
+🟢 USDT (ERC20)
+
+</option>
+
+<option value="BTC">
+
+🟠 Bitcoin (BTC)
+
+</option>
+
+<option value="ETH">
+
+🔷 Ethereum (ETH)
+
+</option>
+
+</select>
+
+<div class="addressBox">
+
+<div class="addressTitle">
+
+Deposit Wallet Address
+
+</div>
+
+<div class="address" id="walletAddress">
+
+0x677D2b0133b2F405731b9F5f2B878ACe2D3a548e
+
+</div>
+
+</div>
+
+<button
+class="copyBtn"
+id="copyBtn">
+
+📋 Copy Wallet Address
+
+</button>
+
+<label>
+
+Enter exactly the amount you transferred to the wallet address above.
+
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter amount">
+
+<button
+class="submitBtn"
+id="submitBtn">
+
+I Have Sent
+
+</button>
+
+</div>
+
+<div id="loader">
+
+<div class="spinner"></div>
+
+<div class="loaderText">
+
+Submitting Deposit...
+
+</div>
+
+</div>
+
+<div id="success">
+
+<h2>
+
+Deposit Submitted
+
+<h2>
+
+Deposit Submitted Successfully
+
+</h2>
+
+<p>
+
+Your payment proof has been received successfully.
+
+Our finance team will verify your transaction shortly.
+
+Once approved, your account balance will be updated automatically.
+
+You can monitor the progress from your History page.
+
+</p>
+
+<button onclick="location.href='history.html'">
+
+View History
+
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+collection,
+addDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:"novax-acb23.firebaseapp.com",
+
+projectId:"novax-acb23",
+
+storageBucket:"novax-acb23.firebasestorage.app",
+
+messagingSenderId:"203988106178",
+
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let currentUser=null;
+let username="";
+let balance=0;
+
+const wallets={
+
+USDT:"0x677D2b0133b2F405731b9F5f2B878ACe2D3a548e",
+
+ETH:"0x677D2b0133b2F405731b9F5f2B878ACe2D3a548e",
+
+BTC:"bc1q9d0dnhj4e00zk3hmzrxpgv2zxpd9lh8kfnerqu"
+
+};
+
+const currency=document.getElementById("currency");
+const walletAddress=document.getElementById("walletAddress");
+
+// Change wallet automatically
+
+currency.onchange=function(){
+
+walletAddress.textContent = wallets[this.value];
+
+const cryptoName = document.getElementById("cryptoName");
+
+if(this.value=="USDT"){
+
+cryptoName.innerText="USDT (ERC20)";
+
+}
+
+if(this.value=="BTC"){
+
+cryptoName.innerText="Bitcoin (BTC)";
+
+}
+
+if(this.value=="ETH"){
+
+cryptoName.innerText="Ethereum (ETH)";
+
+}
+
+};
+
+// Copy FULL wallet address
+
+document.getElementById("copyBtn").onclick=async()=>{
+
+try{
+
+const address=wallets[currency.value];
+
+await navigator.clipboard.writeText(address);
+
+alert("Wallet address copied successfully.");
+
+}catch{
+
+alert("Unable to copy wallet address.");
+
+}
+
+};
+
+// Load user (NO REDIRECT)
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+
+document.getElementById("balance").innerText="0.00";
+return;
+
+}
+
+currentUser=user;
+
+try{
+
+const snap=await getDoc(doc(db,"users",user.uid));
+
+if(snap.exists()){
+
+const data=snap.data();
+
+username=data.username||"";
+
+balance=Number(data.balance||0);
+
+document.getElementById("balance").innerText=
+balance.toFixed(2);
+
+}
+
+}catch(error){
+
+console.log(error);
+
+}
+
+});
+
+const amountInput = document.getElementById("amount");
+
+amountInput.addEventListener("input",()=>{
+
+const amount = amountInput.value;
+
+document.getElementById("submitBtn").innerText =
+
+amount
+
+? `I Have Sent $${Number(amount).toLocaleString()}`
+
+: "I Have Sent";
+
+});
+
+// Submit Deposit
+
+document.getElementById("submitBtn").onclick=async()=>{
+
+if(!currentUser){
+
+alert("Please login before submitting a deposit.");
+
+return;
+
+}
+
+const amount=parseFloat(document.getElementById("amount").value);
+
+if(isNaN(amount)||amount<=0){
+
+alert("Enter a valid deposit amount.");
+
+return;
+
+}
+
+document.getElementById("loader").style.display="flex";
+
+try{
+
+await addDoc(collection(db,"transactions"),{
+
+userId:currentUser.uid,
+
+username:username,
+
+type:"Deposit",
+
+method:"Crypto",
+
+currency:currency.value,
+
+walletAddress:wallets[currency.value],
+
+amount:amount,
+
+status:"Pending",
+
+createdAt:serverTimestamp()
+
+});
+
+document.getElementById("loader").style.display="none";
+
+document.getElementById("success").style.display="block";
+
+document.getElementById("amount").value="";
+
+}catch(error){
+
+document.getElementById("loader").style.display="none";
+
+alert(error.message);
+
+}
+
+};
+
+</script>
+
+</body>
+</html>

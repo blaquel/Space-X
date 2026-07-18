@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX | Crypto Investment Platform</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+}
+
+header{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo img{
+    width:45px;
+    height:45px;
+    object-fit:contain;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:15px;
+}
+
+.btn{
+    background:white;
+    color:black;
+    padding:12px 25px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+
+.hero{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 10%;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero span{
+    color:#aaa;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-buttons a{
+    display:inline-block;
+    margin:10px;
+    padding:15px 35px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.start{
+    background:white;
+    color:black;
+}
+
+.learn{
+    border:1px solid white;
+    color:white;
+}
+
+
+section{
+    padding:70px 8%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:35px;
+}
+
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+
+.card{
+    background:#111;
+    border:1px solid #222;
+    padding:30px;
+    border-radius:15px;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #222;
+    color:#aaa;
+}
+
+
+@media(max-width:700px){
+
+.hero h1{
+    font-size:38px;
+}
+
+nav{
+    display:none;
+}
+
+}
+
+html, body{
+    touch-action: manipulation;
+    overscroll-behavior: none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="NovaX Logo">
+Space X
+</div>
+
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Plans</a>
+<a href="#">About</a>
+<a href="login.html">Login</a>
+<a href="register.html" class="btn">Register</a>
+</nav>
+
+
+</header>
+
+
+
+<div class="hero">
+
+<div>
+
+<h1>
+The Future Of <span>Crypto Growth</span>
+</h1>
+
+<p>
+NovaX provides a modern digital investment experience built for people who want to explore cryptocurrency opportunities with a simple and secure platform.
+</p>
+
+
+<div class="hero-buttons">
+
+<a href="register.html" class="start">
+Start Investing
+</a>
+
+<a href="#features" class="learn">
+Learn More
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<section id="features">
+
+<h2 class="title">
+Why Space X?
+</h2>
+
+
+<div class="cards">
+
+
+<div class="card">
+<h3>Secure Platform</h3>
+<p>
+Designed with modern security practices to protect user accounts.
+</p>
+</div>
+
+
+<div class="card">
+<h3>Smart Dashboard</h3>
+<p>
+Track investments, transactions and account activity easily.
+</p>
+</div>
+
+
+<div class="card">
+<h3>Crypto Focused</h3>
+<p>
+A clean environment for managing digital asset activities.
+</p>
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+© 2026 Space X. All Rights Reserved.
+
+</footer>
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain: "novax-acb23.firebaseapp.com",
+  projectId: "novax-acb23",
+  storageBucket: "novax-acb23.firebasestorage.app",
+  messagingSenderId: "203988106178",
+  appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+console.log("NovaX Firebase Connected");
+
+</script>
+
+
+</body>
+</html>

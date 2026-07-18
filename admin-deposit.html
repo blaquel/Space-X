@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Admin Deposits</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+background:#000;
+color:#fff;
+touch-action:manipulation;
+overflow-x:hidden;
+}
+
+body{
+padding:20px;
+padding-bottom:40px;
+}
+
+/* Header */
+
+.header{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:30px;
+
+}
+
+.back{
+
+width:45px;
+height:45px;
+border:1px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.logo img{
+
+width:45px;
+height:45px;
+object-fit:contain;
+
+}
+
+.logo h2{
+
+font-size:24px;
+
+}
+
+.space{
+
+width:45px;
+
+}
+
+/* Summary */
+
+.summary{
+
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:25px;
+text-align:center;
+margin-bottom:25px;
+
+}
+
+.summary small{
+
+color:#777;
+
+}
+
+.summary h1{
+
+font-size:36px;
+margin-top:10px;
+
+}
+
+/* Deposit Card */
+
+.deposit{
+
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:20px;
+margin-bottom:18px;
+
+}
+
+.deposit h3{
+
+margin-bottom:18px;
+font-size:18px;
+
+}
+
+.row{
+
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+gap:15px;
+
+}
+
+.label{
+
+color:#777;
+font-size:14px;
+
+}
+
+.value{
+
+font-size:14px;
+text-align:right;
+word-break:break-word;
+
+}
+
+.status{
+
+display:inline-block;
+padding:8px 18px;
+border-radius:30px;
+font-size:13px;
+margin-top:18px;
+border:1px solid #444;
+
+}
+
+.pending{
+
+color:#ffb300;
+border-color:#ffb300;
+
+}
+
+.approved{
+
+color:#00ff88;
+border-color:#00ff88;
+
+}
+
+.declined{
+
+color:#ff4d4d;
+border-color:#ff4d4d;
+
+}
+
+.buttons{
+
+display:flex;
+gap:12px;
+margin-top:20px;
+
+}
+
+.approve{
+
+flex:1;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#00aa44;
+color:white;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+.decline{
+
+flex:1;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#b30000;
+color:white;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+.done{
+
+width:100%;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#222;
+color:#aaa;
+font-weight:bold;
+
+}
+
+.empty{
+
+text-align:center;
+margin-top:80px;
+color:#666;
+
+}
+
+.loading{
+
+text-align:center;
+margin-top:80px;
+color:#888;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="back"
+onclick="location.href='admin.html'">
+
+←
+
+</div>
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>Deposits</h2>
+
+</div>
+
+<div class="space"></div>
+
+</div>
+
+<div class="summary">
+
+<small>Pending Deposit Requests</small>
+
+<h1 id="pendingCount">
+
+0
+
+</h1>
+
+</div>
+
+<div id="loading" class="loading">
+
+Loading deposit requests...
+
+</div>
+
+<div id="depositList"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+onSnapshot,
+doc,
+updateDoc,
+getDoc,
+increment
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:"novax-acb23.firebaseapp.com",
+
+projectId:"novax-acb23",
+
+storageBucket:"novax-acb23.firebasestorage.app",
+
+messagingSenderId:"203988106178",
+
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getFirestore(app);
+
+const depositList=document.getElementById("depositList");
+
+const loading=document.getElementById("loading");
+
+const pendingCount=document.getElementById("pendingCount");
+
+const q=query(
+
+collection(db,"transactions"),
+
+where("type","==","Deposit"),
+
+where("status","==","Pending")
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+loading.style.display="none";
+
+depositList.innerHTML="";
+
+let pending=0;
+
+if(snapshot.empty){
+
+depositList.innerHTML=`
+
+<div class="empty">
+
+No deposit requests found.
+
+</div>
+
+`;
+
+pendingCount.innerText="0";
+
+return;
+
+}
+
+snapshot.forEach((item)=>{
+
+const data=item.data();
+
+const id=item.id;
+
+if(data.status==="Pending") pending++;
+
+let statusClass="pending";
+
+if(data.status==="Approved") statusClass="approved";
+
+if(data.status==="Declined") statusClass="declined";
+
+depositList.innerHTML+=`
+
+<div class="deposit">
+
+<h3>${data.username}</h3>
+
+<div class="row">
+
+<div class="label">Currency</div>
+
+<div class="value">${data.currency}</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">Amount</div>
+
+<div class="value">$${Number(data.amount).toFixed(2)}</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">Wallet</div>
+
+<div class="value">${data.walletAddress}</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">Date</div>
+
+<div class="value">
+
+${data.createdAt ? data.createdAt.toDate().toLocaleString() : ""}
+
+</div>
+
+</div>
+
+<div class="status ${statusClass}">
+
+<div class="buttons">
+
+<button class="approve"
+onclick="approveDeposit('${id}')">
+
+Approve
+
+</button>
+
+<button class="decline"
+onclick="declineDeposit('${id}')">
+
+Decline
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+pendingCount.innerText=pending;
+
+});
+
+window.approveDeposit=async(id)=>{
+
+if(!confirm("Approve this deposit?")) return;
+
+const ref=doc(db,"transactions",id);
+
+const snap=await getDoc(ref);
+
+if(!snap.exists()) return;
+
+const data=snap.data();
+
+if(data.status!=="Pending") return;
+
+await updateDoc(
+
+doc(db,"users",data.userId),
+
+{
+
+balance:increment(Number(data.amount))
+
+}
+
+);
+
+await updateDoc(ref,{
+
+status:"Approved"
+
+});
+
+alert("Deposit approved successfully.");
+
+};
+
+window.declineDeposit=async(id)=>{
+
+if(!confirm("Decline this deposit?")) return;
+
+await updateDoc(
+
+doc(db,"transactions",id),
+
+{
+
+status:"Declined"
+
+}
+
+);
+
+alert("Deposit declined.");
+
+};
+
+</script>
+
+</body>
+</html>

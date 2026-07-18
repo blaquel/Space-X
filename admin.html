@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Admin Panel</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+touch-action:manipulation;
+}
+
+body{
+padding:20px;
+padding-bottom:40px;
+}
+
+/* Header */
+
+.header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.logo img{
+
+width:55px;
+height:55px;
+object-fit:contain;
+
+}
+
+.logo h2{
+
+font-size:28px;
+
+}
+
+.adminBadge{
+
+padding:8px 15px;
+border:1px solid white;
+border-radius:30px;
+font-size:13px;
+
+}
+
+/* Welcome */
+
+.welcome{
+
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:25px;
+margin-bottom:25px;
+
+}
+
+.welcome small{
+
+color:#777;
+
+}
+
+.welcome h2{
+
+margin-top:10px;
+font-size:28px;
+
+}
+
+/* Statistics */
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:30px;
+
+}
+
+.card{
+
+background:#090909;
+border:1px solid #222;
+border-radius:18px;
+padding:20px;
+
+}
+
+.card small{
+
+color:#777;
+
+}
+
+.card h2{
+
+font-size:30px;
+margin-top:10px;
+
+}
+
+/* Menu */
+
+.title{
+
+margin-bottom:15px;
+font-size:21px;
+
+}
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+.menuItem{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:18px 20px;
+
+background:#090909;
+
+border:1px solid #222;
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.menuItem:hover{
+
+border-color:#555;
+
+}
+
+.left{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.icon{
+
+width:45px;
+height:45px;
+border-radius:50%;
+border:1px solid white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+
+}
+
+.arrow{
+
+font-size:22px;
+color:#777;
+
+}
+
+.footer{
+
+margin-top:35px;
+text-align:center;
+color:#555;
+font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>NovaX Admin</h2>
+
+</div>
+
+<div class="adminBadge">
+
+ADMIN
+
+</div>
+
+</div>
+
+<div class="welcome">
+
+<small>Control Center</small>
+
+<h2>
+
+Administrator Dashboard
+
+</h2>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+
+<small>Total Users</small>
+
+<h2 id="totalUsers">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<small>Pending Deposits</small>
+
+<h2 id="pendingDeposits">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<small>Pending Withdrawals</small>
+
+<h2 id="pendingWithdrawals">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<small>Notifications</small>
+
+<h2 id="totalNotifications">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<h3 class="title">
+
+Management
+
+</h3>
+
+<div class="menu">
+
+<div class="menuItem" onclick="location.href='admin-users.html'">
+
+<div class="left">
+
+<div class="icon">👥</div>
+
+<div>
+
+<h4>All Users</h4>
+
+<small>View registered users</small>
+
+</div>
+
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+<div class="menuItem" onclick="location.href='admin-deposit.html'">
+
+<div class="left">
+
+<div class="icon">💰</div>
+
+<div>
+
+<h4>Deposits</h4>
+
+<small>Approve or decline deposits</small>
+
+</div>
+
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+<div class="menuItem" onclick="location.href='admin-withdrawals.html'">
+
+<div class="left">
+
+<div class="icon">💸</div>
+
+<div>
+
+<h4>Withdrawals</h4>
+
+<small>Manage withdrawal requests</small>
+
+</div>
+
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+<div class="menuItem" onclick="location.href='admin-settings.html'">
+
+<div class="left">
+
+<div class="icon">⚙️</div>
+
+<div>
+
+<h4>Settings</h4>
+
+<small>Edit website settings</small>
+
+</div>
+
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+<div class="menuItem" onclick="location.href='admin-chat.html'">
+
+<div class="left">
+
+<div class="icon">✉️</div>
+
+<div>
+
+<h4>Send Messages</h4>
+
+<small>Notify individual users</small>
+
+</div>
+
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+NovaX Administration Panel © 2026
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:"novax-acb23.firebaseapp.com",
+
+projectId:"novax-acb23",
+
+storageBucket:"novax-acb23.firebasestorage.app",
+
+messagingSenderId:"203988106178",
+
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getFirestore(app);
+
+// Total Users
+
+onSnapshot(collection(db,"users"),(snapshot)=>{
+
+document.getElementById("totalUsers").innerText=snapshot.size;
+
+});
+
+// Pending Deposits
+
+const deposits=query(
+
+collection(db,"transactions"),
+
+where("type","==","Deposit"),
+
+where("status","==","Pending")
+
+);
+
+onSnapshot(deposits,(snapshot)=>{
+
+document.getElementById("pendingDeposits").innerText=snapshot.size;
+
+});
+
+// Pending Withdrawals
+
+const withdrawals=query(
+
+collection(db,"transactions"),
+
+where("type","==","Withdrawal"),
+
+where("status","==","Pending")
+
+);
+
+onSnapshot(withdrawals,(snapshot)=>{
+
+document.getElementById("pendingWithdrawals").innerText=snapshot.size;
+
+});
+
+// Total Notifications
+
+onSnapshot(collection(db,"notifications"),(snapshot)=>{
+
+document.getElementById("totalNotifications").innerText=snapshot.size;
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Notifications</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+touch-action:manipulation;
+}
+
+body{
+padding:20px;
+padding-bottom:40px;
+}
+
+/* Header */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:30px;
+}
+
+.back{
+
+width:45px;
+height:45px;
+
+border:1px solid #fff;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+font-size:20px;
+
+background:#000;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.logo img{
+
+width:42px;
+
+height:42px;
+
+object-fit:contain;
+
+}
+
+.logo h2{
+
+font-size:24px;
+
+font-weight:bold;
+
+}
+
+.spacer{
+
+width:45px;
+
+}
+
+/* Notification List */
+
+#notifications{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+/* Card */
+
+.card{
+
+background:#090909;
+
+border:1px solid #222;
+
+border-radius:22px;
+
+padding:20px;
+
+animation:fade .35s ease;
+
+}
+
+.card-title{
+
+font-size:17px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+
+}
+
+.card-message{
+
+font-size:14px;
+
+color:#bdbdbd;
+
+line-height:1.7;
+
+}
+
+.card-time{
+
+margin-top:15px;
+
+font-size:12px;
+
+color:#666;
+
+}
+
+/* Loading */
+
+#loading{
+
+margin-top:120px;
+
+text-align:center;
+
+color:#777;
+
+font-size:15px;
+
+}
+
+.loader{
+
+width:45px;
+
+height:45px;
+
+border:4px solid #222;
+
+border-top:4px solid white;
+
+border-radius:50%;
+
+margin:auto;
+
+animation:spin 1s linear infinite;
+
+margin-bottom:20px;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Empty */
+
+.empty{
+
+margin-top:100px;
+
+text-align:center;
+
+color:#666;
+
+}
+
+.empty h3{
+
+margin-bottom:12px;
+
+color:white;
+
+}
+
+.empty p{
+
+line-height:1.6;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="back" onclick="location.href='dashboard.html'">
+
+←
+
+</div>
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>Notifications</h2>
+
+</div>
+
+<div class="spacer"></div>
+
+</div>
+
+<div id="loading">
+
+<div class="loader"></div>
+
+Loading your notifications...
+
+</div>
+
+<div id="notifications"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+orderBy,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:"novax-acb23.firebaseapp.com",
+
+projectId:"novax-acb23",
+
+storageBucket:"novax-acb23.firebasestorage.app",
+
+messagingSenderId:"203988106178",
+
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const loading = document.getElementById("loading");
+const notifications = document.getElementById("notifications");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+
+loading.innerHTML="Please login to view notifications.";
+
+return;
+
+}
+
+const q = query(
+
+collection(db,"notifications"),
+
+where("userId","==",user.uid),
+
+);
+
+onSnapshot(q,(snapshot)=>{
+
+loading.style.display="none";
+
+notifications.innerHTML="";
+
+if(snapshot.empty){
+
+notifications.innerHTML=`
+
+<div class="empty">
+
+<h3>No Notifications</h3>
+
+<p>
+You don't have any notifications yet.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+snapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+let time="";
+
+if(data.createdAt){
+
+time=data.createdAt.toDate().toLocaleString();
+
+}
+
+notifications.innerHTML+=`
+
+<div class="card">
+
+<div class="card-title">
+
+${data.title || "NovaX"}
+
+</div>
+
+<div class="card-message">
+
+${data.message || ""}
+
+</div>
+
+<div class="card-time">
+
+${time}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+},(error)=>{
+
+loading.innerHTML="Error: "+error.message;
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX | Admin Settings</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:20px;
+padding-bottom:120px;
+}
+
+.header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:25px;
+}
+
+.back-btn{
+width:52px;
+height:52px;
+border-radius:50%;
+border:2px solid #fff;
+background:transparent;
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+}
+
+.back-btn:hover{
+background:#fff;
+color:#000;
+}
+
+.header h1{
+font-size:32px;
+font-weight:700;
+}
+
+.settings-card{
+background:#111;
+border:1px solid #2a2a2a;
+border-radius:22px;
+padding:22px;
+margin-bottom:22px;
+box-shadow:0 10px 25px rgba(255,255,255,.05);
+}
+
+.settings-card h2{
+font-size:20px;
+margin-bottom:18px;
+}
+
+label{
+display:block;
+margin-top:18px;
+margin-bottom:8px;
+font-size:15px;
+color:#ccc;
+}
+
+input{
+width:100%;
+height:56px;
+background:#000;
+border:1px solid #333;
+border-radius:15px;
+padding:0 16px;
+font-size:15px;
+color:#fff;
+outline:none;
+transition:.3s;
+}
+
+input:focus{
+border-color:#fff;
+}
+
+.save-btn{
+width:100%;
+height:58px;
+margin-top:28px;
+border:none;
+border-radius:16px;
+background:#fff;
+color:#000;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.save-btn:hover{
+transform:translateY(-2px);
+}
+
+.loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loader{
+width:70px;
+height:70px;
+border:6px solid #222;
+border-top:6px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+.loading h2{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.loading p{
+color:#888;
+}
+
+.alert{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.85);
+z-index:100000;
+}
+
+.alert-box{
+width:90%;
+max-width:360px;
+background:#111;
+border:1px solid #333;
+border-radius:20px;
+padding:25px;
+text-align:center;
+}
+
+.alert-box h2{
+margin-bottom:12px;
+}
+
+.alert-box p{
+color:#aaa;
+line-height:1.7;
+margin-bottom:22px;
+}
+
+.alert-box button{
+width:100%;
+height:50px;
+border:none;
+border-radius:14px;
+background:#fff;
+color:#000;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Loading -->
+
+<div class="loading" id="loading">
+
+<div class="loader"></div>
+
+<h2>Saving Settings</h2>
+
+<p>Please wait...</p>
+
+</div>
+
+<!-- Alert -->
+
+<div class="alert" id="alert">
+
+<div class="alert-box">
+
+<h2 id="alertTitle">
+
+Success
+
+</h2>
+
+<p id="alertMessage">
+
+Settings saved successfully.
+
+</p>
+
+<button onclick="closeAlert()">
+
+OK
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Header -->
+
+<div class="header">
+
+<button
+class="back-btn"
+onclick="location.href='admin.html'">
+
+<i class="bi bi-arrow-left"></i>
+
+</button>
+
+<h1>Settings</h1>
+
+</div>
+
+<!-- Wallet Settings -->
+
+<div class="settings-card">
+
+<h2>
+
+Crypto Wallet Addresses
+
+</h2>
+
+<label>
+
+USDT Wallet Address
+
+</label>
+
+<input
+type="text"
+id="usdtAddress"
+placeholder="Enter USDT wallet address">
+
+<label>
+
+Bitcoin Wallet Address
+
+</label>
+
+<input
+type="text"
+id="btcAddress"
+placeholder="Enter Bitcoin wallet address">
+
+<label>
+
+Ethereum Wallet Address
+
+</label>
+
+<input
+type="text"
+id="ethAddress"
+placeholder="Enter Ethereum wallet address">
+
+</div>
+
+<!-- Support Settings -->
+
+<div class="settings-card">
+
+<h2>
+
+Support
+
+</h2>
+
+<label>
+
+WhatsApp Support Link
+
+</label>
+
+<input
+type="text"
+id="whatsappLink"
+placeholder="https://wa.me/...">
+
+<label>
+
+Telegram Support Link
+
+</label>
+
+<input
+type="text"
+id="telegramLink"
+placeholder="https://t.me/...">
+
+<label>
+
+Support Email
+
+</label>
+
+<input
+type="email"
+id="supportEmail"
+placeholder="support@example.com">
+
+</div>
+
+<!-- Payment Settings -->
+
+<div class="settings-card">
+
+<h2>
+
+Payment Accounts
+
+</h2>
+
+<label>
+
+PayPal Email
+
+</label>
+
+<input
+type="email"
+id="paypalEmail"
+placeholder="PayPal email">
+
+<label>
+
+Cash App Tag
+
+</label>
+
+<input
+type="text"
+id="cashAppTag"
+placeholder="$Cashtag">
+
+<button
+class="save-btn"
+id="saveBtn">
+
+Save Settings
+
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const loading=document.getElementById("loading");
+
+const usdt=document.getElementById("usdtAddress");
+const btc=document.getElementById("btcAddress");
+const eth=document.getElementById("ethAddress");
+
+const whatsapp=document.getElementById("whatsappLink");
+const telegram=document.getElementById("telegramLink");
+const supportEmail=document.getElementById("supportEmail");
+
+const paypal=document.getElementById("paypalEmail");
+const cashapp=document.getElementById("cashAppTag");
+
+const saveBtn=document.getElementById("saveBtn");
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+
+location.href="admin-login.html";
+
+return;
+
+}
+
+loading.style.display="flex";
+
+try{
+
+const settingsRef=doc(db,"settings","website");
+
+const snap=await getDoc(settingsRef);
+
+if(snap.exists()){
+
+const data=snap.data();
+
+usdt.value=data.usdtAddress||"";
+btc.value=data.btcAddress||"";
+eth.value=data.ethAddress||"";
+
+whatsapp.value=data.whatsappLink||"";
+telegram.value=data.telegramLink||"";
+supportEmail.value=data.supportEmail||"";
+
+paypal.value=data.paypalEmail||"";
+cashapp.value=data.cashAppTag||"";
+
+}
+
+loading.style.display="none";
+
+}catch(error){
+
+loading.style.display="none";
+
+showAlert("Error",error.message);
+
+}
+
+});
+
+saveBtn.onclick=async()=>{
+
+loading.style.display="flex";
+
+try{
+
+await setDoc(doc(db,"settings","website"),{
+
+usdtAddress:usdt.value.trim(),
+btcAddress:btc.value.trim(),
+ethAddress:eth.value.trim(),
+
+whatsappLink:whatsapp.value.trim(),
+telegramLink:telegram.value.trim(),
+supportEmail:supportEmail.value.trim(),
+
+paypalEmail:paypal.value.trim(),
+cashAppTag:cashapp.value.trim()
+
+},{merge:true});
+
+loading.style.display="none";
+
+showAlert(
+"Success",
+"Settings have been saved successfully."
+);
+
+}catch(error){
+
+loading.style.display="none";
+
+showAlert(
+"Error",
+error.message
+);
+
+}
+
+};
+
+window.showAlert=function(title,message){
+
+document.getElementById("alertTitle").innerText=title;
+
+document.getElementById("alertMessage").innerText=message;
+
+document.getElementById("alert").style.display="flex";
+
+};
+
+window.closeAlert=function(){
+
+document.getElementById("alert").style.display="none";
+
+};
+
+</script>
+
+</body>
+
+</html>

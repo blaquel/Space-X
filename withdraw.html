@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Withdraw</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:20px;
+}
+
+.header{
+display:flex;
+align-items:center;
+gap:18px;
+margin-bottom:30px;
+}
+
+.back{
+width:42px;
+height:42px;
+border:1px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:18px;
+}
+
+.balance-card{
+background:#090909;
+border:1px solid #222;
+border-radius:24px;
+padding:28px;
+text-align:center;
+margin-bottom:30px;
+}
+
+.balance-card small{
+color:#777;
+font-size:13px;
+}
+
+.balance{
+font-size:36px;
+font-weight:bold;
+margin-top:12px;
+}
+
+.option{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#090909;
+border:1px solid #222;
+border-radius:20px;
+padding:22px;
+margin-bottom:15px;
+cursor:pointer;
+transition:.2s;
+}
+
+.option:hover{
+border-color:#fff;
+}
+
+.option-title{
+font-size:17px;
+font-weight:bold;
+}
+
+.option-sub{
+font-size:13px;
+color:#777;
+margin-top:5px;
+}
+
+.arrow{
+font-size:22px;
+color:#fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="back" onclick="location.href='dashboard.html'">
+
+←
+
+</div>
+
+<h2>Withdraw</h2>
+
+</div>
+
+<div class="balance-card">
+
+<small>Available Balance</small>
+
+<div class="balance">
+$<span id="balance">0.00</span>
+</div>
+
+</div>
+
+<div class="option" onclick="location.href='crypto-withdraw.html'">
+
+<div>
+
+<div class="option-title">Crypto</div>
+
+<div class="option-sub">
+Withdraw using cryptocurrency
+</div>
+
+</div>
+
+<div class="arrow">→</div>
+
+</div>
+
+<div class="option" onclick="location.href='paypal-withdraw.html'">
+
+<div>
+
+<div class="option-title">PayPal</div>
+
+<div class="option-sub">
+Withdraw to your PayPal account
+</div>
+
+</div>
+
+<div class="arrow">→</div>
+
+</div>
+
+<div class="option" onclick="location.href='cashapp-withdraw.html'">
+
+<div>
+
+<div class="option-title">Cash App</div>
+
+<div class="option-sub">
+Withdraw to your Cash App account
+</div>
+
+</div>
+
+<div class="arrow">→</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain: "novax-acb23.firebaseapp.com",
+  projectId: "novax-acb23",
+  storageBucket: "novax-acb23.firebasestorage.app",
+  messagingSenderId: "203988106178",
+  appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user) return;
+
+onSnapshot(doc(db,"users",user.uid),(snap)=>{
+
+if(snap.exists()){
+
+document.getElementById("balance").textContent =
+Number(snap.data().balance || 0).toFixed(2);
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

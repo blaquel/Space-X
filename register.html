@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Register</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+touch-action:manipulation;
+background:#000;
+color:#fff;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:420px;
+background:#090909;
+border:1px solid #222;
+border-radius:24px;
+padding:35px;
+box-shadow:0 0 25px rgba(255,255,255,.05);
+}
+
+.logo{
+text-align:center;
+margin-bottom:30px;
+}
+
+.logo img{
+width:75px;
+height:75px;
+object-fit:contain;
+margin-bottom:15px;
+}
+
+.logo h2{
+font-size:28px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.logo p{
+color:#777;
+font-size:14px;
+}
+
+.field{
+margin-bottom:18px;
+}
+
+.field label{
+display:block;
+margin-bottom:8px;
+font-size:13px;
+color:#999;
+}
+
+.field input{
+width:100%;
+padding:16px;
+background:#000;
+border:1px solid #333;
+border-radius:14px;
+color:#fff;
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+
+.field input:focus{
+border-color:#fff;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:30px;
+background:#fff;
+color:#000;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+opacity:.9;
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:14px;
+color:#777;
+}
+
+.footer a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* Loading Overlay */
+
+#loader{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.spinner{
+width:60px;
+height:60px;
+border:4px solid #222;
+border-top:4px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.loader-title{
+margin-top:25px;
+font-size:18px;
+font-weight:bold;
+}
+
+.loader-text{
+margin-top:8px;
+font-size:14px;
+color:#888;
+}
+
+/* Success Modal */
+
+#successModal{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:360px;
+background:#090909;
+border:1px solid #333;
+border-radius:22px;
+padding:30px;
+text-align:center;
+z-index:10000;
+}
+
+.success-icon{
+width:70px;
+height:70px;
+margin:auto;
+border:2px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+margin-bottom:20px;
+}
+
+#successModal h2{
+margin-bottom:10px;
+}
+
+#successModal p{
+color:#888;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<img src="logo.png" alt="NovaX">
+
+<h2>Space X</h2>
+
+<p>Create your investment account</p>
+
+</div>
+
+<div class="field">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email">
+
+</div>
+
+<div class="field">
+
+<label>Username</label>
+
+<input
+type="text"
+id="username"
+placeholder="Choose a username">
+
+</div>
+
+<div class="field">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Create password">
+
+</div>
+
+<div class="field">
+
+<label>Confirm Password</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm password">
+
+</div>
+
+<button id="registerBtn">
+
+Create Account
+
+</button>
+
+<div class="footer">
+
+Already have an account?
+
+<a href="login.html">
+
+Login
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Loading Overlay -->
+
+<div id="loader">
+
+<div class="spinner"></div>
+
+<div class="loader-title">
+
+Creating Account
+
+</div>
+
+<div class="loader-text">
+
+Please wait while we securely create your NovaX account...
+
+</div>
+
+</div>
+
+<!-- Success Modal -->
+
+<div id="successModal">
+
+<div class="success-icon">
+
+✓
+
+</div>
+
+<h2>
+
+Registration Successful
+
+</h2>
+
+<p>
+
+Welcome to NovaX. Your investment account has been created successfully.
+
+</p>
+
+<button id="continueBtn">
+
+Continue
+
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+updateProfile,
+setPersistence,
+browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:"novax-acb23.firebaseapp.com",
+
+projectId:"novax-acb23",
+
+storageBucket:"novax-acb23.firebasestorage.app",
+
+messagingSenderId:"203988106178",
+
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+// Keep user logged in
+await setPersistence(auth,browserLocalPersistence);
+
+const registerBtn=document.getElementById("registerBtn");
+const loader=document.getElementById("loader");
+const successModal=document.getElementById("successModal");
+const continueBtn=document.getElementById("continueBtn");
+
+registerBtn.addEventListener("click",async()=>{
+
+const email=document.getElementById("email").value.trim().toLowerCase();
+const username=document.getElementById("username").value.trim();
+const password=document.getElementById("password").value;
+const confirmPassword=document.getElementById("confirmPassword").value;
+
+if(!email || !username || !password || !confirmPassword){
+
+alert("Please complete all fields.");
+
+return;
+
+}
+
+if(password!==confirmPassword){
+
+alert("Passwords do not match.");
+
+return;
+
+}
+
+if(password.length<6){
+
+alert("Password must be at least 6 characters.");
+
+return;
+
+}
+
+registerBtn.disabled=true;
+loader.style.display="flex";
+
+try{
+
+const credential=await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+const user=credential.user;
+
+// Save username to Authentication profile
+await updateProfile(user,{
+displayName:username
+});
+
+// Create user document
+await setDoc(doc(db,"users",user.uid),{
+
+uid:user.uid,
+
+email:email,
+
+username:username,
+
+balance:0,
+
+investment:0,
+
+referralCode:"",
+
+createdAt:serverTimestamp()
+
+});
+
+// Create welcome notification
+await setDoc(doc(db,"notifications",user.uid),{
+
+userId:user.uid,
+
+title:"Welcome to NovaX",
+
+message:"Welcome to NovaX! Your investment account has been created successfully.",
+
+createdAt:serverTimestamp()
+
+});
+
+loader.style.display="none";
+
+successModal.style.display="block";
+
+continueBtn.onclick=function(){
+
+window.location.replace("dashboard.html");
+
+};
+
+}catch(error){
+
+loader.style.display="none";
+
+registerBtn.disabled=false;
+
+let msg="Registration failed.";
+
+switch(error.code){
+
+case "auth/email-already-in-use":
+msg="This email is already registered.";
+break;
+
+case "auth/invalid-email":
+msg="Please enter a valid email address.";
+break;
+
+case "auth/weak-password":
+msg="Password must contain at least 6 characters.";
+break;
+
+default:
+msg=error.message;
+
+}
+
+alert(msg);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

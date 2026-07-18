@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Wallet</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+padding:20px;
+padding-bottom:100px;
+overflow-x:hidden;
+}
+
+/* Header */
+
+.header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:30px;
+}
+
+.back{
+width:45px;
+height:45px;
+border:1px solid #fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+}
+
+.back:hover{
+background:#fff;
+color:#000;
+}
+
+.header h2{
+font-size:28px;
+font-weight:600;
+}
+
+/* Wallet Card */
+
+.wallet-card{
+background:linear-gradient(180deg,#111,#050505);
+border:1px solid #2a2a2a;
+border-radius:25px;
+padding:25px;
+box-shadow:0 15px 35px rgba(255,255,255,.05);
+margin-bottom:25px;
+}
+
+.label{
+font-size:14px;
+color:#888;
+margin-bottom:10px;
+}
+
+.wallet-card h1{
+font-size:42px;
+font-weight:700;
+margin-bottom:25px;
+letter-spacing:1px;
+}
+
+.wallet-stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.wallet-stats div{
+background:#111;
+border:1px solid #222;
+border-radius:18px;
+padding:18px;
+text-align:center;
+}
+
+.wallet-stats p{
+font-size:13px;
+color:#888;
+margin-bottom:8px;
+}
+
+.wallet-stats h3{
+font-size:20px;
+font-weight:600;
+}
+
+/* Action Buttons */
+
+.actions{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:35px;
+}
+
+.actions button{
+height:52px;
+border:none;
+border-radius:15px;
+background:#fff;
+color:#000;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.actions button:hover{
+transform:translateY(-2px);
+}
+
+/* Section Titles */
+
+.section-title{
+font-size:22px;
+font-weight:600;
+margin-bottom:18px;
+}
+
+/* Tabs */
+
+.tabs{
+display:flex;
+gap:10px;
+overflow-x:auto;
+margin-bottom:20px;
+padding-bottom:5px;
+}
+
+.tabs::-webkit-scrollbar{
+display:none;
+}
+
+.tab{
+background:#111;
+border:1px solid #333;
+color:#fff;
+padding:10px 20px;
+border-radius:30px;
+cursor:pointer;
+white-space:nowrap;
+transition:.3s;
+}
+
+.tab.active{
+background:#fff;
+color:#000;
+}
+
+/* Transaction Card */
+
+.transaction-card{
+background:#111;
+border:1px solid #222;
+border-radius:20px;
+padding:20px;
+margin-bottom:15px;
+transition:.3s;
+}
+
+.transaction-card:hover{
+border-color:#555;
+}
+
+.transaction-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+font-weight:600;
+font-size:18px;
+}
+
+.transaction-details{
+color:#999;
+font-size:14px;
+line-height:1.9;
+}
+
+/* Status */
+
+.status{
+display:inline-block;
+padding:6px 14px;
+border-radius:30px;
+font-size:12px;
+font-weight:600;
+margin-top:12px;
+}
+
+.status.active{
+background:#0f3;
+color:#000;
+}
+
+.status.pending{
+background:#ff9800;
+color:#000;
+}
+
+.status.completed{
+background:#2196f3;
+color:#fff;
+}
+
+.status.declined{
+background:#ff3b30;
+color:#fff;
+}
+
+/* Active Investment Card */
+
+.investment-card{
+background:#111;
+border:1px solid #222;
+border-radius:20px;
+padding:20px;
+margin-bottom:18px;
+}
+
+.progress{
+width:100%;
+height:10px;
+background:#222;
+border-radius:30px;
+overflow:hidden;
+margin:15px 0;
+}
+
+.progress div{
+height:100%;
+width:0%;
+background:#fff;
+transition:.5s;
+}
+
+/* Empty */
+
+.empty{
+background:#111;
+border:1px dashed #333;
+border-radius:20px;
+padding:40px 20px;
+text-align:center;
+}
+
+.empty h3{
+margin-bottom:10px;
+font-size:20px;
+}
+
+.empty p{
+color:#888;
+line-height:1.8;
+}
+
+/* Loading Overlay */
+
+.loading-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loading-overlay img{
+width:80px;
+margin-bottom:20px;
+}
+
+.loader{
+width:60px;
+height:60px;
+border:5px solid #222;
+border-top:5px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.loading-overlay h3{
+margin-bottom:8px;
+}
+
+.loading-overlay p{
+color:#888;
+}
+
+.transaction-card{
+    background:#111;
+    border:1px solid #2d2d2d;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.transaction-card h3{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.transaction-card small{
+    color:#999;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:40px 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Header -->
+
+<div class="header">
+
+<div class="back" onclick="location.href='dashboard.html'">
+←
+</div>
+
+<h2>Wallet</h2>
+
+</div>
+
+<!-- Balance Card -->
+
+<div class="wallet-card">
+
+<p class="label">
+Available Balance
+</p>
+
+<h1>
+$<span id="balance">0.00</span>
+</h1>
+
+<div class="wallet-stats">
+
+<div>
+
+<p>Total Invested</p>
+
+<h3 id="totalInvested">
+$0.00
+</h3>
+
+</div>
+
+<div>
+
+<p>Total Profit</p>
+
+<h3 id="totalProfit">
+$0.00
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="actions">
+
+<button id="depositBtn">
+Deposit
+</button>
+
+<button id="withdrawBtn">
+Withdraw
+</button>
+
+<button id="investBtn">
+Invest
+</button>
+
+</div>
+
+<!-- Portfolio Summary -->
+
+<div class="wallet-card">
+
+<h3 class="section-title" style="margin-bottom:20px;">
+Portfolio Summary
+</h3>
+
+<div class="wallet-stats">
+
+<div>
+<p>Total Deposited</p>
+<h3 id="totalDeposited">$0.00</h3>
+</div>
+
+<div>
+<p>Total Withdrawn</p>
+<h3 id="totalWithdrawn">$0.00</h3>
+</div>
+
+<div>
+<p>Active Plans</p>
+<h3 id="activePlans">0</h3>
+</div>
+
+<div>
+<p>Completed Plans</p>
+<h3 id="completedPlans">0</h3>
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    onSnapshot,
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain: "novax-acb23.firebaseapp.com",
+projectId: "novax-acb23",
+storageBucket: "novax-acb23.firebasestorage.app",
+messagingSenderId: "203988106178",
+appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const balanceEl = document.getElementById("balance");
+const investedEl = document.getElementById("totalInvested");
+const profitEl = document.getElementById("totalProfit");
+
+const depositedEl = document.getElementById("totalDeposited");
+const withdrawnEl = document.getElementById("totalWithdrawn");
+const activePlansEl = document.getElementById("activePlans");
+const completedPlansEl = document.getElementById("completedPlans");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+    location.href="login.html";
+    return;
+}
+
+onSnapshot(doc(db,"users",user.uid),(snapshot)=>{
+
+if(!snapshot.exists()) return;
+
+const data = snapshot.data();
+
+balanceEl.innerText = Number(data.balance || 0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+investedEl.innerText = "$" + Number(data.totalInvested || 0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+profitEl.innerText = "$" + Number(data.totalProfit || 0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+depositedEl.innerText =
+"$" + Number(data.totalDeposited || 0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+withdrawnEl.innerText =
+"$" + Number(data.totalWithdrawn || 0).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+activePlansEl.innerText =
+Number(data.activePlans || 0);
+
+completedPlansEl.innerText =
+Number(data.completedPlans || 0);
+
+});
+
+});
+
+document.getElementById("depositBtn").onclick=()=>{
+
+location.href="deposit.html";
+
+};
+
+document.getElementById("withdrawBtn").onclick=()=>{
+
+location.href="withdraw.html";
+
+};
+
+document.getElementById("investBtn").onclick=()=>{
+
+location.href="invest.html";
+
+};
+
+</script>
+
+</body>
+
+</html>

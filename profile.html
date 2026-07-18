@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+<title>NovaX Profile</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+
+body{
+
+background:#000;
+color:white;
+padding:20px;
+
+}
+
+
+
+.header{
+
+display:flex;
+align-items:center;
+gap:20px;
+margin-bottom:30px;
+
+}
+
+
+.back{
+
+width:42px;
+height:42px;
+border:1px solid white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+
+
+.card{
+
+background:#090909;
+border:1px solid #222;
+border-radius:25px;
+padding:30px;
+
+}
+
+
+
+.avatar{
+
+width:80px;
+height:80px;
+border-radius:50%;
+border:1px solid white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+margin:auto;
+
+}
+
+
+
+.name{
+
+text-align:center;
+margin:20px 0;
+font-size:20px;
+
+}
+
+
+
+.row{
+
+padding:18px 0;
+border-bottom:1px solid #222;
+
+}
+
+
+
+.label{
+
+font-size:12px;
+color:#777;
+
+}
+
+
+
+.value{
+
+margin-top:8px;
+font-size:15px;
+
+}
+
+
+
+.status{
+
+margin-top:25px;
+padding:15px;
+border:1px solid #222;
+border-radius:15px;
+text-align:center;
+color:#aaa;
+
+}
+
+
+
+#loading{
+
+text-align:center;
+margin-top:100px;
+color:#777;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<div class="header">
+
+<div class="back" onclick="location.href='dashboard.html'">
+
+←
+
+</div>
+
+
+<h2>
+Profile
+</h2>
+
+
+</div>
+
+
+
+
+
+
+<div id="loading">
+
+Loading profile...
+
+</div>
+
+
+
+
+
+
+<div class="card" id="profile" style="display:none;">
+
+
+
+<div class="avatar">
+
+N
+
+</div>
+
+
+
+
+<div class="name" id="username">
+
+NovaX User
+
+</div>
+
+
+
+
+
+
+
+<div class="row">
+
+<div class="label">
+
+Username
+
+</div>
+
+
+<div class="value" id="userUsername">
+
+Loading...
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="row">
+
+<div class="label">
+
+Email Address
+
+</div>
+
+
+<div class="value" id="email">
+
+Loading...
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="row">
+
+<div class="label">
+
+Account Status
+
+</div>
+
+
+<div class="value">
+
+Active
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="status">
+
+NovaX Verified Account
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script type="module">
+
+
+import {initializeApp}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+
+import {
+
+getAuth,
+
+onAuthStateChanged
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+
+import {
+
+getFirestore,
+
+doc,
+
+getDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain: "novax-acb23.firebaseapp.com",
+  projectId: "novax-acb23",
+  storageBucket: "novax-acb23.firebasestorage.app",
+  messagingSenderId: "203988106178",
+  appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+};
+
+
+
+
+
+const app=initializeApp(firebaseConfig);
+
+
+const auth=getAuth(app);
+
+
+const db=getFirestore(app);
+
+
+
+
+
+
+
+
+onAuthStateChanged(auth, async(user)=>{
+
+
+if(user){
+
+
+
+document.getElementById("email").innerText=user.email;
+
+
+
+const userDoc=await getDoc(
+
+doc(db,"users",user.uid)
+
+);
+
+
+
+
+if(userDoc.exists()){
+
+
+const data=userDoc.data();
+
+
+
+document.getElementById("userUsername").innerText=
+
+data.username || "Not available";
+
+
+
+document.getElementById("username").innerText=
+
+data.username || "NovaX User";
+
+
+}
+
+
+
+
+document.getElementById("loading").style.display="none";
+
+
+document.getElementById("profile").style.display="block";
+
+
+
+}
+
+else{
+
+
+document.getElementById("loading").innerText=
+
+"Please login to access profile";
+
+
+}
+
+
+
+});
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
