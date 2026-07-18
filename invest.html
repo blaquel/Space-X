@@ -1671,17 +1671,12 @@ totalEarned:increment(data.dailyReturn)
 
 });
 
-await updateDoc(docSnap.ref,{
-
-totalEarned:increment(data.dailyReturn),
-totalProfit:increment(data.dailyReturn)
-
-daysCompleted:increment(1),
-
-nextProfitAt:now+86400000,
-
-updatedAt:serverTimestamp()
-
+await updateDoc(docSnap.ref, {
+  totalEarned: increment(data.dailyReturn),
+  totalProfit: increment(data.dailyReturn),
+  daysCompleted: increment(1),
+  nextProfitAt: now + 86400000,
+  updatedAt: serverTimestamp()
 });
 
 await addDoc(collection(db,"history"),{
