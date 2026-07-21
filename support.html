@@ -352,19 +352,19 @@ Our support team is always available to help you with deposits, withdrawals, inv
 
 <div class="option">
 
-<h3>📱 Contact on WhatsApp</h3>
+<h3>📱 Contact on Telegram</h3>
 
 <p>
 
-Talk directly with our customer support team on WhatsApp.
+Talk directly with our customer support team on Telegram. @spacex112
 
 </p>
 
-<button onclick="comingSoon()">
-
-Contact Support
-
-</button>
+<a href="https://t.me/spacex112" target="_blank" style="text-decoration:none;">
+    <button>
+        Contact Support
+    </button>
+</a>
 
 </div>
 
@@ -414,7 +414,7 @@ Less than 5 Minutes
 
 <p>
 
-WhatsApp support link will be added by the administrator.
+Telegram support link will be added by the administrator.
 
 </p>
 
@@ -475,10 +475,8 @@ location.href="login.html";
 
 /* Popup */
 
-window.comingSoon=function(){
-
-document.getElementById("popupOverlay").style.display="flex";
-
+window.openTelegram = function () {
+    location.href = "tg://resolve?domain=spacex112";
 }
 
 window.closePopup=function(){
