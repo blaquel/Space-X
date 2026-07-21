@@ -1485,9 +1485,11 @@ return;
 
 for(const investment of snapshot.docs){
 
-const data=investment.data();
+    await processDailyProfit(investment);
 
-const percent=((data.daysCompleted||0)/data.duration)*100;
+    const data = investment.data();
+
+    const percent=((data.daysCompleted||0)/data.duration)*100;
 
 activeContainer.innerHTML+=`
 
@@ -1640,7 +1642,18 @@ String(s).padStart(2,"0");
 
 update();
 
-setInterval(update,1000);
+const timer = setInterval(() => {
+
+    const el = document.getElementById(id);
+
+    if(!el){
+        clearInterval(timer);
+        return;
+    }
+
+    update();
+
+},1000);
 
 }
 
