@@ -1,1757 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX Invest</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Space X Invest</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-:root{
-
---bg:#050505;
---card:#101010;
---card2:#161616;
---border:#2b2b2b;
---text:#ffffff;
---muted:#8a8a8a;
---success:#00ff88;
---shadow:0 10px 35px rgba(0,0,0,.45);
-
-}
-
-body{
-
-background:var(--bg);
-color:var(--text);
-padding:22px;
-padding-bottom:120px;
-
-}
-
-body::before{
-
-content:"";
-position:fixed;
-top:-150px;
-right:-150px;
-width:300px;
-height:300px;
-background:rgba(255,255,255,.05);
-filter:blur(120px);
-z-index:-1;
-
-}
-
-body::after{
-
-content:"";
-position:fixed;
-bottom:-150px;
-left:-150px;
-width:300px;
-height:300px;
-background:rgba(255,255,255,.04);
-filter:blur(120px);
-z-index:-1;
-
-}
-
-/* HEADER */
-
-.header{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:30px;
-
-}
-
-.back{
-
-width:52px;
-height:52px;
-border-radius:50%;
-background:#111;
-border:1px solid var(--border);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:24px;
-cursor:pointer;
-
-transition:.35s;
-
-}
-
-.back:hover{
-
-transform:translateY(-3px);
-border-color:#fff;
-
-}
-
-.profile{
-
-width:52px;
-height:52px;
-border-radius:50%;
-background:linear-gradient(145deg,#fff,#999);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-color:#000;
-font-size:20px;
-font-weight:700;
-
-}
-
-.page-title{
-
-margin-bottom:25px;
-
-}
-
-.page-title h1{
-
-font-size:34px;
-font-weight:800;
-
-}
-
-.page-title p{
-
-margin-top:6px;
-color:var(--muted);
-font-size:15px;
-
-}
-
-/* BALANCE */
-
-.balance-card{
-
-position:relative;
-
-background:linear-gradient(145deg,#191919,#0d0d0d);
-
-border:1px solid var(--border);
-
-border-radius:30px;
-
-padding:28px;
-
-overflow:hidden;
-
-box-shadow:var(--shadow);
-
-margin-bottom:28px;
-
-}
-
-.balance-card::before{
-
-content:"";
-
-position:absolute;
-
-top:-50px;
-right:-50px;
-
-width:150px;
-height:150px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.04);
-
-}
-
-.balance-label{
-
-font-size:15px;
-color:#999;
-
-}
-
-.balance{
-
-font-size:46px;
-font-weight:800;
-margin-top:12px;
-
-}
-
-.balance span{
-
-font-size:18px;
-
-}
-
-.balance-footer{
-
-margin-top:22px;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-}
-
-.live{
-
-display:flex;
-align-items:center;
-gap:8px;
-
-font-size:14px;
-color:#00ff88;
-
-}
-
-.live-dot{
-
-width:10px;
-height:10px;
-background:#00ff88;
-border-radius:50%;
-
-animation:pulse 1s infinite;
-
-}
-
-/* STATS */
-
-.stats{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:14px;
-
-margin-bottom:32px;
-
-}
-
-.stat{
-
-background:#111;
-
-border:1px solid var(--border);
-
-border-radius:20px;
-
-padding:18px;
-
-text-align:center;
-
-}
-
-.stat h3{
-
-font-size:25px;
-
-margin-bottom:5px;
-
-}
-
-.stat p{
-
-color:#999;
-font-size:13px;
-
-}
-
-/* TITLES */
-
-.section{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-margin-bottom:18px;
-margin-top:35px;
-
-}
-
-.section h2{
-
-font-size:26px;
-
-font-weight:700;
-
-}
-
-.section span{
-
-color:#888;
-font-size:14px;
-
-}
-
-/* ACTIVE INVESTMENTS */
-
-#activeInvestments{
-
-display:flex;
-flex-direction:column;
-gap:18px;
-
-}
-
-/* PLANS */
-
-#plans{
-
-display:grid;
-
-grid-template-columns:1fr;
-
-gap:18px;
-
-}
-
-/* CARD */
-
-.glass{
-
-background:linear-gradient(145deg,#141414,#0f0f0f);
-
-border:1px solid var(--border);
-
-border-radius:26px;
-
-padding:22px;
-
-box-shadow:var(--shadow);
-
-transition:.35s;
-
-}
-
-.glass:hover{
-
-transform:translateY(-5px);
-
-border-color:#fff;
-
-}
-
-/* CUSTOM */
-
-#customCard{
-
-margin-top:15px;
-
-}
-
-/* INPUT */
-
-.input{
-
-width:100%;
-
-height:56px;
-
-background:#090909;
-
-border:1px solid #333;
-
-border-radius:16px;
-
-padding:0 18px;
-
-font-size:17px;
-
-color:#fff;
-
-outline:none;
-
-transition:.3s;
-
-}
-
-.input:focus{
-
-border-color:#fff;
-
-}
-
-/* BUTTON */
-
-.btn{
-
-width:100%;
-
-height:56px;
-
-border:none;
-
-border-radius:16px;
-
-margin-top:20px;
-
-background:#fff;
-
-color:#000;
-
-font-size:17px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.35s;
-
-}
-
-.btn:hover{
-
-transform:scale(.98);
-
-}
-
-/* EMPTY */
-
-.empty{
-
-padding:35px;
-
-text-align:center;
-
-color:#888;
-
-}
-
-/* ANIMATION */
-
-@keyframes pulse{
-
-0%{
-
-opacity:1;
-transform:scale(1);
-
-}
-
-50%{
-
-opacity:.3;
-transform:scale(1.4);
-
-}
-
-100%{
-
-opacity:1;
-transform:scale(1);
-
-}
-
-}
-
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;-webkit-tap-highlight-color:transparent}
+:root{--bg:#050505;--card:#0d0d0d;--card2:#121212;--line:#252525;--muted:#8b8b8b;--green:#00ff88;--blue:#00c8ff}
+html,body{background:var(--bg);color:#fff;min-height:100%;touch-action:manipulation}
+body{padding:18px 18px 110px;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-180px -180px auto auto;width:430px;height:430px;border-radius:50%;background:rgba(0,200,255,.06);filter:blur(100px);pointer-events:none}
+body:after{content:"";position:fixed;left:-180px;bottom:-180px;width:430px;height:430px;border-radius:50%;background:rgba(0,255,136,.04);filter:blur(100px);pointer-events:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.back{width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:#0b0b0b;color:#fff;font-size:22px;display:grid;place-items:center;cursor:pointer}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+.brand img{width:34px;height:34px;object-fit:contain}
+.rocket{width:44px;height:44px;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;background:#0b0b0b;font-size:21px}
+.intro{margin:4px 0 20px}.intro h1{font-size:30px;line-height:1.2}.intro p{color:var(--muted);font-size:13px;margin-top:6px}
+.balance-panel{background:linear-gradient(135deg,#121212,#090909);border:1px solid #292929;border-radius:24px;padding:22px;margin-bottom:18px;box-shadow:0 18px 45px rgba(0,0,0,.4)}
+.balance-label{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:1.4px}.balance{font-size:40px;font-weight:800;margin-top:5px;letter-spacing:-1px}
+.balance-row{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:17px;border-top:1px solid #242424}.balance-row small{color:#777}.balance-row strong{font-size:15px}
+.live{display:flex;align-items:center;gap:7px;color:var(--green);font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}.mini{background:#0b0b0b;border:1px solid var(--line);border-radius:17px;padding:15px}.mini span{display:block;color:#777;font-size:11px;margin-bottom:5px}.mini b{font-size:17px}.mini .green{color:var(--green)}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin:28px 2px 13px}.section-head h2{font-size:21px}.section-head span{font-size:11px;color:#666}
+#activeInvestments,#plans{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px}
+.card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.card h3{font-size:18px}.badge{font-size:10px;font-weight:700;color:var(--green);background:#062016;border:1px solid #0d4c30;padding:6px 9px;border-radius:30px;white-space:nowrap}
+.details{margin-top:15px}.detail{display:flex;justify-content:space-between;padding:7px 0;color:#777;font-size:13px}.detail strong{color:#fff}.detail .green{color:var(--green)}
+.btn{width:100%;height:50px;border:0;border-radius:14px;margin-top:13px;background:#fff;color:#000;font-size:14px;font-weight:800;cursor:pointer}.btn:active{transform:scale(.985)}
+.progress{height:7px;background:#1b1b1b;border-radius:20px;overflow:hidden;margin-top:16px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:20px}
+.progress-meta{display:flex;justify-content:space-between;color:#666;font-size:11px;margin-top:8px}
+.countdown{margin-top:12px;background:#080808;border:1px solid #202020;border-radius:13px;padding:11px;text-align:center;font-size:20px;font-weight:700;letter-spacing:2px}
+.empty{padding:28px;text-align:center;color:#777;font-size:13px}
+.custom-note{color:#888;font-size:13px;line-height:1.7;margin:8px 0 18px}.input{width:100%;height:52px;background:#070707;border:1px solid #303030;border-radius:14px;color:#fff;padding:0 15px;font-size:15px;outline:none}.input:focus{border-color:#fff}
+.custom-results{margin-top:17px;border-top:1px solid #222;padding-top:12px}.result{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;color:#777}.result b{color:#fff}.result .green{color:var(--green)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;z-index:9999;padding:22px}.modal{width:100%;max-width:360px;background:#111;border:1px solid #303030;border-radius:24px;padding:28px;text-align:center}.spinner{width:55px;height:55px;border:4px solid #262626;border-top-color:#fff;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 18px}.modal h3{font-size:20px}.modal p{color:#888;font-size:13px;line-height:1.7;margin-top:8px}.modal .icon{width:64px;height:64px;border-radius:50%;background:#0b2118;border:1px solid #145a39;color:var(--green);display:grid;place-items:center;font-size:28px;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(min-width:700px){body{max-width:760px;margin:auto}.summary{grid-template-columns:repeat(4,1fr)}#plans,#activeInvestments{display:grid;grid-template-columns:1fr 1fr}}
 </style>
-
 </head>
-
 <body>
 
-<div class="header">
-
-<div class="back"
-onclick="location.href='dashboard.html'">
-
-←
-
+<div class="topbar">
+  <div class="back" onclick="location.href='dashboard.html'">‹</div>
+  <div class="brand"><img src="logo.png" alt="Space X">Space X</div>
+  <div class="rocket">🚀</div>
 </div>
 
-<div class="profile">
-
-🚀
-
+<div class="intro">
+  <h1>Investment Center</h1>
+  <p>Manage your Space X investment plans from one place.</p>
 </div>
 
+<div class="balance-panel">
+  <div class="balance-label">Available Balance</div>
+  <div class="balance">$<span id="balance">0.00</span></div>
+  <div class="balance-row">
+    <div><small>Active Plans</small><br><strong id="activePlans">0</strong></div>
+    <div style="text-align:right"><div class="live"><i class="dot"></i> LIVE</div><small>Today's Profit</small><br><strong class="green">$<span id="todayProfit">0.00</span></strong></div>
+  </div>
 </div>
 
-<div class="page-title">
+<div class="section-head"><h2>Active Investments</h2><span>RUNNING</span></div>
+<div id="activeInvestments"><div class="card empty">No active investments.</div></div>
 
-<h1>Invest</h1>
-
-<p>
-Grow your wealth with premium investment plans.
-</p>
-
-</div>
-
-<div class="balance-card">
-
-<div style="width:100%;">
-
-<div>
-
-<div class="balance-label">
-
-</div>
-
-<div class="balance">
-$
-<span id="balance">0.00</span>
-</div>
-
-</div>
-
-<div style="
-margin-top:22px;
-display:flex;
-justify-content:space-between;
-">
-
-<div>
-
-<div style="font-size:13px;color:#888;">
-Active Plans
-</div>
-
-<div style="font-size:22px;font-weight:700;" id="activePlans">
-0
-</div>
-
-</div>
-
-<div>
-
-<div style="font-size:13px;color:#888;">
-Today's Profit
-</div>
-
-<div style="font-size:22px;font-weight:700;color:#00ff88;" id="todayProfit">
-0
-</div>
-
-</div>
-
-<div>
-
-<div style="font-size:13px;color:#888;">
-Total Earned
-</div>
-
-<div style="font-size:22px;font-weight:700;" id="totalEarnedCard">
-0
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>
-
-Active Investments
-
-</h2>
-
-<span>
-
-Running
-
-</span>
-
-</div>
-
-<div id="activeInvestments">
-
-<div class="glass empty">
-
-No active investments.
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>
-
-Investment Plans
-
-</h2>
-
-<span>
-
-15 Plans
-
-</span>
-
-</div>
-
+<div class="section-head"><h2>Investment Plans</h2><span>15 OPTIONS</span></div>
 <div id="plans"></div>
 
-<div class="section">
-
-<h2>
-
-Custom Investment
-
-</h2>
-
-<span>
-
-Flexible
-
-</span>
-
+<div class="section-head"><h2>Custom Investment</h2><span>FLEXIBLE</span></div>
+<div class="card">
+  <h3>Create Your Own Plan</h3>
+  <p class="custom-note">Enter an amount and Space X will calculate the projected daily and 10-day return.</p>
+  <input id="customAmount" class="input" type="number" inputmode="decimal" placeholder="Investment amount">
+  <div class="custom-results">
+    <div class="result"><span>Daily Profit</span><b>$<span id="dailyProfit">0.00</span></b></div>
+    <div class="result"><span>Duration</span><b>10 Days</b></div>
+    <div class="result"><span>Total Profit</span><b class="green">$<span id="totalProfit">0.00</span></b></div>
+  </div>
+  <button id="customBtn" class="btn">Activate Investment</button>
 </div>
 
-<div class="glass" id="customCard">
-
-<h3 style="font-size:24px;font-weight:700;margin-bottom:10px;">
-Create Your Own Plan
-</h3>
-
-<p style="
-color:#8a8a8a;
-line-height:1.7;
-margin-bottom:25px;
-">
-
-Choose any investment amount and NovaX will automatically calculate your projected earnings.
-
-</p>
-
-<input
-id="customAmount"
-class="input"
-type="number"
-placeholder="Enter investment amount">
-
-<div style="margin-top:25px;">
-
-<div style="
-display:flex;
-justify-content:space-between;
-margin-bottom:18px;
-">
-
-<span style="color:#999;">
-Daily Profit
-</span>
-
-<b>
-$
-<span id="dailyProfit">
-0.00
-</span>
-</b>
-
+<div id="loadingOverlay" class="overlay">
+  <div class="modal"><div class="spinner"></div><h3>Processing Investment</h3><p>Please wait while your Space X investment is being activated.</p></div>
 </div>
 
-<div style="
-display:flex;
-justify-content:space-between;
-margin-bottom:18px;
-">
-
-<span style="color:#999;">
-Duration
-</span>
-
-<b>
-10 Days
-</b>
-
+<div id="popupOverlay" class="overlay">
+  <div class="modal">
+    <div class="icon">✓</div>
+    <h3 id="popupTitle">Success</h3>
+    <p id="popupText">Completed.</p>
+    <button onclick="closePopup()" class="btn">Continue</button>
+  </div>
 </div>
-
-<div style="
-display:flex;
-justify-content:space-between;
-">
-
-<span style="color:#999;">
-Total Profit
-</span>
-
-<b style="
-font-size:20px;
-color:#00ff88;
-">
-
-$
-<span id="totalProfit">
-0.00
-</span>
-
-</b>
-
-</div>
-
-</div>
-
-<button
-id="customBtn"
-class="btn">
-
-Activate Investment
-
-</button>
-
-</div>
-
-<!-- Loading Overlay -->
-
-<div id="loadingOverlay" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:none;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.88);
-backdrop-filter:blur(10px);
-z-index:9999;
-">
-
-<div style="
-width:320px;
-background:#121212;
-border:1px solid #2a2a2a;
-border-radius:28px;
-padding:35px;
-text-align:center;
-">
-
-<div style="
-width:80px;
-height:80px;
-margin:auto;
-border-radius:50%;
-border:6px solid #222;
-border-top:6px solid #fff;
-animation:spin 1s linear infinite;
-">
-
-</div>
-
-<h2 style="
-margin-top:25px;
-font-size:24px;
-">
-
-Processing...
-
-</h2>
-
-<p style="
-margin-top:10px;
-color:#999;
-line-height:1.8;
-">
-
-Please wait while your investment is being activated.
-
-</p>
-
-</div>
-
-</div>
-
-<!-- Premium Popup -->
-
-<div id="popupOverlay" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:none;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.86);
-backdrop-filter:blur(8px);
-z-index:10000;
-">
-
-<div style="
-width:90%;
-max-width:380px;
-background:#111;
-border:1px solid #2a2a2a;
-border-radius:30px;
-padding:30px;
-text-align:center;
-">
-
-<div style="
-width:70px;
-height:70px;
-margin:auto;
-border-radius:50%;
-background:#181818;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:34px;
-">
-
-✓
-
-</div>
-
-<h2
-id="popupTitle"
-style="
-margin-top:20px;
-font-size:24px;
-">
-
-Success
-
-</h2>
-
-<p
-id="popupText"
-style="
-margin-top:15px;
-line-height:1.8;
-color:#9a9a9a;
-">
-
-Completed.
-
-</p>
-
-<button
-onclick="closePopup()"
-class="btn">
-
-Continue
-
-</button>
-
-</div>
-
-</div>
-
-<style>
-
-@keyframes spin{
-
-0%{
-transform:rotate(0deg);
-}
-
-100%{
-transform:rotate(360deg);
-}
-
-}
-
-.progress{
-
-width:100%;
-height:10px;
-background:#1d1d1d;
-border-radius:50px;
-overflow:hidden;
-margin-top:18px;
-
-}
-
-.progress-fill{
-
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#00ff88,#00c8ff);
-transition:.5s;
-
-}
-
-.countdown{
-
-margin-top:20px;
-padding:15px;
-border-radius:16px;
-background:#090909;
-border:1px solid #222;
-font-size:24px;
-font-weight:700;
-text-align:center;
-letter-spacing:2px;
-
-}
-
-.badge{
-
-display:inline-block;
-padding:8px 16px;
-border-radius:50px;
-background:#0d2d19;
-color:#00ff88;
-font-size:13px;
-font-weight:700;
-
-}
-
-</style>
 
 <script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import {getFirestore,doc,onSnapshot,collection,addDoc,updateDoc,increment,serverTimestamp,query,where} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-import {
-getFirestore,
-doc,
-onSnapshot,
-collection,
-addDoc,
-updateDoc,
-increment,
-serverTimestamp,
-query,
-where
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-/* ===============================
-   FIREBASE
-================================ */
-
-const firebaseConfig={
-
-apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-
-authDomain:"novax-acb23.firebaseapp.com",
-
-projectId:"novax-acb23",
-
-storageBucket:"novax-acb23.firebasestorage.app",
-
-messagingSenderId:"203988106178",
-
-appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
-
-};
-
-const app=initializeApp(firebaseConfig);
-
-const auth=getAuth(app);
-
-const db=getFirestore(app);
-
-/* ===============================
-   VARIABLES
-================================ */
-
-let currentUser=null;
-let balance=0;
-
-/* ===============================
-   INVESTMENT PLANS
-================================ */
+const firebaseConfig={apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",authDomain:"novax-acb23.firebaseapp.com",projectId:"novax-acb23",storageBucket:"novax-acb23.firebasestorage.app",messagingSenderId:"203988106178",appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+let currentUser=null,balance=0;
 
 const plans=[
-
-["Space X Starter",100,40,400],
-
-["Space X Bronze",200,60,600],
-
-["Space X Silver",500,90,900],
-
-["Space X Gold",800,150,1500],
-
-["Space X Platinum",1000,300,3000],
-
-["Space X Diamond",2000,500,5000],
-
-["Space X Elite",5000,1000,10000],
-
-["Space X Prime",8000,1500,15000],
-
-["Space X Titan",10000,3500,35000],
-
-["Space X Prestige",50000,8000,80000],
-
-["Space X Infinity",100000,19000,190000],
-
-["Space X Legacy",200000,40000,400000],
-
-["Space X Royal",500000,100000,1000000],
-
-["Space X Empire",800000,150000,1500000],
-
-["Space X Optimus",1000000,250000,2500000]
-
+["Space X Starter",100,40,400],["Space X Bronze",200,60,600],["Space X Silver",500,90,900],
+["Space X Gold",800,150,1500],["Space X Platinum",1000,300,3000],["Space X Diamond",2000,500,5000],
+["Space X Elite",5000,1000,10000],["Space X Prime",8000,1500,15000],["Space X Titan",10000,3500,35000],
+["Space X Prestige",50000,8000,80000],["Space X Infinity",100000,19000,190000],["Space X Legacy",200000,40000,400000],
+["Space X Royal",500000,100000,1000000],["Space X Empire",800000,150000,1500000],["Space X Optimus",1000000,250000,2500000]
 ];
 
-/* ===============================
-   PREMIUM UI
-================================ */
+const money=n=>Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const plansEl=document.getElementById("plans");
 
-window.showLoading=function(){
-
-document.getElementById("loadingOverlay").style.display="flex";
-
-}
-
-window.hideLoading=function(){
-
-document.getElementById("loadingOverlay").style.display="none";
-
-}
-
-window.showPopup=function(title,message){
-
-document.getElementById("popupTitle").innerText=title;
-
-document.getElementById("popupText").innerText=message;
-
-document.getElementById("popupOverlay").style.display="flex";
-
-}
-
-window.closePopup=function(){
-
-document.getElementById("popupOverlay").style.display="none";
-
-}
-
-/* ===============================
-   LOAD PLANS
-================================ */
-
-const plansContainer=document.getElementById("plans");
-
-plans.forEach((plan,index)=>{
-
-plansContainer.innerHTML+=`
-
-<div class="glass">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px;
-">
-
-<h2 style="font-size:24px;">
-${plan[0]}
-</h2>
-
-<div class="badge">
-
-10 DAYS
-
-</div>
-
-</div>
-
-<div style="line-height:2;color:#9b9b9b;">
-
-Investment
-
-<b style="float:right;color:#fff;">
-
-$${plan[1].toLocaleString()}
-
-</b>
-
-<br>
-
-Daily Profit
-
-<b style="float:right;color:#00ff88;">
-
-$${plan[2].toLocaleString()}
-
-</b>
-
-<br>
-
-Total Profit
-
-<b style="float:right;color:#fff;">
-
-$${plan[3].toLocaleString()}
-
-</b>
-
-</div>
-
-<button
-class="btn investBtn"
-data-index="${index}">
-
-Activate Plan
-
-</button>
-
-</div>
-
-`;
-
+plans.forEach((p,i)=>{
+plansEl.insertAdjacentHTML("beforeend",`
+<div class="card">
+  <div class="card-top"><h3>${p[0]}</h3><span class="badge">10 DAYS</span></div>
+  <div class="details">
+    <div class="detail"><span>Investment</span><strong>$${p[1].toLocaleString()}</strong></div>
+    <div class="detail"><span>Daily Profit</span><strong class="green">$${p[2].toLocaleString()}</strong></div>
+    <div class="detail"><span>Total Profit</span><strong>$${p[3].toLocaleString()}</strong></div>
+  </div>
+  <button class="btn investBtn" data-index="${i}">Activate Plan</button>
+</div>`);
 });
 
-/* ===============================
-   LOGIN
-================================ */
+window.showLoading=()=>document.getElementById("loadingOverlay").style.display="flex";
+window.hideLoading=()=>document.getElementById("loadingOverlay").style.display="none";
+window.showPopup=(title,msg)=>{document.getElementById("popupTitle").innerText=title;document.getElementById("popupText").innerText=msg;document.getElementById("popupOverlay").style.display="flex"};
+window.closePopup=()=>document.getElementById("popupOverlay").style.display="none";
 
 onAuthStateChanged(auth,user=>{
-
-if(!user){
-
-location.replace("login.html");
-
-return;
-
-}
-
-currentUser=user;
-
-loadBalance();
-
-loadActiveInvestments();
-
+ if(!user){location.replace("login.html");return}
+ currentUser=user;
+ onSnapshot(doc(db,"users",user.uid),snap=>{
+  if(!snap.exists())return;
+  const d=snap.data(); balance=Number(d.balance||0);
+  document.getElementById("balance").innerText=money(balance);
+  document.getElementById("activePlans").innerText=Number(d.activePlans||0);
+  document.getElementById("todayProfit").innerText=money(d.todayProfit);
+  document.getElementById("totalInvested").innerText=money(d.totalInvested);
+  document.getElementById("totalEarned").innerText=money(d.totalEarned);
+  document.getElementById("completedPlans").innerText=Number(d.completedPlans||0);
+ });
+ loadActiveInvestments();
 });
 
-/* ===============================
-   BALANCE
-================================ */
-
-function loadBalance(){
-
-onSnapshot(doc(db,"users",currentUser.uid),snap=>{
-
-if(!snap.exists()) return;
-
-const data=snap.data();
-
-balance=Number(data.balance||0);
-
-document.getElementById("balance").innerText=
-
-balance.toLocaleString(undefined,{
-
-minimumFractionDigits:2,
-
-maximumFractionDigits:2
-
-});
-
-document.getElementById("activePlans").innerText=
-
-data.activePlans||0;
-
-document.getElementById("todayProfit").innerText=
-
-Number(data.todayProfit||0).toLocaleString();
-
-document.getElementById("totalEarnedCard").innerText=
-
-Number(data.totalEarned||0).toLocaleString();
-
-});
-
-}
-
-/* ===============================
-   BUTTON EVENTS
-================================ */
-
-document.addEventListener("click",e=>{
-
-if(e.target.classList.contains("investBtn")){
-
-invest(Number(e.target.dataset.index));
-
-}
-
-});
-
-/* ==========================================
-   INVESTMENT ACTIVATION
-========================================== */
+document.addEventListener("click",e=>{if(e.target.classList.contains("investBtn"))invest(Number(e.target.dataset.index))});
 
 async function invest(index){
-
-const plan = plans[index];
-
-if(plan[1] > balance){
-
-showPopup(
-"Insufficient Balance",
-"You don't have enough balance to activate this investment plan. Please fund your account and try again."
-);
-
-return;
-
+ const p=plans[index];
+ if(p[1]>balance){showPopup("Insufficient Balance","Your available balance is not enough to activate this investment plan.");return}
+ showLoading();
+ try{
+  await updateDoc(doc(db,"users",currentUser.uid),{balance:increment(-p[1]),totalInvested:increment(p[1]),activePlans:increment(1)});
+  await addDoc(collection(db,"investments"),{userId:currentUser.uid,plan:p[0],amount:p[1],dailyReturn:p[2],totalReturn:p[3],totalEarned:0,daysCompleted:0,duration:10,status:"active",nextProfitAt:Date.now()+86400000,createdAt:serverTimestamp()});
+  await addDoc(collection(db,"history"),{userId:currentUser.uid,type:"Investment",plan:p[0],amount:p[1],status:"Active",createdAt:serverTimestamp()});
+  hideLoading();showPopup("Investment Activated","Your Space X investment has been activated. Your first profit will be credited after 24 hours.");
+ }catch(err){hideLoading();showPopup("Investment Failed",err.message)}
 }
-
-showLoading();
-
-try{
-
-// Deduct user balance
-
-await updateDoc(doc(db,"users",currentUser.uid),{
-
-balance:increment(-plan[1]),
-totalInvested:increment(plan[1]),
-activePlans:increment(1)
-
-});
-
-// Create investment
-
-await addDoc(collection(db,"investments"),{
-
-userId:currentUser.uid,
-
-plan:plan[0],
-
-amount:plan[1],
-
-dailyReturn:plan[2],
-
-totalReturn:plan[3],
-
-totalEarned:0,
-
-daysCompleted:0,
-
-duration:10,
-
-status:"active",
-
-nextProfitAt:Date.now()+86400000,
-
-createdAt:serverTimestamp()
-
-});
-
-// Save history
-
-await addDoc(collection(db,"history"),{
-
-userId:currentUser.uid,
-
-type:"Investment",
-
-plan:plan[0],
-
-amount:plan[1],
-
-status:"Active",
-
-createdAt:serverTimestamp()
-
-});
-
-hideLoading();
-
-showPopup(
-"Investment Activated",
-"Congratulations! Your investment has been activated successfully. Your first profit will be credited after 24 hours."
-);
-
-}catch(error){
-
-hideLoading();
-
-showPopup(
-"Investment Failed",
-error.message
-);
-
-}
-
-}
-
-/* ==========================================
-   CUSTOM INVESTMENT
-========================================== */
 
 const customAmount=document.getElementById("customAmount");
-
-const dailyProfit=document.getElementById("dailyProfit");
-
-const totalProfit=document.getElementById("totalProfit");
-
-const customBtn=document.getElementById("customBtn");
-
-/* Live Calculator */
-
 customAmount.addEventListener("input",()=>{
-
-const amount=Number(customAmount.value)||0;
-
-const daily=amount*0.40;
-
-const total=daily*10;
-
-dailyProfit.innerText=daily.toLocaleString(undefined,{
-
-minimumFractionDigits:2,
-maximumFractionDigits:2
-
+ const a=Number(customAmount.value)||0;
+ document.getElementById("dailyProfit").innerText=money(a*.4);
+ document.getElementById("totalProfit").innerText=money(a*4);
 });
 
-totalProfit.innerText=total.toLocaleString(undefined,{
+document.getElementById("customBtn").onclick=async()=>{
+ const a=Number(customAmount.value)||0;
+ if(a<=0){showPopup("Invalid Amount","Please enter a valid investment amount.");return}
+ if(a>balance){showPopup("Insufficient Balance","Your available balance is not enough for this investment.");return}
+ const daily=a*.4,total=daily*10;showLoading();
+ try{
+  await updateDoc(doc(db,"users",currentUser.uid),{balance:increment(-a),totalInvested:increment(a),activePlans:increment(1)});
+  await addDoc(collection(db,"investments"),{userId:currentUser.uid,plan:"Custom Investment",amount:a,dailyReturn:daily,totalReturn:total,totalEarned:0,daysCompleted:0,duration:10,status:"active",nextProfitAt:Date.now()+86400000,createdAt:serverTimestamp()});
+  await addDoc(collection(db,"history"),{userId:currentUser.uid,type:"Investment",plan:"Custom Investment",amount:a,status:"Active",createdAt:serverTimestamp()});
+  customAmount.value="";document.getElementById("dailyProfit").innerText="0.00";document.getElementById("totalProfit").innerText="0.00";
+  hideLoading();showPopup("Investment Activated","Your custom Space X investment has been activated successfully.");
+ }catch(err){hideLoading();showPopup("Investment Failed",err.message)}
+};
 
-minimumFractionDigits:2,
-maximumFractionDigits:2
-
-});
-
-});
-
-/* Submit */
-
-customBtn.addEventListener("click",async()=>{
-
-const amount=Number(customAmount.value);
-
-if(amount<=0){
-
-showPopup(
-"Invalid Amount",
-"Please enter a valid investment amount."
-);
-
-return;
-
-}
-
-if(amount>balance){
-
-showPopup(
-"Insufficient Balance",
-"Your available balance is not enough for this investment."
-);
-
-return;
-
-}
-
-const daily=amount*0.40;
-
-const total=daily*10;
-
-showLoading();
-
-try{
-
-await updateDoc(doc(db,"users",currentUser.uid),{
-
-balance:increment(-amount),
-totalInvested:increment(amount),
-activePlans:increment(1)
-
-});
-
-await addDoc(collection(db,"investments"),{
-
-userId:currentUser.uid,
-
-plan:"Custom Investment",
-
-amount:amount,
-
-dailyReturn:daily,
-
-totalReturn:total,
-
-totalEarned:0,
-
-daysCompleted:0,
-
-duration:10,
-
-status:"active",
-
-nextProfitAt:Date.now()+86400000,
-
-createdAt:serverTimestamp()
-
-});
-
-await addDoc(collection(db,"history"),{
-
-userId:currentUser.uid,
-
-type:"Investment",
-
-plan:"Custom Investment",
-
-amount:amount,
-
-status:"Active",
-
-createdAt:serverTimestamp()
-
-});
-
-customAmount.value="";
-
-dailyProfit.innerText="0.00";
-
-totalProfit.innerText="0.00";
-
-hideLoading();
-
-showPopup(
-"Investment Activated",
-"Congratulations! Your custom investment has been activated successfully. Your first daily profit will arrive after 24 hours."
-);
-
-}catch(error){
-
-hideLoading();
-
-showPopup(
-"Investment Failed",
-error.message
-);
-
-}
-
-});
-
-/* ==========================================
-   ACTIVE INVESTMENTS
-========================================== */
-
-const activeContainer = document.getElementById("activeInvestments");
-
+const activeEl=document.getElementById("activeInvestments");
 function loadActiveInvestments(){
-
-if(!currentUser) return;
-
-const q=query(
-collection(db,"investments"),
-where("userId","==",currentUser.uid),
-where("status","==","active")
-);
-
-onSnapshot(q,async(snapshot)=>{
-
-activeContainer.innerHTML="";
-
-if(snapshot.empty){
-
-activeContainer.innerHTML=`
-<div class="glass empty">
-No active investments.
-</div>
-`;
-return;
-
+ const q=query(collection(db,"investments"),where("userId","==",currentUser.uid),where("status","==","active"));
+ onSnapshot(q,async snap=>{
+  activeEl.innerHTML="";
+  if(snap.empty){activeEl.innerHTML='<div class="card empty">No active investments.</div>';return}
+  for(const s of snap.docs){
+   await processDailyProfit(s);
+   const d=s.data(),pct=Math.min(100,((d.daysCompleted||0)/d.duration)*100);
+   activeEl.insertAdjacentHTML("beforeend",`
+   <div class="card">
+    <div class="card-top"><h3>${d.plan}</h3><span class="badge">ACTIVE</span></div>
+    <div class="details">
+     <div class="detail"><span>Investment</span><strong>$${money(d.amount)}</strong></div>
+     <div class="detail"><span>Daily Profit</span><strong class="green">$${money(d.dailyReturn)}</strong></div>
+     <div class="detail"><span>Total Earned</span><strong>$${money(d.totalEarned)}</strong></div>
+    </div>
+    <div class="progress"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-meta"><span>${d.daysCompleted||0}/${d.duration} Days</span><span>${pct.toFixed(0)}%</span></div>
+    <div class="countdown" id="countdown-${s.id}">Loading...</div>
+   </div>`);
+   startCountdown(d.nextProfitAt,`countdown-${s.id}`);
+  }
+ });
 }
 
-for(const investment of snapshot.docs){
-
-    await processDailyProfit(investment);
-
-    const data = investment.data();
-
-    const percent=((data.daysCompleted||0)/data.duration)*100;
-
-activeContainer.innerHTML+=`
-
-<div class="glass">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px;
-">
-
-<h2>${data.plan}</h2>
-
-<div class="badge">
-ACTIVE
-</div>
-
-</div>
-
-<div style="
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
-">
-
-<span style="color:#999;">
-Investment
-</span>
-
-<b>
-$${Number(data.amount).toLocaleString()}
-</b>
-
-</div>
-
-<div style="
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
-">
-
-<span style="color:#999;">
-Daily Profit
-</span>
-
-<b style="color:#00ff88;">
-$${Number(data.dailyReturn).toLocaleString()}
-</b>
-
-</div>
-
-<div style="
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
-">
-
-<span style="color:#999;">
-Total Earned
-</span>
-
-<b>
-$${Number(data.totalEarned||0).toLocaleString()}
-</b>
-
-</div>
-
-<div class="progress">
-
-<div class="progress-fill"
-style="width:${percent}%">
-</div>
-
-</div>
-
-<div style="
-display:flex;
-justify-content:space-between;
-margin-top:12px;
-font-size:14px;
-color:#888;
-">
-
-<span>
-${data.daysCompleted}/${data.duration} Days
-</span>
-
-<span>
-${percent.toFixed(0)}%
-</span>
-
-</div>
-
-<div class="countdown"
-id="countdown-${investment.id}">
-
-Loading...
-
-</div>
-
-</div>
-
-`;
-
-startCountdown(
-data.nextProfitAt,
-`countdown-${investment.id}`
-);
-
+function startCountdown(target,id){
+ const tick=()=>{const el=document.getElementById(id);if(!el)return;let x=Math.max(0,target-Date.now());const h=Math.floor(x/3600000),m=Math.floor(x%3600000/60000),s=Math.floor(x%60000/1000);el.innerText=`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`};
+ tick();const t=setInterval(()=>{if(!document.getElementById(id)){clearInterval(t);return}tick()},1000);
 }
 
-});
-
+async function processDailyProfit(s){
+ const d=s.data();if(d.status!=="active"||Date.now()<d.nextProfitAt)return;
+ await updateDoc(doc(db,"users",currentUser.uid),{balance:increment(d.dailyReturn),todayProfit:increment(d.dailyReturn),totalEarned:increment(d.dailyReturn)});
+ const newDays=(d.daysCompleted||0)+1;
+ await updateDoc(s.ref,{totalEarned:increment(d.dailyReturn),totalProfit:increment(d.dailyReturn),daysCompleted:increment(1),nextProfitAt:Date.now()+86400000,updatedAt:serverTimestamp()});
+ await addDoc(collection(db,"history"),{userId:currentUser.uid,type:"Daily Profit",plan:d.plan,amount:d.dailyReturn,status:"Completed",createdAt:serverTimestamp()});
+ if(newDays>=d.duration){
+  await updateDoc(s.ref,{status:"completed"});
+  await updateDoc(doc(db,"users",currentUser.uid),{activePlans:increment(-1),completedPlans:increment(1)});
+  await addDoc(collection(db,"history"),{userId:currentUser.uid,type:"Investment Completed",plan:d.plan,amount:d.totalReturn,status:"Completed",createdAt:serverTimestamp()});
+  showPopup("Investment Completed",`${d.plan} has completed its 10-day investment cycle.`);
+ }
 }
-
-/* ==========================================
-   COUNTDOWN
-========================================== */
-
-function startCountdown(nextProfitAt,id){
-
-function update(){
-
-const now=Date.now();
-
-let diff=nextProfitAt-now;
-
-if(diff<0) diff=0;
-
-const h=Math.floor(diff/3600000);
-
-const m=Math.floor((diff%3600000)/60000);
-
-const s=Math.floor((diff%60000)/1000);
-
-const el=document.getElementById(id);
-
-if(!el) return;
-
-el.innerHTML=
-
-String(h).padStart(2,"0")+":"+
-
-String(m).padStart(2,"0")+":"+
-
-String(s).padStart(2,"0");
-
-}
-
-update();
-
-const timer = setInterval(() => {
-
-    const el = document.getElementById(id);
-
-    if(!el){
-        clearInterval(timer);
-        return;
-    }
-
-    update();
-
-},1000);
-
-}
-
-/* ==========================================
-   DAILY PROFIT
-========================================== */
-
-async function processDailyProfit(docSnap){
-
-const data=docSnap.data();
-
-if(data.status!=="active") return;
-
-const now=Date.now();
-
-if(now<data.nextProfitAt) return;
-
-await updateDoc(doc(db,"users",currentUser.uid),{
-
-balance:increment(data.dailyReturn),
-
-todayProfit:increment(data.dailyReturn),
-
-totalEarned:increment(data.dailyReturn)
-
-});
-
-await updateDoc(docSnap.ref, {
-  totalEarned: increment(data.dailyReturn),
-  totalProfit: increment(data.dailyReturn),
-  daysCompleted: increment(1),
-  nextProfitAt: now + 86400000,
-  updatedAt: serverTimestamp()
-});
-
-await addDoc(collection(db,"history"),{
-
-userId:currentUser.uid,
-
-type:"Daily Profit",
-
-plan:data.plan,
-
-amount:data.dailyReturn,
-
-status:"Completed",
-
-createdAt:serverTimestamp()
-
-});
-
-/* Finish Investment */
-
-if(data.daysCompleted+1>=data.duration){
-
-await updateDoc(docSnap.ref,{
-
-status:"completed"
-
-});
-
-await updateDoc(doc(db,"users",currentUser.uid),{
-
-activePlans:increment(-1)
-
-});
-
-await addDoc(collection(db,"history"),{
-
-userId:currentUser.uid,
-
-type:"Investment Completed",
-
-plan:data.plan,
-
-amount:data.totalReturn,
-
-status:"Completed",
-
-createdAt:serverTimestamp()
-
-});
-
-showPopup(
-
-"Investment Completed",
-
-`${data.plan} has completed successfully. Your investment cycle has ended.`
-
-);
-
-}
-
-}
-
-
 </script>
-
 </body>
-
 </html>
