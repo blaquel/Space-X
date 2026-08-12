@@ -54,6 +54,223 @@ body{padding:0 18px 110px}
 .chat-float{position:fixed;right:22px;bottom:94px;width:54px;height:54px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 12px 30px rgba(0,0,0,.45);cursor:pointer}
 .chat-dot{position:absolute;right:2px;top:2px;width:10px;height:10px;background:#ff3b30;border:2px solid #000;border-radius:50%;display:none}
 @media(max-width:380px){.balance{font-size:36px}.hero{padding:21px}}
+
+/* ===== SPACE X PREMIUM REDESIGN ===== */
+body{
+  background:
+    radial-gradient(circle at 85% 8%, rgba(255,255,255,.055), transparent 28%),
+    radial-gradient(circle at 10% 45%, rgba(255,255,255,.035), transparent 30%),
+    #050505;
+}
+.header{
+  padding:24px 20px 18px;
+}
+.balance-box{
+  margin:4px 20px 0;
+  border-radius:28px;
+  padding:26px 24px;
+  background:linear-gradient(145deg,#171717,#090909);
+  border:1px solid #292929;
+  box-shadow:0 18px 55px rgba(0,0,0,.48);
+}
+.balance{
+  font-size:42px;
+  letter-spacing:-1.5px;
+  font-weight:700;
+}
+.actions{
+  margin:30px 20px 34px;
+  gap:18px;
+  justify-content:space-between;
+}
+.action{
+  flex:1;
+}
+.circle{
+  width:58px;
+  height:58px;
+  margin:auto;
+  background:linear-gradient(145deg,#171717,#080808);
+  border:1px solid #353535;
+  box-shadow:inset 0 1px rgba(255,255,255,.06), 0 8px 22px rgba(0,0,0,.35);
+}
+.action span{
+  color:#aaa;
+  margin-top:9px;
+}
+.market-box{
+  margin:0 20px 110px;
+  padding:18px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#121212,#080808);
+  border:1px solid #282828;
+  box-shadow:0 18px 55px rgba(0,0,0,.42);
+}
+.market-head h3{
+  font-size:18px;
+  letter-spacing:.2px;
+}
+.market-head small{
+  color:#aaa;
+  font-size:10px;
+  letter-spacing:1px;
+}
+#spacex_chart{
+  border-radius:18px;
+  overflow:hidden;
+}
+.bottom-nav{
+  background:rgba(10,10,10,.94);
+  border-color:#292929;
+  box-shadow:0 14px 40px rgba(0,0,0,.5);
+}
+.chat-float{
+  background:#f2f2f2;
+  box-shadow:0 12px 35px rgba(255,255,255,.13);
+}
+
+
+/* ===== SPACE X EXECUTIVE FINTECH DESIGN ===== */
+body{
+  background:#070707;
+  color:#f5f5f5;
+  padding-bottom:105px;
+}
+.header{
+  padding:22px 20px 14px;
+}
+.header .logo img{
+  width:52px;
+  height:52px;
+}
+.round-btn{
+  width:44px;
+  height:44px;
+  border-color:#303030;
+  background:#0d0d0d;
+}
+.premium-balance{
+  margin:12px 20px 26px;
+  padding:25px 24px 20px;
+  border-radius:18px;
+  background:#111;
+  border:1px solid #303030;
+  box-shadow:0 20px 50px rgba(0,0,0,.38);
+}
+.balance-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:15px;
+}
+.balance-caption{
+  color:#777;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  margin-bottom:8px;
+}
+.premium-balance .balance{
+  font-size:44px;
+  line-height:1.1;
+  font-weight:700;
+  letter-spacing:-1.8px;
+  color:#fff;
+  margin:0;
+  white-space:nowrap;
+}
+.balance-status{
+  padding:7px 10px;
+  border:1px solid #292929;
+  border-radius:20px;
+  color:#aaa;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+.status-dot{
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin-right:5px;
+  border-radius:50%;
+  background:#00ff88;
+  box-shadow:0 0 8px rgba(0,255,136,.55);
+}
+.balance-divider{
+  height:1px;
+  background:#252525;
+  margin:21px 0 14px;
+}
+.balance-bottom{
+  display:flex;
+  justify-content:space-between;
+  color:#8b8b8b;
+  font-size:11px;
+}
+.actions{
+  margin:28px 20px 30px;
+  padding:15px 10px;
+  background:#0c0c0c;
+  border:1px solid #242424;
+  border-radius:20px;
+  gap:5px;
+}
+.action{
+  flex:1;
+}
+.circle{
+  width:54px;
+  height:54px;
+  background:#111;
+  border:1px solid #343434;
+}
+.action span{
+  font-size:11px;
+  color:#aaa;
+}
+.market-box{
+  margin:0 20px 100px;
+  padding:20px;
+  border-radius:20px;
+  background:#0d0d0d;
+  border:1px solid #242424;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+.market-head{
+  align-items:center;
+  margin-bottom:17px;
+}
+.market-head h3{
+  font-size:18px;
+  font-weight:600;
+}
+.market-head small{
+  font-size:9px;
+  letter-spacing:1.2px;
+  color:#777;
+}
+#spacex_chart{
+  height:330px !important;
+  border-radius:14px;
+  overflow:hidden;
+}
+.bottom-nav{
+  height:66px;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  border-radius:18px;
+  background:#0b0b0b;
+  border:1px solid #292929;
+}
+.chat-float{
+  width:55px;
+  height:55px;
+  right:18px;
+  bottom:88px;
+}
+
 </style>
 </head>
 <body>
@@ -79,17 +296,11 @@ body{padding:0 18px 110px}
   <button onclick="location.href='withdraw.html'"><span class="qicon">↓</span><small>Withdraw</small></button>
 </div>
 
-<div class="section-head"><h2>Account Overview</h2><span>Live</span></div>
-<div class="stats">
-  <div class="stat"><small>Active Balance</small><strong>$<span id="balanceCard">0.00</span></strong></div>
-  <div class="stat"><small>Today's Profit</small><strong id="todayProfit">$0.00</strong></div>
-</div>
-
-<div class="section-head"><h2>Market</h2><span>Gold / USD</span></div>
+<div class="section-head"><h2>Market</h2><span>SpaceX / USD</span></div>
 <section class="market">
   <div class="market-top">
-    <div class="market-title">Gold / USD</div>
-    <div class="market-live">LIVE MARKET</div>
+    <div class="market-title">SpaceX / USD</div>
+    <div class="market-live">LIVE • SPACEX MARKET</div>
   </div>
   <div id="market_chart"></div>
 </section>
@@ -161,7 +372,7 @@ new TradingView.widget({
   container_id:"market_chart",
   width:"100%",
   height:320,
-  symbol:"OANDA:XAUUSD",
+  symbol:"NASDAQ:TSLA",
   interval:"15",
   timezone:"Etc/UTC",
   theme:"dark",
