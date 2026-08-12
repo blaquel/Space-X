@@ -3,298 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX | Crypto Investment Platform</title>
-
+<title>Space X | Digital Investment</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#fff;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-25% -10% auto auto;width:420px;height:420px;background:rgba(255,255,255,.07);filter:blur(130px);pointer-events:none}
+header{height:78px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #202020;background:rgba(5,5,5,.88);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:800;letter-spacing:.7px}
+.logo img{width:39px;height:39px;object-fit:contain}
+nav{display:flex;align-items:center;gap:28px}
+nav a{color:#aaa;text-decoration:none;font-size:14px;transition:.25s}
+nav a:hover{color:#fff}
+.nav-login{color:#fff}
+.nav-register{background:#fff;color:#000!important;padding:11px 20px;border-radius:12px;font-weight:700}
+.hero{min-height:calc(100vh - 78px);display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:55px;padding:70px 8%;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#aaa;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;box-shadow:0 0 12px #fff}
+.hero h1{font-size:clamp(45px,6vw,78px);line-height:.98;letter-spacing:-3px;max-width:780px}
+.hero h1 span{color:#777}
+.hero p{max-width:610px;color:#999;font-size:17px;line-height:1.8;margin-top:25px}
+.buttons{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.buttons a{text-decoration:none;padding:15px 25px;border-radius:14px;font-weight:700;font-size:14px}
+.primary{background:#fff;color:#000}
+.secondary{border:1px solid #333;color:#fff;background:#0c0c0c}
+.visual{min-height:430px;border:1px solid #292929;border-radius:32px;background:linear-gradient(145deg,#151515,#080808);position:relative;overflow:hidden;padding:25px;box-shadow:0 25px 70px rgba(0,0,0,.5)}
+.visual:before{content:"";position:absolute;width:320px;height:320px;border:1px solid #292929;border-radius:50%;right:-100px;top:-110px}
+.visual:after{content:"";position:absolute;width:210px;height:210px;border:1px solid #242424;border-radius:50%;right:-40px;top:-55px}
+.visual-top{display:flex;justify-content:space-between;align-items:center;color:#777;font-size:12px}
+.live{color:#00ff88}
+.market{position:absolute;left:25px;right:25px;bottom:30px;height:190px}
+.line{position:absolute;left:0;right:0;bottom:30px;height:2px;background:linear-gradient(90deg,transparent,#fff,transparent);transform:rotate(-8deg);box-shadow:0 0 15px rgba(255,255,255,.4)}
+.line:before,.line:after{content:"";position:absolute;border-radius:50%;background:#fff}
+.line:before{width:10px;height:10px;right:19%;top:-4px;box-shadow:0 0 18px #fff}
+.line:after{width:7px;height:7px;left:28%;top:-3px}
+.market-label{position:absolute;left:0;bottom:0;color:#666;font-size:11px}
+.market-value{position:absolute;right:0;bottom:0;font-size:12px;color:#aaa}
+section{padding:90px 8%;border-top:1px solid #161616}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
+.section-head h2{font-size:38px;letter-spacing:-1.5px}
+.section-head p{max-width:430px;color:#777;line-height:1.7;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{min-height:210px;background:#0c0c0c;border:1px solid #222;border-radius:24px;padding:25px;transition:.3s}
+.card:hover{transform:translateY(-4px);border-color:#444}
+.number{color:#555;font-size:12px;margin-bottom:35px}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{color:#777;font-size:13px;line-height:1.8}
+.cta{margin:0 8% 80px;border:1px solid #292929;border-radius:28px;background:linear-gradient(135deg,#141414,#080808);padding:55px;text-align:center}
+.cta h2{font-size:38px;margin-bottom:12px}
+.cta p{color:#777;max-width:570px;margin:0 auto;line-height:1.8}
+.cta a{display:inline-block;margin-top:25px;text-decoration:none;background:#fff;color:#000;padding:14px 26px;border-radius:13px;font-weight:700}
+footer{border-top:1px solid #202020;padding:30px 8%;display:flex;justify-content:space-between;color:#666;font-size:12px}
+@media(max-width:800px){
+header{padding:0 20px}
+nav a:not(.nav-login):not(.nav-register){display:none}
+.hero{grid-template-columns:1fr;padding:55px 20px;gap:35px}
+.hero h1{letter-spacing:-2px}
+.visual{min-height:350px}
+section{padding:70px 20px}
+.section-head{display:block}
+.section-head h2{font-size:31px;margin-bottom:12px}
+.cards{grid-template-columns:1fr}
+.cta{margin:0 20px 60px;padding:38px 22px}
+.cta h2{font-size:30px}
+footer{padding:25px 20px;display:block;line-height:2}
 }
-
-body{
-    background:#000;
-    color:#fff;
-}
-
-header{
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #222;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:24px;
-    font-weight:bold;
-}
-
-.logo img{
-    width:45px;
-    height:45px;
-    object-fit:contain;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:15px;
-}
-
-.btn{
-    background:white;
-    color:black;
-    padding:12px 25px;
-    border-radius:30px;
-    font-weight:bold;
-}
-
-
-.hero{
-    min-height:85vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px 10%;
-}
-
-.hero h1{
-    font-size:55px;
-    margin-bottom:20px;
-}
-
-.hero span{
-    color:#aaa;
-}
-
-.hero p{
-    max-width:650px;
-    margin:auto;
-    color:#ccc;
-    font-size:18px;
-    line-height:1.6;
-}
-
-.hero-buttons{
-    margin-top:35px;
-}
-
-.hero-buttons a{
-    display:inline-block;
-    margin:10px;
-    padding:15px 35px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.start{
-    background:white;
-    color:black;
-}
-
-.learn{
-    border:1px solid white;
-    color:white;
-}
-
-
-section{
-    padding:70px 8%;
-}
-
-.title{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:35px;
-}
-
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-
-.card{
-    background:#111;
-    border:1px solid #222;
-    padding:30px;
-    border-radius:15px;
-}
-
-.card h3{
-    margin-bottom:15px;
-}
-
-
-footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid #222;
-    color:#aaa;
-}
-
-
-@media(max-width:700px){
-
-.hero h1{
-    font-size:38px;
-}
-
-nav{
-    display:none;
-}
-
-}
-
-html, body{
-    touch-action: manipulation;
-    overscroll-behavior: none;
-}
-
+html,body{touch-action:manipulation;overscroll-behavior:none}
 </style>
-
 </head>
-
-
 <body>
 
-
 <header>
-
-<div class="logo">
-<img src="logo.png" alt="NovaX Logo">
-Space X
-</div>
-
-
-<nav>
-<a href="#">Home</a>
-<a href="#">Plans</a>
-<a href="#">About</a>
-<a href="login.html">Login</a>
-<a href="register.html" class="btn">Register</a>
-</nav>
-
-
+  <div class="logo">
+    <img src="logo.png" alt="Space X">
+    <span>Space X</span>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#features">Platform</a>
+    <a href="#about">About</a>
+    <a href="login.html" class="nav-login">Login</a>
+    <a href="register.html" class="nav-register">Register</a>
+  </nav>
 </header>
 
+<main id="home">
+<section class="hero">
+  <div>
+    <div class="eyebrow"><i></i> Digital investment platform</div>
+    <h1>Move your digital assets <span>forward.</span></h1>
+    <p>Space X brings account management, digital asset activity and investment tools together in one streamlined experience.</p>
+    <div class="buttons">
+      <a href="register.html" class="primary">Create Account</a>
+      <a href="#features" class="secondary">Explore Platform</a>
+    </div>
+  </div>
 
-
-<div class="hero">
-
-<div>
-
-<h1>
-The Future Of <span>Crypto Growth</span>
-</h1>
-
-<p>
-NovaX provides a modern digital investment experience built for people who want to explore cryptocurrency opportunities with a simple and secure platform.
-</p>
-
-
-<div class="hero-buttons">
-
-<a href="register.html" class="start">
-Start Investing
-</a>
-
-<a href="#features" class="learn">
-Learn More
-</a>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<section id="features">
-
-<h2 class="title">
-Why Space X?
-</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>Secure Platform</h3>
-<p>
-Designed with modern security practices to protect user accounts.
-</p>
-</div>
-
-
-<div class="card">
-<h3>Smart Dashboard</h3>
-<p>
-Track investments, transactions and account activity easily.
-</p>
-</div>
-
-
-<div class="card">
-<h3>Crypto Focused</h3>
-<p>
-A clean environment for managing digital asset activities.
-</p>
-</div>
-
-
-</div>
-
+  <div class="visual" aria-label="Space X platform preview">
+    <div class="visual-top">
+      <span>SPACE X / DIGITAL MARKET</span>
+      <span class="live">● LIVE</span>
+    </div>
+    <div class="market">
+      <div class="line"></div>
+      <span class="market-label">MARKET ACTIVITY</span>
+      <span class="market-value">REAL-TIME VIEW</span>
+    </div>
+  </div>
 </section>
 
+<section id="features">
+  <div class="section-head">
+    <h2>Built for clarity.</h2>
+    <p>A focused experience for monitoring your account, managing activity and accessing your Space X tools.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="number">01 / ACCOUNT</div><h3>Simple control</h3><p>Access your balance, account activity and platform tools from a clean dashboard.</p></div>
+    <div class="card"><div class="number">02 / ACTIVITY</div><h3>Track activity</h3><p>Review deposits, withdrawals and investment activity in one organized environment.</p></div>
+    <div class="card"><div class="number">03 / EXPERIENCE</div><h3>Modern interface</h3><p>A responsive dark interface designed for a consistent experience across mobile and desktop.</p></div>
+  </div>
+</section>
 
+<section id="about">
+  <div class="section-head">
+    <h2>One platform.</h2>
+    <p>Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.</p>
+  </div>
+</section>
 
+<div class="cta">
+  <h2>Ready to get started?</h2>
+  <p>Create your Space X account and access the platform from your preferred device.</p>
+  <a href="register.html">Open Space X Account</a>
+</div>
+</main>
 
 <footer>
-
-© 2026 Space X. All Rights Reserved.
-
+  <span>© 2026 Space X. All Rights Reserved.</span>
+  <span>Digital Asset Platform</span>
 </footer>
 
-
 <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-  authDomain: "novax-acb23.firebaseapp.com",
-  projectId: "novax-acb23",
-  storageBucket: "novax-acb23.firebasestorage.app",
-  messagingSenderId: "203988106178",
-  appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
 };
-
-
-const app = initializeApp(firebaseConfig);
-
-console.log("NovaX Firebase Connected");
-
+initializeApp(firebaseConfig);
 </script>
-
-
 </body>
 </html>
