@@ -1,492 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX Support</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SpaceX Support</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
--webkit-tap-highlight-color:transparent;
-}
-
-body{
-background:#000;
-color:#fff;
-padding:20px;
-padding-bottom:100px;
-}
-
-/* Header */
-
-.header{
-display:flex;
-align-items:center;
-gap:15px;
-margin-bottom:30px;
-}
-
-.back{
-width:45px;
-height:45px;
-border:1px solid #fff;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:22px;
-cursor:pointer;
-transition:.3s;
-}
-
-.back:hover{
-background:#fff;
-color:#000;
-}
-
-.header h2{
-font-size:28px;
-font-weight:600;
-}
-
-/* Welcome */
-
-.support-card{
-background:linear-gradient(180deg,#111,#050505);
-border:1px solid #222;
-border-radius:25px;
-padding:25px;
-margin-bottom:25px;
-box-shadow:0 10px 30px rgba(255,255,255,.05);
-}
-
-.support-card h3{
-font-size:24px;
-margin-bottom:10px;
-}
-
-.support-card p{
-color:#999;
-line-height:1.8;
-}
-
-/* Support Buttons */
-
-.option{
-background:#111;
-border:1px solid #222;
-border-radius:22px;
-padding:22px;
-margin-bottom:20px;
-cursor:pointer;
-transition:.3s;
-}
-
-.option:hover{
-border-color:#fff;
-transform:translateY(-2px);
-}
-
-.option h3{
-font-size:20px;
-margin-bottom:10px;
-}
-
-.option p{
-color:#999;
-line-height:1.8;
-margin-bottom:18px;
-}
-
-.option button{
-width:100%;
-height:52px;
-border:none;
-border-radius:14px;
-background:#fff;
-color:#000;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-}
-
-/* Info */
-
-.info-card{
-background:#111;
-border:1px solid #222;
-border-radius:22px;
-padding:22px;
-margin-top:25px;
-}
-
-.info-card h4{
-margin-bottom:12px;
-}
-
-.info-card p{
-color:#888;
-line-height:2;
-}
-
-/* Popup */
-
-.popup-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.75);
-display:none;
-justify-content:center;
-align-items:center;
-padding:20px;
-z-index:9999;
-backdrop-filter:blur(5px);
-}
-
-.popup{
-background:#111;
-border:1px solid #444;
-border-radius:25px;
-padding:30px;
-width:100%;
-max-width:360px;
-text-align:center;
-}
-
-.popup h2{
-margin-bottom:15px;
-}
-
-.popup p{
-color:#999;
-line-height:1.8;
-margin-bottom:25px;
-}
-
-.popup button{
-width:100%;
-height:50px;
-border:none;
-border-radius:14px;
-background:#fff;
-color:#000;
-font-weight:600;
-cursor:pointer;
-}
-
-/* Loading Overlay */
-
-.loading-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:99999;
-}
-
-.loading-logo{
-width:80px;
-margin-bottom:20px;
-}
-
-.spinner{
-width:60px;
-height:60px;
-border:5px solid #222;
-border-top:5px solid #fff;
-border-radius:50%;
-animation:spin 1s linear infinite;
-margin-bottom:20px;
-}
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
-
-/* Bottom Navigation */
-
-.bottom-nav{
-position:fixed;
-left:0;
-right:0;
-bottom:0;
-height:75px;
-background:#111;
-border-top:1px solid #222;
-display:flex;
-justify-content:space-around;
-align-items:center;
-z-index:999;
-}
-
-.nav-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:12px;
-color:#888;
-cursor:pointer;
-}
-
-.nav-item svg{
-margin-bottom:5px;
-}
-
-.nav-item.active{
-color:#fff;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;-webkit-tap-highlight-color:transparent}
+:root{--bg:#050505;--panel:#0d0d0d;--panel2:#111;--line:#242424;--muted:#858585;--green:#00ff88}
+html,body{background:var(--bg);color:#fff;min-height:100%;overflow-x:hidden}
+body{padding:24px 20px 110px}
+body:before{content:"";position:fixed;width:260px;height:260px;right:-140px;top:-120px;background:rgba(255,255,255,.07);filter:blur(100px);z-index:-1}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.back{width:46px;height:46px;border:1px solid var(--line);border-radius:15px;background:#0b0b0b;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:42px;height:42px;object-fit:contain}
+.brand span{font-size:17px;font-weight:600;letter-spacing:.5px}
+.header-space{width:46px}
+.hero{padding:27px 23px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,#121212,#080808);margin-bottom:18px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:120px;height:120px;right:-55px;top:-55px;border-radius:50%;border:1px solid #292929}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:10px}
+.hero h1{font-size:29px;line-height:1.25;margin-bottom:11px}
+.hero p{color:#929292;font-size:14px;line-height:1.8}
+.status{display:flex;align-items:center;gap:8px;margin-top:19px;color:#aaa;font-size:12px}
+.dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px rgba(0,255,136,.5)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:26px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}
+.tile .icon{font-size:22px;margin-bottom:13px}
+.tile h3{font-size:16px;margin-bottom:7px}
+.tile p{font-size:12px;color:var(--muted);line-height:1.7}
+.section-label{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:#666;margin:28px 2px 13px}
+.contact{background:linear-gradient(145deg,#101010,#090909);border:1px solid var(--line);border-radius:23px;padding:21px;margin-bottom:13px;display:flex;align-items:center;gap:16px}
+.contact-icon{width:48px;height:48px;border-radius:15px;background:#171717;border:1px solid #292929;display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+.contact-main{flex:1;min-width:0}
+.contact-main h3{font-size:16px;margin-bottom:4px}
+.contact-main p{font-size:12px;color:#777;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.contact-btn{margin-top:12px;width:100%;height:49px;border:1px solid #303030;border-radius:14px;background:#fff;color:#000;font-weight:700;font-size:14px;cursor:pointer}
+.chat{border-color:#333}
+.chat .contact-icon{color:var(--green)}
+.chat-btn{background:var(--green);border-color:var(--green)}
+.info{margin-top:26px;padding:20px;background:#0b0b0b;border:1px solid var(--line);border-radius:21px}
+.info-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid #1d1d1d;font-size:13px}
+.info-row:last-child{border-bottom:0}
+.info-row span:first-child{color:#777}.info-row span:last-child{font-weight:600}
+.bottom-nav{position:fixed;left:14px;right:14px;bottom:14px;height:68px;background:rgba(13,13,13,.96);border:1px solid #292929;border-radius:22px;display:flex;justify-content:space-around;align-items:center;z-index:1000;backdrop-filter:blur(16px)}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:5px;color:#666;font-size:10px;cursor:pointer}
+.nav-item svg{width:21px;height:21px}.nav-item.active{color:#fff}
+.nav-item.active svg{stroke:var(--green)}
+.loading{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:9999}
+.loading img{width:65px;height:65px;object-fit:contain;margin-bottom:22px}
+.spinner{width:45px;height:45px;border:3px solid #222;border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:18px}
+.loading h3{font-size:16px}.loading p{color:#777;font-size:12px;margin-top:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
-
 </head>
-
 <body>
 
-<div class="bottom-nav">
-
-<div class="nav-item" onclick="location.href='dashboard.html'">
-
-<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-<path d="M3 10.5L12 3l9 7.5"/>
-<path d="M5 9.5V21h14V9.5"/>
-</svg>
-
-<span>Home</span>
-
-</div>
-
-<div class="nav-item" onclick="location.href='wallet.html'">
-
-<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-<path d="M2 7h20v10H2z"/>
-<path d="M16 12h.01"/>
-</svg>
-
-<span>Wallet</span>
-
-</div>
-
-<div class="nav-item" onclick="location.href='history.html'">
-
-<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-<path d="M3 12a9 9 0 1 0 3-6.7"/>
-<path d="M3 3v6h6"/>
-<path d="M12 7v6l4 2"/>
-</svg>
-
-<span>History</span>
-
-</div>
-
-<div class="nav-item active">
-
-<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-<circle cx="12" cy="12" r="9"/>
-<path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2.2-2.5 4"/>
-<circle cx="12" cy="17" r=".8" fill="white"/>
-</svg>
-
-<span>Support</span>
-
-</div>
-
-</div>
-
-<div id="loadingOverlay" class="loading-overlay">
-
-<img src="logo.png" class="loading-logo">
-
-<div class="spinner"></div>
-
-<h3>Opening Chat...</h3>
-
-<p>Please wait...</p>
-
-</div>
-
 <div class="header">
-
-<div class="back"
-onclick="location.href='dashboard.html'">
-←
+  <div class="back" onclick="location.href='dashboard.html'">←</div>
+  <div class="brand"><img src="logo.png" alt="SpaceX"><span>SpaceX Support</span></div>
+  <div class="header-space"></div>
 </div>
 
-<h2>Support</h2>
+<section class="hero">
+  <div class="eyebrow">Customer service</div>
+  <h1>How can we help?</h1>
+  <p>Get assistance with your SpaceX account, deposits, withdrawals, investments, or any issue you may be experiencing.</p>
+  <div class="status"><span class="dot"></span> Support team available</div>
+</section>
 
+<div class="grid">
+  <div class="tile"><div class="icon">₿</div><h3>Funding</h3><p>Help with deposits and payment status.</p></div>
+  <div class="tile"><div class="icon">↗</div><h3>Withdrawals</h3><p>Questions about withdrawal requests.</p></div>
+  <div class="tile"><div class="icon">◈</div><h3>Investments</h3><p>Assistance with your investment activity.</p></div>
+  <div class="tile"><div class="icon">◎</div><h3>Account</h3><p>General account and access support.</p></div>
 </div>
 
-<div class="support-card">
+<div class="section-label">Contact options</div>
 
-<h3>Need Help?</h3>
-
-<p>
-
-Our support team is always available to help you with deposits, withdrawals, investments and account issues.
-
-</p>
-
+<div class="contact">
+  <div class="contact-icon">✈</div>
+  <div class="contact-main">
+    <h3>Telegram Support</h3>
+    <p>@spacex112</p>
+    <a href="https://t.me/spacex112" target="_blank" rel="noopener" style="text-decoration:none">
+      <button class="contact-btn">Contact Support</button>
+    </a>
+  </div>
 </div>
 
-<div class="option">
-
-<h3>📱 Contact on Telegram</h3>
-
-<p>
-
-Talk directly with our customer support team on Telegram. @spacex112
-
-</p>
-
-<a href="https://t.me/spacex112" target="_blank" style="text-decoration:none;">
-    <button>
-        Contact Support
-    </button>
-</a>
-
+<div class="contact chat">
+  <div class="contact-icon">◌</div>
+  <div class="contact-main">
+    <h3>SpaceX Live Chat</h3>
+    <p>Private conversation with SpaceX Admin</p>
+    <button class="contact-btn chat-btn" onclick="openChat()">Open Live Chat</button>
+  </div>
 </div>
 
-<div class="option">
+<div class="section-label">Service information</div>
 
-<h3>💬 Live Chat Support</h3>
-
-<p>
-
-Open a secure chat room and communicate directly with SpaceX Admin.
-
-</p>
-
-<button onclick="openChat()">
-
-Open Chat
-
-</button>
-
+<div class="info">
+  <div class="info-row"><span>Availability</span><span>24 / 7</span></div>
+  <div class="info-row"><span>Typical response</span><span>Under 5 minutes</span></div>
+  <div class="info-row"><span>Account assistance</span><span>Available</span></div>
 </div>
 
-<div class="info-card">
-
-<h4>Support Hours</h4>
-
-<p>
-
-24 Hours / 7 Days
-
-<br><br>
-
-Average Response Time
-
-<br>
-
-Less than 5 Minutes
-
-</p>
-
+<div class="bottom-nav">
+  <div class="nav-item" onclick="location.href='dashboard.html'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span>Home</span>
+  </div>
+  <div class="nav-item" onclick="location.href='wallet.html'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h20v10H2z"/><path d="M16 12h.01"/></svg><span>Wallet</span>
+  </div>
+  <div class="nav-item" onclick="location.href='history.html'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/><path d="M12 7v6l4 2"/></svg><span>History</span>
+  </div>
+  <div class="nav-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2.2-2.5 4"/><circle cx="12" cy="17" r=".8" fill="currentColor"/></svg><span>Support</span>
+  </div>
 </div>
 
-<div id="popupOverlay" class="popup-overlay">
-
-<div class="popup">
-
-<h2>Coming Soon</h2>
-
-<p>
-
-Telegram support link will be added by the administrator.
-
-</p>
-
-<button onclick="closePopup()">
-
-Continue
-
-</button>
-
-</div>
-
+<div id="loading" class="loading">
+  <img src="logo.png" alt="SpaceX">
+  <div class="spinner"></div>
+  <h3>Opening SpaceX Chat</h3>
+  <p>Please wait...</p>
 </div>
 
 <script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-window.openChat=function(){
-
-document.getElementById("loadingOverlay").style.display="flex";
-
-setTimeout(()=>{
-
-location.href="chat.html";
-
-},1500);
-
-}
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-authDomain: "novax-acb23.firebaseapp.com",
-projectId: "novax-acb23",
-storageBucket: "novax-acb23.firebasestorage.app",
-messagingSenderId: "203988106178",
-appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+const firebaseConfig={
+  apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain:"novax-acb23.firebaseapp.com",
+  projectId:"novax-acb23",
+  storageBucket:"novax-acb23.firebasestorage.app",
+  messagingSenderId:"203988106178",
+  appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
 };
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-/* Protect Page */
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-
-location.href="login.html";
-
-}
-
+onAuthStateChanged(auth,user=>{
+  if(!user) location.href="login.html";
 });
 
-/* Popup */
-
-window.openTelegram = function () {
-    location.href = "tg://resolve?domain=spacex112";
-}
-
-window.closePopup=function(){
-
-document.getElementById("popupOverlay").style.display="none";
-
-}
-
+window.openChat=()=>{
+  document.getElementById("loading").style.display="flex";
+  setTimeout(()=>location.href="chat.html",900);
+};
 </script>
-
 </body>
-
 </html>
