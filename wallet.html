@@ -1,571 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX Wallet</title>
-
+<title>SpaceX Wallet</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{background:#050505;color:#fff;overflow-x:hidden}
+body{padding:22px 18px 110px}
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
--webkit-tap-highlight-color:transparent;
-}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.back,.header-action{width:44px;height:44px;border:1px solid #303030;border-radius:14px;background:#0d0d0d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;cursor:pointer}
+.header-title{text-align:center}
+.header-title small{display:block;color:#666;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+.header-title h1{font-size:23px;font-weight:600;letter-spacing:-.4px}
 
-body{
-background:#000;
-color:#fff;
-padding:20px;
-padding-bottom:100px;
-overflow-x:hidden;
-}
-
-/* Header */
-
-.header{
-display:flex;
-align-items:center;
-gap:15px;
-margin-bottom:30px;
-}
-
-.back{
-width:45px;
-height:45px;
-border:1px solid #fff;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-cursor:pointer;
-transition:.3s;
-}
-
-.back:hover{
-background:#fff;
-color:#000;
-}
-
-.header h2{
-font-size:28px;
-font-weight:600;
-}
-
-/* Wallet Card */
-
-.wallet-card{
-background:linear-gradient(180deg,#111,#050505);
-border:1px solid #2a2a2a;
-border-radius:25px;
+.hero{
+position:relative;
+background:linear-gradient(145deg,#191919 0%,#0b0b0b 72%);
+border:1px solid #303030;
+border-radius:26px;
 padding:25px;
-box-shadow:0 15px 35px rgba(255,255,255,.05);
-margin-bottom:25px;
-}
-
-.label{
-font-size:14px;
-color:#888;
-margin-bottom:10px;
-}
-
-.wallet-card h1{
-font-size:42px;
-font-weight:700;
-margin-bottom:25px;
-letter-spacing:1px;
-}
-
-.wallet-stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-.wallet-stats div{
-background:#111;
-border:1px solid #222;
-border-radius:18px;
-padding:18px;
-text-align:center;
-}
-
-.wallet-stats p{
-font-size:13px;
-color:#888;
-margin-bottom:8px;
-}
-
-.wallet-stats h3{
-font-size:20px;
-font-weight:600;
-}
-
-/* Action Buttons */
-
-.actions{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin-bottom:35px;
-}
-
-.actions button{
-height:52px;
-border:none;
-border-radius:15px;
-background:#fff;
-color:#000;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
-}
-
-.actions button:hover{
-transform:translateY(-2px);
-}
-
-/* Section Titles */
-
-.section-title{
-font-size:22px;
-font-weight:600;
 margin-bottom:18px;
-}
-
-/* Tabs */
-
-.tabs{
-display:flex;
-gap:10px;
-overflow-x:auto;
-margin-bottom:20px;
-padding-bottom:5px;
-}
-
-.tabs::-webkit-scrollbar{
-display:none;
-}
-
-.tab{
-background:#111;
-border:1px solid #333;
-color:#fff;
-padding:10px 20px;
-border-radius:30px;
-cursor:pointer;
-white-space:nowrap;
-transition:.3s;
-}
-
-.tab.active{
-background:#fff;
-color:#000;
-}
-
-/* Transaction Card */
-
-.transaction-card{
-background:#111;
-border:1px solid #222;
-border-radius:20px;
-padding:20px;
-margin-bottom:15px;
-transition:.3s;
-}
-
-.transaction-card:hover{
-border-color:#555;
-}
-
-.transaction-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;
-font-weight:600;
-font-size:18px;
-}
-
-.transaction-details{
-color:#999;
-font-size:14px;
-line-height:1.9;
-}
-
-/* Status */
-
-.status{
-display:inline-block;
-padding:6px 14px;
-border-radius:30px;
-font-size:12px;
-font-weight:600;
-margin-top:12px;
-}
-
-.status.active{
-background:#0f3;
-color:#000;
-}
-
-.status.pending{
-background:#ff9800;
-color:#000;
-}
-
-.status.completed{
-background:#2196f3;
-color:#fff;
-}
-
-.status.declined{
-background:#ff3b30;
-color:#fff;
-}
-
-/* Active Investment Card */
-
-.investment-card{
-background:#111;
-border:1px solid #222;
-border-radius:20px;
-padding:20px;
-margin-bottom:18px;
-}
-
-.progress{
-width:100%;
-height:10px;
-background:#222;
-border-radius:30px;
 overflow:hidden;
-margin:15px 0;
+box-shadow:0 20px 55px rgba(0,0,0,.42);
 }
-
-.progress div{
-height:100%;
-width:0%;
-background:#fff;
-transition:.5s;
-}
-
-/* Empty */
-
-.empty{
-background:#111;
-border:1px dashed #333;
-border-radius:20px;
-padding:40px 20px;
-text-align:center;
-}
-
-.empty h3{
-margin-bottom:10px;
-font-size:20px;
-}
-
-.empty p{
-color:#888;
-line-height:1.8;
-}
-
-/* Loading Overlay */
-
-.loading-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:99999;
-}
-
-.loading-overlay img{
-width:80px;
-margin-bottom:20px;
-}
-
-.loader{
-width:60px;
-height:60px;
-border:5px solid #222;
-border-top:5px solid #fff;
+.hero:after{
+content:"";
+position:absolute;
+width:170px;height:170px;
+right:-80px;top:-85px;
+border:1px solid rgba(255,255,255,.08);
 border-radius:50%;
-animation:spin 1s linear infinite;
-margin-bottom:20px;
+box-shadow:0 0 0 25px rgba(255,255,255,.015),0 0 0 50px rgba(255,255,255,.01);
 }
+.hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.caption{font-size:10px;color:#777;letter-spacing:1.6px;font-weight:600}
+.live{font-size:9px;color:#aaa;letter-spacing:1px;border:1px solid #292929;padding:7px 10px;border-radius:30px}
+.live i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#00ff88;margin-right:5px;box-shadow:0 0 8px #00ff88}
+.amount{font-size:44px;font-weight:700;letter-spacing:-2px;margin-top:13px;position:relative;z-index:1}
+.hero-footer{margin-top:22px;padding-top:15px;border-top:1px solid #272727;display:flex;justify-content:space-between;color:#777;font-size:11px;position:relative;z-index:1}
+.hero-footer b{color:#bbb;font-weight:500}
 
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
+.quick-title{font-size:13px;color:#777;margin:25px 3px 11px;text-transform:uppercase;letter-spacing:1px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:27px}
+.quick button{height:56px;background:#101010;border:1px solid #2b2b2b;border-radius:17px;color:#fff;font-weight:600;cursor:pointer}
+.quick button:first-child{background:#f2f2f2;color:#000;border-color:#f2f2f2}
+.quick button:active{transform:scale(.98)}
 
-.loading-overlay h3{
-margin-bottom:8px;
-}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:25px 2px 13px}
+.section-head h2{font-size:20px;font-weight:600}
+.section-head span{font-size:10px;color:#666;letter-spacing:1px;text-transform:uppercase}
 
-.loading-overlay p{
-color:#888;
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{
+background:#0d0d0d;border:1px solid #252525;border-radius:19px;padding:18px 16px;min-height:105px;
 }
+.stat small{display:block;color:#777;font-size:10px;margin-bottom:12px}
+.stat strong{font-size:19px;font-weight:600;letter-spacing:-.3px}
+.stat .green{color:#00ff88}
+.stat .blue{color:#ddd}
 
-.transaction-card{
-    background:#111;
-    border:1px solid #2d2d2d;
-    border-radius:18px;
-    padding:18px;
-    margin-bottom:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.notice{
+margin-top:20px;background:#0c0c0c;border:1px solid #252525;border-radius:19px;padding:17px;color:#777;font-size:11px;line-height:1.7
 }
+.notice b{color:#ccc;font-weight:500}
 
-.transaction-card h3{
-    font-size:17px;
-    margin-bottom:5px;
+.bottom{
+position:fixed;left:14px;right:14px;bottom:12px;height:64px;background:rgba(12,12,12,.96);
+border:1px solid #292929;border-radius:20px;display:flex;align-items:center;justify-content:space-around;
+backdrop-filter:blur(16px);z-index:1000
 }
+.nav{font-size:10px;color:#666;text-align:center;cursor:pointer}
+.nav.active{color:#fff}
+.nav-icon{font-size:18px;margin-bottom:4px}
 
-.transaction-card small{
-    color:#999;
+@media(max-width:360px){
+.amount{font-size:37px}.hero{padding:21px}.stat strong{font-size:16px}
 }
-
-.empty{
-    text-align:center;
-    color:#777;
-    padding:40px 20px;
-}
-
 </style>
-
 </head>
 
 <body>
 
-<!-- Header -->
+<header class="header">
+<button class="back" onclick="location.href='dashboard.html'">‹</button>
+<div class="header-title">
+<small>SpaceX</small>
+<h1>Wallet</h1>
+</div>
+<button class="header-action" onclick="location.href='history.html'">↗</button>
+</header>
 
-<div class="header">
-
-<div class="back" onclick="location.href='dashboard.html'">
-←
+<section class="hero">
+<div class="hero-top">
+<span class="caption">AVAILABLE FUNDS</span>
+<span class="live"><i></i>SECURE</span>
 </div>
 
-<h2>Wallet</h2>
+<div class="amount">$<span id="balance">0.00</span></div>
 
+<div class="hero-footer">
+<span>Portfolio</span>
+<b>USD</b>
+</div>
+</section>
+
+<div class="quick-title">Quick actions</div>
+
+<div class="quick">
+<button id="depositBtn">Deposit</button>
+<button id="investBtn">Invest</button>
+<button id="withdrawBtn">Withdraw</button>
 </div>
 
-<!-- Balance Card -->
-
-<div class="wallet-card">
-
-<p class="label">
-Available Balance
-</p>
-
-<h1>
-$<span id="balance">0.00</span>
-</h1>
-
-<div class="wallet-stats">
-
-<div>
-
-<p>Total Invested</p>
-
-<h3 id="totalInvested">
-$0.00
-</h3>
-
+<div class="section-head">
+<h2>Performance</h2>
+<span>Live data</span>
 </div>
 
-<div>
-
-<p>Total Profit</p>
-
-<h3 id="totalProfit">
-$0.00
-</h3>
-
+<div class="grid">
+<div class="stat">
+<small>TOTAL INVESTED</small>
+<strong id="totalInvested">$0.00</strong>
 </div>
 
+<div class="stat">
+<small>TOTAL PROFIT</small>
+<strong id="totalProfit" class="green">$0.00</strong>
 </div>
 
+<div class="stat">
+<small>TOTAL DEPOSITED</small>
+<strong id="totalDeposited" class="blue">$0.00</strong>
 </div>
 
-<!-- Quick Actions -->
-
-<div class="actions">
-
-<button id="depositBtn">
-Deposit
-</button>
-
-<button id="withdrawBtn">
-Withdraw
-</button>
-
-<button id="investBtn">
-Invest
-</button>
-
+<div class="stat">
+<small>TOTAL WITHDRAWN</small>
+<strong id="totalWithdrawn" class="blue">$0.00</strong>
+</div>
 </div>
 
-<!-- Portfolio Summary -->
-
-<div class="wallet-card">
-
-<h3 class="section-title" style="margin-bottom:20px;">
-Portfolio Summary
-</h3>
-
-<div class="wallet-stats">
-
-<div>
-<p>Total Deposited</p>
-<h3 id="totalDeposited">$0.00</h3>
+<div class="section-head">
+<h2>Plans</h2>
+<span>Portfolio</span>
 </div>
 
-<div>
-<p>Total Withdrawn</p>
-<h3 id="totalWithdrawn">$0.00</h3>
+<div class="grid">
+<div class="stat">
+<small>ACTIVE PLANS</small>
+<strong id="activePlans">0</strong>
+</div>
+<div class="stat">
+<small>COMPLETED PLANS</small>
+<strong id="completedPlans">0</strong>
+</div>
 </div>
 
-<div>
-<p>Active Plans</p>
-<h3 id="activePlans">0</h3>
+<div class="notice">
+<b>SpaceX Wallet</b><br>
+Your wallet reflects the latest account figures from your SpaceX profile. Deposit, investment and withdrawal activity can be viewed from your transaction history.
 </div>
 
-<div>
-<p>Completed Plans</p>
-<h3 id="completedPlans">0</h3>
-</div>
-
-</div>
-
-</div>
+<nav class="bottom">
+<div class="nav active" onclick="location.href='dashboard.html'"><div class="nav-icon">⌂</div>Home</div>
+<div class="nav active"><div class="nav-icon">◉</div>Wallet</div>
+<div class="nav" onclick="location.href='history.html'"><div class="nav-icon">↻</div>History</div>
+<div class="nav" onclick="location.href='support.html'"><div class="nav-icon">?</div>Support</div>
+</nav>
 
 <script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import {getFirestore,doc,onSnapshot} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    onSnapshot,
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-authDomain: "novax-acb23.firebaseapp.com",
-projectId: "novax-acb23",
-storageBucket: "novax-acb23.firebasestorage.app",
-messagingSenderId: "203988106178",
-appId: "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+const firebaseConfig={
+apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+authDomain:"novax-acb23.firebaseapp.com",
+projectId:"novax-acb23",
+storageBucket:"novax-acb23.firebasestorage.app",
+messagingSenderId:"203988106178",
+appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
-const balanceEl = document.getElementById("balance");
-const investedEl = document.getElementById("totalInvested");
-const profitEl = document.getElementById("totalProfit");
-
-const depositedEl = document.getElementById("totalDeposited");
-const withdrawnEl = document.getElementById("totalWithdrawn");
-const activePlansEl = document.getElementById("activePlans");
-const completedPlansEl = document.getElementById("completedPlans");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-    location.href="login.html";
-    return;
-}
-
-onSnapshot(doc(db,"users",user.uid),(snapshot)=>{
-
-if(!snapshot.exists()) return;
-
-const data = snapshot.data();
-
-balanceEl.innerText = Number(data.balance || 0).toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-investedEl.innerText = "$" + Number(data.totalInvested || 0).toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-profitEl.innerText = "$" + Number(data.totalProfit || 0).toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-depositedEl.innerText =
-"$" + Number(data.totalDeposited || 0).toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-withdrawnEl.innerText =
-"$" + Number(data.totalWithdrawn || 0).toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-activePlansEl.innerText =
-Number(data.activePlans || 0);
-
-completedPlansEl.innerText =
-Number(data.completedPlans || 0);
-
-});
-
-});
-
-document.getElementById("depositBtn").onclick=()=>{
-
-location.href="deposit.html";
-
+const money=(value)=>{
+return "$"+Number(value||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 };
 
-document.getElementById("withdrawBtn").onclick=()=>{
+onAuthStateChanged(auth,user=>{
+if(!user){location.href="login.html";return;}
 
-location.href="withdraw.html";
+onSnapshot(doc(db,"users",user.uid),snap=>{
+if(!snap.exists())return;
+const d=snap.data();
 
-};
+document.getElementById("balance").innerText=Number(d.balance||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+document.getElementById("totalInvested").innerText=money(d.totalInvested);
+document.getElementById("totalProfit").innerText=money(d.totalProfit);
+document.getElementById("totalDeposited").innerText=money(d.totalDeposited);
+document.getElementById("totalWithdrawn").innerText=money(d.totalWithdrawn);
+document.getElementById("activePlans").innerText=Number(d.activePlans||0);
+document.getElementById("completedPlans").innerText=Number(d.completedPlans||0);
+});
+});
 
-document.getElementById("investBtn").onclick=()=>{
-
-location.href="invest.html";
-
-};
-
+document.getElementById("depositBtn").onclick=()=>location.href="deposit.html";
+document.getElementById("investBtn").onclick=()=>location.href="invest.html";
+document.getElementById("withdrawBtn").onclick=()=>location.href="withdraw.html";
 </script>
 
 </body>
-
 </html>
