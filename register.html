@@ -1,524 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX Register</title>
+<title>Space X | Create Account</title>
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
--webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-tap-highlight-color:transparent;
 }
-
 html,body{
-width:100%;
-height:100%;
-overflow:hidden;
-touch-action:manipulation;
-background:#000;
-color:#fff;
+  width:100%;
+  min-height:100%;
+  background:#000;
+  color:#fff;
+  touch-action:manipulation;
+  overscroll-behavior:none;
 }
-
 body{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  position:relative;
+  overflow:hidden;
 }
-
-.container{
-width:100%;
-max-width:420px;
-background:#090909;
-border:1px solid #222;
-border-radius:24px;
-padding:35px;
-box-shadow:0 0 25px rgba(255,255,255,.05);
+body:before{
+  content:"";
+  position:fixed;
+  width:430px;
+  height:430px;
+  border:1px solid #1b1b1b;
+  border-radius:50%;
+  top:-245px;
+  left:-210px;
 }
-
-.logo{
-text-align:center;
-margin-bottom:30px;
+body:after{
+  content:"";
+  position:fixed;
+  width:390px;
+  height:390px;
+  border:1px solid #151515;
+  border-radius:50%;
+  right:-220px;
+  bottom:-230px;
 }
-
-.logo img{
-width:75px;
-height:75px;
-object-fit:contain;
-margin-bottom:15px;
+.shell{
+  width:100%;
+  max-width:440px;
+  position:relative;
+  z-index:2;
 }
-
-.logo h2{
-font-size:28px;
-font-weight:bold;
-margin-bottom:8px;
+.brand{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-bottom:24px;
 }
-
-.logo p{
-color:#777;
-font-size:14px;
+.brand img{
+  width:50px;
+  height:50px;
+  object-fit:contain;
 }
-
+.brand-name{
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:1.5px;
+}
+.card{
+  background:linear-gradient(145deg,#111 0%,#080808 70%,#050505 100%);
+  border:1px solid #292929;
+  border-radius:28px;
+  padding:28px 26px 24px;
+  box-shadow:0 25px 70px rgba(255,255,255,.055);
+}
+.eyebrow{
+  color:#777;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:9px;
+}
+h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+.subtitle{
+  color:#888;
+  font-size:13px;
+  line-height:1.65;
+  margin-bottom:22px;
+}
 .field{
-margin-bottom:18px;
+  margin-bottom:14px;
 }
-
-.field label{
-display:block;
-margin-bottom:8px;
-font-size:13px;
-color:#999;
+label{
+  display:block;
+  color:#aaa;
+  font-size:12px;
+  margin-bottom:7px;
 }
-
-.field input{
-width:100%;
-padding:16px;
-background:#000;
-border:1px solid #333;
-border-radius:14px;
-color:#fff;
-font-size:15px;
-outline:none;
-transition:.25s;
+input{
+  width:100%;
+  height:52px;
+  padding:0 15px;
+  background:#030303;
+  color:#fff;
+  border:1px solid #303030;
+  border-radius:13px;
+  outline:none;
+  font-size:14px;
+  transition:.25s;
 }
-
-.field input:focus{
-border-color:#fff;
+input:focus{
+  border-color:#777;
+  box-shadow:0 0 0 3px rgba(255,255,255,.035);
 }
-
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:30px;
-background:#fff;
-color:#000;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.25s;
+.password-wrap{
+  position:relative;
 }
-
-button:hover{
-opacity:.9;
+.password-wrap input{
+  padding-right:75px;
 }
-
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
+.toggle{
+  position:absolute;
+  right:7px;
+  top:7px;
+  height:38px;
+  padding:0 11px;
+  background:#111;
+  color:#aaa;
+  border:1px solid #303030;
+  border-radius:10px;
+  font-size:11px;
+  cursor:pointer;
 }
-
+.create-btn{
+  width:100%;
+  height:54px;
+  margin-top:8px;
+  border:0;
+  border-radius:15px;
+  background:#fff;
+  color:#000;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+.create-btn:active{
+  transform:scale(.985);
+}
+.create-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 .footer{
-margin-top:25px;
-text-align:center;
-font-size:14px;
-color:#777;
+  text-align:center;
+  color:#666;
+  font-size:13px;
+  margin-top:19px;
 }
-
 .footer a{
-color:#fff;
-text-decoration:none;
-font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
 }
-
-/* Loading Overlay */
-
+.secure{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
+  color:#555;
+  font-size:10px;
+  margin-top:18px;
+}
+.secure-dot{
+  width:6px;
+  height:6px;
+  background:#777;
+  border-radius:50%;
+}
 #loader{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.95);
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.97);
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
 }
-
+.loader-logo{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  margin-bottom:20px;
+}
 .spinner{
-width:60px;
-height:60px;
-border:4px solid #222;
-border-top:4px solid #fff;
-border-radius:50%;
-animation:spin 1s linear infinite;
+  width:44px;
+  height:44px;
+  border:3px solid #292929;
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
 }
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
-
 .loader-title{
-margin-top:25px;
-font-size:18px;
-font-weight:bold;
+  margin-top:17px;
+  font-size:15px;
+  font-weight:600;
 }
-
 .loader-text{
-margin-top:8px;
-font-size:14px;
-color:#888;
+  margin-top:7px;
+  color:#777;
+  font-size:12px;
 }
-
-/* Success Modal */
-
 #successModal{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90%;
-max-width:360px;
-background:#090909;
-border:1px solid #333;
-border-radius:22px;
-padding:30px;
-text-align:center;
-z-index:10000;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(8px);
+  justify-content:center;
+  align-items:center;
+  padding:22px;
+  z-index:10000;
 }
-
+.success-card{
+  width:100%;
+  max-width:360px;
+  background:#0c0c0c;
+  border:1px solid #333;
+  border-radius:24px;
+  padding:30px 24px;
+  text-align:center;
+}
 .success-icon{
-width:70px;
-height:70px;
-margin:auto;
-border:2px solid #fff;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-margin-bottom:20px;
+  width:55px;
+  height:55px;
+  margin:0 auto 18px;
+  border:1px solid #666;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:23px;
 }
-
-#successModal h2{
-margin-bottom:10px;
+.success-card h2{
+  margin-bottom:9px;
 }
-
-#successModal p{
-color:#888;
-line-height:1.6;
-margin-bottom:20px;
+.success-card p{
+  color:#888;
+  line-height:1.7;
+  font-size:13px;
 }
-
+.continue{
+  width:100%;
+  height:50px;
+  margin-top:21px;
+  border:0;
+  border-radius:14px;
+  background:#fff;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+@media(max-width:380px){
+  .card{padding:25px 20px 22px;}
+  h1{font-size:27px;}
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<main class="shell">
 
-<div class="logo">
+  <div class="brand">
+    <img src="logo.png" alt="Space X">
+    <div class="brand-name">SPACE X</div>
+  </div>
 
-<img src="logo.png" alt="NovaX">
+  <section class="card">
+    <div class="eyebrow">New Member</div>
+    <h1>Create your account.</h1>
+    <p class="subtitle">Set up your Space X account and access your personal investment dashboard.</p>
 
-<h2>Space X</h2>
+    <div class="field">
+      <label for="email">EMAIL ADDRESS</label>
+      <input id="email" type="email" autocomplete="email" placeholder="Enter your email">
+    </div>
 
-<p>Create your investment account</p>
+    <div class="field">
+      <label for="username">USERNAME</label>
+      <input id="username" type="text" autocomplete="username" placeholder="Choose a username">
+    </div>
 
-</div>
+    <div class="field">
+      <label for="password">PASSWORD</label>
+      <div class="password-wrap">
+        <input id="password" type="password" autocomplete="new-password" placeholder="Create a password">
+        <button type="button" class="toggle" id="showPassword">Show</button>
+      </div>
+    </div>
 
-<div class="field">
+    <div class="field">
+      <label for="confirmPassword">CONFIRM PASSWORD</label>
+      <div class="password-wrap">
+        <input id="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password">
+        <button type="button" class="toggle" id="showConfirm">Show</button>
+      </div>
+    </div>
 
-<label>Email Address</label>
+    <button class="create-btn" id="registerBtn">Create Account</button>
 
-<input
-type="email"
-id="email"
-placeholder="Enter your email">
+    <div class="footer">
+      Already have an account?
+      <a href="login.html">Sign in</a>
+    </div>
 
-</div>
+    <div class="secure">
+      <span class="secure-dot"></span>
+      Secure account creation
+    </div>
+  </section>
 
-<div class="field">
-
-<label>Username</label>
-
-<input
-type="text"
-id="username"
-placeholder="Choose a username">
-
-</div>
-
-<div class="field">
-
-<label>Password</label>
-
-<input
-type="password"
-id="password"
-placeholder="Create password">
-
-</div>
-
-<div class="field">
-
-<label>Confirm Password</label>
-
-<input
-type="password"
-id="confirmPassword"
-placeholder="Confirm password">
-
-</div>
-
-<button id="registerBtn">
-
-Create Account
-
-</button>
-
-<div class="footer">
-
-Already have an account?
-
-<a href="login.html">
-
-Login
-
-</a>
-
-</div>
-
-</div>
-
-<!-- Loading Overlay -->
+</main>
 
 <div id="loader">
-
-<div class="spinner"></div>
-
-<div class="loader-title">
-
-Creating Account
-
+  <img src="logo.png" class="loader-logo" alt="Space X">
+  <div class="spinner"></div>
+  <div class="loader-title">Creating your account...</div>
+  <div class="loader-text">Please wait while Space X sets up your account.</div>
 </div>
-
-<div class="loader-text">
-
-Please wait while we securely create your NovaX account...
-
-</div>
-
-</div>
-
-<!-- Success Modal -->
 
 <div id="successModal">
-
-<div class="success-icon">
-
-✓
-
-</div>
-
-<h2>
-
-Registration Successful
-
-</h2>
-
-<p>
-
-Welcome to NovaX. Your investment account has been created successfully.
-
-</p>
-
-<button id="continueBtn">
-
-Continue
-
-</button>
-
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <h2>Account Created</h2>
+    <p>Welcome to Space X. Your account has been created successfully.</p>
+    <button class="continue" id="continueBtn">Continue to Dashboard</button>
+  </div>
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 
 import {
-getAuth,
-createUserWithEmailAndPassword,
-updateProfile,
-setPersistence,
-browserLocalPersistence
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  setPersistence,
+  browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
 import {
-getFirestore,
-doc,
-setDoc,
-serverTimestamp
+  getFirestore,
+  doc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
-apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-
-authDomain:"novax-acb23.firebaseapp.com",
-
-projectId:"novax-acb23",
-
-storageBucket:"novax-acb23.firebasestorage.app",
-
-messagingSenderId:"203988106178",
-
-appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
-
+  apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain:"novax-acb23.firebaseapp.com",
+  projectId:"novax-acb23",
+  storageBucket:"novax-acb23.firebasestorage.app",
+  messagingSenderId:"203988106178",
+  appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
-// Keep user logged in
 await setPersistence(auth,browserLocalPersistence);
 
-const registerBtn=document.getElementById("registerBtn");
-const loader=document.getElementById("loader");
-const successModal=document.getElementById("successModal");
-const continueBtn=document.getElementById("continueBtn");
+const registerBtn = document.getElementById("registerBtn");
+const loader = document.getElementById("loader");
+const successModal = document.getElementById("successModal");
+const continueBtn = document.getElementById("continueBtn");
 
-registerBtn.addEventListener("click",async()=>{
-
-const email=document.getElementById("email").value.trim().toLowerCase();
-const username=document.getElementById("username").value.trim();
-const password=document.getElementById("password").value;
-const confirmPassword=document.getElementById("confirmPassword").value;
-
-if(!email || !username || !password || !confirmPassword){
-
-alert("Please complete all fields.");
-
-return;
-
+function setupToggle(buttonId,inputId){
+  document.getElementById(buttonId).onclick = () => {
+    const input = document.getElementById(inputId);
+    const visible = input.type === "text";
+    input.type = visible ? "password" : "text";
+    document.getElementById(buttonId).textContent = visible ? "Show" : "Hide";
+  };
 }
 
-if(password!==confirmPassword){
+setupToggle("showPassword","password");
+setupToggle("showConfirm","confirmPassword");
 
-alert("Passwords do not match.");
+registerBtn.addEventListener("click", async () => {
 
-return;
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-}
+  if(!email || !username || !password || !confirmPassword){
+    alert("Please complete all fields.");
+    return;
+  }
 
-if(password.length<6){
+  if(username.length < 3){
+    alert("Username must contain at least 3 characters.");
+    return;
+  }
 
-alert("Password must be at least 6 characters.");
+  if(password !== confirmPassword){
+    alert("Passwords do not match.");
+    return;
+  }
 
-return;
+  if(password.length < 6){
+    alert("Password must be at least 6 characters.");
+    return;
+  }
 
-}
+  registerBtn.disabled = true;
+  loader.style.display = "flex";
 
-registerBtn.disabled=true;
-loader.style.display="flex";
+  try{
 
-try{
+    const credential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-const credential=await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+    const user = credential.user;
 
-const user=credential.user;
+    await updateProfile(user,{
+      displayName: username
+    });
 
-// Save username to Authentication profile
-await updateProfile(user,{
-displayName:username
+    await setDoc(doc(db,"users",user.uid),{
+      uid:user.uid,
+      email:email,
+      username:username,
+      balance:0,
+      investment:0,
+      referralCode:"",
+      createdAt:serverTimestamp()
+    });
+
+    await setDoc(doc(db,"notifications",user.uid),{
+      userId:user.uid,
+      title:"Welcome to Space X",
+      message:"Welcome to Space X! Your account has been created successfully.",
+      createdAt:serverTimestamp()
+    });
+
+    loader.style.display = "none";
+    successModal.style.display = "flex";
+
+  }catch(error){
+
+    loader.style.display = "none";
+    registerBtn.disabled = false;
+
+    let msg = "Registration failed. Please try again.";
+
+    switch(error.code){
+      case "auth/email-already-in-use":
+        msg = "This email is already registered.";
+        break;
+      case "auth/invalid-email":
+        msg = "Please enter a valid email address.";
+        break;
+      case "auth/weak-password":
+        msg = "Password must contain at least 6 characters.";
+        break;
+      case "auth/network-request-failed":
+        msg = "Network connection failed. Please check your internet connection.";
+        break;
+      default:
+        msg = error.message;
+    }
+
+    alert(msg);
+  }
 });
 
-// Create user document
-await setDoc(doc(db,"users",user.uid),{
-
-uid:user.uid,
-
-email:email,
-
-username:username,
-
-balance:0,
-
-investment:0,
-
-referralCode:"",
-
-createdAt:serverTimestamp()
-
-});
-
-// Create welcome notification
-await setDoc(doc(db,"notifications",user.uid),{
-
-userId:user.uid,
-
-title:"Welcome to NovaX",
-
-message:"Welcome to NovaX! Your investment account has been created successfully.",
-
-createdAt:serverTimestamp()
-
-});
-
-loader.style.display="none";
-
-successModal.style.display="block";
-
-continueBtn.onclick=function(){
-
-window.location.replace("dashboard.html");
-
+continueBtn.onclick = () => {
+  window.location.replace("dashboard.html");
 };
 
-}catch(error){
-
-loader.style.display="none";
-
-registerBtn.disabled=false;
-
-let msg="Registration failed.";
-
-switch(error.code){
-
-case "auth/email-already-in-use":
-msg="This email is already registered.";
-break;
-
-case "auth/invalid-email":
-msg="Please enter a valid email address.";
-break;
-
-case "auth/weak-password":
-msg="Password must contain at least 6 characters.";
-break;
-
-default:
-msg=error.message;
-
-}
-
-alert(msg);
-
-}
-
+[email,username,password,confirmPassword].forEach(input => {
+  input.addEventListener("keydown", e => {
+    if(e.key === "Enter") registerBtn.click();
+  });
 });
-
 </script>
 
 </body>
