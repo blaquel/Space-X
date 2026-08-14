@@ -1,516 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>NovaX | Cash App Withdrawal</title>
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Space X | Cash App Withdrawal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
--webkit-tap-highlight-color:transparent;
-}
-
-body{
-background:#000;
-color:#fff;
-padding:22px;
-padding-bottom:120px;
-overflow-x:hidden;
-}
-
-.header{
-display:flex;
-align-items:center;
-gap:18px;
-margin-bottom:30px;
-}
-
-.back-btn{
-width:55px;
-height:55px;
-border-radius:50%;
-border:2px solid #fff;
-background:transparent;
-color:#fff;
-font-size:22px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:.3s;
-}
-
-.back-btn:hover{
-background:#fff;
-color:#000;
-}
-
-.header h1{
-font-size:32px;
-font-weight:700;
-}
-
-.wallet-card{
-background:#111;
-border:1px solid #2a2a2a;
-border-radius:28px;
-padding:30px;
-margin-bottom:28px;
-text-align:center;
-box-shadow:0 15px 40px rgba(255,255,255,.05);
-}
-
-.wallet-card p{
-font-size:16px;
-color:#888;
-margin-bottom:12px;
-}
-
-.wallet-card h2{
-font-size:50px;
-font-weight:700;
-}
-
-.form-card{
-background:#111;
-border:1px solid #2a2a2a;
-border-radius:28px;
-padding:28px;
-box-shadow:0 15px 35px rgba(255,255,255,.04);
-}
-
-label{
-display:block;
-margin-top:20px;
-margin-bottom:10px;
-font-size:15px;
-font-weight:500;
-color:#ddd;
-}
-
-input{
-width:100%;
-height:58px;
-background:#000;
-border:1px solid #333;
-border-radius:16px;
-padding:0 18px;
-font-size:16px;
-color:#fff;
-outline:none;
-transition:.3s;
-}
-
-input:focus{
-border-color:#fff;
-}
-
-#submitBtn{
-width:100%;
-height:58px;
-margin-top:35px;
-border:none;
-border-radius:18px;
-background:#fff;
-color:#000;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-transition:.3s;
-}
-
-#submitBtn:hover{
-transform:translateY(-2px);
-}
-
-.loading-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:99999;
-}
-
-.loader{
-width:70px;
-height:70px;
-border:6px solid #222;
-border-top:6px solid #fff;
-border-radius:50%;
-animation:spin 1s linear infinite;
-margin-bottom:20px;
-}
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-.loading-overlay h2{
-font-size:26px;
-margin-bottom:10px;
-}
-
-.loading-overlay p{
-color:#888;
-}
-
-.alert{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.88);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:100000;
-}
-
-.alert-content{
-width:90%;
-max-width:360px;
-background:#111;
-border:1px solid #333;
-border-radius:24px;
-padding:30px;
-text-align:center;
-}
-
-.alert-content h2{
-margin-bottom:12px;
-}
-
-.alert-content p{
-color:#aaa;
-line-height:1.7;
-margin-bottom:25px;
-}
-
-.alert-content button{
-width:100%;
-height:52px;
-border:none;
-border-radius:14px;
-background:#fff;
-color:#000;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:Poppins,sans-serif;-webkit-tap-highlight-color:transparent}
+:root{--bg:#050505;--card:#101010;--line:#292929;--muted:#888;--gold:#ffffff}
+body{background:var(--bg);color:#fff;min-height:100vh;padding:20px 18px 40px}
+.wrap{max-width:520px;margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+.back{width:48px;height:48px;border:1px solid var(--line);background:#0b0b0b;color:#fff;border-radius:15px;font-size:20px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700}.brand img{width:35px;height:35px;object-fit:contain}
+.secure{font-size:11px;color:#888}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#45c56b;margin-right:5px}
+.eyebrow{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600}
+h1{font-size:31px;margin-top:7px}.sub{font-size:13px;color:var(--muted);line-height:1.7;margin:7px 0 20px}
+.balance{background:linear-gradient(145deg,#171717,#0b0b0b);border:1px solid #292929;border-radius:24px;padding:23px;margin-bottom:18px}
+.label{font-size:11px;color:#999;letter-spacing:1px}.amount{font-size:39px;font-weight:700;margin-top:4px}
+.currency{font-size:16px;color:#aaa}.balance-foot{border-top:1px solid #29251c;margin-top:17px;padding-top:14px;color:#777;font-size:11px;display:flex;justify-content:space-between}.balance-foot b{color:#ddd;font-weight:500}
+.card{background:linear-gradient(#111,#0b0b0b);border:1px solid var(--line);border-radius:24px;padding:22px}
+.method{display:flex;gap:12px;align-items:center;margin-bottom:22px}.icon{width:45px;height:45px;border-radius:14px;background:#191919;border:1px solid #303030;display:grid;place-items:center;font-size:21px}.method h2{font-size:18px}.method p{font-size:11px;color:#777}
+.field{margin-bottom:18px}label{display:flex;justify-content:space-between;color:#ccc;font-size:12px;margin-bottom:9px}.hint{color:#666}
+.input-wrap{position:relative}.prefix{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#aaa}input{width:100%;height:56px;border:1px solid #303030;border-radius:14px;background:#050505;color:#fff;padding:0 15px;font-size:14px;outline:none}input:focus{border-color:#777}.tag{padding-left:30px}
+.summary{background:#080808;border:1px solid #222;border-radius:15px;padding:14px;margin-top:4px}.row{display:flex;justify-content:space-between;color:#777;font-size:12px}.row+.row{margin-top:9px}.row b{color:#eee}
+.submit{width:100%;height:56px;border:0;border-radius:15px;margin-top:20px;background:linear-gradient(135deg,#ffffff,#d8d8d8);color:#090909;font-size:14px;font-weight:700}.submit:disabled{opacity:.5}
+.note{display:flex;gap:9px;color:#666;font-size:10px;line-height:1.7;margin-top:17px}.note i{font-size:14px;color:#999}.foot{text-align:center;color:#555;font-size:10px;margin-top:18px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;z-index:99}.modal{width:100%;max-width:370px;background:#111;border:1px solid #303030;border-radius:24px;padding:28px;text-align:center}.spinner{width:56px;height:56px;border:4px solid #282828;border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;margin:auto auto 18px}.check{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:auto auto 16px;background:#181818;border:1px solid #333;color:#fff;font-size:25px}.modal h2{font-size:20px}.modal p{color:#888;font-size:12px;line-height:1.7;margin:10px 0 20px}.modal button{width:100%;height:50px;border:0;border-radius:13px;background:#fff;color:#000;font-weight:700}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
-
 </head>
-
 <body>
-
-<!-- Loading Overlay -->
-
-<div class="loading-overlay" id="loadingOverlay">
-
-    <div class="loader"></div>
-
-    <h2>Submitting Transfer</h2>
-
-    <p>Please wait while we process your Cash App withdrawal...</p>
-
+<div class="wrap">
+<div class="top">
+<button class="back" onclick="location.href='withdraw.html'"><i class="bi bi-chevron-left"></i></button>
+<div class="brand"><img src="logo.png" alt="Space X"><span>Space X</span></div>
+<div class="secure"><span class="dot"></span>Secure</div>
 </div>
 
-<!-- Alert -->
+<div class="eyebrow">Withdrawal Center</div>
+<h1>Cash App Transfer</h1>
+<p class="sub">Submit a secure withdrawal request to your Cash App account.</p>
 
-<div class="alert" id="alertBox">
-
-    <div class="alert-content">
-
-        <h2 id="alertTitle">
-
-            Withdrawal Submitted
-
-        </h2>
-
-        <p id="alertMessage">
-
-            Your Cash App withdrawal request has been submitted successfully and is awaiting admin approval.
-
-        </p>
-
-        <button onclick="closeAlert()">
-
-            OK
-
-        </button>
-
-    </div>
-
+<div class="balance">
+<div class="label">AVAILABLE BALANCE</div>
+<div class="amount"><span class="currency">$</span><span id="balance">0.00</span></div>
+<div class="balance-foot"><span>Account balance</span><b>Ready for withdrawal</b></div>
 </div>
 
-<!-- Header -->
+<div class="card">
+<div class="method"><div class="icon"><i class="bi bi-cash-stack"></i></div><div><h2>Withdrawal details</h2><p>Review your information before submitting.</p></div></div>
 
-<div class="header">
-
-    <button class="back-btn"
-    onclick="location.href='withdraw.html'">
-
-        <i class="bi bi-arrow-left"></i>
-
-    </button>
-
-    <h1>Cash App Withdrawal</h1>
-
+<div class="field">
+<label>Cash App Tag <span class="hint">Required</span></label>
+<div class="input-wrap"><span class="prefix">$</span><input id="cashTag" class="tag" type="text" placeholder="YourCashTag" autocomplete="off"></div>
 </div>
 
-<!-- Wallet Card -->
-
-<div class="wallet-card">
-
-    <p>
-
-        Available Balance
-
-    </p>
-
-    <h2>
-
-        $
-
-        <span id="balance">
-
-            0.00
-
-        </span>
-
-    </h2>
-
+<div class="field">
+<label>Withdrawal Amount <span class="hint">Minimum $10</span></label>
+<input id="amount" type="number" min="10" step="0.01" inputmode="decimal" placeholder="0.00">
 </div>
 
-<!-- Withdrawal Form -->
-
-<div class="form-card">
-
-    <label>
-
-        Cash App Tag
-
-    </label>
-
-    <input
-    type="text"
-    id="cashTag"
-    placeholder="Enter your Cash App tag (e.g. $JohnDoe)">
-
-    <label>
-
-        Withdrawal Amount (USD)
-
-    </label>
-
-    <input
-    type="number"
-    id="amount"
-    placeholder="Minimum withdrawal $10">
-
-    <button id="submitBtn">
-
-        Submit Transfer
-
-    </button>
-
+<div class="summary">
+<div class="row"><span>Requested amount</span><b>$<span id="summaryAmount">0.00</span></b></div>
+<div class="row"><span>Method</span><b>Cash App</b></div>
 </div>
+
+<button id="submitBtn" class="submit">Submit Withdrawal Request</button>
+<div class="note"><i class="bi bi-shield-check"></i><span>Withdrawal requests are reviewed before completion. Verify your Cash App tag and amount carefully.</span></div>
+</div>
+<div class="foot">Space X secure withdrawal service</div>
+</div>
+
+<div class="overlay" id="loadingOverlay"><div class="modal"><div class="spinner"></div><h2>Submitting Request</h2><p>Please wait while your withdrawal request is securely recorded.</p></div></div>
+<div class="overlay" id="alertBox"><div class="modal"><div class="check"><i class="bi bi-check2"></i></div><h2 id="alertTitle">Withdrawal Submitted</h2><p id="alertMessage"></p><button onclick="closeAlert()">Continue</button></div></div>
 
 <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-import {
-getFirestore,
-doc,
-getDoc,
-onSnapshot,
-collection,
-addDoc,
-serverTimestamp,
-updateDoc,
-increment
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-const firebaseConfig={
-apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-authDomain:"novax-acb23.firebaseapp.com",
-projectId:"novax-acb23",
-storageBucket:"novax-acb23.firebasestorage.app",
-messagingSenderId:"203988106178",
-appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-
-let currentUser=null;
-let currentBalance=0;
-
-const balance=document.getElementById("balance");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-location.href="login.html";
-return;
-}
-
-currentUser=user;
-
-onSnapshot(doc(db,"users",user.uid),(snap)=>{
-
-if(!snap.exists()) return;
-
-const data=snap.data();
-
-currentBalance=Number(data.balance||0);
-
-balance.innerText=currentBalance.toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-
-});
-
-});
-
-document.getElementById("submitBtn").onclick=async()=>{
-
-const cashTag=document.getElementById("cashTag").value.trim();
-const amount=Number(document.getElementById("amount").value);
-
-if(cashTag===""){
-showAlert("Please enter your Cash App tag.");
-return;
-}
-
-if(amount<10){
-showAlert("Minimum withdrawal amount is $10.");
-return;
-}
-
-if(amount>currentBalance){
-showAlert("Insufficient balance.");
-return;
-}
-
-document.getElementById("loadingOverlay").style.display="flex";
-
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import{getFirestore,doc,getDoc,onSnapshot,collection,addDoc,serverTimestamp,updateDoc,increment}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",authDomain:"novax-acb23.firebaseapp.com",projectId:"novax-acb23",storageBucket:"novax-acb23.firebasestorage.app",messagingSenderId:"203988106178",appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+let currentUser=null,currentBalance=0;
+const balanceEl=document.getElementById("balance"),amountEl=document.getElementById("amount"),summary=document.getElementById("summaryAmount"),loading=document.getElementById("loadingOverlay"),alertBox=document.getElementById("alertBox"),submit=document.getElementById("submitBtn");
+onAuthStateChanged(auth,user=>{if(!user){location.replace("login.html");return}currentUser=user;onSnapshot(doc(db,"users",user.uid),s=>{if(!s.exists())return;currentBalance=Number(s.data().balance||0);balanceEl.textContent=currentBalance.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})})});
+amountEl.oninput=()=>{const n=Number(amountEl.value)||0;summary.textContent=n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})};
+document.getElementById("cashTag").oninput=e=>e.target.value=e.target.value.replace(/\s/g,"").replace(/^\$/,"");
+submit.onclick=async()=>{
+const tag=document.getElementById("cashTag").value.trim().replace(/^\$/,""),cashTag=tag?"$"+tag:"",amount=Number(amountEl.value);
+if(!tag){showAlert("Attention","Please enter your Cash App tag.");return}
+if(!Number.isFinite(amount)||amount<10){showAlert("Invalid Amount","The minimum withdrawal amount is $10.");return}
+if(amount>currentBalance){showAlert("Insufficient Balance","Your available balance is not enough for this withdrawal.");return}
+loading.style.display="flex";submit.disabled=true;
 try{
-
-const userSnap=await getDoc(doc(db,"users",currentUser.uid));
-const userData=userSnap.data();
-
-await addDoc(collection(db,"withdrawals"),{
-
-userId:currentUser.uid,
-username:userData.username||"",
-email:userData.email||"",
-method:"Cash App",
-cashTag:cashTag,
-amount:amount,
-type:"Cash App Withdrawal",
-status:"Pending",
-createdAt:serverTimestamp()
-
-});
-
-await addDoc(collection(db,"history"),{
-
-userId:currentUser.uid,
-username:userData.username||"",
-email:userData.email||"",
-method:"Cash App",
-cashTag:cashTag,
-amount:amount,
-type:"Cash App Withdrawal",
-status:"Pending",
-createdAt:serverTimestamp()
-
-});
-
-await updateDoc(doc(db,"users",currentUser.uid),{
-
-balance:increment(-amount),
-totalWithdrawn:increment(amount)
-
-});
-
-document.getElementById("loadingOverlay").style.display="none";
-
-document.getElementById("cashTag").value="";
-document.getElementById("amount").value="";
-
-showAlert("Your Cash App withdrawal request has been submitted successfully and is awaiting admin approval.");
-
-}catch(error){
-
-document.getElementById("loadingOverlay").style.display="none";
-
-showAlert(error.message);
-
-}
-
-};
-
-function showAlert(message){
-
-document.getElementById("alertMessage").innerText=message;
-document.getElementById("alertBox").style.display="flex";
-
-}
-
-window.closeAlert=function(){
-
-document.getElementById("alertBox").style.display="none";
-
-};
-
+const us=await getDoc(doc(db,"users",currentUser.uid)),d=us.data()||{};
+await addDoc(collection(db,"withdrawals"),{userId:currentUser.uid,username:d.username||"",email:d.email||currentUser.email||"",method:"Cash App",cashTag,amount,type:"Cash App Withdrawal",status:"Pending",createdAt:serverTimestamp()});
+await addDoc(collection(db,"history"),{userId:currentUser.uid,username:d.username||"",email:d.email||currentUser.email||"",method:"Cash App",cashTag,amount,type:"Cash App Withdrawal",status:"Pending",createdAt:serverTimestamp()});
+await updateDoc(doc(db,"users",currentUser.uid),{balance:increment(-amount),totalWithdrawn:increment(amount)});
+loading.style.display="none";submit.disabled=false;document.getElementById("cashTag").value="";amountEl.value="";summary.textContent="0.00";showAlert("Withdrawal Submitted","Your Cash App withdrawal request has been submitted successfully and is awaiting administrator approval.");
+}catch(e){loading.style.display="none";submit.disabled=false;showAlert("Request Failed",e.message||"Something went wrong. Please try again.")}};
+function showAlert(t,m){document.getElementById("alertTitle").textContent=t;document.getElementById("alertMessage").textContent=m;alertBox.style.display="flex"}window.closeAlert=()=>alertBox.style.display="none";
 </script>
-
 </body>
 </html>
