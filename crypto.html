@@ -3,86 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NovaX | Crypto Deposit</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<title>Space X | Crypto Deposit</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#000;color:#fff;padding:20px;padding-bottom:110px;overflow-x:hidden}
-.shell{max-width:560px;margin:auto}.header{display:flex;align-items:center;gap:15px;margin-bottom:24px}
-.back{width:48px;height:48px;border:1px solid #333;background:#0c0c0c;color:#fff;border-radius:15px;font-size:21px}
-.header-text{flex:1}.eyebrow{font-size:11px;letter-spacing:1.6px;color:#777;text-transform:uppercase}.header h1{font-size:25px}
-.hero,.card{background:#0d0d0d;border:1px solid #252525;border-radius:27px;padding:24px;margin-bottom:18px}
-.hero{background:linear-gradient(145deg,#171717,#090909);position:relative;overflow:hidden}
-.hero-top{display:flex;justify-content:space-between;align-items:center}.hero-icon{width:50px;height:50px;border-radius:16px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-size:23px}
-.badge{font-size:11px;padding:7px 11px;border:1px solid #333;border-radius:30px;color:#aaa}
-.hero h2{font-size:25px;margin-top:20px}.hero p{color:#888;font-size:13px;line-height:1.7;margin-top:7px}
-.section-title{font-size:16px;font-weight:600;margin-bottom:15px}label{display:block;font-size:12px;color:#999;margin:17px 0 8px}
-select,input{width:100%;height:54px;background:#050505;color:#fff;border:1px solid #303030;border-radius:14px;padding:0 15px;outline:none;font-size:14px}
-select:focus,input:focus{border-color:#fff}.select-wrap{position:relative}.select-wrap i{position:absolute;right:16px;top:18px;color:#777;pointer-events:none}
-.address-box{margin-top:14px;padding:16px;background:#070707;border:1px dashed #333;border-radius:16px}.address-label{font-size:11px;color:#777;text-transform:uppercase;letter-spacing:1px}.address{margin-top:8px;font-size:13px;line-height:1.65;word-break:break-all;color:#ddd}
-.copy{margin-top:12px;width:100%;height:42px;border:1px solid #333;border-radius:12px;background:#151515;color:#fff;font-weight:600}
-.notice{display:flex;gap:12px;padding:14px;background:#0a0a0a;border:1px solid #222;border-radius:15px;color:#999;font-size:12px;line-height:1.6;margin-top:16px}.notice i{color:#fff;font-size:18px}
-.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.summary div{padding:13px;border-radius:15px;background:#0a0a0a;border:1px solid #222}.summary small{display:block;color:#777;font-size:10px}.summary b{display:block;margin-top:4px;font-size:14px}
-.primary{width:100%;height:55px;border:0;border-radius:15px;background:#fff;color:#000;font-weight:700;font-size:15px;margin-top:18px}.secondary{width:100%;height:46px;border:1px solid #333;border-radius:14px;background:#111;color:#fff;font-weight:600;margin-top:10px}
-.overlay,.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:9999;padding:25px}
-.loader-card,.modal-card{width:100%;max-width:370px;background:#111;border:1px solid #292929;border-radius:25px;padding:28px;text-align:center}.spinner{width:56px;height:56px;border:4px solid #252525;border-top-color:#fff;border-radius:50%;animation:spin .9s linear infinite;margin:auto}
-.loader-card h3,.modal h2{margin-top:18px}.loader-card p,.modal p{margin-top:8px;color:#888;font-size:12px;line-height:1.7}.modal-icon{width:62px;height:62px;margin:auto;border-radius:50%;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-size:28px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{background:#000;color:#fff;min-height:100%;overflow-x:hidden}
+body{padding:18px 18px 42px}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.back{width:46px;height:46px;border:1px solid #303030;border-radius:14px;background:#0b0b0b;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer}
+.brand{text-align:center}
+.brand small{display:block;color:#666;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px}
+.brand h2{font-size:20px;font-weight:700}
+.header-space{width:46px}
+
+.top-card{background:#0d0d0d;border:1px solid #292929;border-radius:26px;padding:23px;margin-bottom:14px}
+.top-line{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.kicker{font-size:11px;color:#777;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px}
+.top-card h1{font-size:27px;font-weight:700}
+.top-card p{margin-top:8px;color:#8c8c8c;font-size:13px;line-height:1.65}
+.balance-box{text-align:right;white-space:nowrap}
+.balance-box span{display:block;color:#666;font-size:11px;margin-bottom:5px}
+.balance-box strong{font-size:20px}
+
+.network-card{background:#111;border:1px solid #292929;border-radius:20px;padding:16px;margin-bottom:14px}
+.network-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.network-head span:first-child{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:1px}
+.network-pill{padding:6px 10px;border:1px solid #333;border-radius:20px;color:#aaa;font-size:11px}
+.network-card p{font-size:12px;line-height:1.65;color:#8e8e8e}
+.network-card b{color:#00ff88}
+
+.main-card{background:#0d0d0d;border:1px solid #292929;border-radius:26px;padding:20px}
+.section-title{font-size:17px;font-weight:700;margin-bottom:16px}
+label{display:block;color:#777;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px}
+select,input{width:100%;height:53px;background:#050505;border:1px solid #333;border-radius:14px;color:#fff;padding:0 15px;font-size:15px;outline:none;margin-bottom:18px}
+select:focus,input:focus{border-color:#00ff88}
+
+.address-wrap{border:1px solid #292929;background:#050505;border-radius:16px;padding:15px;margin-bottom:10px}
+.address-meta{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}
+.address-meta span{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.8px}
+.address-meta strong{font-size:10px;color:#aaa}
+.address{font-size:12px;color:#ddd;line-height:1.7;word-break:break-all;user-select:all}
+.copy-btn{width:100%;height:45px;background:#151515;border:1px solid #383838;border-radius:12px;color:#fff;font-weight:600;font-size:13px;margin-bottom:21px;cursor:pointer}
+.copy-btn:active{background:#00ff88;color:#000}
+
+.amount-note{font-size:11px;color:#686868;line-height:1.6;margin-top:-9px;margin-bottom:18px}
+.submit-btn{width:100%;height:55px;border:0;border-radius:15px;background:#00ff88;color:#000;font-size:15px;font-weight:800;cursor:pointer}
+.submit-btn:disabled{opacity:.5}
+
+#loader{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column}
+.spinner{width:54px;height:54px;border:4px solid #252525;border-top-color:#00ff88;border-radius:50%;animation:spin 1s linear infinite}
+.loader-title{margin-top:18px;font-size:17px;font-weight:700}
+.loader-text{margin-top:7px;color:#777;font-size:12px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+#success{display:none;position:fixed;inset:0;background:rgba(0,0,0,.91);backdrop-filter:blur(7px);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.success-card{width:100%;max-width:370px;background:#111;border:1px solid #303030;border-radius:26px;padding:29px;text-align:center}
+.success-icon{width:64px;height:64px;border-radius:50%;background:#0d2d19;color:#00ff88;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:29px}
+.success-card h2{font-size:22px;margin-bottom:11px}
+.success-card p{font-size:13px;color:#929292;line-height:1.75;margin-bottom:20px}
+.success-card button{width:100%;height:50px;border:0;border-radius:14px;background:#fff;color:#000;font-weight:700}
 </style>
 </head>
+
 <body>
-<div class="shell">
 <div class="header">
-<button class="back" onclick="location.href='deposit.html'"><i class="bi bi-arrow-left"></i></button>
-<div class="header-text"><div class="eyebrow">Secure Funding</div><h1>Crypto Deposit</h1></div>
+  <div class="back" onclick="location.href='deposit.html'">←</div>
+  <div class="brand"><small>Space X</small><h2>Crypto Deposit</h2></div>
+  <div class="header-space"></div>
 </div>
-<section class="hero">
-<div class="hero-top"><div class="hero-icon"><i class="bi bi-wallet2"></i></div><div class="badge">SECURE TRANSFER</div></div>
-<h2>Fund your NovaX account</h2>
-<p>Select a cryptocurrency, review the deposit address, then submit the amount you are sending.</p>
-</section>
-<section class="card">
-<div class="section-title">Deposit details</div>
-<label for="coin">Cryptocurrency</label>
-<div class="select-wrap"><select id="coin"><option value="USDT">USDT (ERC20)</option><option value="BTC">Bitcoin (BTC)</option><option value="ETH">Ethereum (ETH)</option></select><i class="bi bi-chevron-down"></i></div>
-<div class="address-box"><div class="address-label">Deposit address</div><div id="walletAddress" class="address">Loading address...</div><button id="copyBtn" class="copy"><i class="bi bi-copy"></i> Copy address</button></div>
-<div class="notice"><i class="bi bi-shield-check"></i><div>Only send the selected cryptocurrency to the displayed address. Sending another asset or using the wrong network may result in loss of funds.</div></div>
-<label for="amount">Deposit amount (USD)</label><input id="amount" type="number" min="1" step="0.01" placeholder="Enter amount">
-<div class="summary"><div><small>Method</small><b id="methodText">USDT</b></div><div><small>Status</small><b>Pending review</b></div></div>
-<button id="submitBtn" class="primary">Submit Deposit</button><button class="secondary" onclick="location.href='deposit.html'">Back to Deposit Methods</button>
-</section></div>
-<div id="loadingOverlay" class="overlay"><div class="loader-card"><div class="spinner"></div><h3>Submitting Deposit</h3><p>Please wait while we securely record your deposit request.</p></div></div>
-<div id="modal" class="modal"><div class="modal-card"><div class="modal-icon"><i id="modalIcon" class="bi bi-check-lg"></i></div><h2 id="modalTitle">Deposit Submitted</h2><p id="modalMessage"></p><button class="primary" onclick="closeModal()">Continue</button></div></div>
+
+<div class="top-card">
+  <div class="top-line">
+    <div>
+      <div class="kicker">Account Funding</div>
+      <h1>Deposit Crypto</h1>
+      <p>Choose an asset, use the matching wallet address, then submit the amount you transferred.</p>
+    </div>
+    <div class="balance-box">
+      <span>AVAILABLE</span>
+      <strong>$<span id="balance">0.00</span></strong>
+    </div>
+  </div>
+</div>
+
+<div class="network-card">
+  <div class="network-head">
+    <span>Network Check</span>
+    <span class="network-pill" id="networkPill">ERC20</span>
+  </div>
+  <p>Send only <b id="cryptoName">USDT (ERC20)</b> to the displayed address. Always verify the selected asset and network before transferring.</p>
+</div>
+
+<div class="main-card">
+  <div class="section-title">Deposit Details</div>
+
+  <label for="currency">Cryptocurrency</label>
+  <select id="currency">
+    <option value="USDT">USDT (ERC20)</option>
+    <option value="BTC">Bitcoin (BTC)</option>
+    <option value="ETH">Ethereum (ETH)</option>
+  </select>
+
+  <label>Receiving Wallet</label>
+  <div class="address-wrap">
+    <div class="address-meta">
+      <span>Deposit Address</span>
+      <strong id="assetLabel">USDT</strong>
+    </div>
+    <div class="address" id="walletAddress">0x2cff0eF220217c820Ba7fE81aed05Ba7D8aE9214</div>
+  </div>
+
+  <button class="copy-btn" id="copyBtn">Copy Wallet Address</button>
+
+  <label for="amount">Amount Sent</label>
+  <input type="number" id="amount" min="0" step="any" placeholder="Enter amount transferred">
+  <div class="amount-note">Enter the exact amount you transferred to the displayed wallet address.</div>
+
+  <button class="submit-btn" id="submitBtn">I Have Sent</button>
+</div>
+
+<div id="loader">
+  <div class="spinner"></div>
+  <div class="loader-title">Submitting Deposit</div>
+  <div class="loader-text">Please wait while your request is recorded.</div>
+</div>
+
+<div id="success">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <h2>Deposit Submitted</h2>
+    <p>Your deposit request has been received. Our finance team will verify the transaction and update your balance after approval.</p>
+    <button onclick="location.href='history.html'">View History</button>
+  </div>
+</div>
+
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-import{getFirestore,doc,getDoc,collection,addDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",authDomain:"novax-acb23.firebaseapp.com",projectId:"novax-acb23",storageBucket:"novax-acb23.firebasestorage.app",messagingSenderId:"203988106178",appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
-let currentUser=null;
-const addresses={USDT:"YOUR_USDT_ADDRESS",BTC:"YOUR_BTC_ADDRESS",ETH:"YOUR_ETH_ADDRESS"};
-const coin=document.getElementById("coin"),walletAddress=document.getElementById("walletAddress"),methodText=document.getElementById("methodText");
-function updateAddress(){walletAddress.textContent=addresses[coin.value]||"Deposit address not configured";methodText.textContent=coin.value}
-coin.onchange=updateAddress;updateAddress();
-document.getElementById("copyBtn").onclick=async()=>{const v=walletAddress.textContent;if(!v||v.includes("not configured")||v.includes("YOUR_"))return showModal("Address Unavailable","The selected cryptocurrency deposit address has not been configured.",true);try{await navigator.clipboard.writeText(v);showModal("Address Copied","The deposit address has been copied to your clipboard.",false)}catch{showModal("Copy Failed","Please copy the address manually.",true)}};
-onAuthStateChanged(auth,u=>{if(!u)return location.replace("login.html");currentUser=u});
-document.getElementById("submitBtn").onclick=async()=>{
-const selected=coin.value,wallet=walletAddress.textContent,value=Number(document.getElementById("amount").value);
-if(!currentUser)return showModal("Session Required","Please log in again before submitting a deposit.",true);
-if(!wallet||wallet.includes("not configured")||wallet.includes("YOUR_"))return showModal("Address Unavailable","The selected cryptocurrency deposit address has not been configured.",true);
-if(!Number.isFinite(value)||value<=0)return showModal("Invalid Amount","Enter a valid deposit amount.",true);
-document.getElementById("loadingOverlay").style.display="flex";document.getElementById("submitBtn").disabled=true;
-try{
-const s=await getDoc(doc(db,"users",currentUser.uid)),u=s.exists()?s.data():{};
-await addDoc(collection(db,"transactions"),{userId:currentUser.uid,username:u.username||currentUser.displayName||"",email:u.email||currentUser.email||"",type:"Deposit",method:"Crypto",currency:selected,walletAddress:wallet,amount:value,status:"Pending",createdAt:serverTimestamp()});
-await addDoc(collection(db,"history"),{userId:currentUser.uid,username:u.username||currentUser.displayName||"",email:u.email||currentUser.email||"",type:"Deposit",method:"Crypto",currency:selected,walletAddress:wallet,amount:value,status:"Pending",createdAt:serverTimestamp()});
-document.getElementById("loadingOverlay").style.display="none";document.getElementById("submitBtn").disabled=false;document.getElementById("amount").value="";
-showModal("Deposit Submitted","Your crypto deposit request has been recorded and is awaiting admin approval.",false);
-}catch(e){document.getElementById("loadingOverlay").style.display="none";document.getElementById("submitBtn").disabled=false;showModal("Submission Failed",e.message,true)}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig={
+  apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+  authDomain:"novax-acb23.firebaseapp.com",
+  projectId:"novax-acb23",
+  storageBucket:"novax-acb23.firebasestorage.app",
+  messagingSenderId:"203988106178",
+  appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
 };
-function showModal(t,m,error){document.getElementById("modalTitle").textContent=t;document.getElementById("modalMessage").textContent=m;document.getElementById("modalIcon").className=error?"bi bi-exclamation-lg":"bi bi-check-lg";document.getElementById("modal").style.display="flex"}
-window.closeModal=()=>document.getElementById("modal").style.display="none";
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let currentUser=null;
+let username="";
+
+const wallets={
+  BTC:"bc1q3wpnwa8f3gjfdycmnq3srxaqufmafw4cmk9nc2",
+  ETH:"0x2cff0eF220217c820Ba7fE81aed05Ba7D8aE9214",
+  USDT:"0x2cff0eF220217c820Ba7fE81aed05Ba7D8aE9214"
+};
+
+const currency=document.getElementById("currency");
+const walletAddress=document.getElementById("walletAddress");
+const cryptoName=document.getElementById("cryptoName");
+const networkPill=document.getElementById("networkPill");
+const assetLabel=document.getElementById("assetLabel");
+
+function updateWallet(){
+  const selected=currency.value;
+  walletAddress.textContent=wallets[selected];
+
+  if(selected==="BTC"){
+    cryptoName.textContent="Bitcoin (BTC)";
+    networkPill.textContent="BTC";
+    assetLabel.textContent="BTC";
+  }
+  if(selected==="ETH"){
+    cryptoName.textContent="Ethereum (ETH)";
+    networkPill.textContent="ERC20";
+    assetLabel.textContent="ETH";
+  }
+  if(selected==="USDT"){
+    cryptoName.textContent="USDT (ERC20)";
+    networkPill.textContent="ERC20";
+    assetLabel.textContent="USDT";
+  }
+}
+currency.addEventListener("change",updateWallet);
+
+document.getElementById("copyBtn").onclick=async()=>{
+  try{
+    await navigator.clipboard.writeText(wallets[currency.value]);
+    const btn=document.getElementById("copyBtn");
+    const old=btn.textContent;
+    btn.textContent="Address Copied";
+    setTimeout(()=>btn.textContent=old,1600);
+  }catch{
+    alert("Unable to copy wallet address.");
+  }
+};
+
+onAuthStateChanged(auth,async(user)=>{
+  if(!user){
+    document.getElementById("balance").textContent="0.00";
+    return;
+  }
+  currentUser=user;
+  try{
+    const snap=await getDoc(doc(db,"users",user.uid));
+    if(snap.exists()){
+      const data=snap.data();
+      username=data.username||"";
+      document.getElementById("balance").textContent=
+        Number(data.balance||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+    }
+  }catch(error){ console.error(error); }
+});
+
+const amountInput=document.getElementById("amount");
+const submitBtn=document.getElementById("submitBtn");
+
+amountInput.addEventListener("input",()=>{
+  const amount=Number(amountInput.value);
+  submitBtn.textContent=amount>0
+    ? `I Have Sent $${amount.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`
+    : "I Have Sent";
+});
+
+submitBtn.onclick=async()=>{
+  if(!currentUser){
+    alert("Please login before submitting a deposit.");
+    return;
+  }
+
+  const amount=Number(amountInput.value);
+  if(!Number.isFinite(amount)||amount<=0){
+    alert("Enter a valid deposit amount.");
+    return;
+  }
+
+  document.getElementById("loader").style.display="flex";
+
+  try{
+    await addDoc(collection(db,"transactions"),{
+      userId:currentUser.uid,
+      username:username,
+      type:"Deposit",
+      method:"Crypto",
+      currency:currency.value,
+      walletAddress:wallets[currency.value],
+      amount:amount,
+      status:"Pending",
+      createdAt:serverTimestamp()
+    });
+
+    document.getElementById("loader").style.display="none";
+    document.getElementById("success").style.display="flex";
+    amountInput.value="";
+    submitBtn.textContent="I Have Sent";
+  }catch(error){
+    document.getElementById("loader").style.display="none";
+    alert(error.message);
+  }
+};
+
+updateWallet();
 </script>
 </body>
 </html>
