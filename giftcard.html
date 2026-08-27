@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>NovaX Gift Card Deposit</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+min-height:100%;
+background:#050505;
+color:#fff;
+}
+
+body{
+padding:20px;
+overflow-x:hidden;
+}
+
+body:before{
+content:"";
+position:fixed;
+width:360px;
+height:360px;
+right:-160px;
+top:-150px;
+background:rgba(255,255,255,.07);
+filter:blur(110px);
+pointer-events:none;
+}
+
+.page{
+width:100%;
+max-width:620px;
+margin:auto;
+position:relative;
+z-index:1;
+}
+
+
+/* HEADER */
+
+.header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:25px;
+}
+
+.back{
+width:44px;
+height:44px;
+border:1px solid #303030;
+border-radius:14px;
+background:#0b0b0b;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
+cursor:pointer;
+}
+
+.header small{
+color:#666;
+font-size:10px;
+letter-spacing:1.5px;
+text-transform:uppercase;
+}
+
+.header h1{
+font-size:24px;
+margin-top:4px;
+}
+
+
+/* CARD */
+
+.card{
+background:linear-gradient(145deg,#151515,#080808);
+border:1px solid #292929;
+border-radius:25px;
+padding:24px;
+box-shadow:0 25px 60px rgba(0,0,0,.4);
+}
+
+.intro{
+color:#777;
+font-size:12px;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+
+/* FORM */
+
+.field{
+margin-bottom:19px;
+}
+
+.field label{
+display:block;
+color:#888;
+font-size:12px;
+margin-bottom:8px;
+}
+
+.input,
+.select{
+width:100%;
+height:48px;
+
+background:#090909;
+border:1px solid #292929;
+border-radius:13px;
+
+padding:0 14px;
+
+outline:none;
+color:#fff;
+
+font-size:13px;
+
+transition:.2s;
+}
+
+.input:focus,
+.select:focus{
+border-color:#555;
+}
+
+.select{
+appearance:auto;
+}
+
+
+/* CHARGE */
+
+.charge-box{
+background:#090909;
+border:1px solid #242424;
+border-radius:16px;
+padding:15px;
+margin-bottom:20px;
+}
+
+.charge-row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+margin:8px 0;
+font-size:12px;
+}
+
+.charge-row span:first-child{
+color:#777;
+}
+
+.charge-row span:last-child{
+color:#fff;
+}
+
+.charge-row.net{
+border-top:1px solid #222;
+padding-top:12px;
+margin-top:12px;
+font-weight:bold;
+}
+
+.charge-row.net span:last-child{
+color:#00ff88;
+}
+
+
+/* GIFT CARD OPTIONS */
+
+.option-title{
+font-size:13px;
+color:#888;
+margin-bottom:9px;
+}
+
+.gift-options{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
+margin-bottom:20px;
+}
+
+.gift-option{
+height:45px;
+background:#090909;
+border:1px solid #292929;
+border-radius:11px;
+color:#888;
+cursor:pointer;
+font-size:12px;
+transition:.2s;
+}
+
+.gift-option:hover{
+border-color:#555;
+color:#fff;
+}
+
+.gift-option.active{
+border-color:#fff;
+background:#181818;
+color:#fff;
+}
+
+
+/* UPLOAD */
+
+.upload{
+border:1px dashed #3a3a3a;
+border-radius:16px;
+padding:20px;
+text-align:center;
+background:#090909;
+cursor:pointer;
+transition:.2s;
+margin-bottom:10px;
+}
+
+.upload:hover{
+border-color:#666;
+}
+
+.upload-icon{
+font-size:25px;
+margin-bottom:8px;
+}
+
+.upload strong{
+display:block;
+font-size:12px;
+}
+
+.upload span{
+display:block;
+color:#666;
+font-size:10px;
+margin-top:5px;
+}
+
+#imageInput{
+display:none;
+}
+
+.preview{
+display:none;
+width:100%;
+max-height:260px;
+object-fit:contain;
+border-radius:12px;
+margin-top:12px;
+border:1px solid #292929;
+background:#000;
+}
+
+
+/* SUBMIT */
+
+.submit{
+width:100%;
+height:50px;
+
+border:0;
+border-radius:14px;
+
+background:#fff;
+color:#000;
+
+font-size:13px;
+font-weight:800;
+
+cursor:pointer;
+
+margin-top:5px;
+}
+
+.submit:disabled{
+opacity:.45;
+cursor:not-allowed;
+}
+
+
+/* STATUS */
+
+.status{
+display:none;
+margin-top:16px;
+padding:13px;
+border-radius:12px;
+font-size:11px;
+line-height:1.5;
+}
+
+.status.success{
+display:block;
+background:rgba(0,255,136,.07);
+border:1px solid rgba(0,255,136,.25);
+color:#00ff88;
+}
+
+.status.error{
+display:block;
+background:rgba(255,60,60,.07);
+border:1px solid rgba(255,60,60,.25);
+color:#ff6666;
+}
+
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+body{
+padding:16px;
+}
+
+.card{
+padding:19px;
+border-radius:22px;
+}
+
+.gift-options{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div
+class="back"
+onclick="location.href='deposit.html'">
+
+←
+
+</div>
+
+<div>
+
+<small>
+Account Funding
+</small>
+
+<h1>
+Gift Card
+</h1>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+
+<p class="intro">
+
+Submit your gift card information below. Your deposit will remain pending until it has been reviewed and approved by an administrator.
+
+</p>
+
+
+
+<!-- AMOUNT -->
+
+<div class="field">
+
+<label>
+Amount
+</label>
+
+<input
+id="amount"
+class="input"
+type="number"
+min="1"
+step="0.01"
+placeholder="Enter amount"
+>
+
+</div>
+
+
+
+<!-- CHARGE -->
+
+<div class="charge-box">
+
+<div class="charge-row">
+
+<span>
+Deposit amount
+</span>
+
+<span id="grossAmount">
+$0.00
+</span>
+
+</div>
+
+
+<div class="charge-row">
+
+<span>
+Processing charge
+</span>
+
+<span>
+16%
+</span>
+
+</div>
+
+
+<div class="charge-row">
+
+<span>
+Charge amount
+</span>
+
+<span id="chargeAmount">
+-$0.00
+</span>
+
+</div>
+
+
+<div class="charge-row net">
+
+<span>
+Net deposit
+</span>
+
+<span id="netAmount">
+$0.00
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- GIFT CARD TYPE -->
+
+<div class="field">
+
+<div class="option-title">
+Choose gift card option
+</div>
+
+
+<div class="gift-options">
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Amazon">
+
+Amazon
+
+</button>
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Apple">
+
+Apple
+
+</button>
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Google Play">
+
+Google Play
+
+</button>
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Steam">
+
+Steam
+
+</button>
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Razer Gold">
+
+Razer Gold
+
+</button>
+
+
+<button
+type="button"
+class="gift-option"
+data-card="Other">
+
+Other
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- CURRENCY -->
+
+<div class="field">
+
+<label>
+Currency
+</label>
+
+<select
+id="currency"
+class="select">
+
+<option value="">
+Choose currency
+</option>
+
+<option value="USD">
+USD — US Dollar
+</option>
+
+<option value="EUR">
+EUR — Euro
+</option>
+
+<option value="GBP">
+GBP — British Pound
+</option>
+
+<option value="CAD">
+CAD — Canadian Dollar
+</option>
+
+<option value="AUD">
+AUD — Australian Dollar
+</option>
+
+<option value="NGN">
+NGN — Nigerian Naira
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- CODE -->
+
+<div class="field">
+
+<label>
+Gift Card Code
+</label>
+
+<input
+id="code"
+class="input"
+type="text"
+placeholder="Enter gift card code"
+autocomplete="off"
+>
+
+</div>
+
+
+
+<!-- IMAGE -->
+
+<div class="field">
+
+<label>
+Gift Card Image
+</label>
+
+
+<label
+class="upload"
+for="imageInput">
+
+<div class="upload-icon">
+＋
+</div>
+
+<strong>
+Upload gift card image
+</strong>
+
+<span>
+Tap here to choose an image
+</span>
+
+</label>
+
+
+<input
+id="imageInput"
+type="file"
+accept="image/*"
+>
+
+
+<img
+id="preview"
+class="preview"
+alt="Gift card preview"
+>
+
+</div>
+
+
+
+<!-- SUBMIT -->
+
+<button
+id="submitBtn"
+class="submit"
+type="button">
+
+Submit Deposit
+
+</button>
+
+
+<div
+id="status"
+class="status">
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+import {
+getAuth,
+onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+import {
+getStorage,
+ref,
+uploadBytes,
+getDownloadURL
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-storage.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:
+"novax-acb23.firebaseapp.com",
+
+projectId:
+"novax-acb23",
+
+storageBucket:
+"novax-acb23.firebasestorage.app",
+
+messagingSenderId:
+"203988106178",
+
+appId:
+"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+const storage =
+getStorage(app);
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const amountInput =
+document.getElementById("amount");
+
+const currencyInput =
+document.getElementById("currency");
+
+const codeInput =
+document.getElementById("code");
+
+const imageInput =
+document.getElementById("imageInput");
+
+const preview =
+document.getElementById("preview");
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+const statusBox =
+document.getElementById("status");
+
+
+const grossAmount =
+document.getElementById("grossAmount");
+
+const chargeAmount =
+document.getElementById("chargeAmount");
+
+const netAmount =
+document.getElementById("netAmount");
+
+
+
+let currentUser = null;
+
+let selectedGiftCard = "";
+
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+auth,
+(user)=>{
+
+currentUser = user;
+
+if(!user){
+
+submitBtn.disabled = true;
+
+showStatus(
+"Please log in before submitting a deposit.",
+"error"
+);
+
+}
+
+});
+
+
+
+/* =========================
+   AMOUNT CALCULATION
+========================= */
+
+function updateAmount(){
+
+const amount =
+Number(amountInput.value || 0);
+
+const charge =
+amount * 0.16;
+
+const net =
+amount - charge;
+
+
+grossAmount.textContent =
+"$" + amount.toFixed(2);
+
+chargeAmount.textContent =
+"-$" + charge.toFixed(2);
+
+netAmount.textContent =
+"$" + net.toFixed(2);
+
+}
+
+
+amountInput.addEventListener(
+"input",
+updateAmount
+);
+
+
+
+/* =========================
+   GIFT CARD SELECTION
+========================= */
+
+document
+.querySelectorAll(".gift-option")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll(".gift-option")
+.forEach(item=>{
+item.classList.remove("active");
+});
+
+
+button.classList.add("active");
+
+
+selectedGiftCard =
+button.dataset.card;
+
+});
+
+});
+
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+imageInput.addEventListener(
+"change",
+()=>{
+
+const file =
+imageInput.files[0];
+
+if(!file){
+
+preview.style.display="none";
+
+return;
+
+}
+
+
+if(!file.type.startsWith("image/")){
+
+imageInput.value="";
+
+showStatus(
+"Please select an image file.",
+"error"
+);
+
+return;
+
+}
+
+
+if(file.size > 5 * 1024 * 1024){
+
+imageInput.value="";
+
+showStatus(
+"Image must be smaller than 5MB.",
+"error"
+);
+
+return;
+
+}
+
+
+preview.src =
+URL.createObjectURL(file);
+
+preview.style.display =
+"block";
+
+});
+
+
+
+/* =========================
+   STATUS
+========================= */
+
+function showStatus(
+message,
+type
+){
+
+statusBox.textContent =
+message;
+
+statusBox.className =
+"status " + type;
+
+}
+
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+submitBtn.addEventListener(
+"click",
+async()=>{
+
+try{
+
+if(!currentUser){
+
+showStatus(
+"Please log in first.",
+"error"
+);
+
+return;
+
+}
+
+
+const amount =
+Number(amountInput.value);
+
+
+const currency =
+currencyInput.value;
+
+
+const code =
+codeInput.value.trim();
+
+
+const imageFile =
+imageInput.files[0];
+
+
+
+if(!amount || amount <= 0){
+
+showStatus(
+"Please enter a valid deposit amount.",
+"error"
+);
+
+return;
+
+}
+
+
+if(!selectedGiftCard){
+
+showStatus(
+"Please choose a gift card option.",
+"error"
+);
+
+return;
+
+}
+
+
+if(!currency){
+
+showStatus(
+"Please choose a currency.",
+"error"
+);
+
+return;
+
+}
+
+
+if(!code){
+
+showStatus(
+"Please enter the gift card code.",
+"error"
+);
+
+return;
+
+}
+
+
+if(!imageFile){
+
+showStatus(
+"Please upload the gift card image.",
+"error"
+);
+
+return;
+
+}
+
+
+
+const charge =
+amount * 0.16;
+
+
+const netAmountValue =
+amount - charge;
+
+
+
+submitBtn.disabled =
+true;
+
+submitBtn.textContent =
+"Submitting...";
+
+
+
+/* =========================
+   UPLOAD IMAGE
+========================= */
+
+const fileName =
+Date.now() +
+"_" +
+imageFile.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+const imageRef =
+ref(
+storage,
+"giftcard_uploads/" +
+currentUser.uid +
+"/" +
+fileName
+);
+
+
+await uploadBytes(
+imageRef,
+imageFile
+);
+
+
+const imageURL =
+await getDownloadURL(
+imageRef
+);
+
+
+
+/* =========================
+   CREATE TRANSACTION
+========================= */
+
+await addDoc(
+
+collection(
+db,
+"transactions"
+),
+
+{
+
+userId:
+currentUser.uid,
+
+username:
+currentUser.email || "User",
+
+type:
+"Gift Card",
+
+status:
+"Pending",
+
+amount:
+amount,
+
+charge:
+charge,
+
+netAmount:
+netAmountValue,
+
+currency:
+currency,
+
+giftCardType:
+selectedGiftCard,
+
+giftCardCode:
+code,
+
+giftCardImage:
+imageURL,
+
+createdAt:
+serverTimestamp()
+
+}
+
+);
+
+
+
+showStatus(
+
+"Deposit submitted successfully. Your request is now pending admin approval.",
+
+"success"
+
+);
+
+
+amountInput.value="";
+
+currencyInput.value="";
+
+codeInput.value="";
+
+imageInput.value="";
+
+preview.style.display="none";
+
+
+document
+.querySelectorAll(".gift-option")
+.forEach(item=>{
+item.classList.remove("active");
+});
+
+
+selectedGiftCard="";
+
+
+updateAmount();
+
+
+submitBtn.textContent =
+"Submitted";
+
+}
+catch(error){
+
+console.error(error);
+
+showStatus(
+
+"Unable to submit your deposit. Please try again.",
+
+"error"
+
+);
+
+submitBtn.disabled =
+false;
+
+submitBtn.textContent =
+"Submit Deposit";
+
+}
+
+});
+
+</script>
+
+
+</body>
+
+</html>
