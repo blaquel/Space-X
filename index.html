@@ -12,6 +12,10 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 <style>
 
+/* =================================================
+   RESET
+   ================================================= */
+
 *{
 margin:0;
 padding:0;
@@ -39,9 +43,19 @@ height:420px;
 background:rgba(255,255,255,.07);
 filter:blur(130px);
 pointer-events:none;
+z-index:-1;
 }
 
-/* ================= HEADER ================= */
+html,
+body{
+touch-action:manipulation;
+overscroll-behavior:none;
+}
+
+
+/* =================================================
+   HEADER
+   ================================================= */
 
 header{
 height:78px;
@@ -49,21 +63,30 @@ padding:0 7%;
 display:flex;
 align-items:center;
 justify-content:space-between;
+
 border-bottom:1px solid #202020;
+
 background:rgba(5,5,5,.88);
+
 backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
 position:sticky;
 top:0;
-z-index:20;
+
+z-index:100;
 }
 
 .logo{
 display:flex;
 align-items:center;
 gap:11px;
+
 font-size:20px;
 font-weight:800;
 letter-spacing:.7px;
+
+white-space:nowrap;
 }
 
 .logo img{
@@ -96,10 +119,14 @@ color:#fff !important;
 .nav-register{
 background:#fff;
 color:#000 !important;
+
 padding:11px 20px;
+
 border-radius:12px;
+
 font-weight:700;
 }
+
 
 /* =================================================
    MATURE LANGUAGE SELECTOR
@@ -110,8 +137,6 @@ position:relative;
 width:175px;
 z-index:1000;
 }
-
-/* Main language button */
 
 .language-trigger{
 width:100%;
@@ -131,6 +156,7 @@ linear-gradient(
 );
 
 border:1px solid #303030;
+
 border-radius:12px;
 
 color:#fff;
@@ -150,6 +176,7 @@ inset 0 1px rgba(255,255,255,.03);
 
 .language-trigger:hover{
 border-color:#555;
+
 background:
 linear-gradient(
 135deg,
@@ -160,6 +187,7 @@ linear-gradient(
 
 .language-trigger.active{
 border-color:#777;
+
 box-shadow:
 0 0 0 1px rgba(255,255,255,.04),
 0 10px 35px rgba(0,0,0,.55);
@@ -169,6 +197,7 @@ box-shadow:
 display:flex;
 align-items:center;
 gap:9px;
+
 min-width:0;
 }
 
@@ -181,9 +210,11 @@ align-items:center;
 justify-content:center;
 
 border:1px solid #383838;
+
 border-radius:50%;
 
 font-size:12px;
+
 color:#aaa;
 
 background:#0b0b0b;
@@ -192,6 +223,7 @@ background:#0b0b0b;
 .language-name{
 font-size:12px;
 font-weight:600;
+
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
@@ -199,7 +231,9 @@ text-overflow:ellipsis;
 
 .language-arrow{
 font-size:12px;
+
 color:#777;
+
 transition:transform .25s;
 }
 
@@ -207,7 +241,10 @@ transition:transform .25s;
 transform:rotate(180deg);
 }
 
-/* Dropdown */
+
+/* =================================================
+   LANGUAGE DROPDOWN
+   ================================================= */
 
 .language-dropdown{
 position:absolute;
@@ -259,10 +296,14 @@ transform:translateY(0) scale(1);
 
 }
 
-/* Search */
+
+/* =================================================
+   LANGUAGE SEARCH
+   ================================================= */
 
 .language-search{
 position:relative;
+
 margin-bottom:9px;
 }
 
@@ -297,6 +338,7 @@ color:#666;
 
 .search-icon{
 position:absolute;
+
 left:13px;
 top:12px;
 
@@ -307,11 +349,16 @@ color:#666;
 pointer-events:none;
 }
 
-/* Language list */
+
+/* =================================================
+   LANGUAGE LIST
+   ================================================= */
 
 .language-list{
 max-height:310px;
+
 overflow-y:auto;
+
 padding-right:3px;
 }
 
@@ -321,11 +368,13 @@ width:4px;
 
 .language-list::-webkit-scrollbar-track{
 background:#090909;
+
 border-radius:10px;
 }
 
 .language-list::-webkit-scrollbar-thumb{
 background:#333;
+
 border-radius:10px;
 }
 
@@ -358,19 +407,24 @@ border-color .18s;
 
 .language-option:hover{
 background:#1a1a1a;
+
 border-color:#292929;
+
 color:#fff;
 }
 
 .language-option.selected{
 background:#191919;
+
 border-color:#3b3b3b;
+
 color:#fff;
 }
 
 .language-option-left{
 display:flex;
 align-items:center;
+
 gap:9px;
 }
 
@@ -389,6 +443,7 @@ border:1px solid #292929;
 border-radius:6px;
 
 font-size:9px;
+
 font-weight:700;
 
 color:#777;
@@ -398,12 +453,15 @@ text-transform:uppercase;
 
 .language-option.selected .language-code{
 color:#fff;
+
 border-color:#555;
 }
 
 .language-check{
 font-size:12px;
+
 color:#fff;
+
 display:none;
 }
 
@@ -411,15 +469,20 @@ display:none;
 display:block;
 }
 
-/* Footer inside selector */
+
+/* =================================================
+   LANGUAGE FOOTER
+   ================================================= */
 
 .language-footer{
 border-top:1px solid #222;
 
 margin-top:8px;
+
 padding:9px 4px 2px;
 
 display:flex;
+
 justify-content:space-between;
 
 font-size:9px;
@@ -427,15 +490,20 @@ font-size:9px;
 color:#555;
 
 text-transform:uppercase;
+
 letter-spacing:.7px;
 }
 
-/* ================= HERO ================= */
+
+/* =================================================
+   HERO
+   ================================================= */
 
 .hero{
 min-height:calc(100vh - 78px);
 
 display:grid;
+
 grid-template-columns:1.1fr .9fr;
 
 align-items:center;
@@ -449,13 +517,17 @@ position:relative;
 
 .eyebrow{
 display:inline-flex;
+
 align-items:center;
+
 gap:8px;
 
 color:#aaa;
 
 font-size:12px;
+
 letter-spacing:2px;
+
 text-transform:uppercase;
 
 margin-bottom:22px;
@@ -476,56 +548,60 @@ box-shadow:0 0 12px #fff;
 
 .hero h1{
 font-size:clamp(45px,6vw,78px);
+
 line-height:.98;
+
 letter-spacing:-3px;
 
 max-width:780px;
-}
 
-.hero h1 span:first-child{
-color:#fff;
-text-shadow:
-0 0 10px rgba(255,255,255,.25),
-0 0 25px rgba(255,255,255,.12);
-}
-
-.hero h1 span:last-child{
-color:#777;
-text-shadow:none;
-}
-
-.hero h1{
-font-size:clamp(45px,6vw,78px);
-line-height:.98;
-letter-spacing:-3px;
-max-width:780px;
 font-weight:800;
 }
 
+
+/* SHINING TITLE */
+
 .hero h1 span:first-child{
 display:inline-block;
-background:linear-gradient(
+
+background:
+linear-gradient(
 120deg,
 #ffffff 0%,
-#ffffff 45%,
-#bdbdbd 50%,
+#ffffff 38%,
+#bdbdbd 48%,
 #ffffff 55%,
 #ffffff 100%
 );
+
 background-size:220% auto;
+
 -webkit-background-clip:text;
 background-clip:text;
+
 -webkit-text-fill-color:transparent;
+
 animation:titleShine 4s linear infinite;
 }
 
 @keyframes titleShine{
+
 0%{
 background-position:220% center;
 }
+
 100%{
 background-position:-20% center;
 }
+
+}
+
+.hero h1 span:last-child{
+display:inline-block;
+
+color:#777;
+
+text-shadow:none;
 }
 
 .hero p{
@@ -534,13 +610,20 @@ max-width:610px;
 color:#999;
 
 font-size:17px;
+
 line-height:1.8;
 
 margin-top:25px;
 }
 
+
+/* =================================================
+   BUTTONS
+   ================================================= */
+
 .buttons{
 display:flex;
+
 gap:12px;
 
 margin-top:34px;
@@ -556,11 +639,13 @@ padding:15px 25px;
 border-radius:14px;
 
 font-weight:700;
+
 font-size:14px;
 }
 
 .primary{
 background:#fff;
+
 color:#000;
 }
 
@@ -572,7 +657,18 @@ color:#fff;
 background:#0c0c0c;
 }
 
-/* ================= VISUAL ================= */
+.primary:hover{
+transform:translateY(-2px);
+}
+
+.secondary:hover{
+border-color:#555;
+}
+
+
+/* =================================================
+   PLATFORM VISUAL
+   ================================================= */
 
 .visual{
 min-height:430px;
@@ -581,7 +677,8 @@ border:1px solid #292929;
 
 border-radius:32px;
 
-background:linear-gradient(
+background:
+linear-gradient(
 145deg,
 #151515,
 #080808
@@ -593,7 +690,8 @@ overflow:hidden;
 
 padding:25px;
 
-box-shadow:0 25px 70px rgba(0,0,0,.5);
+box-shadow:
+0 25px 70px rgba(0,0,0,.5);
 }
 
 .visual:before{
@@ -630,7 +728,9 @@ top:-55px;
 
 .visual-top{
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
 
 color:#777;
@@ -728,7 +828,10 @@ font-size:12px;
 color:#aaa;
 }
 
-/* ================= SECTIONS ================= */
+
+/* =================================================
+   SECTIONS
+   ================================================= */
 
 section{
 padding:90px 8%;
@@ -740,6 +843,7 @@ border-top:1px solid #161616;
 display:flex;
 
 justify-content:space-between;
+
 align-items:end;
 
 gap:30px;
@@ -763,7 +867,10 @@ line-height:1.7;
 font-size:14px;
 }
 
-/* ================= CARDS ================= */
+
+/* =================================================
+   CARDS
+   ================================================= */
 
 .cards{
 display:grid;
@@ -816,7 +923,10 @@ font-size:13px;
 line-height:1.8;
 }
 
-/* ================= CTA ================= */
+
+/* =================================================
+   CTA
+   ================================================= */
 
 .cta{
 margin:0 8% 80px;
@@ -871,7 +981,10 @@ border-radius:13px;
 font-weight:700;
 }
 
-/* ================= FOOTER ================= */
+
+/* =================================================
+   FOOTER
+   ================================================= */
 
 footer{
 border-top:1px solid #202020;
@@ -887,7 +1000,10 @@ color:#666;
 font-size:12px;
 }
 
-/* ================= MOBILE ================= */
+
+/* =================================================
+   MOBILE
+   ================================================= */
 
 @media(max-width:800px){
 
@@ -994,51 +1110,55 @@ line-height:2;
 
 }
 
-html,
-body{
-touch-action:manipulation;
-overscroll-behavior:none;
-}
-
 </style>
 
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- =================================================
+     HEADER
+     ================================================= -->
 
 <header>
 
 <div class="logo">
 
-<img src="logo.png" alt="Space X">
+<img
+src="logo.png"
+alt="Space X">
 
 <span>Space X</span>
 
 </div>
 
+
 <nav>
+
 
 <a
 href="#home"
-data-translate>
+data-translate="nav_home">
 
 Home
 
 </a>
 
+
 <a
 href="#features"
-data-translate>
+data-translate="nav_platform">
 
 Platform
 
 </a>
 
+
 <a
 href="#about"
-data-translate>
+data-translate="nav_about">
 
 About
 
@@ -1050,6 +1170,7 @@ About
      ================================================= -->
 
 <div class="language-wrap">
+
 
 <button
 type="button"
@@ -1085,6 +1206,7 @@ English
 id="languageDropdown"
 class="language-dropdown">
 
+
 <div class="language-search">
 
 <span class="search-icon">
@@ -1106,537 +1228,936 @@ class="language-list"
 role="listbox">
 
 
-<!-- 100 LANGUAGES -->
+<!-- =================================================
+     100 LANGUAGE OPTIONS
+     ================================================= -->
 
 <button class="language-option selected" data-value="en">
-<span class="language-option-left"><span class="language-code">EN</span>English</span>
+<span class="language-option-left">
+<span class="language-code">EN</span>
+English
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="es">
-<span class="language-option-left"><span class="language-code">ES</span>Español</span>
+<span class="language-option-left">
+<span class="language-code">ES</span>
+Español
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="fr">
-<span class="language-option-left"><span class="language-code">FR</span>Français</span>
+<span class="language-option-left">
+<span class="language-code">FR</span>
+Français
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="de">
-<span class="language-option-left"><span class="language-code">DE</span>Deutsch</span>
+<span class="language-option-left">
+<span class="language-code">DE</span>
+Deutsch
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="pt">
-<span class="language-option-left"><span class="language-code">PT</span>Português</span>
+<span class="language-option-left">
+<span class="language-code">PT</span>
+Português
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="it">
-<span class="language-option-left"><span class="language-code">IT</span>Italiano</span>
+<span class="language-option-left">
+<span class="language-code">IT</span>
+Italiano
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="nl">
-<span class="language-option-left"><span class="language-code">NL</span>Nederlands</span>
+<span class="language-option-left">
+<span class="language-code">NL</span>
+Nederlands
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="tr">
-<span class="language-option-left"><span class="language-code">TR</span>Türkçe</span>
+<span class="language-option-left">
+<span class="language-code">TR</span>
+Türkçe
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ru">
-<span class="language-option-left"><span class="language-code">RU</span>Русский</span>
+<span class="language-option-left">
+<span class="language-code">RU</span>
+Русский
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="uk">
-<span class="language-option-left"><span class="language-code">UK</span>Українська</span>
+<span class="language-option-left">
+<span class="language-code">UK</span>
+Українська
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="pl">
-<span class="language-option-left"><span class="language-code">PL</span>Polski</span>
+<span class="language-option-left">
+<span class="language-code">PL</span>
+Polski
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ar">
-<span class="language-option-left"><span class="language-code">AR</span>العربية</span>
+<span class="language-option-left">
+<span class="language-code">AR</span>
+العربية
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="hi">
-<span class="language-option-left"><span class="language-code">HI</span>हिन्दी</span>
+<span class="language-option-left">
+<span class="language-code">HI</span>
+हिन्दी
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="bn">
-<span class="language-option-left"><span class="language-code">BN</span>বাংলা</span>
+<span class="language-option-left">
+<span class="language-code">BN</span>
+বাংলা
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="zh-CN">
-<span class="language-option-left"><span class="language-code">ZH</span>简体中文</span>
+<span class="language-option-left">
+<span class="language-code">ZH</span>
+简体中文
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="zh-TW">
-<span class="language-option-left"><span class="language-code">ZH</span>繁體中文</span>
+<span class="language-option-left">
+<span class="language-code">ZH</span>
+繁體中文
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ja">
-<span class="language-option-left"><span class="language-code">JA</span>日本語</span>
+<span class="language-option-left">
+<span class="language-code">JA</span>
+日本語
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ko">
-<span class="language-option-left"><span class="language-code">KO</span>한국어</span>
+<span class="language-option-left">
+<span class="language-code">KO</span>
+한국어
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="vi">
-<span class="language-option-left"><span class="language-code">VI</span>Tiếng Việt</span>
+<span class="language-option-left">
+<span class="language-code">VI</span>
+Tiếng Việt
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="th">
-<span class="language-option-left"><span class="language-code">TH</span>ไทย</span>
+<span class="language-option-left">
+<span class="language-code">TH</span>
+ไทย
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="id">
-<span class="language-option-left"><span class="language-code">ID</span>Bahasa Indonesia</span>
+<span class="language-option-left">
+<span class="language-code">ID</span>
+Bahasa Indonesia
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ms">
-<span class="language-option-left"><span class="language-code">MS</span>Bahasa Melayu</span>
+<span class="language-option-left">
+<span class="language-code">MS</span>
+Bahasa Melayu
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="fil">
-<span class="language-option-left"><span class="language-code">TL</span>Filipino</span>
+<span class="language-option-left">
+<span class="language-code">TL</span>
+Filipino
+</span>
 <span class="language-check">✓</span>
 </button>
 
+
 <button class="language-option" data-value="sw">
-<span class="language-option-left"><span class="language-code">SW</span>Kiswahili</span>
+<span class="language-option-left">
+<span class="language-code">SW</span>
+Kiswahili
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="yo">
-<span class="language-option-left"><span class="language-code">YO</span>Yorùbá</span>
+<span class="language-option-left">
+<span class="language-code">YO</span>
+Yorùbá
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ig">
-<span class="language-option-left"><span class="language-code">IG</span>Igbo</span>
+<span class="language-option-left">
+<span class="language-code">IG</span>
+Igbo
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ha">
-<span class="language-option-left"><span class="language-code">HA</span>Hausa</span>
+<span class="language-option-left">
+<span class="language-code">HA</span>
+Hausa
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="am">
-<span class="language-option-left"><span class="language-code">AM</span>አማርኛ</span>
+<span class="language-option-left">
+<span class="language-code">AM</span>
+አማርኛ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="af">
-<span class="language-option-left"><span class="language-code">AF</span>Afrikaans</span>
+<span class="language-option-left">
+<span class="language-code">AF</span>
+Afrikaans
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sq">
-<span class="language-option-left"><span class="language-code">SQ</span>Shqip</span>
+<span class="language-option-left">
+<span class="language-code">SQ</span>
+Shqip
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="hy">
-<span class="language-option-left"><span class="language-code">HY</span>Հայերեն</span>
+<span class="language-option-left">
+<span class="language-code">HY</span>
+Հայերեն
+</span>
 <span class="language-check">✓</span>
 </button>
 
+
 <button class="language-option" data-value="az">
-<span class="language-option-left"><span class="language-code">AZ</span>Azərbaycan</span>
+<span class="language-option-left">
+<span class="language-code">AZ</span>
+Azərbaycan
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="eu">
-<span class="language-option-left"><span class="language-code">EU</span>Euskara</span>
+<span class="language-option-left">
+<span class="language-code">EU</span>
+Euskara
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="be">
-<span class="language-option-left"><span class="language-code">BE</span>Беларуская</span>
+<span class="language-option-left">
+<span class="language-code">BE</span>
+Беларуская
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="bs">
-<span class="language-option-left"><span class="language-code">BS</span>Bosanski</span>
+<span class="language-option-left">
+<span class="language-code">BS</span>
+Bosanski
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="bg">
-<span class="language-option-left"><span class="language-code">BG</span>Български</span>
+<span class="language-option-left">
+<span class="language-code">BG</span>
+Български
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ca">
-<span class="language-option-left"><span class="language-code">CA</span>Català</span>
+<span class="language-option-left">
+<span class="language-code">CA</span>
+Català
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="hr">
-<span class="language-option-left"><span class="language-code">HR</span>Hrvatski</span>
+<span class="language-option-left">
+<span class="language-code">HR</span>
+Hrvatski
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="cs">
-<span class="language-option-left"><span class="language-code">CS</span>Čeština</span>
+<span class="language-option-left">
+<span class="language-code">CS</span>
+Čeština
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="da">
-<span class="language-option-left"><span class="language-code">DA</span>Dansk</span>
+<span class="language-option-left">
+<span class="language-code">DA</span>
+Dansk
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="et">
-<span class="language-option-left"><span class="language-code">ET</span>Eesti</span>
+<span class="language-option-left">
+<span class="language-code">ET</span>
+Eesti
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="fi">
-<span class="language-option-left"><span class="language-code">FI</span>Suomi</span>
+<span class="language-option-left">
+<span class="language-code">FI</span>
+Suomi
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="gl">
-<span class="language-option-left"><span class="language-code">GL</span>Galego</span>
+<span class="language-option-left">
+<span class="language-code">GL</span>
+Galego
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ka">
-<span class="language-option-left"><span class="language-code">KA</span>ქართული</span>
+<span class="language-option-left">
+<span class="language-code">KA</span>
+ქართული
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="el">
-<span class="language-option-left"><span class="language-code">EL</span>Ελληνικά</span>
+<span class="language-option-left">
+<span class="language-code">EL</span>
+Ελληνικά
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="he">
-<span class="language-option-left"><span class="language-code">HE</span>עברית</span>
+<span class="language-option-left">
+<span class="language-code">HE</span>
+עברית
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="hu">
-<span class="language-option-left"><span class="language-code">HU</span>Magyar</span>
+<span class="language-option-left">
+<span class="language-code">HU</span>
+Magyar
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="is">
-<span class="language-option-left"><span class="language-code">IS</span>Íslenska</span>
+<span class="language-option-left">
+<span class="language-code">IS</span>
+Íslenska
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ga">
-<span class="language-option-left"><span class="language-code">GA</span>Gaeilge</span>
+<span class="language-option-left">
+<span class="language-code">GA</span>
+Gaeilge
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="lv">
-<span class="language-option-left"><span class="language-code">LV</span>Latviešu</span>
+<span class="language-option-left">
+<span class="language-code">LV</span>
+Latviešu
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="lt">
-<span class="language-option-left"><span class="language-code">LT</span>Lietuvių</span>
+<span class="language-option-left">
+<span class="language-code">LT</span>
+Lietuvių
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="lb">
-<span class="language-option-left"><span class="language-code">LB</span>Lëtzebuergesch</span>
+<span class="language-option-left">
+<span class="language-code">LB</span>
+Lëtzebuergesch
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mk">
-<span class="language-option-left"><span class="language-code">MK</span>Македонски</span>
+<span class="language-option-left">
+<span class="language-code">MK</span>
+Македонски
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mt">
-<span class="language-option-left"><span class="language-code">MT</span>Malti</span>
+<span class="language-option-left">
+<span class="language-code">MT</span>
+Malti
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="no">
-<span class="language-option-left"><span class="language-code">NO</span>Norsk</span>
+<span class="language-option-left">
+<span class="language-code">NO</span>
+Norsk
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ro">
-<span class="language-option-left"><span class="language-code">RO</span>Română</span>
+<span class="language-option-left">
+<span class="language-code">RO</span>
+Română
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sr">
-<span class="language-option-left"><span class="language-code">SR</span>Српски</span>
+<span class="language-option-left">
+<span class="language-code">SR</span>
+Српски
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sk">
-<span class="language-option-left"><span class="language-code">SK</span>Slovenčina</span>
+<span class="language-option-left">
+<span class="language-code">SK</span>
+Slovenčina
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sl">
-<span class="language-option-left"><span class="language-code">SL</span>Slovenščina</span>
+<span class="language-option-left">
+<span class="language-code">SL</span>
+Slovenščina
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sv">
-<span class="language-option-left"><span class="language-code">SV</span>Svenska</span>
+<span class="language-option-left">
+<span class="language-code">SV</span>
+Svenska
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="cy">
-<span class="language-option-left"><span class="language-code">CY</span>Cymraeg</span>
+<span class="language-option-left">
+<span class="language-code">CY</span>
+Cymraeg
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ur">
-<span class="language-option-left"><span class="language-code">UR</span>اردو</span>
+<span class="language-option-left">
+<span class="language-code">UR</span>
+اردو
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="fa">
-<span class="language-option-left"><span class="language-code">FA</span>فارسی</span>
+<span class="language-option-left">
+<span class="language-code">FA</span>
+فارسی
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ps">
-<span class="language-option-left"><span class="language-code">PS</span>پښتو</span>
+<span class="language-option-left">
+<span class="language-code">PS</span>
+پښتو
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ne">
-<span class="language-option-left"><span class="language-code">NE</span>नेपाली</span>
+<span class="language-option-left">
+<span class="language-code">NE</span>
+नेपाली
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="si">
-<span class="language-option-left"><span class="language-code">SI</span>සිංහල</span>
+<span class="language-option-left">
+<span class="language-code">SI</span>
+සිංහල
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ta">
-<span class="language-option-left"><span class="language-code">TA</span>தமிழ்</span>
+<span class="language-option-left">
+<span class="language-code">TA</span>
+தமிழ்
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="te">
-<span class="language-option-left"><span class="language-code">TE</span>తెలుగు</span>
+<span class="language-option-left">
+<span class="language-code">TE</span>
+తెలుగు
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="kn">
-<span class="language-option-left"><span class="language-code">KN</span>ಕನ್ನಡ</span>
+<span class="language-option-left">
+<span class="language-code">KN</span>
+ಕನ್ನಡ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ml">
-<span class="language-option-left"><span class="language-code">ML</span>മലയാളം</span>
+<span class="language-option-left">
+<span class="language-code">ML</span>
+മലയാളം
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mr">
-<span class="language-option-left"><span class="language-code">MR</span>मराठी</span>
+<span class="language-option-left">
+<span class="language-code">MR</span>
+मराठी
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="gu">
-<span class="language-option-left"><span class="language-code">GU</span>ગુજરાતી</span>
+<span class="language-option-left">
+<span class="language-code">GU</span>
+ગુજરાતી
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="pa">
-<span class="language-option-left"><span class="language-code">PA</span>ਪੰਜਾਬੀ</span>
+<span class="language-option-left">
+<span class="language-code">PA</span>
+ਪੰਜਾਬੀ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="as">
-<span class="language-option-left"><span class="language-code">AS</span>অসমীয়া</span>
+<span class="language-option-left">
+<span class="language-code">AS</span>
+অসমীয়া
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="or">
-<span class="language-option-left"><span class="language-code">OR</span>ଓଡ଼ିଆ</span>
+<span class="language-option-left">
+<span class="language-code">OR</span>
+ଓଡ଼ିଆ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="km">
-<span class="language-option-left"><span class="language-code">KM</span>ខ្មែរ</span>
+<span class="language-option-left">
+<span class="language-code">KM</span>
+ខ្មែរ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="lo">
-<span class="language-option-left"><span class="language-code">LO</span>ລາວ</span>
+<span class="language-option-left">
+<span class="language-code">LO</span>
+ລາວ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="my">
-<span class="language-option-left"><span class="language-code">MY</span>မြန်မာ</span>
+<span class="language-option-left">
+<span class="language-code">MY</span>
+မြန်မာ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mn">
-<span class="language-option-left"><span class="language-code">MN</span>Монгол</span>
+<span class="language-option-left">
+<span class="language-code">MN</span>
+Монгол
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="kk">
-<span class="language-option-left"><span class="language-code">KK</span>Қазақша</span>
+<span class="language-option-left">
+<span class="language-code">KK</span>
+Қазақша
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ky">
-<span class="language-option-left"><span class="language-code">KY</span>Кыргызча</span>
+<span class="language-option-left">
+<span class="language-code">KY</span>
+Кыргызча
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="uz">
-<span class="language-option-left"><span class="language-code">UZ</span>O‘zbek</span>
+<span class="language-option-left">
+<span class="language-code">UZ</span>
+O‘zbek
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="tg">
-<span class="language-option-left"><span class="language-code">TG</span>Тоҷикӣ</span>
+<span class="language-option-left">
+<span class="language-code">TG</span>
+Тоҷикӣ
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="tk">
-<span class="language-option-left"><span class="language-code">TK</span>Türkmençe</span>
+<span class="language-option-left">
+<span class="language-code">TK</span>
+Türkmençe
+</span>
 <span class="language-check">✓</span>
 </button>
 
-<button class="language-option" data-value="az">
-<span class="language-option-left"><span class="language-code">AZ</span>Azərbaycan</span>
-<span class="language-check">✓</span>
-</button>
-
-<button class="language-option" data-value="sw">
-<span class="language-option-left"><span class="language-code">SW</span>Kiswahili</span>
-<span class="language-check">✓</span>
-</button>
 
 <button class="language-option" data-value="zu">
-<span class="language-option-left"><span class="language-code">ZU</span>isiZulu</span>
+<span class="language-option-left">
+<span class="language-code">ZU</span>
+isiZulu
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="xh">
-<span class="language-option-left"><span class="language-code">XH</span>isiXhosa</span>
+<span class="language-option-left">
+<span class="language-code">XH</span>
+isiXhosa
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="so">
-<span class="language-option-left"><span class="language-code">SO</span>Soomaali</span>
+<span class="language-option-left">
+<span class="language-code">SO</span>
+Soomaali
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="rw">
-<span class="language-option-left"><span class="language-code">RW</span>Kinyarwanda</span>
+<span class="language-option-left">
+<span class="language-code">RW</span>
+Kinyarwanda
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ny">
-<span class="language-option-left"><span class="language-code">NY</span>Chichewa</span>
+<span class="language-option-left">
+<span class="language-code">NY</span>
+Chichewa
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mg">
-<span class="language-option-left"><span class="language-code">MG</span>Malagasy</span>
+<span class="language-option-left">
+<span class="language-code">MG</span>
+Malagasy
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="la">
-<span class="language-option-left"><span class="language-code">LA</span>Latin</span>
+<span class="language-option-left">
+<span class="language-code">LA</span>
+Latin
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="eo">
-<span class="language-option-left"><span class="language-code">EO</span>Esperanto</span>
+<span class="language-option-left">
+<span class="language-code">EO</span>
+Esperanto
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="jv">
-<span class="language-option-left"><span class="language-code">JV</span>Javanese</span>
+<span class="language-option-left">
+<span class="language-code">JV</span>
+Javanese
+</span>
 <span class="language-check">✓</span>
 </button>
 
+
 <button class="language-option" data-value="su">
-<span class="language-option-left"><span class="language-code">SU</span>Sundanese</span>
+<span class="language-option-left">
+<span class="language-code">SU</span>
+Sundanese
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="mi">
-<span class="language-option-left"><span class="language-code">MI</span>Te Reo Māori</span>
+<span class="language-option-left">
+<span class="language-code">MI</span>
+Te Reo Māori
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="haw">
-<span class="language-option-left"><span class="language-code">HW</span>Hawaiian</span>
+<span class="language-option-left">
+<span class="language-code">HW</span>
+Hawaiian
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="sm">
-<span class="language-option-left"><span class="language-code">SM</span>Samoan</span>
+<span class="language-option-left">
+<span class="language-code">SM</span>
+Samoan
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="gd">
-<span class="language-option-left"><span class="language-code">GD</span>Scots Gaelic</span>
+<span class="language-option-left">
+<span class="language-code">GD</span>
+Scots Gaelic
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="yi">
-<span class="language-option-left"><span class="language-code">YI</span>ייִדיש</span>
+<span class="language-option-left">
+<span class="language-code">YI</span>
+ייִדיש
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="co">
-<span class="language-option-left"><span class="language-code">CO</span>Corsican</span>
+<span class="language-option-left">
+<span class="language-code">CO</span>
+Corsican
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="fy">
-<span class="language-option-left"><span class="language-code">FY</span>Frisian</span>
+<span class="language-option-left">
+<span class="language-code">FY</span>
+Frisian
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 <button class="language-option" data-value="ku">
-<span class="language-option-left"><span class="language-code">KU</span>Kurdî</span>
+<span class="language-option-left">
+<span class="language-code">KU</span>
+Kurdî
+</span>
 <span class="language-check">✓</span>
 </button>
 
-<button class="language-option" data-value="su">
-<span class="language-option-left"><span class="language-code">SU</span>Sundanese</span>
-<span class="language-check">✓</span>
-</button>
 
 <button class="language-option" data-value="br">
-<span class="language-option-left"><span class="language-code">BR</span>Brezhoneg</span>
+<span class="language-option-left">
+<span class="language-code">BR</span>
+Brezhoneg
+</span>
 <span class="language-check">✓</span>
 </button>
+
 
 </div>
 
@@ -1657,42 +2178,50 @@ role="listbox">
 <a
 href="login.html"
 class="nav-login"
-data-translate>
+data-translate="nav_login">
 
 Login
 
 </a>
+
 
 <a
 href="login.html"
 class="nav-register"
-data-translate>
+data-translate="nav_register">
 
 Login
 
 </a>
+
 
 </nav>
 
 </header>
 
 
-<!-- ================= MAIN ================= -->
+<!-- =================================================
+     MAIN
+     ================================================= -->
 
 <main id="home">
 
 
-<!-- HERO -->
+<!-- =================================================
+     HERO
+     ================================================= -->
 
 <section class="hero">
 
+
 <div>
+
 
 <div class="eyebrow">
 
 <i></i>
 
-<span data-translate>
+<span data-translate="hero_eyebrow">
 
 Digital investment platform
 
@@ -1703,18 +2232,18 @@ Digital investment platform
 
 <h1>
 
-<span data-translate>
+<span data-translate="hero_title">
 Move your digital assets
 </span>
 
-<span data-translate>
+<span data-translate="hero_title_accent">
 forward.
 </span>
 
 </h1>
 
 
-<p data-translate>
+<p data-translate="hero_description">
 
 Space X brings account management, digital asset activity and investment tools together in one streamlined experience.
 
@@ -1723,34 +2252,41 @@ Space X brings account management, digital asset activity and investment tools t
 
 <div class="buttons">
 
+
 <a
 href="register.html"
 class="primary"
-data-translate>
+data-translate="hero_create">
 
 Create Account
 
 </a>
 
+
 <a
 href="#features"
 class="secondary"
-data-translate>
+data-translate="hero_explore">
 
 Explore Platform
 
 </a>
 
-</div>
 
 </div>
 
 
-<!-- PLATFORM PREVIEW -->
+</div>
+
+
+<!-- =================================================
+     PLATFORM PREVIEW
+     ================================================= -->
 
 <div
 class="visual"
 aria-label="Space X platform preview">
+
 
 <div class="visual-top">
 
@@ -1769,46 +2305,56 @@ SPACE X / DIGITAL MARKET
 
 <div class="line"></div>
 
+
 <span
 class="market-label"
-data-translate>
+data-translate="market_activity">
 
 MARKET ACTIVITY
 
 </span>
 
+
 <span
 class="market-value"
-data-translate>
+data-translate="market_realtime">
 
 REAL-TIME VIEW
 
 </span>
 
+
 </div>
 
 </div>
+
 
 </section>
 
 
-<!-- FEATURES -->
+<!-- =================================================
+     FEATURES
+     ================================================= -->
 
 <section id="features">
 
+
 <div class="section-head">
 
-<h2 data-translate>
+
+<h2 data-translate="features_title">
 
 Built for clarity.
 
 </h2>
 
-<p data-translate>
+
+<p data-translate="features_description">
 
 A focused experience for monitoring your account, managing activity and accessing your Space X tools.
 
 </p>
+
 
 </div>
 
@@ -1818,118 +2364,144 @@ A focused experience for monitoring your account, managing activity and accessin
 
 <div class="card">
 
+
 <div class="number">
 01 / ACCOUNT
 </div>
 
-<h3 data-translate>
+
+<h3 data-translate="feature_account_title">
 
 Simple control
 
 </h3>
 
-<p data-translate>
+
+<p data-translate="feature_account_text">
 
 Access your balance, account activity and platform tools from a clean dashboard.
 
 </p>
 
+
 </div>
 
 
 <div class="card">
+
 
 <div class="number">
 02 / ACTIVITY
 </div>
 
-<h3 data-translate>
+
+<h3 data-translate="feature_activity_title">
 
 Track activity
 
 </h3>
 
-<p data-translate>
+
+<p data-translate="feature_activity_text">
 
 Review deposits, withdrawals and investment activity in one organized environment.
 
 </p>
+
 
 </div>
 
 
 <div class="card">
 
+
 <div class="number">
 03 / EXPERIENCE
 </div>
 
-<h3 data-translate>
+
+<h3 data-translate="feature_interface_title">
 
 Modern interface
 
 </h3>
 
-<p data-translate>
+
+<p data-translate="feature_interface_text">
 
 A responsive dark interface designed for a consistent experience across mobile and desktop.
 
 </p>
 
+
 </div>
 
 
 </div>
+
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- =================================================
+     ABOUT
+     ================================================= -->
 
 <section id="about">
 
+
 <div class="section-head">
 
-<h2 data-translate>
+
+<h2 data-translate="about_title">
 
 One platform.
 
 </h2>
 
-<p data-translate>
+
+<p data-translate="about_description">
 
 Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.
 
 </p>
 
+
 </div>
+
 
 </section>
 
 
-<!-- CTA -->
+<!-- =================================================
+     CTA
+     ================================================= -->
 
 <div class="cta">
 
-<h2 data-translate>
+
+<h2 data-translate="cta_title">
 
 Ready to get started?
 
 </h2>
 
-<p data-translate>
+
+<p data-translate="cta_description">
 
 Create your Space X account and access the platform from your preferred device.
 
 </p>
 
+
 <a
 href="register.html"
-data-translate>
+data-translate="cta_button">
 
 Open Space X Account
 
 </a>
+
 
 </div>
 
@@ -1937,27 +2509,269 @@ Open Space X Account
 </main>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =================================================
+     FOOTER
+     ================================================= -->
 
 <footer>
 
-<span data-translate>
+
+<span data-translate="footer_copyright">
 
 © 2026 Space X. All Rights Reserved.
 
 </span>
 
-<span data-translate>
+
+<span data-translate="footer_platform">
 
 Digital Asset Platform
 
 </span>
 
+
 </footer>
 
 
 <!-- =================================================
+     LANGUAGE SELECTOR UI
+     ================================================= -->
+
+<script>
+
+(function(){
+
+const languageTrigger =
+document.getElementById("languageTrigger");
+
+const languageDropdown =
+document.getElementById("languageDropdown");
+
+const languageSearch =
+document.getElementById("languageSearch");
+
+const selectedLanguageName =
+document.getElementById("selectedLanguageName");
+
+const languageOptions =
+document.querySelectorAll(".language-option");
+
+
+let selectedLanguage =
+localStorage.getItem("spaceXLanguage") || "en";
+
+
+function getLanguageName(option){
+
+const code =
+option
+.querySelector(".language-code")
+.textContent
+.trim();
+
+return option
+.querySelector(".language-option-left")
+.textContent
+.trim()
+.replace(code,"")
+.trim();
+
+}
+
+
+function setSelectedLanguage(language){
+
+let foundOption = null;
+
+
+languageOptions.forEach(option=>{
+
+option.classList.remove("selected");
+
+if(option.dataset.value === language){
+
+foundOption = option;
+
+}
+
+});
+
+
+if(!foundOption){
+
+foundOption =
+document.querySelector(
+'.language-option[data-value="en"]'
+);
+
+selectedLanguage = "en";
+
+}else{
+
+selectedLanguage = language;
+
+}
+
+
+foundOption.classList.add("selected");
+
+selectedLanguageName.textContent =
+getLanguageName(foundOption);
+
+localStorage.setItem(
+"spaceXLanguage",
+selectedLanguage
+);
+
+}
+
+
+function closeLanguageMenu(){
+
+languageDropdown.classList.remove("show");
+
+languageTrigger.classList.remove("active");
+
+languageTrigger.setAttribute(
+"aria-expanded",
+"false"
+);
+
+}
+
+
+function openLanguageMenu(){
+
+languageDropdown.classList.add("show");
+
+languageTrigger.classList.add("active");
+
+languageTrigger.setAttribute(
+"aria-expanded",
+"true"
+);
+
+}
+
+
+languageTrigger.addEventListener(
+"click",
+function(event){
+
+event.stopPropagation();
+
+if(
+languageDropdown.classList.contains("show")
+){
+
+closeLanguageMenu();
+
+}else{
+
+openLanguageMenu();
+
+}
+
+});
+
+
+languageOptions.forEach(option=>{
+
+option.addEventListener(
+"click",
+function(){
+
+const language =
+this.dataset.value;
+
+setSelectedLanguage(language);
+
+
+/*
+   Notify language.js
+*/
+
+document.dispatchEvent(
+new CustomEvent(
+"spaceXLanguageChanged",
+{
+detail:{
+language:language
+}
+}
+)
+);
+
+closeLanguageMenu();
+
+}
+);
+
+});
+
+
+languageSearch.addEventListener(
+"input",
+function(){
+
+const search =
+this.value
+.toLowerCase()
+.trim();
+
+
+languageOptions.forEach(option=>{
+
+const text =
+option.textContent
+.toLowerCase();
+
+
+if(text.includes(search)){
+
+option.style.display =
+"flex";
+
+}else{
+
+option.style.display =
+"none";
+
+}
+
+});
+
+});
+
+
+document.addEventListener(
+"click",
+function(event){
+
+if(
+!event.target.closest(
+".language-wrap"
+)
+){
+
+closeLanguageMenu();
+
+}
+
+});
+
+
+setSelectedLanguage(selectedLanguage);
+
+})();
+
+</script>
+
+
+<!-- =================================================
      FIREBASE
+     
+     ONLY INITIALIZE FIREBASE ONCE
      ================================================= -->
 
 <script type="module">
@@ -1969,7 +2783,7 @@ from
 "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 
 
-const firebaseConfig={
+const firebaseConfig = {
 
 apiKey:
 "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
@@ -1998,278 +2812,19 @@ initializeApp(firebaseConfig);
 
 
 <!-- =================================================
-     LANGUAGE SELECTOR FUNCTIONALITY
+     TRANSLATION SYSTEM
      
-     Your existing translation system can listen to:
-     
-     languageSelect / selected language value
-     
-     This section only controls the mature selector UI.
+     IMPORTANT:
+     This file must exist at:
+
+     js/language.js
+
      ================================================= -->
 
-<script>
-
-const languageTrigger =
-document.getElementById("languageTrigger");
-
-const languageDropdown =
-document.getElementById("languageDropdown");
-
-const languageSearch =
-document.getElementById("languageSearch");
-
-const languageList =
-document.getElementById("languageList");
-
-const selectedLanguageName =
-document.getElementById("selectedLanguageName");
-
-let selectedLanguage =
-localStorage.getItem("spaceXLanguage") || "en";
-
-
-/* Open / close selector */
-
-languageTrigger.addEventListener("click",(event)=>{
-
-event.stopPropagation();
-
-const opened =
-languageDropdown.classList.toggle("show");
-
-languageTrigger.classList.toggle(
-"active",
-opened
-);
-
-languageTrigger.setAttribute(
-"aria-expanded",
-opened
-);
-
-if(opened){
-
-setTimeout(()=>{
-languageSearch.focus();
-},80);
-
-}
-
-});
-
-
-/* Select language */
-
-document
-.querySelectorAll(".language-option")
-.forEach(option=>{
-
-option.addEventListener("click",()=>{
-
-selectedLanguage =
-option.dataset.value;
-
-localStorage.setItem(
-"spaceXLanguage",
-selectedLanguage
-);
-
-const name =
-option
-.querySelector(
-".language-option-left"
-)
-.textContent
-.trim()
-.replace(
-option
-.querySelector(".language-code")
-.textContent
-.trim(),
-""
-)
-.trim();
-
-selectedLanguageName.textContent =
-name;
-
-
-/* Update selected state */
-
-document
-.querySelectorAll(".language-option")
-.forEach(item=>{
-item.classList.remove("selected");
-});
-
-option.classList.add("selected");
-
-
-/*
-   Dispatch a custom event.
-
-   Your existing translate JS can listen for:
-
-   document.addEventListener(
-       "spaceXLanguageChanged",
-       function(e){
-           const language = e.detail.language;
-       }
-   );
-*/
-
-document.dispatchEvent(
-new CustomEvent(
-"spaceXLanguageChanged",
-{
-detail:{
-language:selectedLanguage
-}
-}
-)
-);
-
-
-/* Close */
-
-languageDropdown.classList.remove("show");
-
-languageTrigger.classList.remove("active");
-
-languageTrigger.setAttribute(
-"aria-expanded",
-"false"
-);
-
-});
-
-});
-
-
-/* Search languages */
-
-languageSearch.addEventListener(
-"input",
-()=>{
-
-const search =
-languageSearch.value
-.toLowerCase()
-.trim();
-
-document
-.querySelectorAll(".language-option")
-.forEach(option=>{
-
-const text =
-option.textContent
-.toLowerCase();
-
-if(text.includes(search)){
-
-option.style.display="flex";
-
-}else{
-
-option.style.display="none";
-
-}
-
-});
-
-});
-
-
-/* Close when clicking outside */
-
-document.addEventListener(
-"click",
-(event)=>{
-
-if(
-!event.target.closest(
-".language-wrap"
-)
-){
-
-languageDropdown.classList.remove(
-"show"
-);
-
-languageTrigger.classList.remove(
-"active"
-);
-
-languageTrigger.setAttribute(
-"aria-expanded",
-"false"
-);
-
-}
-
-});
-
-
-/* Restore selected language */
-
-document
-.querySelectorAll(".language-option")
-.forEach(option=>{
-
-if(
-option.dataset.value ===
-selectedLanguage
-){
-
-document
-.querySelectorAll(".language-option")
-.forEach(item=>{
-item.classList.remove("selected");
-});
-
-option.classList.add("selected");
-
-const name =
-option
-.querySelector(
-".language-option-left"
-)
-.textContent
-.trim()
-.replace(
-option
-.querySelector(".language-code")
-.textContent
-.trim(),
-""
-)
-.trim();
-
-selectedLanguageName.textContent =
-name;
-
-}
-
-});
-
-
+<script
+src="js/language.js">
 </script>
 
-
-<!-- =================================================
-     YOUR EXISTING TRANSLATE JS
-     
-     KEEP YOUR TRANSLATE JS BELOW THIS LINE.
-     
-     It can listen for:
-     
-     "spaceXLanguageChanged"
-     
-     or read:
-     
-     localStorage.getItem("spaceXLanguage")
-     
-     ================================================= -->
 
 </body>
 
