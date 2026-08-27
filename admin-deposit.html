@@ -1,157 +1,2103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Space X Admin | Deposits</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;-webkit-tap-highlight-color:transparent}
-html,body{background:#050505;color:#fff;min-height:100%;overflow-x:hidden}
-body{padding:18px 18px 45px}
-body:before{content:"";position:fixed;right:-120px;top:-150px;width:380px;height:380px;border-radius:50%;background:rgba(0,255,136,.08);filter:blur(100px);pointer-events:none}
-.header{display:flex;align-items:center;justify-content:space-between;max-width:980px;margin:0 auto 22px}
-.back{width:45px;height:45px;border:1px solid #292929;border-radius:14px;background:#0c0c0c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;cursor:pointer}
-.brand{text-align:center}.brand small{display:block;color:#00ff88;font-size:9px;letter-spacing:2px;margin-bottom:3px}.brand h1{font-size:21px}.header-space{width:45px}
-.container{max-width:980px;margin:auto}
-.summary{display:grid;grid-template-columns:1.4fr .6fr;gap:14px;margin-bottom:15px}
-.summary-card{background:linear-gradient(145deg,#111,#080808);border:1px solid #242424;border-radius:24px;padding:22px}
-.summary-card small{color:#666;text-transform:uppercase;letter-spacing:1.2px;font-size:10px}
-.summary-card h2{font-size:32px;margin-top:9px}.summary-card p{color:#777;font-size:12px;margin-top:7px;line-height:1.6}
-.count-card{display:flex;flex-direction:column;justify-content:center}.count-card h2{color:#00ff88}
-.notice{display:none;background:#190909;border:1px solid #4b2020;color:#ff8d8d;border-radius:16px;padding:14px;margin-bottom:15px;font-size:12px;line-height:1.6}
-.loading{text-align:center;padding:65px 10px;color:#777;font-size:13px}.empty{text-align:center;padding:65px 10px;color:#666}
-.deposit{background:linear-gradient(145deg,#111,#080808);border:1px solid #252525;border-radius:23px;padding:20px;margin-bottom:14px;box-shadow:0 15px 45px rgba(0,0,0,.25)}
-.deposit-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:18px}
-.user h3{font-size:17px}.user small{display:block;color:#666;margin-top:5px;font-size:11px;word-break:break-all}
-.status{padding:7px 11px;border:1px solid #765a16;border-radius:30px;color:#ffc94a;font-size:10px;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.item{background:#090909;border:1px solid #1e1e1e;border-radius:14px;padding:13px}
-.item label{display:block;color:#555;font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px}
-.item div{font-size:12px;word-break:break-word;color:#ddd}.amount{color:#00ff88!important;font-weight:800;font-size:15px!important}.address{color:#aaa!important}
-.actions{display:flex;gap:10px;margin-top:15px}button.action{flex:1;height:45px;border:0;border-radius:12px;font-weight:800;cursor:pointer}
-.approve{background:#00ff88;color:#000}.decline{background:#1b1b1b;color:#ff7070;border:1px solid #3a2020!important}
-button:disabled{opacity:.45;cursor:not-allowed}
-@media(max-width:700px){.summary{grid-template-columns:1fr 1fr}.summary-card{padding:18px}.summary-card h2{font-size:25px}.grid{grid-template-columns:1fr 1fr}.deposit{padding:16px}}
-@media(max-width:420px){.summary{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.actions{flex-direction:column}}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+background:#050505;
+scroll-behavior:smooth;
+}
+
+body{
+background:
+radial-gradient(
+circle at 90% 0%,
+rgba(0,255,136,.08),
+transparent 30%
+),
+#050505;
+
+color:#fff;
+min-height:100vh;
+padding:20px;
+padding-bottom:50px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+max-width:1000px;
+margin:0 auto 25px;
+
+}
+
+.back{
+
+width:45px;
+height:45px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border:1px solid #292929;
+border-radius:50%;
+
+background:#0c0c0c;
+
+color:#fff;
+font-size:21px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.back:hover{
+
+border-color:#00ff88;
+color:#00ff88;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:11px;
+
+}
+
+.logo img{
+
+width:42px;
+height:42px;
+
+object-fit:contain;
+
+}
+
+.logo h2{
+
+font-size:21px;
+font-weight:800;
+
+letter-spacing:-.5px;
+
+}
+
+.header-space{
+
+width:45px;
+
+}
+
+/* ================= PAGE ================= */
+
+.container{
+
+max-width:1000px;
+margin:auto;
+
+}
+
+/* ================= TITLE ================= */
+
+.page-title{
+
+margin-bottom:22px;
+
+}
+
+.page-title small{
+
+display:block;
+
+color:#00ff88;
+
+font-size:10px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+margin-bottom:8px;
+
+}
+
+.page-title h1{
+
+font-size:32px;
+
+letter-spacing:-1px;
+
+}
+
+.page-title p{
+
+margin-top:8px;
+
+color:#666;
+
+font-size:13px;
+
+line-height:1.6;
+
+}
+
+/* ================= SUMMARY ================= */
+
+.summary{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:12px;
+
+margin-bottom:20px;
+
+}
+
+.summary-card{
+
+background:
+linear-gradient(
+145deg,
+#111,
+#080808
+);
+
+border:1px solid #222;
+
+border-radius:18px;
+
+padding:20px;
+
+}
+
+.summary-card small{
+
+display:block;
+
+color:#666;
+
+font-size:11px;
+
+margin-bottom:10px;
+
+}
+
+.summary-card strong{
+
+font-size:28px;
+
+}
+
+.summary-card.pending strong{
+
+color:#ffb300;
+
+}
+
+.summary-card.approved strong{
+
+color:#00ff88;
+
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:12px;
+
+margin-bottom:15px;
+
+}
+
+.toolbar-title{
+
+font-size:14px;
+font-weight:700;
+
+}
+
+.refresh{
+
+border:1px solid #292929;
+
+background:#0d0d0d;
+
+color:#aaa;
+
+padding:10px 15px;
+
+border-radius:10px;
+
+font-size:12px;
+
+cursor:pointer;
+
+}
+
+.refresh:hover{
+
+color:#00ff88;
+border-color:#00ff88;
+
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+
+padding:50px 20px;
+
+text-align:center;
+
+color:#777;
+
+font-size:13px;
+
+}
+
+.spinner{
+
+width:28px;
+height:28px;
+
+border:2px solid #222;
+
+border-top-color:#00ff88;
+
+border-radius:50%;
+
+margin:0 auto 14px;
+
+animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+/* ================= ERROR ================= */
+
+.error{
+
+background:#120606;
+
+border:1px solid #4b1d1d;
+
+border-radius:15px;
+
+padding:18px;
+
+color:#ff7777;
+
+font-size:13px;
+
+line-height:1.6;
+
+margin-bottom:15px;
+
+}
+
+.error strong{
+
+display:block;
+
+color:#ff4d4d;
+
+margin-bottom:5px;
+
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+
+background:#0a0a0a;
+
+border:1px solid #202020;
+
+border-radius:18px;
+
+padding:55px 20px;
+
+text-align:center;
+
+color:#666;
+
+}
+
+.empty-icon{
+
+font-size:28px;
+
+margin-bottom:12px;
+
+opacity:.5;
+
+}
+
+.empty strong{
+
+display:block;
+
+color:#aaa;
+
+font-size:14px;
+
+margin-bottom:6px;
+
+}
+
+/* ================= DEPOSIT ================= */
+
+.deposit{
+
+background:
+linear-gradient(
+145deg,
+#111,
+#080808
+);
+
+border:1px solid #242424;
+
+border-radius:20px;
+
+padding:21px;
+
+margin-bottom:14px;
+
+transition:.25s;
+
+}
+
+.deposit:hover{
+
+border-color:#363636;
+
+}
+
+.deposit-top{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+margin-bottom:18px;
+
+}
+
+.deposit-user{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+min-width:0;
+
+}
+
+.avatar{
+
+width:40px;
+height:40px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:#151515;
+
+border:1px solid #292929;
+
+color:#00ff88;
+
+font-weight:700;
+
+font-size:14px;
+
+}
+
+.user-info{
+
+min-width:0;
+
+}
+
+.user-info h3{
+
+font-size:15px;
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
+.user-info span{
+
+display:block;
+
+font-size:10px;
+
+color:#555;
+
+margin-top:4px;
+
+}
+
+/* ================= STATUS ================= */
+
+.status{
+
+padding:7px 11px;
+
+border-radius:20px;
+
+font-size:10px;
+
+font-weight:700;
+
+white-space:nowrap;
+
+border:1px solid;
+
+}
+
+.status.pending{
+
+color:#ffb300;
+border-color:rgba(255,179,0,.4);
+
+background:rgba(255,179,0,.05);
+
+}
+
+.status.approved{
+
+color:#00ff88;
+border-color:rgba(0,255,136,.3);
+
+background:rgba(0,255,136,.05);
+
+}
+
+.status.declined{
+
+color:#ff5555;
+border-color:rgba(255,80,80,.3);
+
+background:rgba(255,80,80,.05);
+
+}
+
+/* ================= DATA ================= */
+
+.data-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:1px;
+
+background:#202020;
+
+border:1px solid #202020;
+
+border-radius:13px;
+
+overflow:hidden;
+
+margin-bottom:17px;
+
+}
+
+.data-item{
+
+background:#0b0b0b;
+
+padding:13px;
+
+min-width:0;
+
+}
+
+.data-label{
+
+display:block;
+
+font-size:9px;
+
+color:#555;
+
+text-transform:uppercase;
+
+letter-spacing:.7px;
+
+margin-bottom:6px;
+
+}
+
+.data-value{
+
+display:block;
+
+font-size:12px;
+
+color:#ddd;
+
+word-break:break-word;
+
+line-height:1.4;
+
+}
+
+.amount{
+
+color:#00ff88;
+
+font-size:16px;
+
+font-weight:700;
+
+}
+
+/* ================= BUTTONS ================= */
+
+.actions{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.action{
+
+flex:1;
+
+height:44px;
+
+border:none;
+
+border-radius:12px;
+
+font-weight:700;
+
+font-size:12px;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.approve{
+
+background:#00b85c;
+
+color:#000;
+
+}
+
+.approve:hover{
+
+background:#00ff88;
+
+}
+
+.decline{
+
+background:#180909;
+
+border:1px solid #542020;
+
+color:#ff5555;
+
+}
+
+.decline:hover{
+
+background:#250b0b;
+
+}
+
+.action:disabled{
+
+opacity:.45;
+
+cursor:not-allowed;
+
+}
+
+/* ================= DEBUG ================= */
+
+.transaction-id{
+
+margin-top:12px;
+
+font-size:9px;
+
+color:#444;
+
+word-break:break-all;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:650px){
+
+body{
+
+padding:15px;
+
+}
+
+.logo h2{
+
+font-size:18px;
+
+}
+
+.page-title h1{
+
+font-size:28px;
+
+}
+
+.summary{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.summary-card:last-child{
+
+grid-column:1/-1;
+
+}
+
+.summary-card strong{
+
+font-size:24px;
+
+}
+
+.data-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.deposit-top{
+
+align-items:flex-start;
+
+}
+
+.actions{
+
+flex-direction:column;
+
+}
+
+.action{
+
+width:100%;
+
+}
+
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:400px){
+
+.summary{
+
+gap:8px;
+
+}
+
+.summary-card{
+
+padding:15px;
+
+}
+
+.summary-card strong{
+
+font-size:21px;
+
+}
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
+
+<!-- ================= HEADER ================= -->
+
 <div class="header">
-<div class="back" onclick="location.href='admin.html'">←</div>
-<div class="brand"><small>SPACE X / ADMIN</small><h1>Deposits</h1></div>
-<div class="header-space"></div>
+
+<button
+class="back"
+onclick="location.href='admin.html'">
+
+←
+
+</button>
+
+
+<div class="logo">
+
+<img
+src="logo.png"
+alt="Space X">
+
+<h2>Deposits</h2>
+
 </div>
+
+
+<div class="header-space"></div>
+
+</div>
+
+
 
 <div class="container">
-<div class="summary">
-<div class="summary-card"><small>Deposit management</small><h2>Crypto Funding</h2><p>Review incoming deposit requests and approve verified transactions.</p></div>
-<div class="summary-card count-card"><small>Pending requests</small><h2 id="pendingCount">0</h2></div>
+
+
+<!-- ================= TITLE ================= -->
+
+<div class="page-title">
+
+<small>Admin Control</small>
+
+<h1>Deposit Requests</h1>
+
+<p>
+Review incoming deposit requests and approve or decline them.
+</p>
+
 </div>
 
-<div id="notice" class="notice"></div>
-<div id="loading" class="loading">Loading deposit requests...</div>
-<div id="depositList"></div>
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="summary">
+
+
+<div class="summary-card pending">
+
+<small>Pending</small>
+
+<strong id="pendingCount">
+0
+</strong>
+
 </div>
+
+
+<div class="summary-card approved">
+
+<small>Approved</small>
+
+<strong id="approvedCount">
+0
+</strong>
+
+</div>
+
+
+<div class="summary-card">
+
+<small>Total Requests</small>
+
+<strong id="totalCount">
+0
+</strong>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= TOOLBAR ================= -->
+
+<div class="toolbar">
+
+<div class="toolbar-title">
+Deposit Requests
+</div>
+
+<button
+class="refresh"
+id="refreshBtn">
+
+↻ Refresh
+
+</button>
+
+</div>
+
+
+<!-- ================= ERROR ================= -->
+
+<div
+id="errorBox"
+class="error"
+style="display:none;">
+
+<strong>Unable to load deposits</strong>
+
+<span id="errorText"></span>
+
+</div>
+
+
+<!-- ================= LOADING ================= -->
+
+<div
+id="loading"
+class="loading">
+
+<div class="spinner"></div>
+
+Loading deposit requests...
+
+</div>
+
+
+<!-- ================= LIST ================= -->
+
+<div id="depositList"></div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import {getFirestore,collection,query,where,onSnapshot,doc,updateDoc,getDoc,increment}
-from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-const firebaseConfig={
-apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-authDomain:"novax-acb23.firebaseapp.com",
-projectId:"novax-acb23",
-storageBucket:"novax-acb23.firebasestorage.app",
-messagingSenderId:"203988106178",
-appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+import {
+
+getFirestore,
+collection,
+query,
+where,
+onSnapshot,
+doc,
+getDoc,
+updateDoc,
+increment
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:
+"novax-acb23.firebaseapp.com",
+
+projectId:
+"novax-acb23",
+
+storageBucket:
+"novax-acb23.firebasestorage.app",
+
+messagingSenderId:
+"203988106178",
+
+appId:
+"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
 };
 
-const db=getFirestore(initializeApp(firebaseConfig));
-const list=document.getElementById("depositList");
-const loading=document.getElementById("loading");
-const count=document.getElementById("pendingCount");
-const notice=document.getElementById("notice");
 
-function escapeHTML(v){
-return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-}
-function formatDate(t){
-if(!t)return "—";
-try{return t.toDate().toLocaleString()}catch{return "—"}
-}
-function showError(e){
-loading.style.display="none";
-notice.style.display="block";
-notice.innerHTML="<strong>Firebase could not load the deposits.</strong><br>"+escapeHTML(e?.message||"Unknown Firebase error.")+"<br><br>Check your Firestore rules and admin permissions.";
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const depositList =
+document.getElementById("depositList");
+
+const loading =
+document.getElementById("loading");
+
+const errorBox =
+document.getElementById("errorBox");
+
+const errorText =
+document.getElementById("errorText");
+
+const pendingCount =
+document.getElementById("pendingCount");
+
+const approvedCount =
+document.getElementById("approvedCount");
+
+const totalCount =
+document.getElementById("totalCount");
+
+const refreshBtn =
+document.getElementById("refreshBtn");
+
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function normalize(value){
+
+if(value === undefined ||
+value === null){
+
+return "";
+
 }
 
-const q=query(collection(db,"transactions"),where("type","==","Deposit"),where("status","==","Pending"));
+return String(value)
+.trim()
+.toLowerCase();
 
-onSnapshot(q,snapshot=>{
-loading.style.display="none";
-notice.style.display="none";
-list.innerHTML="";
-count.textContent=snapshot.size;
-
-if(snapshot.empty){
-list.innerHTML='<div class="empty">No pending deposit requests found.</div>';
-return;
 }
+
+
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+
+function formatAmount(amount,currency){
+
+const number =
+Number(amount);
+
+if(Number.isNaN(number)){
+
+return escapeHTML(amount);
+
+}
+
+const curr =
+String(currency || "USD")
+.toUpperCase();
+
+if(curr === "NGN"){
+
+return "₦" +
+number.toLocaleString(
+"en-NG",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+if(curr === "EUR"){
+
+return "€" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+if(curr === "GBP"){
+
+return "£" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+if(curr === "USDT"){
+
+return number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:6
+}
+) + " USDT";
+
+}
+
+return "$" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+
+function formatDate(timestamp){
+
+try{
+
+if(!timestamp){
+
+return "—";
+
+}
+
+if(
+typeof timestamp.toDate === "function"
+){
+
+return timestamp
+.toDate()
+.toLocaleString();
+
+}
+
+if(
+timestamp instanceof Date
+){
+
+return timestamp.toLocaleString();
+
+}
+
+return String(timestamp);
+
+}catch(error){
+
+return "—";
+
+}
+
+}
+
+
+
+function showError(message){
+
+loading.style.display =
+"none";
+
+errorBox.style.display =
+"block";
+
+errorText.textContent =
+message;
+
+}
+
+
+
+function hideError(){
+
+errorBox.style.display =
+"none";
+
+errorText.textContent =
+"";
+
+}
+
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderDeposits(snapshot){
+
+loading.style.display =
+"none";
+
+hideError();
+
+depositList.innerHTML =
+"";
+
+let pending = 0;
+let approved = 0;
+let total = 0;
+
+
+/*
+   We query transactions and then
+   identify deposits safely.
+*/
+
+const deposits = [];
+
 
 snapshot.forEach(item=>{
-const d=item.data(),id=item.id;
-const amount=Number(d.amount);
-const amountText=Number.isFinite(amount)?"$"+amount.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):"—";
 
-list.insertAdjacentHTML("beforeend",`
-<div class="deposit">
+const data =
+item.data();
+
+const type =
+normalize(data.type);
+
+const status =
+normalize(data.status);
+
+
+/*
+   Accept both:
+   Deposit
+   deposit
+   DEPOSIT
+*/
+
+if(type !== "deposit"){
+
+return;
+
+}
+
+deposits.push({
+
+id:item.id,
+data:data,
+status:status
+
+});
+
+});
+
+
+total =
+deposits.length;
+
+
+deposits.forEach(item=>{
+
+if(item.status === "pending"){
+
+pending++;
+
+}
+
+if(item.status === "approved"){
+
+approved++;
+
+}
+
+});
+
+
+pendingCount.textContent =
+pending;
+
+approvedCount.textContent =
+approved;
+
+totalCount.textContent =
+total;
+
+
+if(deposits.length === 0){
+
+depositList.innerHTML = `
+
+<div class="empty">
+
+<div class="empty-icon">
+⌁
+</div>
+
+<strong>No deposit requests</strong>
+
+There are currently no deposit transactions in Firestore.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/* =====================================================
+   SORT NEWEST FIRST
+===================================================== */
+
+deposits.sort((a,b)=>{
+
+const aTime =
+a.data.createdAt &&
+typeof a.data.createdAt.toMillis === "function"
+
+? a.data.createdAt.toMillis()
+
+: 0;
+
+const bTime =
+b.data.createdAt &&
+typeof b.data.createdAt.toMillis === "function"
+
+? b.data.createdAt.toMillis()
+
+: 0;
+
+return bTime-aTime;
+
+});
+
+
+/* =====================================================
+   BUILD CARDS
+===================================================== */
+
+deposits.forEach(item=>{
+
+const data =
+item.data;
+
+const id =
+item.id;
+
+const status =
+normalize(data.status);
+
+let statusClass =
+"pending";
+
+let statusText =
+"Pending";
+
+
+if(status === "approved"){
+
+statusClass =
+"approved";
+
+statusText =
+"Approved";
+
+}
+
+
+if(status === "declined"){
+
+statusClass =
+"declined";
+
+statusText =
+"Declined";
+
+}
+
+
+const username =
+data.username ||
+data.fullname ||
+data.name ||
+"Unknown User";
+
+
+const wallet =
+data.walletAddress ||
+data.wallet ||
+data.address ||
+"Not provided";
+
+
+const currency =
+data.currency ||
+"USD";
+
+
+const userId =
+data.userId ||
+data.uid ||
+"Not provided";
+
+
+const initial =
+String(username)
+.charAt(0)
+.toUpperCase();
+
+
+const amount =
+formatAmount(
+data.amount,
+currency
+);
+
+
+const date =
+formatDate(
+data.createdAt
+);
+
+
+const card =
+document.createElement("div");
+
+card.className =
+"deposit";
+
+
+card.innerHTML = `
+
 <div class="deposit-top">
-<div class="user"><h3>${escapeHTML(d.username||"Unknown user")}</h3><small>ID: ${escapeHTML(d.userId||"Missing userId")}</small></div>
-<div class="status">Pending</div>
+
+<div class="deposit-user">
+
+<div class="avatar">
+${escapeHTML(initial)}
 </div>
-<div class="grid">
-<div class="item"><label>Currency</label><div>${escapeHTML(d.currency||"—")}</div></div>
-<div class="item"><label>Amount</label><div class="amount">${amountText}</div></div>
-<div class="item"><label>Method</label><div>${escapeHTML(d.method||"Crypto")}</div></div>
-<div class="item"><label>Date</label><div>${escapeHTML(formatDate(d.createdAt))}</div></div>
-<div class="item" style="grid-column:1/-1"><label>Wallet Address</label><div class="address">${escapeHTML(d.walletAddress||"—")}</div></div>
+
+<div class="user-info">
+
+<h3>
+${escapeHTML(username)}
+</h3>
+
+<span>
+${escapeHTML(currency)}
+deposit
+</span>
+
 </div>
+
+</div>
+
+<div class="status ${statusClass}">
+${statusText}
+</div>
+
+</div>
+
+
+<div class="data-grid">
+
+
+<div class="data-item">
+
+<span class="data-label">
+Amount
+</span>
+
+<span class="data-value amount">
+${amount}
+</span>
+
+</div>
+
+
+<div class="data-item">
+
+<span class="data-label">
+Currency
+</span>
+
+<span class="data-value">
+${escapeHTML(currency)}
+</span>
+
+</div>
+
+
+<div class="data-item">
+
+<span class="data-label">
+Wallet Address
+</span>
+
+<span class="data-value">
+${escapeHTML(wallet)}
+</span>
+
+</div>
+
+
+<div class="data-item">
+
+<span class="data-label">
+Date
+</span>
+
+<span class="data-value">
+${escapeHTML(date)}
+</span>
+
+</div>
+
+
+<div class="data-item">
+
+<span class="data-label">
+User ID
+</span>
+
+<span class="data-value">
+${escapeHTML(userId)}
+</span>
+
+</div>
+
+
+<div class="data-item">
+
+<span class="data-label">
+Transaction ID
+</span>
+
+<span class="data-value">
+${escapeHTML(id)}
+</span>
+
+</div>
+
+
+</div>
+
+
+${
+status === "pending"
+
+?
+
+`
+
 <div class="actions">
-<button class="action approve" data-approve="${id}">Approve Deposit</button>
-<button class="action decline" data-decline="${id}">Decline</button>
+
+<button
+class="action approve"
+data-action="approve"
+data-id="${escapeHTML(id)}">
+
+✓ Approve Deposit
+
+</button>
+
+
+<button
+class="action decline"
+data-action="decline"
+data-id="${escapeHTML(id)}">
+
+✕ Decline
+
+</button>
+
 </div>
-</div>`);
-});
-},showError);
 
-window.approveDeposit=async id=>{
-if(!confirm("Approve this deposit and credit the user's balance?"))return;
+`
+
+:
+
+""
+
+}
+
+
+<div class="transaction-id">
+ID: ${escapeHTML(id)}
+</div>
+
+`;
+
+
+depositList.appendChild(card);
+
+});
+
+
+
+/* =====================================================
+   BUTTON EVENTS
+===================================================== */
+
+depositList
+.querySelectorAll("[data-action]")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+async()=>{
+
+const action =
+button.dataset.action;
+
+const id =
+button.dataset.id;
+
+
+if(action === "approve"){
+
+await approveDeposit(
+id,
+button
+);
+
+}
+
+if(action === "decline"){
+
+await declineDeposit(
+id,
+button
+);
+
+}
+
+});
+
+});
+
+}
+
+
+
+/* =====================================================
+   LOAD TRANSACTIONS
+===================================================== */
+
+/*
+   IMPORTANT:
+
+   We intentionally query ALL transactions.
+
+   Your previous code queried:
+
+   type == Deposit
+   status == Pending
+
+   If the crypto page writes:
+   "deposit"
+   instead of:
+   "Deposit"
+
+   Firestore returns ZERO results.
+
+   This version gets transactions and
+   filters them safely in JavaScript.
+*/
+
+let unsubscribe = null;
+
+
+function startListener(){
+
+if(unsubscribe){
+
+unsubscribe();
+
+}
+
+
+loading.style.display =
+"block";
+
+depositList.innerHTML =
+"";
+
+
 try{
-const tx=doc(db,"transactions",id),snap=await getDoc(tx);
-if(!snap.exists())throw new Error("Deposit transaction no longer exists.");
-const d=snap.data();
-if(d.status!=="Pending")throw new Error("This deposit has already been processed.");
-if(!d.userId)throw new Error("This deposit is missing userId.");
-const amount=Number(d.amount);
-if(!Number.isFinite(amount)||amount<=0)throw new Error("Invalid deposit amount.");
-await updateDoc(doc(db,"users",d.userId),{balance:increment(amount)});
-await updateDoc(tx,{status:"Approved"});
-alert("Deposit approved successfully.");
-}catch(e){alert(e.message||"Unable to approve deposit.")}
-};
 
-window.declineDeposit=async id=>{
-if(!confirm("Decline this deposit request?"))return;
-try{await updateDoc(doc(db,"transactions",id),{status:"Declined"});alert("Deposit declined.");}
-catch(e){alert(e.message||"Unable to decline deposit.")}
-};
+const transactionsRef =
+collection(
+db,
+"transactions"
+);
 
-document.addEventListener("click",e=>{
-const a=e.target.closest("[data-approve]"),d=e.target.closest("[data-decline]");
-if(a)window.approveDeposit(a.dataset.approve);
-if(d)window.declineDeposit(d.dataset.decline);
-});
+
+const transactionsQuery =
+query(
+transactionsRef
+);
+
+
+unsubscribe =
+onSnapshot(
+transactionsQuery,
+
+(snapshot)=>{
+
+renderDeposits(
+snapshot
+);
+
+},
+
+(error)=>{
+
+console.error(
+"Firestore error:",
+error
+);
+
+showError(
+error.message ||
+"Firestore could not be read."
+);
+
+}
+
+);
+
+}catch(error){
+
+console.error(
+"Listener error:",
+error
+);
+
+showError(
+error.message ||
+"Unable to connect to Firestore."
+);
+
+}
+
+}
+
+
+startListener();
+
+
+
+/* =====================================================
+   APPROVE DEPOSIT
+===================================================== */
+
+async function approveDeposit(
+id,
+button
+){
+
+if(
+!confirm(
+"Approve this deposit and credit the user's balance?"
+)
+){
+
+return;
+
+}
+
+
+button.disabled =
+true;
+
+button.textContent =
+"Processing...";
+
+
+try{
+
+const transactionRef =
+doc(
+db,
+"transactions",
+id
+);
+
+
+const transactionSnap =
+await getDoc(
+transactionRef
+);
+
+
+if(
+!transactionSnap.exists()
+){
+
+throw new Error(
+"Transaction no longer exists."
+);
+
+}
+
+
+const data =
+transactionSnap.data();
+
+
+if(
+normalize(data.status)
+!==
+"pending"
+){
+
+alert(
+"This transaction has already been processed."
+);
+
+return;
+
+}
+
+
+const userId =
+data.userId ||
+data.uid;
+
+
+if(!userId){
+
+throw new Error(
+"This deposit has no userId/uid. The user's balance cannot be updated."
+);
+
+}
+
+
+const amount =
+Number(data.amount);
+
+
+if(
+!Number.isFinite(amount) ||
+amount <= 0
+){
+
+throw new Error(
+"Invalid deposit amount."
+);
+
+}
+
+
+const userRef =
+doc(
+db,
+"users",
+userId
+);
+
+
+const userSnap =
+await getDoc(
+userRef
+);
+
+
+if(
+!userSnap.exists()
+){
+
+throw new Error(
+"The user account could not be found."
+);
+
+}
+
+
+/*
+   Credit balance
+*/
+
+await updateDoc(
+userRef,
+{
+
+balance:
+increment(amount)
+
+}
+);
+
+
+/*
+   Mark transaction approved
+*/
+
+await updateDoc(
+transactionRef,
+{
+
+status:
+"Approved",
+
+approvedAt:
+new Date()
+
+}
+);
+
+
+alert(
+"Deposit approved successfully."
+);
+
+
+}catch(error){
+
+console.error(
+"Approve error:",
+error
+);
+
+alert(
+"Approval failed:\n\n" +
+(error.message || error)
+);
+
+}finally{
+
+button.disabled =
+false;
+
+button.textContent =
+"✓ Approve Deposit";
+
+}
+
+}
+
+
+
+/* =====================================================
+   DECLINE DEPOSIT
+===================================================== */
+
+async function declineDeposit(
+id,
+button
+){
+
+if(
+!confirm(
+"Decline this deposit?"
+)
+){
+
+return;
+
+}
+
+
+button.disabled =
+true;
+
+button.textContent =
+"Processing...";
+
+
+try{
+
+const transactionRef =
+doc(
+db,
+"transactions",
+id
+);
+
+
+const transactionSnap =
+await getDoc(
+transactionRef
+);
+
+
+if(
+!transactionSnap.exists()
+){
+
+throw new Error(
+"Transaction no longer exists."
+);
+
+}
+
+
+const data =
+transactionSnap.data();
+
+
+if(
+normalize(data.status)
+!==
+"pending"
+){
+
+alert(
+"This transaction has already been processed."
+);
+
+return;
+
+}
+
+
+await updateDoc(
+transactionRef,
+{
+
+status:
+"Declined",
+
+declinedAt:
+new Date()
+
+}
+);
+
+
+alert(
+"Deposit declined."
+);
+
+
+}catch(error){
+
+console.error(
+"Decline error:",
+error
+);
+
+alert(
+"Decline failed:\n\n" +
+(error.message || error)
+);
+
+}finally{
+
+button.disabled =
+false;
+
+button.textContent =
+"✕ Decline";
+
+}
+
+}
+
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+refreshBtn.addEventListener(
+"click",
+()=>{
+
+startListener();
+
+}
+);
+
 </script>
+
+
 </body>
+
 </html>
