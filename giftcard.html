@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -38,7 +37,7 @@ width:360px;
 height:360px;
 right:-160px;
 top:-150px;
-background:rgba(255,255,255,.07);
+background:rgba(255,255,255,.06);
 filter:blur(110px);
 pointer-events:none;
 }
@@ -50,7 +49,6 @@ margin:auto;
 position:relative;
 z-index:1;
 }
-
 
 /* HEADER */
 
@@ -86,7 +84,6 @@ font-size:24px;
 margin-top:4px;
 }
 
-
 /* CARD */
 
 .card{
@@ -103,7 +100,6 @@ font-size:12px;
 line-height:1.7;
 margin-bottom:25px;
 }
-
 
 /* FORM */
 
@@ -122,18 +118,13 @@ margin-bottom:8px;
 .select{
 width:100%;
 height:48px;
-
 background:#090909;
 border:1px solid #292929;
 border-radius:13px;
-
 padding:0 14px;
-
 outline:none;
 color:#fff;
-
 font-size:13px;
-
 transition:.2s;
 }
 
@@ -145,7 +136,6 @@ border-color:#555;
 .select{
 appearance:auto;
 }
-
 
 /* CHARGE */
 
@@ -169,10 +159,6 @@ font-size:12px;
 color:#777;
 }
 
-.charge-row span:last-child{
-color:#fff;
-}
-
 .charge-row.net{
 border-top:1px solid #222;
 padding-top:12px;
@@ -183,7 +169,6 @@ font-weight:bold;
 .charge-row.net span:last-child{
 color:#00ff88;
 }
-
 
 /* GIFT CARD OPTIONS */
 
@@ -211,17 +196,11 @@ font-size:12px;
 transition:.2s;
 }
 
-.gift-option:hover{
-border-color:#555;
-color:#fff;
-}
-
 .gift-option.active{
 border-color:#fff;
 background:#181818;
 color:#fff;
 }
-
 
 /* UPLOAD */
 
@@ -234,10 +213,6 @@ background:#090909;
 cursor:pointer;
 transition:.2s;
 margin-bottom:10px;
-}
-
-.upload:hover{
-border-color:#666;
 }
 
 .upload-icon{
@@ -272,42 +247,35 @@ border:1px solid #292929;
 background:#000;
 }
 
-
 /* SUBMIT */
 
 .submit{
 width:100%;
 height:50px;
-
 border:0;
 border-radius:14px;
-
 background:#fff;
 color:#000;
-
 font-size:13px;
 font-weight:800;
-
 cursor:pointer;
-
 margin-top:5px;
 }
 
 .submit:disabled{
-opacity:.45;
+opacity:.5;
 cursor:not-allowed;
 }
-
 
 /* STATUS */
 
 .status{
 display:none;
 margin-top:16px;
-padding:13px;
-border-radius:12px;
+padding:14px;
+border-radius:13px;
 font-size:11px;
-line-height:1.5;
+line-height:1.6;
 }
 
 .status.success{
@@ -324,6 +292,57 @@ border:1px solid rgba(255,60,60,.25);
 color:#ff6666;
 }
 
+/* LOADING OVERLAY */
+
+.loading-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.88);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.loading-box{
+width:calc(100% - 50px);
+max-width:330px;
+background:#101010;
+border:1px solid #292929;
+border-radius:22px;
+padding:30px 25px;
+text-align:center;
+box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+
+.loader{
+width:38px;
+height:38px;
+border:3px solid #292929;
+border-top-color:#fff;
+border-radius:50%;
+margin:0 auto 20px;
+animation:spin .8s linear infinite;
+}
+
+.loading-box h3{
+font-size:15px;
+margin-bottom:7px;
+}
+
+.loading-box p{
+font-size:11px;
+color:#777;
+line-height:1.6;
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg);
+}
+}
 
 /* MOBILE */
 
@@ -338,22 +357,36 @@ padding:19px;
 border-radius:22px;
 }
 
-.gift-options{
-grid-template-columns:1fr 1fr;
-}
-
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<!-- LOADING OVERLAY -->
+
+<div
+id="loadingOverlay"
+class="loading-overlay">
+
+<div class="loading-box">
+
+<div class="loader"></div>
+
+<h3>Submitting Deposit</h3>
+
+<p>
+Please wait while your deposit request is being submitted securely.
+Do not close or refresh this page.
+</p>
+
+</div>
+
+</div>
+
 
 <div class="page">
-
 
 <!-- HEADER -->
 
@@ -382,16 +415,13 @@ Gift Card
 </div>
 
 
-
 <div class="card">
-
 
 <p class="intro">
 
 Submit your gift card information below. Your deposit will remain pending until it has been reviewed and approved by an administrator.
 
 </p>
-
 
 
 <!-- AMOUNT -->
@@ -414,7 +444,6 @@ placeholder="Enter amount"
 </div>
 
 
-
 <!-- CHARGE -->
 
 <div class="charge-box">
@@ -431,7 +460,6 @@ $0.00
 
 </div>
 
-
 <div class="charge-row">
 
 <span>
@@ -444,7 +472,6 @@ Processing charge
 
 </div>
 
-
 <div class="charge-row">
 
 <span>
@@ -456,7 +483,6 @@ Charge amount
 </span>
 
 </div>
-
 
 <div class="charge-row net">
 
@@ -473,7 +499,6 @@ $0.00
 </div>
 
 
-
 <!-- GIFT CARD TYPE -->
 
 <div class="field">
@@ -482,9 +507,7 @@ $0.00
 Choose gift card option
 </div>
 
-
 <div class="gift-options">
-
 
 <button
 type="button"
@@ -495,7 +518,6 @@ Amazon
 
 </button>
 
-
 <button
 type="button"
 class="gift-option"
@@ -504,7 +526,6 @@ data-card="Apple">
 Apple
 
 </button>
-
 
 <button
 type="button"
@@ -515,7 +536,6 @@ Google Play
 
 </button>
 
-
 <button
 type="button"
 class="gift-option"
@@ -524,7 +544,6 @@ data-card="Steam">
 Steam
 
 </button>
-
 
 <button
 type="button"
@@ -535,7 +554,6 @@ Razer Gold
 
 </button>
 
-
 <button
 type="button"
 class="gift-option"
@@ -545,11 +563,9 @@ Other
 
 </button>
 
-
 </div>
 
 </div>
-
 
 
 <!-- CURRENCY -->
@@ -597,7 +613,6 @@ NGN — Nigerian Naira
 </div>
 
 
-
 <!-- CODE -->
 
 <div class="field">
@@ -617,7 +632,6 @@ autocomplete="off"
 </div>
 
 
-
 <!-- IMAGE -->
 
 <div class="field">
@@ -625,7 +639,6 @@ autocomplete="off"
 <label>
 Gift Card Image
 </label>
-
 
 <label
 class="upload"
@@ -645,13 +658,11 @@ Tap here to choose an image
 
 </label>
 
-
 <input
 id="imageInput"
 type="file"
 accept="image/*"
 >
-
 
 <img
 id="preview"
@@ -660,7 +671,6 @@ alt="Gift card preview"
 >
 
 </div>
-
 
 
 <!-- SUBMIT -->
@@ -680,14 +690,10 @@ id="status"
 class="status">
 </div>
 
-
 </div>
 
 </div>
 
-
-
-<!-- FIREBASE -->
 
 <script type="module">
 
@@ -697,14 +703,12 @@ initializeApp
 from
 "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 
-
 import {
 getAuth,
 onAuthStateChanged
 }
 from
 "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
 
 import {
 getFirestore,
@@ -716,15 +720,9 @@ from
 "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 
-import {
-getStorage,
-ref,
-uploadBytes,
-getDownloadURL
-}
-from
-"https://www.gstatic.com/firebasejs/12.15.0/firebase-storage.js";
-
+/* =========================
+   FIREBASE
+========================= */
 
 const firebaseConfig = {
 
@@ -748,22 +746,14 @@ appId:
 
 };
 
-
 const app =
 initializeApp(firebaseConfig);
-
 
 const auth =
 getAuth(app);
 
-
 const db =
 getFirestore(app);
-
-
-const storage =
-getStorage(app);
-
 
 
 /* =========================
@@ -791,6 +781,8 @@ document.getElementById("submitBtn");
 const statusBox =
 document.getElementById("status");
 
+const loadingOverlay =
+document.getElementById("loadingOverlay");
 
 const grossAmount =
 document.getElementById("grossAmount");
@@ -802,11 +794,9 @@ const netAmount =
 document.getElementById("netAmount");
 
 
-
 let currentUser = null;
-
 let selectedGiftCard = "";
-
+let submitting = false;
 
 
 /* =========================
@@ -828,14 +818,17 @@ showStatus(
 "error"
 );
 
+}else{
+
+submitBtn.disabled = false;
+
 }
 
 });
 
 
-
 /* =========================
-   AMOUNT CALCULATION
+   AMOUNT
 ========================= */
 
 function updateAmount(){
@@ -849,7 +842,6 @@ amount * 0.16;
 const net =
 amount - charge;
 
-
 grossAmount.textContent =
 "$" + amount.toFixed(2);
 
@@ -861,12 +853,10 @@ netAmount.textContent =
 
 }
 
-
 amountInput.addEventListener(
 "input",
 updateAmount
 );
-
 
 
 /* =========================
@@ -881,15 +871,15 @@ button.addEventListener(
 "click",
 ()=>{
 
+if(submitting) return;
+
 document
 .querySelectorAll(".gift-option")
 .forEach(item=>{
 item.classList.remove("active");
 });
 
-
 button.classList.add("active");
-
 
 selectedGiftCard =
 button.dataset.card;
@@ -897,7 +887,6 @@ button.dataset.card;
 });
 
 });
-
 
 
 /* =========================
@@ -913,19 +902,22 @@ imageInput.files[0];
 
 if(!file){
 
-preview.style.display="none";
+preview.style.display =
+"none";
 
 return;
 
 }
 
-
 if(!file.type.startsWith("image/")){
 
-imageInput.value="";
+imageInput.value = "";
+
+preview.style.display =
+"none";
 
 showStatus(
-"Please select an image file.",
+"Please select a valid image file.",
 "error"
 );
 
@@ -933,10 +925,12 @@ return;
 
 }
 
-
 if(file.size > 5 * 1024 * 1024){
 
-imageInput.value="";
+imageInput.value = "";
+
+preview.style.display =
+"none";
 
 showStatus(
 "Image must be smaller than 5MB.",
@@ -947,7 +941,6 @@ return;
 
 }
 
-
 preview.src =
 URL.createObjectURL(file);
 
@@ -955,7 +948,6 @@ preview.style.display =
 "block";
 
 });
-
 
 
 /* =========================
@@ -976,6 +968,37 @@ statusBox.className =
 }
 
 
+/* =========================
+   LOADING
+========================= */
+
+function startLoading(){
+
+loadingOverlay.style.display =
+"flex";
+
+document.body.style.overflow =
+"hidden";
+
+submitBtn.disabled =
+true;
+
+submitBtn.textContent =
+"Submitting...";
+
+}
+
+
+function stopLoading(){
+
+loadingOverlay.style.display =
+"none";
+
+document.body.style.overflow =
+"";
+
+}
+
 
 /* =========================
    SUBMIT
@@ -985,12 +1008,22 @@ submitBtn.addEventListener(
 "click",
 async()=>{
 
-try{
+/*
+IMPORTANT:
+This prevents double-clicks
+and repeated submissions.
+*/
+
+if(submitting){
+
+return;
+
+}
 
 if(!currentUser){
 
 showStatus(
-"Please log in first.",
+"Please log in before submitting a deposit.",
 "error"
 );
 
@@ -1002,19 +1035,17 @@ return;
 const amount =
 Number(amountInput.value);
 
-
 const currency =
 currencyInput.value;
 
-
 const code =
 codeInput.value.trim();
-
 
 const imageFile =
 imageInput.files[0];
 
 
+/* VALIDATION */
 
 if(!amount || amount <= 0){
 
@@ -1027,7 +1058,6 @@ return;
 
 }
 
-
 if(!selectedGiftCard){
 
 showStatus(
@@ -1038,7 +1068,6 @@ showStatus(
 return;
 
 }
-
 
 if(!currency){
 
@@ -1051,7 +1080,6 @@ return;
 
 }
 
-
 if(!code){
 
 showStatus(
@@ -1062,7 +1090,6 @@ showStatus(
 return;
 
 }
-
 
 if(!imageFile){
 
@@ -1076,64 +1103,36 @@ return;
 }
 
 
+/*
+LOCK SUBMISSION
+BEFORE FIREBASE REQUEST
+*/
+
+submitting = true;
+
+startLoading();
+
+
+try{
 
 const charge =
 amount * 0.16;
-
 
 const netAmountValue =
 amount - charge;
 
 
+/*
+IMPORTANT:
 
-submitBtn.disabled =
-true;
+NO FIREBASE STORAGE.
 
-submitBtn.textContent =
-"Submitting...";
+The image is NOT uploaded.
 
+Only the transaction information
+is stored in Firestore.
+*/
 
-
-/* =========================
-   UPLOAD IMAGE
-========================= */
-
-const fileName =
-Date.now() +
-"_" +
-imageFile.name
-.replace(
-/[^a-zA-Z0-9._-]/g,
-"_"
-);
-
-
-const imageRef =
-ref(
-storage,
-"giftcard_uploads/" +
-currentUser.uid +
-"/" +
-fileName
-);
-
-
-await uploadBytes(
-imageRef,
-imageFile
-);
-
-
-const imageURL =
-await getDownloadURL(
-imageRef
-);
-
-
-
-/* =========================
-   CREATE TRANSACTION
-========================= */
 
 await addDoc(
 
@@ -1148,7 +1147,9 @@ userId:
 currentUser.uid,
 
 username:
-currentUser.email || "User",
+currentUser.displayName ||
+currentUser.email ||
+"User",
 
 type:
 "Gift Card",
@@ -1174,8 +1175,12 @@ selectedGiftCard,
 giftCardCode:
 code,
 
+/*
+The image itself is not stored.
+*/
+
 giftCardImage:
-imageURL,
+null,
 
 createdAt:
 serverTimestamp()
@@ -1185,26 +1190,33 @@ serverTimestamp()
 );
 
 
+/* SUCCESS */
+
+stopLoading();
 
 showStatus(
 
-"Deposit submitted successfully. Your request is now pending admin approval.",
+"Transaction submitted successfully. Your deposit is now pending and will remain pending until an administrator reviews and approves it.",
 
 "success"
 
 );
 
 
-amountInput.value="";
+/* RESET FORM */
 
-currencyInput.value="";
+amountInput.value = "";
 
-codeInput.value="";
+currencyInput.value = "";
 
-imageInput.value="";
+codeInput.value = "";
 
-preview.style.display="none";
+imageInput.value = "";
 
+preview.src = "";
+
+preview.style.display =
+"none";
 
 document
 .querySelectorAll(".gift-option")
@@ -1212,28 +1224,44 @@ document
 item.classList.remove("active");
 });
 
-
-selectedGiftCard="";
-
+selectedGiftCard = "";
 
 updateAmount();
-
 
 submitBtn.textContent =
 "Submitted";
 
+submitBtn.disabled =
+true;
+
+
+/*
+Keep locked after success.
+This prevents the user from
+accidentally submitting the
+same request again.
+*/
+
+submitting = true;
+
 }
+
 catch(error){
 
-console.error(error);
-
-showStatus(
-
-"Unable to submit your deposit. Please try again.",
-
-"error"
-
+console.error(
+"Gift card deposit error:",
+error
 );
+
+stopLoading();
+
+
+/*
+Allow retry ONLY if the
+Firestore request actually failed.
+*/
+
+submitting = false;
 
 submitBtn.disabled =
 false;
@@ -1241,13 +1269,19 @@ false;
 submitBtn.textContent =
 "Submit Deposit";
 
+showStatus(
+
+"Your transaction could not be submitted. Please check your connection and try again.",
+
+"error"
+
+);
+
 }
 
 });
 
 </script>
 
-
 </body>
-
 </html>

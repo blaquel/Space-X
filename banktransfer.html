@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Bank Transfer | SpaceX</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+background:#050505;
+color:#fff;
+min-height:100%;
+}
+
+body{
+padding:20px;
+padding-bottom:50px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:25px;
+}
+
+.back{
+width:44px;
+height:44px;
+border:1px solid #292929;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+cursor:pointer;
+background:#0c0c0c;
+}
+
+.back:active{
+transform:scale(.94);
+}
+
+.header-title{
+text-align:center;
+}
+
+.header-title small{
+display:block;
+font-size:9px;
+letter-spacing:2px;
+color:#666;
+margin-bottom:4px;
+}
+
+.header-title h2{
+font-size:20px;
+}
+
+.header-space{
+width:44px;
+}
+
+/* ================= INTRO ================= */
+
+.intro{
+margin-bottom:22px;
+}
+
+.intro small{
+color:#666;
+font-size:10px;
+letter-spacing:1.8px;
+text-transform:uppercase;
+}
+
+.intro h1{
+font-size:30px;
+margin-top:8px;
+letter-spacing:-1px;
+}
+
+.intro p{
+color:#777;
+font-size:13px;
+line-height:1.7;
+margin-top:8px;
+}
+
+/* ================= BANK CARD ================= */
+
+.bank-card{
+background:
+linear-gradient(145deg,#151515,#080808);
+border:1px solid #292929;
+border-radius:24px;
+padding:24px;
+box-shadow:
+0 25px 70px rgba(0,0,0,.45),
+inset 0 1px rgba(255,255,255,.025);
+margin-bottom:20px;
+}
+
+.bank-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.bank-name{
+display:flex;
+align-items:center;
+gap:11px;
+}
+
+.bank-icon{
+width:42px;
+height:42px;
+border-radius:12px;
+background:#101010;
+border:1px solid #303030;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+}
+
+.bank-name strong{
+font-size:15px;
+}
+
+.bank-name span{
+display:block;
+font-size:10px;
+color:#666;
+margin-top:4px;
+}
+
+.currency{
+font-size:10px;
+padding:7px 10px;
+border:1px solid #333;
+border-radius:20px;
+color:#aaa;
+}
+
+.details{
+border-top:1px solid #202020;
+}
+
+.detail{
+padding:15px 0;
+border-bottom:1px solid #181818;
+}
+
+.detail:last-child{
+border-bottom:0;
+}
+
+.detail-label{
+font-size:10px;
+color:#666;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:6px;
+}
+
+.detail-value{
+font-size:14px;
+color:#eee;
+word-break:break-word;
+}
+
+.account-number{
+font-size:20px;
+letter-spacing:1px;
+font-weight:700;
+}
+
+/* ================= COPY ================= */
+
+.copy-btn{
+margin-top:8px;
+border:0;
+background:#181818;
+border:1px solid #303030;
+color:#aaa;
+padding:7px 11px;
+border-radius:8px;
+font-size:10px;
+cursor:pointer;
+}
+
+.copy-btn:active{
+transform:scale(.96);
+}
+
+/* ================= FORM ================= */
+
+.form-card{
+background:#0b0b0b;
+border:1px solid #222;
+border-radius:22px;
+padding:22px;
+}
+
+.form-card h3{
+font-size:17px;
+margin-bottom:6px;
+}
+
+.form-card > p{
+color:#666;
+font-size:11px;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+.field{
+margin-bottom:16px;
+}
+
+.field label{
+display:block;
+font-size:10px;
+color:#777;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:8px;
+}
+
+.field input{
+width:100%;
+height:48px;
+background:#070707;
+border:1px solid #292929;
+border-radius:12px;
+outline:none;
+padding:0 14px;
+color:#fff;
+font-size:13px;
+transition:.2s;
+}
+
+.field input:focus{
+border-color:#555;
+box-shadow:0 0 0 3px rgba(255,255,255,.025);
+}
+
+.field input::placeholder{
+color:#444;
+}
+
+/* ================= SUBMIT ================= */
+
+.submit-btn{
+width:100%;
+height:52px;
+border:0;
+border-radius:14px;
+background:#fff;
+color:#000;
+font-size:14px;
+font-weight:700;
+cursor:pointer;
+margin-top:5px;
+transition:.2s;
+}
+
+.submit-btn:active{
+transform:scale(.98);
+}
+
+.submit-btn:disabled{
+opacity:.55;
+cursor:not-allowed;
+}
+
+/* ================= NOTE ================= */
+
+.notice{
+margin-top:15px;
+padding:13px;
+border-radius:12px;
+background:#0d0d0d;
+border:1px solid #1d1d1d;
+color:#666;
+font-size:10px;
+line-height:1.6;
+text-align:center;
+}
+
+/* =================================================
+   MATURE LOADING OVERLAY
+================================================= */
+
+.loading-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.86);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+padding:25px;
+}
+
+.loading-overlay.show{
+display:flex;
+}
+
+.loading-box{
+width:100%;
+max-width:340px;
+background:
+linear-gradient(145deg,#161616,#090909);
+border:1px solid #303030;
+border-radius:24px;
+padding:30px 25px;
+text-align:center;
+box-shadow:0 30px 90px rgba(0,0,0,.8);
+animation:loadingAppear .25s ease;
+}
+
+@keyframes loadingAppear{
+from{
+opacity:0;
+transform:translateY(10px) scale(.97);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+.loader{
+width:42px;
+height:42px;
+border:3px solid #292929;
+border-top-color:#fff;
+border-radius:50%;
+margin:0 auto 20px;
+animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg);
+}
+}
+
+.loading-box h3{
+font-size:17px;
+margin-bottom:8px;
+}
+
+.loading-box p{
+font-size:11px;
+color:#777;
+line-height:1.6;
+}
+
+/* ================= SUCCESS MODAL ================= */
+
+.alert-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.86);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:10000;
+padding:25px;
+}
+
+.alert-overlay.show{
+display:flex;
+}
+
+.alert-box{
+width:100%;
+max-width:350px;
+background:
+linear-gradient(145deg,#151515,#080808);
+border:1px solid #303030;
+border-radius:25px;
+padding:30px 25px;
+text-align:center;
+box-shadow:0 30px 90px rgba(0,0,0,.85);
+animation:alertAppear .25s ease;
+}
+
+@keyframes alertAppear{
+from{
+opacity:0;
+transform:scale(.94) translateY(8px);
+}
+to{
+opacity:1;
+transform:scale(1) translateY(0);
+}
+}
+
+.success-icon{
+width:58px;
+height:58px;
+margin:0 auto 18px;
+border-radius:50%;
+border:1px solid #00aa66;
+background:rgba(0,255,136,.06);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+color:#00ff88;
+box-shadow:0 0 30px rgba(0,255,136,.08);
+}
+
+.alert-box h3{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.alert-box p{
+color:#777;
+font-size:12px;
+line-height:1.7;
+}
+
+.pending-badge{
+display:inline-block;
+margin-top:17px;
+padding:8px 15px;
+border:1px solid #7b5d00;
+border-radius:30px;
+color:#ffbf00;
+font-size:10px;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:.8px;
+}
+
+.alert-close{
+width:100%;
+height:46px;
+margin-top:22px;
+border:0;
+border-radius:12px;
+background:#fff;
+color:#000;
+font-weight:700;
+cursor:pointer;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:500px){
+
+body{
+padding:16px;
+}
+
+.intro h1{
+font-size:27px;
+}
+
+.bank-card{
+padding:20px;
+}
+
+.form-card{
+padding:19px;
+}
+
+.account-number{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<div class="header">
+
+<div
+class="back"
+onclick="history.back()">
+
+←
+
+</div>
+
+<div class="header-title">
+
+<small>SPACEX</small>
+
+<h2>Bank Transfer</h2>
+
+</div>
+
+<div class="header-space"></div>
+
+</div>
+
+
+<!-- ================= INTRO ================= -->
+
+<div class="intro">
+
+<small>Deposit method</small>
+
+<h1>Bank Transfer</h1>
+
+<p>
+Transfer your funds using the account details below.
+After submitting your transfer information, your deposit
+will remain pending until it is reviewed by an administrator.
+</p>
+
+</div>
+
+
+<!-- ================= BANK DETAILS ================= -->
+
+<div class="bank-card">
+
+<div class="bank-top">
+
+<div class="bank-name">
+
+<div class="bank-icon">
+$
+</div>
+
+<div>
+
+<strong>Lead</strong>
+
+<span>USD Account</span>
+
+</div>
+
+</div>
+
+<div class="currency">
+USD
+</div>
+
+</div>
+
+
+<div class="details">
+
+
+<div class="detail">
+
+<div class="detail-label">
+Account Number
+</div>
+
+<div
+class="detail-value account-number"
+id="accountNumber">
+
+215132049375
+
+</div>
+
+<button
+class="copy-btn"
+onclick="copyText('215132049375','Account number copied')">
+
+Copy Account Number
+
+</button>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-label">
+Bank Name
+</div>
+
+<div class="detail-value">
+Lead
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-label">
+ACH Routing
+</div>
+
+<div class="detail-value">
+101019644
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-label">
+Wire Routing
+</div>
+
+<div class="detail-value">
+101019644
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-label">
+Account Type
+</div>
+
+<div class="detail-value">
+Checking
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-label">
+Bank Address
+</div>
+
+<div class="detail-value">
+1801 Main St., Kansas City, MO 64108
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================= TRANSFER FORM ================= -->
+
+<div class="form-card">
+
+<h3>Submit Transfer</h3>
+
+<p>
+Enter the details of the transfer you have made.
+Your account will not be credited until the transfer
+has been reviewed and approved.
+</p>
+
+
+<form id="transferForm">
+
+
+<div class="field">
+
+<label>
+Amount (USD)
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter transfer amount"
+min="1"
+step="0.01"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Sender / Account Name
+</label>
+
+<input
+type="text"
+id="senderName"
+placeholder="Name used for the transfer"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Transfer Reference
+</label>
+
+<input
+type="text"
+id="reference"
+placeholder="Enter transfer reference"
+required>
+
+</div>
+
+
+<button
+type="submit"
+class="submit-btn"
+id="submitBtn">
+
+Submit Transfer
+
+</button>
+
+</form>
+
+
+<div class="notice">
+
+Transfers are reviewed manually.
+Your deposit status will remain
+<strong>Pending</strong> until an administrator approves it.
+
+</div>
+
+</div>
+
+
+<!-- ================= LOADING ================= -->
+
+<div
+class="loading-overlay"
+id="loadingOverlay">
+
+<div class="loading-box">
+
+<div class="loader"></div>
+
+<h3>Submitting Transfer</h3>
+
+<p>
+Please wait while we securely submit
+your bank transfer request.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= SUCCESS ALERT ================= -->
+
+<div
+class="alert-overlay"
+id="successOverlay">
+
+<div class="alert-box">
+
+<div class="success-icon">
+✓
+</div>
+
+<h3>Transaction Submitted</h3>
+
+<p>
+Your bank transfer has been submitted successfully.
+It is currently pending admin approval.
+Your balance will only be updated after approval.
+</p>
+
+<div class="pending-badge">
+Pending Admin Approval
+</div>
+
+<button
+class="alert-close"
+id="successClose">
+
+Done
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:
+"novax-acb23.firebaseapp.com",
+
+projectId:
+"novax-acb23",
+
+storageBucket:
+"novax-acb23.firebasestorage.app",
+
+messagingSenderId:
+"203988106178",
+
+appId:
+"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+const form =
+document.getElementById("transferForm");
+
+const loadingOverlay =
+document.getElementById("loadingOverlay");
+
+const successOverlay =
+document.getElementById("successOverlay");
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+const successClose =
+document.getElementById("successClose");
+
+
+let currentUser = null;
+
+
+/* ================= AUTH ================= */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+
+currentUser = null;
+
+return;
+
+}
+
+currentUser = user;
+
+});
+
+
+/* ================= SUBMIT ================= */
+
+form.addEventListener("submit",async(event)=>{
+
+event.preventDefault();
+
+
+if(!currentUser){
+
+showError(
+"Please login to your account before submitting a transfer."
+);
+
+return;
+
+}
+
+
+const amount =
+Number(
+document.getElementById("amount").value
+);
+
+const senderName =
+document
+.getElementById("senderName")
+.value
+.trim();
+
+const reference =
+document
+.getElementById("reference")
+.value
+.trim();
+
+
+if(!amount || amount <= 0){
+
+showError("Please enter a valid transfer amount.");
+
+return;
+
+}
+
+if(!senderName){
+
+showError("Please enter the sender name.");
+
+return;
+
+}
+
+if(!reference){
+
+showError("Please enter the transfer reference.");
+
+return;
+
+}
+
+
+/* Prevent double submission */
+
+submitBtn.disabled = true;
+
+loadingOverlay.classList.add("show");
+
+
+try{
+
+await addDoc(
+collection(db,"transactions"),
+{
+
+userId:currentUser.uid,
+
+username:
+currentUser.email || "User",
+
+type:"Deposit",
+
+method:"Bank Transfer",
+
+currency:"USD",
+
+amount:amount,
+
+senderName:senderName,
+
+reference:reference,
+
+bankName:"Lead",
+
+accountNumber:"215132049375",
+
+status:"Pending",
+
+createdAt:serverTimestamp()
+
+}
+);
+
+
+/* Hide loading */
+
+loadingOverlay.classList.remove("show");
+
+
+/* Clear form */
+
+form.reset();
+
+
+/* Show mature success modal */
+
+successOverlay.classList.add("show");
+
+
+}catch(error){
+
+console.error(error);
+
+loadingOverlay.classList.remove("show");
+
+showError(
+"Transaction could not be submitted. Please try again."
+);
+
+}finally{
+
+submitBtn.disabled = false;
+
+}
+
+});
+
+
+/* ================= SUCCESS CLOSE ================= */
+
+successClose.addEventListener("click",()=>{
+
+successOverlay.classList.remove("show");
+
+});
+
+
+/* ================= ERROR MESSAGE ================= */
+
+function showError(message){
+
+alert(message);
+
+}
+
+</script>
+
+
+<script>
+
+/* ================= COPY FUNCTION ================= */
+
+function copyText(text,message){
+
+navigator.clipboard
+.writeText(text)
+.then(()=>{
+
+showMiniMessage(message);
+
+})
+.catch(()=>{
+
+showMiniMessage("Unable to copy");
+
+});
+
+}
+
+
+/* ================= SMALL MESSAGE ================= */
+
+function showMiniMessage(message){
+
+const box =
+document.createElement("div");
+
+box.innerText =
+message;
+
+box.style.position="fixed";
+box.style.bottom="25px";
+box.style.left="50%";
+box.style.transform="translateX(-50%)";
+box.style.background="#161616";
+box.style.border="1px solid #333";
+box.style.color="#fff";
+box.style.padding="11px 16px";
+box.style.borderRadius="10px";
+box.style.fontSize="11px";
+box.style.zIndex="20000";
+box.style.boxShadow="0 15px 40px rgba(0,0,0,.6)";
+
+document.body.appendChild(box);
+
+setTimeout(()=>{
+
+box.remove();
+
+},1800);
+
+}
+
+</script>
+
+</body>
+</html>
