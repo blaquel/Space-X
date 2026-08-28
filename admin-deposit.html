@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space X Admin | Deposit Approval</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
 body{background:#050505;color:#fff;min-height:100vh;padding:18px}
@@ -58,6 +59,7 @@ h1{font-size:34px;letter-spacing:-1px}
 .decline:hover{background:#260b0b}
 .action:disabled{opacity:.45;cursor:not-allowed}
 .txid{font-size:9px;color:#444;word-break:break-all;margin-top:12px}
+
 @media(max-width:650px){
  body{padding:14px}
  h1{font-size:28px}
@@ -69,357 +71,1800 @@ h1{font-size:34px;letter-spacing:-1px}
 }
 </style>
 </head>
+
 <body>
+
 <div class="shell">
-  <header class="header">
-    <button class="back" onclick="location.href='admin.html'" aria-label="Back">←</button>
-    <div class="brand">
-      <img src="logo.png" alt="Space X">
-      <h2>Deposit Approval</h2>
-    </div>
-    <div class="header-space"></div>
-  </header>
 
-  <section class="hero">
-    <div class="eyebrow">Admin Control</div>
-    <h1>Deposit Requests</h1>
-    <p class="subtitle">Review crypto, bank transfer and gift card submissions. Gift card proof images are displayed directly from the transaction record when available.</p>
-  </section>
+<header class="header">
 
-  <section class="stats">
-    <div class="stat pending"><small>Pending</small><strong id="pendingCount">0</strong></div>
-    <div class="stat approved"><small>Approved</small><strong id="approvedCount">0</strong></div>
-    <div class="stat"><small>Total Deposits</small><strong id="totalCount">0</strong></div>
-  </section>
+<button
+class="back"
+onclick="location.href='admin.html'"
+aria-label="Back">
+←
+</button>
 
-  <div class="toolbar">
-    <b>Incoming requests</b>
-    <button class="refresh" id="refreshBtn">↻ Refresh</button>
-  </div>
-
-  <div class="error" id="errorBox">
-    <b>Unable to load transactions</b><br>
-    <span id="errorText"></span>
-  </div>
-
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    Loading deposit requests...
-  </div>
-
-  <div id="depositList"></div>
+<div class="brand">
+<img src="logo.png" alt="Space X">
+<h2>Deposit Approval</h2>
 </div>
 
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  onSnapshot,
-  doc,
-  getDoc,
-  updateDoc,
-  increment
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+<div class="header-space"></div>
 
-const firebaseConfig={
-  apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-  authDomain:"novax-acb23.firebaseapp.com",
-  projectId:"novax-acb23",
-  storageBucket:"novax-acb23.firebasestorage.app",
-  messagingSenderId:"203988106178",
-  appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+</header>
+
+
+<section class="hero">
+
+<div class="eyebrow">
+Admin Control
+</div>
+
+<h1>
+Deposit Requests
+</h1>
+
+<p class="subtitle">
+Review crypto, bank transfer and gift card submissions. Gift card proof images are displayed directly from the transaction record when available.
+</p>
+
+</section>
+
+
+<section class="stats">
+
+<div class="stat pending">
+<small>Pending</small>
+<strong id="pendingCount">0</strong>
+</div>
+
+<div class="stat approved">
+<small>Approved</small>
+<strong id="approvedCount">0</strong>
+</div>
+
+<div class="stat">
+<small>Total Deposits</small>
+<strong id="totalCount">0</strong>
+</div>
+
+</section>
+
+
+<div class="toolbar">
+
+<b>
+Incoming requests
+</b>
+
+<button
+class="refresh"
+id="refreshBtn">
+↻ Refresh
+</button>
+
+</div>
+
+
+<div
+class="error"
+id="errorBox">
+
+<b>
+Unable to load transactions
+</b>
+
+<br>
+
+<span id="errorText"></span>
+
+</div>
+
+
+<div
+class="loading"
+id="loading">
+
+<div class="spinner"></div>
+
+Loading deposit requests...
+
+</div>
+
+
+<div id="depositList"></div>
+
+</div>
+
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+
+import {
+getAuth,
+onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+import {
+getFirestore,
+collection,
+onSnapshot,
+doc,
+getDoc,
+updateDoc,
+increment
+}
+from
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+authDomain:
+"novax-acb23.firebaseapp.com",
+
+projectId:
+"novax-acb23",
+
+storageBucket:
+"novax-acb23.firebasestorage.app",
+
+messagingSenderId:
+"203988106178",
+
+appId:
+"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
 
-const list=document.getElementById("depositList");
-const loading=document.getElementById("loading");
-const errorBox=document.getElementById("errorBox");
-const errorText=document.getElementById("errorText");
-const pendingCount=document.getElementById("pendingCount");
-const approvedCount=document.getElementById("approvedCount");
-const totalCount=document.getElementById("totalCount");
-const refreshBtn=document.getElementById("refreshBtn");
 
-let unsubscribe=null;
+const app =
+initializeApp(firebaseConfig);
 
-function esc(v){
-  return String(v ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+
+const list =
+document.getElementById("depositList");
+
+const loading =
+document.getElementById("loading");
+
+const errorBox =
+document.getElementById("errorBox");
+
+const errorText =
+document.getElementById("errorText");
+
+const pendingCount =
+document.getElementById("pendingCount");
+
+const approvedCount =
+document.getElementById("approvedCount");
+
+const totalCount =
+document.getElementById("totalCount");
+
+const refreshBtn =
+document.getElementById("refreshBtn");
+
+
+
+let unsubscribe = null;
+
+
+
+/* =========================
+   SECURITY ESCAPE
+========================= */
+
+function esc(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 }
 
-function norm(v){
-  return String(v ?? "").trim().toLowerCase();
+
+
+/* =========================
+   NORMALIZE
+========================= */
+
+function norm(value){
+
+return String(value ?? "")
+.trim()
+.toLowerCase();
+
 }
 
-function dateValue(v){
-  try{
-    if(v && typeof v.toDate==="function") return v.toDate().toLocaleString();
-    return v ? String(v) : "—";
-  }catch{return "—";}
+
+
+/* =========================
+   FIND FIRST AVAILABLE FIELD
+========================= */
+
+function firstValue(data, fields){
+
+for(const field of fields){
+
+const value =
+data[field];
+
+if(
+value !== undefined &&
+value !== null &&
+String(value).trim() !== ""
+){
+
+return value;
+
 }
 
-function money(v,currency){
-  const n=Number(v);
-  if(!Number.isFinite(n)) return esc(v);
-  const c=String(currency||"USD").toUpperCase();
-  if(c==="NGN") return "₦"+n.toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2});
-  if(c==="EUR") return "€"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
-  if(c==="GBP") return "£"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
-  if(c==="USDT") return n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:6})+" USDT";
-  return "$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 }
+
+return "";
+
+}
+
+
+
+/* =========================
+   DATE
+========================= */
+
+function dateValue(value){
+
+try{
+
+if(
+value &&
+typeof value.toDate === "function"
+){
+
+return value
+.toDate()
+.toLocaleString();
+
+}
+
+return value
+? String(value)
+: "—";
+
+}
+catch{
+
+return "—";
+
+}
+
+}
+
+
+
+/* =========================
+   MONEY
+========================= */
+
+function money(value,currency){
+
+const number =
+Number(value);
+
+if(!Number.isFinite(number)){
+
+return esc(value);
+
+}
+
+const c =
+String(currency || "USD")
+.toUpperCase();
+
+
+
+if(c === "NGN"){
+
+return "₦" +
+number.toLocaleString(
+"en-NG",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+
+if(c === "EUR"){
+
+return "€" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+
+if(c === "GBP"){
+
+return "£" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+
+if(c === "USDT"){
+
+return number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:6
+}
+) + " USDT";
+
+}
+
+
+
+return "$" +
+number.toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+
+/* =========================
+   ERROR
+========================= */
 
 function showError(message){
-  loading.style.display="none";
-  errorBox.style.display="block";
-  errorText.textContent=message;
+
+loading.style.display =
+"none";
+
+errorBox.style.display =
+"block";
+
+errorText.textContent =
+message;
+
 }
+
+
 
 function hideError(){
-  errorBox.style.display="none";
-  errorText.textContent="";
+
+errorBox.style.display =
+"none";
+
+errorText.textContent =
+"";
+
 }
 
-function methodOf(d){
-  if(d.method) return String(d.method);
-  if(norm(d.type)==="gift card") return "Gift Card";
-  return "Deposit";
+
+
+/* =========================
+   DETECT METHOD
+========================= */
+
+function methodOf(data){
+
+const type =
+norm(data.type);
+
+const method =
+norm(data.method);
+
+
+
+if(
+type === "gift card" ||
+method === "gift card"
+){
+
+return "Gift Card";
+
 }
+
+
+
+if(
+type === "bank transfer" ||
+type === "bank_transfer" ||
+method === "bank transfer" ||
+method === "bank_transfer"
+){
+
+return "Bank Transfer";
+
+}
+
+
+
+if(
+type === "crypto" ||
+method === "crypto"
+){
+
+return "Crypto";
+
+}
+
+
+
+if(
+type === "deposit" ||
+method === "deposit"
+){
+
+return "Deposit";
+
+}
+
+
+
+if(data.paymentMethod){
+
+return String(data.paymentMethod);
+
+}
+
+
+
+return data.method ||
+data.type ||
+"Deposit";
+
+}
+
+
+
+/* =========================
+   DETECT DEPOSIT RECORD
+========================= */
+
+function isDepositRecord(data){
+
+const type =
+norm(data.type);
+
+const method =
+norm(data.method);
+
+const paymentMethod =
+norm(data.paymentMethod);
+
+
+
+return (
+
+type === "deposit" ||
+
+type === "gift card" ||
+
+type === "gift_card" ||
+
+type === "bank transfer" ||
+
+type === "bank_transfer" ||
+
+type === "crypto" ||
+
+method === "deposit" ||
+
+method === "gift card" ||
+
+method === "gift_card" ||
+
+method === "bank transfer" ||
+
+method === "bank_transfer" ||
+
+method === "crypto" ||
+
+paymentMethod === "deposit" ||
+
+paymentMethod === "gift card" ||
+
+paymentMethod === "gift_card" ||
+
+paymentMethod === "bank transfer" ||
+
+paymentMethod === "bank_transfer" ||
+
+paymentMethod === "crypto"
+
+);
+
+}
+
+
+
+/* =========================
+   RENDER
+========================= */
 
 function render(snapshot){
-  loading.style.display="none";
-  hideError();
 
-  const deposits=[];
-  snapshot.forEach(s=>{
-    const d=s.data();
-    const type=norm(d.type);
-    const method=norm(d.method);
+loading.style.display =
+"none";
 
-    // Accept the formats used by the current deposit pages:
-    // Deposit, deposit, Gift Card, crypto and Bank Transfer.
-    const isDeposit =
-      type==="deposit" ||
-      type==="gift card" ||
-      method==="crypto" ||
-      method==="bank transfer" ||
-      method==="gift card";
+hideError();
 
-    if(isDeposit){
-      deposits.push({id:s.id,data:d});
-    }
-  });
 
-  deposits.sort((a,b)=>{
-    const at=a.data.createdAt && typeof a.data.createdAt.toMillis==="function" ? a.data.createdAt.toMillis() : 0;
-    const bt=b.data.createdAt && typeof b.data.createdAt.toMillis==="function" ? b.data.createdAt.toMillis() : 0;
-    return bt-at;
-  });
 
-  const pending=deposits.filter(x=>norm(x.data.status)==="pending").length;
-  const approved=deposits.filter(x=>norm(x.data.status)==="approved").length;
+const deposits = [];
 
-  pendingCount.textContent=pending;
-  approvedCount.textContent=approved;
-  totalCount.textContent=deposits.length;
 
-  if(!deposits.length){
-    list.innerHTML='<div class="empty"><b>No deposit requests</b><br><br>No matching transactions were found in Firestore.</div>';
-    return;
-  }
 
-  list.innerHTML="";
+snapshot.forEach(item=>{
 
-  deposits.forEach(({id,data})=>{
-    const status=norm(data.status);
-    const pending=status==="pending";
-    const username=data.username||data.fullname||data.name||"Unknown User";
-    const currency=data.currency||"USD";
-    const method=methodOf(data);
-    const userId=data.userId||data.uid||"Not provided";
-    const initial=String(username).charAt(0).toUpperCase();
-    const image=data.giftCardImage||data.imageData||data.proofImage||data.imageURL||"";
+const data =
+item.data();
 
-    const reference =
-      data.walletAddress ||
-      data.transferReference ||
-      data.reference ||
-      data.accountNumber ||
-      data.wallet ||
-      data.address ||
-      "Not provided";
 
-    const card=document.createElement("article");
-    card.className="card";
 
-    const statusClass=status==="approved"?"approved":status==="declined"?"declined":"";
-    const statusText=status==="approved"?"Approved":status==="declined"?"Declined":"Pending";
+if(
+isDepositRecord(data)
+){
 
-    card.innerHTML=`
-      <div class="card-top">
-        <div class="user">
-          <div class="avatar">${esc(initial)}</div>
-          <div>
-            <h3>${esc(username)}</h3>
-            <span>${esc(method)} • ${esc(currency)}</span>
-          </div>
-        </div>
-        <div class="badge ${statusClass}">${statusText}</div>
-      </div>
+deposits.push({
 
-      <div class="grid">
-        <div class="item"><small>Amount</small><div class="amount">${money(data.amount,currency)}</div></div>
-        <div class="item"><small>Method</small><div>${esc(method)}</div></div>
-        <div class="item"><small>Currency</small><div>${esc(currency)}</div></div>
-        <div class="item"><small>Reference / Wallet</small><div>${esc(reference)}</div></div>
-        ${data.giftCardType ? `<div class="item"><small>Gift Card</small><div>${esc(data.giftCardType)}</div></div>` : ""}
-        ${data.giftCardCode ? `<div class="item"><small>Gift Card Code</small><div>${esc(data.giftCardCode)}</div></div>` : ""}
-        ${data.bankName ? `<div class="item"><small>Bank</small><div>${esc(data.bankName)}</div></div>` : ""}
-        ${data.accountName ? `<div class="item"><small>Account Name</small><div>${esc(data.accountName)}</div></div>` : ""}
-        ${data.accountNumber ? `<div class="item"><small>Account Number</small><div>${esc(data.accountNumber)}</div></div>` : ""}
-        <div class="item"><small>Date</small><div>${esc(dateValue(data.createdAt))}</div></div>
-        <div class="item"><small>User ID</small><div>${esc(userId)}</div></div>
-      </div>
+id:item.id,
 
-      ${image ? `
-        <div class="proof">
-          <div class="proof-label">Gift card / payment proof</div>
-          <img src="${esc(image)}" alt="Deposit proof">
-        </div>` : ""}
+data:data
 
-      ${pending ? `
-        <div class="actions">
-          <button class="action approve" data-id="${esc(id)}">✓ Approve & Credit</button>
-          <button class="action decline" data-id="${esc(id)}">✕ Decline</button>
-        </div>` : ""}
-
-      <div class="txid">Transaction ID: ${esc(id)}</div>
-    `;
-
-    if(pending){
-      card.querySelector(".approve").addEventListener("click",()=>approveDeposit(id,card));
-      card.querySelector(".decline").addEventListener("click",()=>declineDeposit(id,card));
-    }
-
-    list.appendChild(card);
-  });
-}
-
-function startListener(){
-  if(unsubscribe) unsubscribe();
-
-  loading.style.display="block";
-  list.innerHTML="";
-
-  try{
-    // Deliberately read the collection without where/type/status filters.
-    // This prevents "Deposit" vs "deposit" and "Gift Card" mismatches.
-    unsubscribe=onSnapshot(
-      collection(db,"transactions"),
-      render,
-      err=>{
-        console.error("Firestore listener:",err);
-        showError(err.message||"Firestore permission or connection error.");
-      }
-    );
-  }catch(err){
-    console.error(err);
-    showError(err.message||"Unable to connect to Firestore.");
-  }
-}
-
-async function approveDeposit(id,card){
-  if(!confirm("Approve this request and credit the user's balance?")) return;
-
-  const button=card.querySelector(".approve");
-  button.disabled=true;
-  button.textContent="Processing...";
-
-  try{
-    const transactionRef=doc(db,"transactions",id);
-    const snap=await getDoc(transactionRef);
-
-    if(!snap.exists()) throw new Error("Transaction no longer exists.");
-
-    const data=snap.data();
-    if(norm(data.status)!=="pending") throw new Error("This transaction has already been processed.");
-
-    const userId=data.userId||data.uid;
-    if(!userId) throw new Error("This request has no userId/uid.");
-
-    const amount=Number(data.amount);
-    if(!Number.isFinite(amount)||amount<=0) throw new Error("Invalid deposit amount.");
-
-    const userRef=doc(db,"users",userId);
-    const userSnap=await getDoc(userRef);
-    if(!userSnap.exists()) throw new Error("The user account could not be found.");
-
-    await updateDoc(userRef,{balance:increment(amount)});
-
-    await updateDoc(transactionRef,{
-      status:"Approved",
-      approvedAt:new Date()
-    });
-
-    alert("Deposit approved successfully.");
-  }catch(err){
-    console.error("Approve error:",err);
-    alert("Approval failed:\n\n"+(err.message||err));
-    button.disabled=false;
-    button.textContent="✓ Approve & Credit";
-  }
-}
-
-async function declineDeposit(id,card){
-  if(!confirm("Decline this request?")) return;
-
-  const button=card.querySelector(".decline");
-  button.disabled=true;
-  button.textContent="Processing...";
-
-  try{
-    const transactionRef=doc(db,"transactions",id);
-    const snap=await getDoc(transactionRef);
-
-    if(!snap.exists()) throw new Error("Transaction no longer exists.");
-    if(norm(snap.data().status)!=="pending") throw new Error("This transaction has already been processed.");
-
-    await updateDoc(transactionRef,{
-      status:"Declined",
-      declinedAt:new Date()
-    });
-
-    alert("Deposit declined.");
-  }catch(err){
-    console.error("Decline error:",err);
-    alert("Decline failed:\n\n"+(err.message||err));
-    button.disabled=false;
-    button.textContent="✕ Decline";
-  }
-}
-
-onAuthStateChanged(auth,user=>{
-  if(!user){
-    loading.style.display="none";
-    showError("You must be logged in to view deposit requests.");
-    return;
-  }
-  startListener();
 });
 
-refreshBtn.addEventListener("click",startListener);
+}
+
+});
+
+
+
+deposits.sort((a,b)=>{
+
+const at =
+a.data.createdAt &&
+typeof a.data.createdAt.toMillis === "function"
+
+? a.data.createdAt.toMillis()
+
+: 0;
+
+
+
+const bt =
+b.data.createdAt &&
+typeof b.data.createdAt.toMillis === "function"
+
+? b.data.createdAt.toMillis()
+
+: 0;
+
+
+
+return bt - at;
+
+});
+
+
+
+const pending =
+deposits.filter(
+item =>
+norm(item.data.status) === "pending"
+).length;
+
+
+
+const approved =
+deposits.filter(
+item =>
+norm(item.data.status) === "approved"
+).length;
+
+
+
+pendingCount.textContent =
+pending;
+
+approvedCount.textContent =
+approved;
+
+totalCount.textContent =
+deposits.length;
+
+
+
+if(!deposits.length){
+
+list.innerHTML = `
+
+<div class="empty">
+
+<b>No deposit requests</b>
+
+<br><br>
+
+No matching transactions were found in Firestore.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+list.innerHTML = "";
+
+
+
+deposits.forEach(
+({id,data})=>{
+
+
+
+const status =
+norm(data.status);
+
+const pending =
+status === "pending";
+
+
+
+/* USER */
+
+const username =
+firstValue(
+data,
+[
+"username",
+"fullname",
+"name",
+"email"
+]
+) ||
+"Unknown User";
+
+
+
+/* CURRENCY */
+
+const currency =
+firstValue(
+data,
+[
+"currency",
+"currencyCode"
+]
+) ||
+"USD";
+
+
+
+/* METHOD */
+
+const method =
+methodOf(data);
+
+
+
+/* USER ID */
+
+const userId =
+firstValue(
+data,
+[
+"userId",
+"uid",
+"userUID",
+"userUid"
+]
+) ||
+"Not provided";
+
+
+
+/* INITIAL */
+
+const initial =
+String(username)
+.charAt(0)
+.toUpperCase();
+
+
+
+/* =========================
+   GIFT CARD IMAGE
+========================= */
+
+const image =
+firstValue(
+data,
+[
+
+/* Main gift-card field */
+"giftCardImage",
+
+/* Common image fields */
+"imageURL",
+"imageUrl",
+"image",
+"imageData",
+
+/* Proof fields */
+"proofImage",
+"proofImageUrl",
+"proofImageURL",
+"paymentProof",
+"paymentProofImage",
+"receiptImage",
+"receiptImageUrl",
+"receiptImageURL",
+
+/* Upload variations */
+"uploadedImage",
+"uploadedImageUrl",
+"uploadedImageURL",
+"fileURL",
+"fileUrl"
+
+]
+
+);
+
+
+
+/* =========================
+   BANK ACCOUNT HOLDER
+========================= */
+
+const accountHolder =
+firstValue(
+data,
+[
+
+"accountHolderName",
+
+"accountHolder",
+
+"accountHolderFullName",
+
+"accountName",
+
+"accountHoldername",
+
+"bankAccountHolder",
+
+"bankAccountName",
+
+"beneficiaryName",
+
+"senderName",
+
+"fullAccountName"
+
+]
+
+);
+
+
+
+/* =========================
+   BANK NAME
+========================= */
+
+const bankName =
+firstValue(
+data,
+[
+"bankName",
+"bank",
+"bank_name"
+]
+);
+
+
+
+/* =========================
+   ACCOUNT NUMBER
+========================= */
+
+const accountNumber =
+firstValue(
+data,
+[
+"accountNumber",
+"accountNo",
+"account_number",
+"bankAccountNumber"
+]
+);
+
+
+
+/* =========================
+   REFERENCE
+========================= */
+
+const reference =
+firstValue(
+data,
+[
+
+"walletAddress",
+
+"wallet",
+
+"address",
+
+"transferReference",
+
+"transactionReference",
+
+"reference",
+
+"txHash",
+
+"transactionHash"
+
+]
+
+) ||
+"Not provided";
+
+
+
+const card =
+document.createElement("article");
+
+card.className =
+"card";
+
+
+
+const statusClass =
+status === "approved"
+
+? "approved"
+
+: status === "declined"
+
+? "declined"
+
+: "";
+
+
+
+const statusText =
+status === "approved"
+
+? "Approved"
+
+: status === "declined"
+
+? "Declined"
+
+: "Pending";
+
+
+
+/* IMAGE SAFE CHECK */
+
+let proofHTML = "";
+
+
+
+if(image){
+
+const safeImage =
+esc(image);
+
+
+
+proofHTML = `
+
+<div class="proof">
+
+<div class="proof-label">
+
+Gift card / payment proof
+
+</div>
+
+<img
+src="${safeImage}"
+alt="Deposit proof"
+loading="lazy"
+onerror="this.parentElement.innerHTML='<div style=&quot;color:#777;font-size:12px;padding:20px;text-align:center&quot;>Unable to display uploaded image.</div>'"
+>
+
+</div>
+
+`;
+
+}
+
+
+
+/* BANK DETAILS */
+
+let bankHTML = "";
+
+
+
+if(accountHolder){
+
+bankHTML += `
+
+<div class="item">
+
+<small>
+Account Holder
+</small>
+
+<div>
+${esc(accountHolder)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+
+if(bankName){
+
+bankHTML += `
+
+<div class="item">
+
+<small>
+Bank
+</small>
+
+<div>
+${esc(bankName)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+
+if(accountNumber){
+
+bankHTML += `
+
+<div class="item">
+
+<small>
+Account Number
+</small>
+
+<div>
+${esc(accountNumber)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+
+/* GIFT CARD DETAILS */
+
+let giftHTML = "";
+
+
+
+const giftType =
+firstValue(
+data,
+[
+"giftCardType",
+"giftCard",
+"cardType"
+]
+);
+
+
+
+const giftCode =
+firstValue(
+data,
+[
+"giftCardCode",
+"cardCode",
+"code"
+]
+);
+
+
+
+if(giftType){
+
+giftHTML += `
+
+<div class="item">
+
+<small>
+Gift Card
+</small>
+
+<div>
+${esc(giftType)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+
+if(giftCode){
+
+giftHTML += `
+
+<div class="item">
+
+<small>
+Gift Card Code
+</small>
+
+<div>
+${esc(giftCode)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+
+/* CARD */
+
+card.innerHTML = `
+
+<div class="card-top">
+
+<div class="user">
+
+<div class="avatar">
+
+${esc(initial)}
+
+</div>
+
+<div>
+
+<h3>
+${esc(username)}
+</h3>
+
+<span>
+${esc(method)} • ${esc(currency)}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="badge ${statusClass}">
+
+${statusText}
+
+</div>
+
+</div>
+
+
+
+<div class="grid">
+
+
+<div class="item">
+
+<small>
+Amount
+</small>
+
+<div class="amount">
+
+${money(
+data.amount,
+currency
+)}
+
+</div>
+
+</div>
+
+
+
+<div class="item">
+
+<small>
+Method
+</small>
+
+<div>
+${esc(method)}
+</div>
+
+</div>
+
+
+
+<div class="item">
+
+<small>
+Currency
+</small>
+
+<div>
+${esc(currency)}
+</div>
+
+</div>
+
+
+
+<div class="item">
+
+<small>
+Reference / Wallet
+</small>
+
+<div>
+${esc(reference)}
+</div>
+
+</div>
+
+
+
+${giftHTML}
+
+${bankHTML}
+
+
+
+<div class="item">
+
+<small>
+Date
+</small>
+
+<div>
+${esc(
+dateValue(
+data.createdAt
+)
+)}
+</div>
+
+</div>
+
+
+
+<div class="item">
+
+<small>
+User ID
+</small>
+
+<div>
+${esc(userId)}
+</div>
+
+</div>
+
+
+</div>
+
+
+
+${proofHTML}
+
+
+
+${
+pending
+
+? `
+
+<div class="actions">
+
+<button
+class="action approve"
+data-id="${esc(id)}">
+
+✓ Approve & Credit
+
+</button>
+
+
+<button
+class="action decline"
+data-id="${esc(id)}">
+
+✕ Decline
+
+</button>
+
+</div>
+
+`
+
+: ""
+
+}
+
+
+
+<div class="txid">
+
+Transaction ID:
+${esc(id)}
+
+</div>
+
+`;
+
+
+
+/* BUTTON EVENTS */
+
+if(pending){
+
+const approveButton =
+card.querySelector(".approve");
+
+const declineButton =
+card.querySelector(".decline");
+
+
+
+approveButton.addEventListener(
+"click",
+()=>approveDeposit(
+id,
+card
+)
+);
+
+
+
+declineButton.addEventListener(
+"click",
+()=>declineDeposit(
+id,
+card
+)
+);
+
+}
+
+
+
+list.appendChild(card);
+
+}
+
+);
+
+}
+
+
+
+/* =========================
+   FIRESTORE LISTENER
+========================= */
+
+function startListener(){
+
+if(unsubscribe){
+
+unsubscribe();
+
+unsubscribe =
+null;
+
+}
+
+
+
+loading.style.display =
+"block";
+
+list.innerHTML =
+"";
+
+hideError();
+
+
+
+try{
+
+unsubscribe =
+onSnapshot(
+
+collection(
+db,
+"transactions"
+),
+
+render,
+
+error=>{
+
+console.error(
+"Firestore listener:",
+error
+);
+
+showError(
+error.message ||
+"Firestore permission or connection error."
+);
+
+}
+
+);
+
+}
+catch(error){
+
+console.error(error);
+
+showError(
+error.message ||
+"Unable to connect to Firestore."
+);
+
+}
+
+}
+
+
+
+/* =========================
+   APPROVE
+========================= */
+
+async function approveDeposit(
+id,
+card
+){
+
+if(
+!confirm(
+"Approve this request and credit the user's balance?"
+)
+){
+
+return;
+
+}
+
+
+
+const button =
+card.querySelector(".approve");
+
+
+
+button.disabled =
+true;
+
+button.textContent =
+"Processing...";
+
+
+
+try{
+
+const transactionRef =
+doc(
+db,
+"transactions",
+id
+);
+
+
+
+const snap =
+await getDoc(
+transactionRef
+);
+
+
+
+if(!snap.exists()){
+
+throw new Error(
+"Transaction no longer exists."
+);
+
+}
+
+
+
+const data =
+snap.data();
+
+
+
+if(
+norm(data.status) !== "pending"
+){
+
+throw new Error(
+"This transaction has already been processed."
+);
+
+}
+
+
+
+const userId =
+data.userId ||
+data.uid;
+
+
+
+if(!userId){
+
+throw new Error(
+"This request has no userId or uid."
+);
+
+}
+
+
+
+const amount =
+Number(data.amount);
+
+
+
+if(
+!Number.isFinite(amount) ||
+amount <= 0
+){
+
+throw new Error(
+"Invalid deposit amount."
+);
+
+}
+
+
+
+const userRef =
+doc(
+db,
+"users",
+userId
+);
+
+
+
+const userSnap =
+await getDoc(
+userRef
+);
+
+
+
+if(!userSnap.exists()){
+
+throw new Error(
+"The user account could not be found."
+);
+
+}
+
+
+
+/* CREDIT BALANCE */
+
+await updateDoc(
+userRef,
+{
+balance:
+increment(amount)
+}
+);
+
+
+
+/* UPDATE TRANSACTION */
+
+await updateDoc(
+
+transactionRef,
+
+{
+
+status:
+"Approved",
+
+approvedAt:
+new Date()
+
+}
+
+);
+
+
+
+alert(
+"Deposit approved successfully."
+);
+
+}
+catch(error){
+
+console.error(
+"Approve error:",
+error
+);
+
+
+
+alert(
+"Approval failed:\n\n" +
+(error.message || error)
+);
+
+
+
+button.disabled =
+false;
+
+button.textContent =
+"✓ Approve & Credit";
+
+}
+
+}
+
+
+
+/* =========================
+   DECLINE
+========================= */
+
+async function declineDeposit(
+id,
+card
+){
+
+if(
+!confirm(
+"Decline this request?"
+)
+){
+
+return;
+
+}
+
+
+
+const button =
+card.querySelector(".decline");
+
+
+
+button.disabled =
+true;
+
+button.textContent =
+"Processing...";
+
+
+
+try{
+
+const transactionRef =
+doc(
+db,
+"transactions",
+id
+);
+
+
+
+const snap =
+await getDoc(
+transactionRef
+);
+
+
+
+if(!snap.exists()){
+
+throw new Error(
+"Transaction no longer exists."
+);
+
+}
+
+
+
+if(
+norm(
+snap.data().status
+) !== "pending"
+){
+
+throw new Error(
+"This transaction has already been processed."
+);
+
+}
+
+
+
+await updateDoc(
+
+transactionRef,
+
+{
+
+status:
+"Declined",
+
+declinedAt:
+new Date()
+
+}
+
+);
+
+
+
+alert(
+"Deposit declined."
+);
+
+}
+catch(error){
+
+console.error(
+"Decline error:",
+error
+);
+
+
+
+alert(
+"Decline failed:\n\n" +
+(error.message || error)
+);
+
+
+
+button.disabled =
+false;
+
+button.textContent =
+"✕ Decline";
+
+}
+
+}
+
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+auth,
+user=>{
+
+if(!user){
+
+loading.style.display =
+"none";
+
+showError(
+"You must be logged in to view deposit requests."
+);
+
+return;
+
+}
+
+
+
+startListener();
+
+}
+);
+
+
+
+/* =========================
+   REFRESH
+========================= */
+
+refreshBtn.addEventListener(
+"click",
+startListener
+);
+
 </script>
+
 </body>
 </html>
