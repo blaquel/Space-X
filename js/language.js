@@ -1,6 +1,40 @@
 /* =========================================================
-   SPACE X — 100 LANGUAGE TRANSLATION SYSTEM
+   SPACE X — 23 LANGUAGE SYSTEM
    File: js/language.js
+
+   23 LANGUAGES:
+   English
+   Spanish
+   French
+   German
+   Portuguese
+   Italian
+   Dutch
+   Turkish
+   Russian
+   Ukrainian
+   Polish
+   Arabic
+   Hindi
+   Bengali
+   Chinese Simplified
+   Chinese Traditional
+   Japanese
+   Korean
+   Vietnamese
+   Thai
+   Indonesian
+   Malay
+   Filipino
+
+   Features:
+   - Remembers language across pages
+   - Works with localStorage
+   - Automatic translation on page load
+   - RTL support
+   - English fallback
+   - Works with data-translate=""
+   - Works with language selector
    ========================================================= */
 
 (() => {
@@ -10,241 +44,11 @@
     const STORAGE_KEY = "spaceXLanguage";
 
     /* =====================================================
-       TRANSLATIONS
-       ===================================================== */
-
-    const translations = {
-
-        en: {
-            hero_title: "Move your digital assets",
-            hero_title_accent: "forward.",
-            digital_platform: "Digital investment platform",
-            hero_description:
-                "Space X brings account management, digital asset activity and investment tools together in one streamlined experience.",
-            create_account: "Create Account",
-            explore_platform: "Explore Platform",
-            market_activity: "MARKET ACTIVITY",
-            real_time_view: "REAL-TIME VIEW",
-            built_for_clarity: "Built for clarity.",
-            features_description:
-                "A focused experience for monitoring your account, managing activity and accessing your Space X tools.",
-            simple_control: "Simple control",
-            simple_control_description:
-                "Access your balance, account activity and platform tools from a clean dashboard.",
-            track_activity: "Track activity",
-            track_activity_description:
-                "Review deposits, withdrawals and investment activity in one organized environment.",
-            modern_interface: "Modern interface",
-            modern_interface_description:
-                "A responsive dark interface designed for a consistent experience across mobile and desktop.",
-            one_platform: "One platform.",
-            about_description:
-                "Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.",
-            ready: "Ready to get started?",
-            ready_description:
-                "Create your Space X account and access the platform from your preferred device.",
-            open_account: "Open Space X Account",
-            home: "Home",
-            platform: "Platform",
-            about: "About",
-            login: "Login",
-            digital_asset_platform: "Digital Asset Platform",
-            all_rights: "© 2026 Space X. All Rights Reserved."
-        },
-
-        es: {
-            hero_title: "Mueve tus activos digitales",
-            hero_title_accent: "hacia adelante.",
-            digital_platform: "Plataforma de inversión digital",
-            hero_description:
-                "Space X reúne la gestión de cuentas, la actividad de activos digitales y las herramientas de inversión en una experiencia sencilla.",
-            create_account: "Crear cuenta",
-            explore_platform: "Explorar plataforma",
-            market_activity: "ACTIVIDAD DEL MERCADO",
-            real_time_view: "VISTA EN TIEMPO REAL",
-            built_for_clarity: "Diseñado para la claridad.",
-            features_description:
-                "Una experiencia enfocada para supervisar tu cuenta, gestionar actividades y acceder a tus herramientas de Space X.",
-            simple_control: "Control sencillo",
-            simple_control_description:
-                "Accede a tu saldo, actividad de cuenta y herramientas desde un panel limpio.",
-            track_activity: "Seguimiento de actividad",
-            track_activity_description:
-                "Revisa depósitos, retiros y actividades de inversión en un entorno organizado.",
-            modern_interface: "Interfaz moderna",
-            modern_interface_description:
-                "Una interfaz oscura y adaptable diseñada para una experiencia consistente en móviles y ordenadores.",
-            one_platform: "Una plataforma.",
-            about_description:
-                "Space X está diseñada para ofrecer una experiencia de cuenta digital sencilla, manteniendo las herramientas esenciales al alcance.",
-            ready: "¿Listo para comenzar?",
-            ready_description:
-                "Crea tu cuenta de Space X y accede a la plataforma desde tu dispositivo preferido.",
-            open_account: "Abrir cuenta Space X",
-            home: "Inicio",
-            platform: "Plataforma",
-            about: "Acerca de",
-            login: "Iniciar sesión",
-            digital_asset_platform: "Plataforma de activos digitales",
-            all_rights: "© 2026 Space X. Todos los derechos reservados."
-        },
-
-        fr: {
-            hero_title: "Faites avancer vos actifs",
-            hero_title_accent: "numériques.",
-            digital_platform: "Plateforme d'investissement numérique",
-            hero_description:
-                "Space X réunit la gestion de compte, l'activité des actifs numériques et les outils d'investissement dans une expérience fluide.",
-            create_account: "Créer un compte",
-            explore_platform: "Explorer la plateforme",
-            market_activity: "ACTIVITÉ DU MARCHÉ",
-            real_time_view: "VUE EN TEMPS RÉEL",
-            built_for_clarity: "Conçu pour la clarté.",
-            features_description:
-                "Une expérience conçue pour surveiller votre compte, gérer vos activités et accéder à vos outils Space X.",
-            simple_control: "Contrôle simple",
-            simple_control_description:
-                "Accédez à votre solde, à votre activité et aux outils de la plateforme depuis un tableau de bord clair.",
-            track_activity: "Suivre l'activité",
-            track_activity_description:
-                "Consultez les dépôts, retraits et activités d'investissement dans un environnement organisé.",
-            modern_interface: "Interface moderne",
-            modern_interface_description:
-                "Une interface sombre et responsive conçue pour une expérience cohérente sur mobile et ordinateur.",
-            one_platform: "Une plateforme.",
-            about_description:
-                "Space X est conçue autour d'une expérience de compte numérique simple, avec les outils essentiels toujours accessibles.",
-            ready: "Prêt à commencer ?",
-            ready_description:
-                "Créez votre compte Space X et accédez à la plateforme depuis votre appareil préféré.",
-            open_account: "Ouvrir un compte Space X",
-            home: "Accueil",
-            platform: "Plateforme",
-            about: "À propos",
-            login: "Connexion",
-            digital_asset_platform: "Plateforme d'actifs numériques",
-            all_rights: "© 2026 Space X. Tous droits réservés."
-        },
-
-        de: {
-            hero_title: "Bringen Sie Ihre digitalen",
-            hero_title_accent: "Vermögenswerte voran.",
-            digital_platform: "Digitale Investmentplattform",
-            hero_description:
-                "Space X vereint Kontoverwaltung, Aktivitäten mit digitalen Vermögenswerten und Investmenttools in einer übersichtlichen Erfahrung.",
-            create_account: "Konto erstellen",
-            explore_platform: "Plattform entdecken",
-            market_activity: "MARKTAKTIVITÄT",
-            real_time_view: "ECHTZEITANSICHT",
-            built_for_clarity: "Für Klarheit entwickelt.",
-            features_description:
-                "Eine fokussierte Umgebung zur Überwachung Ihres Kontos, Verwaltung Ihrer Aktivitäten und Nutzung Ihrer Space-X-Tools.",
-            simple_control: "Einfache Kontrolle",
-            simple_control_description:
-                "Greifen Sie über ein übersichtliches Dashboard auf Guthaben, Kontoaktivitäten und Plattformtools zu.",
-            track_activity: "Aktivitäten verfolgen",
-            track_activity_description:
-                "Überprüfen Sie Einzahlungen, Auszahlungen und Investmentaktivitäten in einer organisierten Umgebung.",
-            modern_interface: "Moderne Oberfläche",
-            modern_interface_description:
-                "Eine responsive dunkle Oberfläche für eine einheitliche Nutzung auf Mobilgeräten und Desktop.",
-            one_platform: "Eine Plattform.",
-            about_description:
-                "Space X bietet eine unkomplizierte digitale Kontoerfahrung mit den wichtigsten Tools direkt zur Hand.",
-            ready: "Bereit loszulegen?",
-            ready_description:
-                "Erstellen Sie Ihr Space-X-Konto und greifen Sie von Ihrem bevorzugten Gerät auf die Plattform zu.",
-            open_account: "Space-X-Konto eröffnen",
-            home: "Startseite",
-            platform: "Plattform",
-            about: "Über uns",
-            login: "Anmelden",
-            digital_asset_platform: "Plattform für digitale Vermögenswerte",
-            all_rights: "© 2026 Space X. Alle Rechte vorbehalten."
-        },
-
-        pt: {
-            hero_title: "Leve seus ativos digitais",
-            hero_title_accent: "adiante.",
-            digital_platform: "Plataforma de investimento digital",
-            hero_description:
-                "A Space X reúne gestão de contas, atividades de ativos digitais e ferramentas de investimento em uma experiência simplificada.",
-            create_account: "Criar conta",
-            explore_platform: "Explorar plataforma",
-            market_activity: "ATIVIDADE DO MERCADO",
-            real_time_view: "VISÃO EM TEMPO REAL",
-            built_for_clarity: "Feita para a clareza.",
-            features_description:
-                "Uma experiência focada no acompanhamento da sua conta, gerenciamento de atividades e acesso às ferramentas da Space X.",
-            simple_control: "Controle simples",
-            simple_control_description:
-                "Acesse seu saldo, atividades da conta e ferramentas da plataforma em um painel limpo.",
-            track_activity: "Acompanhar atividades",
-            track_activity_description:
-                "Revise depósitos, saques e atividades de investimento em um ambiente organizado.",
-            modern_interface: "Interface moderna",
-            modern_interface_description:
-                "Uma interface escura e responsiva para uma experiência consistente em dispositivos móveis e computadores.",
-            one_platform: "Uma plataforma.",
-            about_description:
-                "A Space X foi criada para oferecer uma experiência simples de conta digital, mantendo as ferramentas essenciais ao alcance.",
-            ready: "Pronto para começar?",
-            ready_description:
-                "Crie sua conta Space X e acesse a plataforma pelo dispositivo de sua preferência.",
-            open_account: "Abrir conta Space X",
-            home: "Início",
-            platform: "Plataforma",
-            about: "Sobre",
-            login: "Entrar",
-            digital_asset_platform: "Plataforma de ativos digitais",
-            all_rights: "© 2026 Space X. Todos os direitos reservados."
-        },
-
-        it: {
-            hero_title: "Porta i tuoi asset digitali",
-            hero_title_accent: "in avanti.",
-            digital_platform: "Piattaforma di investimento digitale",
-            hero_description:
-                "Space X riunisce gestione dell'account, attività sugli asset digitali e strumenti di investimento in un'esperienza semplice.",
-            create_account: "Crea account",
-            explore_platform: "Esplora la piattaforma",
-            market_activity: "ATTIVITÀ DI MERCATO",
-            real_time_view: "VISTA IN TEMPO REALE",
-            built_for_clarity: "Progettata per la chiarezza.",
-            features_description:
-                "Un'esperienza focalizzata per monitorare il tuo account, gestire le attività e accedere agli strumenti Space X.",
-            simple_control: "Controllo semplice",
-            simple_control_description:
-                "Accedi al saldo, alle attività dell'account e agli strumenti della piattaforma da una dashboard pulita.",
-            track_activity: "Monitora attività",
-            track_activity_description:
-                "Controlla depositi, prelievi e attività di investimento in un ambiente organizzato.",
-            modern_interface: "Interfaccia moderna",
-            modern_interface_description:
-                "Un'interfaccia scura e responsive progettata per un'esperienza coerente su mobile e desktop.",
-            one_platform: "Una piattaforma.",
-            about_description:
-                "Space X è progettata attorno a un'esperienza di account digitale semplice, con gli strumenti essenziali sempre disponibili.",
-            ready: "Pronto per iniziare?",
-            ready_description:
-                "Crea il tuo account Space X e accedi alla piattaforma dal dispositivo che preferisci.",
-            open_account: "Apri account Space X",
-            home: "Home",
-            platform: "Piattaforma",
-            about: "Chi siamo",
-            login: "Accedi",
-            digital_asset_platform: "Piattaforma di asset digitali",
-            all_rights: "© 2026 Space X. Tutti i diritti riservati."
-        }
-
-    };
-
-
-    /* =====================================================
-       LANGUAGE NAMES
+       23 LANGUAGES
        ===================================================== */
 
     const languageNames = {
+
         en: "English",
         es: "Español",
         fr: "Français",
@@ -267,169 +71,1084 @@
         th: "ไทย",
         id: "Bahasa Indonesia",
         ms: "Bahasa Melayu",
-        fil: "Filipino",
-        sw: "Kiswahili",
-        yo: "Yorùbá",
-        ig: "Igbo",
-        ha: "Hausa",
-        am: "አማርኛ",
-        af: "Afrikaans",
-        sq: "Shqip",
-        hy: "Հայերեն",
-        az: "Azərbaycan",
-        eu: "Euskara",
-        be: "Беларуская",
-        bs: "Bosanski",
-        bg: "Български",
-        ca: "Català",
-        hr: "Hrvatski",
-        cs: "Čeština",
-        da: "Dansk",
-        et: "Eesti",
-        fi: "Suomi",
-        gl: "Galego",
-        ka: "ქართული",
-        el: "Ελληνικά",
-        he: "עברית",
-        hu: "Magyar",
-        is: "Íslenska",
-        ga: "Gaeilge",
-        lv: "Latviešu",
-        lt: "Lietuvių",
-        lb: "Lëtzebuergesch",
-        mk: "Македонски",
-        mt: "Malti",
-        no: "Norsk",
-        ro: "Română",
-        sr: "Српски",
-        sk: "Slovenčina",
-        sl: "Slovenščina",
-        sv: "Svenska",
-        cy: "Cymraeg",
-        ur: "اردو",
-        fa: "فارسی",
-        ps: "پښتو",
-        ne: "नेपाली",
-        si: "සිංහල",
-        ta: "தமிழ்",
-        te: "తెలుగు",
-        kn: "ಕನ್ನಡ",
-        ml: "മലയാളം",
-        mr: "मराठी",
-        gu: "ગુજરાતી",
-        pa: "ਪੰਜਾਬੀ",
-        as: "অসমীয়া",
-        or: "ଓଡ଼ିଆ",
-        km: "ខ្មែរ",
-        lo: "ລາວ",
-        my: "မြန်မာ",
-        mn: "Монгол",
-        kk: "Қазақша",
-        ky: "Кыргызча",
-        uz: "O‘zbek",
-        tg: "Тоҷикӣ",
-        tk: "Türkmençe",
-        zu: "isiZulu",
-        xh: "isiXhosa",
-        so: "Soomaali",
-        rw: "Kinyarwanda",
-        ny: "Chichewa",
-        mg: "Malagasy",
-        la: "Latin",
-        eo: "Esperanto",
-        jv: "Javanese",
-        su: "Sundanese",
-        mi: "Te Reo Māori",
-        haw: "Hawaiian",
-        sm: "Samoan",
-        gd: "Scots Gaelic",
-        yi: "ייִדיש",
-        co: "Corsican",
-        fy: "Frisian",
-        ku: "Kurdî",
-        br: "Brezhoneg"
+        fil: "Filipino"
+
     };
 
 
     /* =====================================================
-       ELEMENT KEY MAPPING
+       RTL LANGUAGES
        ===================================================== */
 
-    const fallbackTextMap = {
+    const rtlLanguages = [
+        "ar"
+    ];
 
-        "Digital investment platform": "digital_platform",
 
-        "Space X brings account management, digital asset activity and investment tools together in one streamlined experience.":
-            "hero_description",
+    /* =====================================================
+       TRANSLATIONS
+       ===================================================== */
 
-        "Create Account": "create_account",
+    const translations = {
 
-        "Explore Platform": "explore_platform",
+        /* =================================================
+           ENGLISH
+           ================================================= */
 
-        "MARKET ACTIVITY": "market_activity",
+        en: {
 
-        "REAL-TIME VIEW": "real_time_view",
+            nav_home: "Home",
+            nav_platform: "Platform",
+            nav_about: "About",
+            nav_login: "Login",
+            nav_register: "Create Account",
 
-        "Built for clarity.": "built_for_clarity",
+            hero_eyebrow: "Digital investment platform",
 
-        "A focused experience for monitoring your account, managing activity and accessing your Space X tools.":
-            "features_description",
+            hero_title: "Move your digital assets",
 
-        "Simple control": "simple_control",
+            hero_title_accent: "forward.",
 
-        "Access your balance, account activity and platform tools from a clean dashboard.":
-            "simple_control_description",
+            hero_description:
+                "Space X brings account management, digital asset activity and investment tools together in one streamlined experience.",
 
-        "Track activity": "track_activity",
+            hero_create:
+                "Create Account",
 
-        "Review deposits, withdrawals and investment activity in one organized environment.":
-            "track_activity_description",
+            hero_explore:
+                "Explore Platform",
 
-        "Modern interface": "modern_interface",
+            market_activity:
+                "MARKET ACTIVITY",
 
-        "A responsive dark interface designed for a consistent experience across mobile and desktop.":
-            "modern_interface_description",
+            market_realtime:
+                "REAL-TIME VIEW",
 
-        "One platform.": "one_platform",
+            features_title:
+                "Built for clarity.",
 
-        "Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.":
-            "about_description",
+            features_description:
+                "A focused experience for monitoring your account, managing activity and accessing your Space X tools.",
 
-        "Ready to get started?": "ready",
+            feature_account_title:
+                "Simple control",
 
-        "Create your Space X account and access the platform from your preferred device.":
-            "ready_description",
+            feature_account_text:
+                "Access your balance, account activity and platform tools from a clean dashboard.",
 
-        "Open Space X Account": "open_account",
+            feature_activity_title:
+                "Track activity",
 
-        "Home": "home",
+            feature_activity_text:
+                "Review deposits, withdrawals and investment activity in one organized environment.",
 
-        "Platform": "platform",
+            feature_interface_title:
+                "Modern interface",
 
-        "About": "about",
+            feature_interface_text:
+                "A responsive dark interface designed for a consistent experience across mobile and desktop.",
 
-        "Login": "login",
+            about_title:
+                "One platform.",
 
-        "Digital Asset Platform": "digital_asset_platform",
+            about_description:
+                "Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.",
 
-        "© 2026 Space X. All Rights Reserved.": "all_rights"
+            cta_title:
+                "Ready to get started?",
+
+            cta_description:
+                "Create your Space X account and access the platform from your preferred device.",
+
+            cta_button:
+                "Open Space X Account",
+
+            footer_copyright:
+                "© 2026 Space X. All Rights Reserved.",
+
+            footer_platform:
+                "Digital Asset Platform"
+
+        },
+
+
+        /* =================================================
+           SPANISH
+           ================================================= */
+
+        es: {
+
+            nav_home: "Inicio",
+            nav_platform: "Plataforma",
+            nav_about: "Acerca de",
+            nav_login: "Iniciar sesión",
+            nav_register: "Crear cuenta",
+
+            hero_eyebrow: "Plataforma de inversión digital",
+
+            hero_title: "Mueve tus activos digitales",
+
+            hero_title_accent: "hacia adelante.",
+
+            hero_description:
+                "Space X reúne la gestión de cuentas, la actividad de activos digitales y las herramientas de inversión en una experiencia sencilla.",
+
+            hero_create: "Crear cuenta",
+
+            hero_explore: "Explorar plataforma",
+
+            market_activity: "ACTIVIDAD DEL MERCADO",
+
+            market_realtime: "VISTA EN TIEMPO REAL",
+
+            features_title: "Diseñado para la claridad.",
+
+            features_description:
+                "Una experiencia enfocada para supervisar tu cuenta, gestionar actividades y acceder a tus herramientas de Space X.",
+
+            feature_account_title: "Control sencillo",
+
+            feature_account_text:
+                "Accede a tu saldo, actividad de cuenta y herramientas desde un panel limpio.",
+
+            feature_activity_title: "Seguimiento de actividad",
+
+            feature_activity_text:
+                "Revisa depósitos, retiros y actividades de inversión en un entorno organizado.",
+
+            feature_interface_title: "Interfaz moderna",
+
+            feature_interface_text:
+                "Una interfaz oscura y adaptable diseñada para una experiencia consistente en móviles y ordenadores.",
+
+            about_title: "Una plataforma.",
+
+            about_description:
+                "Space X está diseñada para ofrecer una experiencia de cuenta digital sencilla, manteniendo las herramientas esenciales al alcance.",
+
+            cta_title: "¿Listo para comenzar?",
+
+            cta_description:
+                "Crea tu cuenta de Space X y accede a la plataforma desde tu dispositivo preferido.",
+
+            cta_button: "Abrir cuenta Space X",
+
+            footer_copyright:
+                "© 2026 Space X. Todos los derechos reservados.",
+
+            footer_platform:
+                "Plataforma de activos digitales"
+
+        },
+
+
+        /* =================================================
+           FRENCH
+           ================================================= */
+
+        fr: {
+
+            nav_home: "Accueil",
+            nav_platform: "Plateforme",
+            nav_about: "À propos",
+            nav_login: "Connexion",
+            nav_register: "Créer un compte",
+
+            hero_eyebrow:
+                "Plateforme d'investissement numérique",
+
+            hero_title:
+                "Faites avancer vos actifs",
+
+            hero_title_accent:
+                "numériques.",
+
+            hero_description:
+                "Space X réunit la gestion de compte, l'activité des actifs numériques et les outils d'investissement dans une expérience fluide.",
+
+            hero_create:
+                "Créer un compte",
+
+            hero_explore:
+                "Explorer la plateforme",
+
+            market_activity:
+                "ACTIVITÉ DU MARCHÉ",
+
+            market_realtime:
+                "VUE EN TEMPS RÉEL",
+
+            features_title:
+                "Conçu pour la clarté.",
+
+            features_description:
+                "Une expérience conçue pour surveiller votre compte, gérer vos activités et accéder à vos outils Space X.",
+
+            feature_account_title:
+                "Contrôle simple",
+
+            feature_account_text:
+                "Accédez à votre solde, à votre activité et aux outils de la plateforme depuis un tableau de bord clair.",
+
+            feature_activity_title:
+                "Suivre l'activité",
+
+            feature_activity_text:
+                "Consultez les dépôts, retraits et activités d'investissement dans un environnement organisé.",
+
+            feature_interface_title:
+                "Interface moderne",
+
+            feature_interface_text:
+                "Une interface sombre et responsive conçue pour une expérience cohérente sur mobile et ordinateur.",
+
+            about_title:
+                "Une plateforme.",
+
+            about_description:
+                "Space X est conçue autour d'une expérience de compte numérique simple, avec les outils essentiels toujours accessibles.",
+
+            cta_title:
+                "Prêt à commencer ?",
+
+            cta_description:
+                "Créez votre compte Space X et accédez à la plateforme depuis votre appareil préféré.",
+
+            cta_button:
+                "Ouvrir un compte Space X",
+
+            footer_copyright:
+                "© 2026 Space X. Tous droits réservés.",
+
+            footer_platform:
+                "Plateforme d'actifs numériques"
+
+        },
+
+
+        /* =================================================
+           GERMAN
+           ================================================= */
+
+        de: {
+
+            nav_home: "Startseite",
+            nav_platform: "Plattform",
+            nav_about: "Über uns",
+            nav_login: "Anmelden",
+            nav_register: "Konto erstellen",
+
+            hero_eyebrow:
+                "Digitale Investmentplattform",
+
+            hero_title:
+                "Bringen Sie Ihre digitalen",
+
+            hero_title_accent:
+                "Vermögenswerte voran.",
+
+            hero_description:
+                "Space X vereint Kontoverwaltung, Aktivitäten mit digitalen Vermögenswerten und Investmenttools in einer übersichtlichen Erfahrung.",
+
+            hero_create:
+                "Konto erstellen",
+
+            hero_explore:
+                "Plattform entdecken",
+
+            market_activity:
+                "MARKTAKTIVITÄT",
+
+            market_realtime:
+                "ECHTZEITANSICHT",
+
+            features_title:
+                "Für Klarheit entwickelt.",
+
+            features_description:
+                "Eine fokussierte Umgebung zur Überwachung Ihres Kontos, Verwaltung Ihrer Aktivitäten und Nutzung Ihrer Space-X-Tools.",
+
+            feature_account_title:
+                "Einfache Kontrolle",
+
+            feature_account_text:
+                "Greifen Sie über ein übersichtliches Dashboard auf Guthaben, Kontoaktivitäten und Plattformtools zu.",
+
+            feature_activity_title:
+                "Aktivitäten verfolgen",
+
+            feature_activity_text:
+                "Überprüfen Sie Einzahlungen, Auszahlungen und Investmentaktivitäten in einer organisierten Umgebung.",
+
+            feature_interface_title:
+                "Moderne Oberfläche",
+
+            feature_interface_text:
+                "Eine responsive dunkle Oberfläche für eine einheitliche Nutzung auf Mobilgeräten und Desktop.",
+
+            about_title:
+                "Eine Plattform.",
+
+            about_description:
+                "Space X bietet eine unkomplizierte digitale Kontoerfahrung mit den wichtigsten Tools direkt zur Hand.",
+
+            cta_title:
+                "Bereit loszulegen?",
+
+            cta_description:
+                "Erstellen Sie Ihr Space-X-Konto und greifen Sie von Ihrem bevorzugten Gerät auf die Plattform zu.",
+
+            cta_button:
+                "Space-X-Konto eröffnen",
+
+            footer_copyright:
+                "© 2026 Space X. Alle Rechte vorbehalten.",
+
+            footer_platform:
+                "Plattform für digitale Vermögenswerte"
+
+        },
+
+
+        /* =================================================
+           PORTUGUESE
+           ================================================= */
+
+        pt: {
+
+            nav_home: "Início",
+            nav_platform: "Plataforma",
+            nav_about: "Sobre",
+            nav_login: "Entrar",
+            nav_register: "Criar conta",
+
+            hero_eyebrow:
+                "Plataforma de investimento digital",
+
+            hero_title:
+                "Leve seus ativos digitais",
+
+            hero_title_accent:
+                "adiante.",
+
+            hero_description:
+                "A Space X reúne gestão de contas, atividades de ativos digitais e ferramentas de investimento em uma experiência simplificada.",
+
+            hero_create:
+                "Criar conta",
+
+            hero_explore:
+                "Explorar plataforma",
+
+            market_activity:
+                "ATIVIDADE DO MERCADO",
+
+            market_realtime:
+                "VISÃO EM TEMPO REAL",
+
+            features_title:
+                "Feita para a clareza.",
+
+            features_description:
+                "Uma experiência focada no acompanhamento da sua conta, gerenciamento de atividades e acesso às ferramentas da Space X.",
+
+            feature_account_title:
+                "Controle simples",
+
+            feature_account_text:
+                "Acesse seu saldo, atividades da conta e ferramentas da plataforma em um painel limpo.",
+
+            feature_activity_title:
+                "Acompanhar atividades",
+
+            feature_activity_text:
+                "Revise depósitos, saques e atividades de investimento em um ambiente organizado.",
+
+            feature_interface_title:
+                "Interface moderna",
+
+            feature_interface_text:
+                "Uma interface escura e responsiva para uma experiência consistente em dispositivos móveis e computadores.",
+
+            about_title:
+                "Uma plataforma.",
+
+            about_description:
+                "A Space X foi criada para oferecer uma experiência simples de conta digital, mantendo as ferramentas essenciais ao alcance.",
+
+            cta_title:
+                "Pronto para começar?",
+
+            cta_description:
+                "Crie sua conta Space X e acesse a plataforma pelo dispositivo de sua preferência.",
+
+            cta_button:
+                "Abrir conta Space X",
+
+            footer_copyright:
+                "© 2026 Space X. Todos os direitos reservados.",
+
+            footer_platform:
+                "Plataforma de ativos digitais"
+
+        },
+
+
+        /* =================================================
+           ITALIAN
+           ================================================= */
+
+        it: {
+
+            nav_home: "Home",
+            nav_platform: "Piattaforma",
+            nav_about: "Chi siamo",
+            nav_login: "Accedi",
+            nav_register: "Crea account",
+
+            hero_eyebrow:
+                "Piattaforma di investimento digitale",
+
+            hero_title:
+                "Porta i tuoi asset digitali",
+
+            hero_title_accent:
+                "in avanti.",
+
+            hero_description:
+                "Space X riunisce gestione dell'account, attività sugli asset digitali e strumenti di investimento in un'esperienza semplice.",
+
+            hero_create:
+                "Crea account",
+
+            hero_explore:
+                "Esplora la piattaforma",
+
+            market_activity:
+                "ATTIVITÀ DI MERCATO",
+
+            market_realtime:
+                "VISTA IN TEMPO REALE",
+
+            features_title:
+                "Progettata per la chiarezza.",
+
+            features_description:
+                "Un'esperienza focalizzata per monitorare il tuo account, gestire le attività e accedere agli strumenti Space X.",
+
+            feature_account_title:
+                "Controllo semplice",
+
+            feature_account_text:
+                "Accedi al saldo, alle attività dell'account e agli strumenti della piattaforma da una dashboard pulita.",
+
+            feature_activity_title:
+                "Monitora attività",
+
+            feature_activity_text:
+                "Controlla depositi, prelievi e attività di investimento in un ambiente organizzato.",
+
+            feature_interface_title:
+                "Interfaccia moderna",
+
+            feature_interface_text:
+                "Un'interfaccia scura e responsive progettata per un'esperienza coerente su mobile e desktop.",
+
+            about_title:
+                "Una piattaforma.",
+
+            about_description:
+                "Space X è progettata attorno a un'esperienza di account digitale semplice, con gli strumenti essenziali sempre disponibili.",
+
+            cta_title:
+                "Pronto per iniziare?",
+
+            cta_description:
+                "Crea il tuo account Space X e accedi alla piattaforma dal dispositivo che preferisci.",
+
+            cta_button:
+                "Apri account Space X",
+
+            footer_copyright:
+                "© 2026 Space X. Tutti i diritti riservati.",
+
+            footer_platform:
+                "Piattaforma di asset digitali"
+
+        }
+
     };
 
 
     /* =====================================================
-       GET LANGUAGE
+       IMPORTANT:
+       The remaining 17 languages inherit English first.
+       This means the website NEVER shows undefined text.
+       Add/replace individual translations below as needed.
+       ===================================================== */
+
+    const additionalTranslations = {
+
+        nl: {
+            nav_home: "Home",
+            nav_platform: "Platform",
+            nav_about: "Over ons",
+            nav_login: "Inloggen",
+            nav_register: "Account aanmaken",
+            hero_eyebrow: "Digitaal investeringsplatform",
+            hero_title: "Breng uw digitale activa",
+            hero_title_accent: "vooruit.",
+            hero_create: "Account aanmaken",
+            hero_explore: "Platform verkennen",
+            market_activity: "MARKTACTIVITEIT",
+            market_realtime: "REALTIME WEERGAVE",
+            features_title: "Ontworpen voor duidelijkheid.",
+            feature_account_title: "Eenvoudige controle",
+            feature_activity_title: "Activiteit volgen",
+            feature_interface_title: "Moderne interface",
+            about_title: "Eén platform.",
+            cta_title: "Klaar om te beginnen?",
+            cta_button: "Space X-account openen",
+            footer_platform: "Platform voor digitale activa"
+        },
+
+        tr: {
+            nav_home: "Ana Sayfa",
+            nav_platform: "Platform",
+            nav_about: "Hakkımızda",
+            nav_login: "Giriş",
+            nav_register: "Hesap Oluştur",
+            hero_eyebrow: "Dijital yatırım platformu",
+            hero_title: "Dijital varlıklarınızı",
+            hero_title_accent: "ileri taşıyın.",
+            hero_create: "Hesap Oluştur",
+            hero_explore: "Platformu Keşfet",
+            market_activity: "PİYASA FAALİYETİ",
+            market_realtime: "GERÇEK ZAMANLI GÖRÜNÜM",
+            features_title: "Netlik için tasarlandı.",
+            feature_account_title: "Basit kontrol",
+            feature_activity_title: "Faaliyetleri takip edin",
+            feature_interface_title: "Modern arayüz",
+            about_title: "Tek platform.",
+            cta_title: "Başlamaya hazır mısınız?",
+            cta_button: "Space X Hesabı Aç",
+            footer_platform: "Dijital Varlık Platformu"
+        },
+
+        ru: {
+            nav_home: "Главная",
+            nav_platform: "Платформа",
+            nav_about: "О нас",
+            nav_login: "Войти",
+            nav_register: "Создать аккаунт",
+            hero_eyebrow: "Цифровая инвестиционная платформа",
+            hero_title: "Двигайте цифровые активы",
+            hero_title_accent: "вперёд.",
+            hero_create: "Создать аккаунт",
+            hero_explore: "Изучить платформу",
+            market_activity: "АКТИВНОСТЬ РЫНКА",
+            market_realtime: "В РЕАЛЬНОМ ВРЕМЕНИ",
+            features_title: "Создано для ясности.",
+            feature_account_title: "Простой контроль",
+            feature_activity_title: "Отслеживание активности",
+            feature_interface_title: "Современный интерфейс",
+            about_title: "Одна платформа.",
+            cta_title: "Готовы начать?",
+            cta_button: "Открыть аккаунт Space X",
+            footer_platform: "Платформа цифровых активов"
+        },
+
+        uk: {
+            nav_home: "Головна",
+            nav_platform: "Платформа",
+            nav_about: "Про нас",
+            nav_login: "Увійти",
+            nav_register: "Створити акаунт",
+            hero_eyebrow: "Цифрова інвестиційна платформа",
+            hero_title: "Рухайте цифрові активи",
+            hero_title_accent: "вперед.",
+            hero_create: "Створити акаунт",
+            hero_explore: "Переглянути платформу",
+            market_activity: "АКТИВНІСТЬ РИНКУ",
+            market_realtime: "ПЕРЕГЛЯД У РЕАЛЬНОМУ ЧАСІ",
+            features_title: "Створено для ясності.",
+            feature_account_title: "Простий контроль",
+            feature_activity_title: "Відстеження активності",
+            feature_interface_title: "Сучасний інтерфейс",
+            about_title: "Одна платформа.",
+            cta_title: "Готові почати?",
+            cta_button: "Відкрити акаунт Space X",
+            footer_platform: "Платформа цифрових активів"
+        },
+
+        pl: {
+            nav_home: "Strona główna",
+            nav_platform: "Platforma",
+            nav_about: "O nas",
+            nav_login: "Zaloguj się",
+            nav_register: "Utwórz konto",
+            hero_eyebrow: "Cyfrowa platforma inwestycyjna",
+            hero_title: "Przenieś swoje cyfrowe aktywa",
+            hero_title_accent: "do przodu.",
+            hero_create: "Utwórz konto",
+            hero_explore: "Poznaj platformę",
+            market_activity: "AKTYWNOŚĆ RYNKU",
+            market_realtime: "WIDOK W CZASIE RZECZYWISTYM",
+            features_title: "Stworzone dla przejrzystości.",
+            feature_account_title: "Prosta kontrola",
+            feature_activity_title: "Śledź aktywność",
+            feature_interface_title: "Nowoczesny interfejs",
+            about_title: "Jedna platforma.",
+            cta_title: "Gotowy, aby zacząć?",
+            cta_button: "Otwórz konto Space X",
+            footer_platform: "Platforma aktywów cyfrowych"
+        },
+
+        ar: {
+            nav_home: "الرئيسية",
+            nav_platform: "المنصة",
+            nav_about: "حولنا",
+            nav_login: "تسجيل الدخول",
+            nav_register: "إنشاء حساب",
+            hero_eyebrow: "منصة استثمار رقمية",
+            hero_title: "حرّك أصولك الرقمية",
+            hero_title_accent: "إلى الأمام.",
+            hero_create: "إنشاء حساب",
+            hero_explore: "استكشاف المنصة",
+            market_activity: "نشاط السوق",
+            market_realtime: "عرض مباشر",
+            features_title: "مصممة للوضوح.",
+            feature_account_title: "تحكم بسيط",
+            feature_activity_title: "تتبع النشاط",
+            feature_interface_title: "واجهة حديثة",
+            about_title: "منصة واحدة.",
+            cta_title: "هل أنت مستعد للبدء؟",
+            cta_button: "فتح حساب Space X",
+            footer_platform: "منصة الأصول الرقمية"
+        },
+
+        hi: {
+            nav_home: "होम",
+            nav_platform: "प्लेटफ़ॉर्म",
+            nav_about: "हमारे बारे में",
+            nav_login: "लॉगिन",
+            nav_register: "खाता बनाएँ",
+            hero_eyebrow: "डिजिटल निवेश प्लेटफ़ॉर्म",
+            hero_title: "अपनी डिजिटल संपत्तियों को",
+            hero_title_accent: "आगे बढ़ाएँ।",
+            hero_create: "खाता बनाएँ",
+            hero_explore: "प्लेटफ़ॉर्म देखें",
+            market_activity: "बाज़ार गतिविधि",
+            market_realtime: "रीयल-टाइम दृश्य",
+            features_title: "स्पष्टता के लिए बनाया गया।",
+            feature_account_title: "सरल नियंत्रण",
+            feature_activity_title: "गतिविधि ट्रैक करें",
+            feature_interface_title: "आधुनिक इंटरफ़ेस",
+            about_title: "एक प्लेटफ़ॉर्म।",
+            cta_title: "शुरू करने के लिए तैयार?",
+            cta_button: "Space X खाता खोलें",
+            footer_platform: "डिजिटल एसेट प्लेटफ़ॉर्म"
+        },
+
+        bn: {
+            nav_home: "হোম",
+            nav_platform: "প্ল্যাটফর্ম",
+            nav_about: "আমাদের সম্পর্কে",
+            nav_login: "লগইন",
+            nav_register: "অ্যাকাউন্ট তৈরি করুন",
+            hero_eyebrow: "ডিজিটাল বিনিয়োগ প্ল্যাটফর্ম",
+            hero_title: "আপনার ডিজিটাল সম্পদ",
+            hero_title_accent: "এগিয়ে নিন।",
+            hero_create: "অ্যাকাউন্ট তৈরি করুন",
+            hero_explore: "প্ল্যাটফর্ম দেখুন",
+            market_activity: "বাজারের কার্যকলাপ",
+            market_realtime: "রিয়েল-টাইম ভিউ",
+            features_title: "স্পষ্টতার জন্য তৈরি।",
+            feature_account_title: "সহজ নিয়ন্ত্রণ",
+            feature_activity_title: "কার্যকলাপ ট্র্যাক করুন",
+            feature_interface_title: "আধুনিক ইন্টারফেস",
+            about_title: "একটি প্ল্যাটফর্ম।",
+            cta_title: "শুরু করতে প্রস্তুত?",
+            cta_button: "Space X অ্যাকাউন্ট খুলুন",
+            footer_platform: "ডিজিটাল সম্পদ প্ল্যাটফর্ম"
+        },
+
+        "zh-CN": {
+            nav_home: "首页",
+            nav_platform: "平台",
+            nav_about: "关于我们",
+            nav_login: "登录",
+            nav_register: "创建账户",
+            hero_eyebrow: "数字投资平台",
+            hero_title: "推动您的数字资产",
+            hero_title_accent: "向前发展。",
+            hero_create: "创建账户",
+            hero_explore: "探索平台",
+            market_activity: "市场活动",
+            market_realtime: "实时查看",
+            features_title: "为清晰而设计。",
+            feature_account_title: "简单控制",
+            feature_activity_title: "跟踪活动",
+            feature_interface_title: "现代界面",
+            about_title: "一个平台。",
+            cta_title: "准备开始了吗？",
+            cta_button: "开通 Space X 账户",
+            footer_platform: "数字资产平台"
+        },
+
+        "zh-TW": {
+            nav_home: "首頁",
+            nav_platform: "平台",
+            nav_about: "關於我們",
+            nav_login: "登入",
+            nav_register: "建立帳戶",
+            hero_eyebrow: "數位投資平台",
+            hero_title: "推動您的數位資產",
+            hero_title_accent: "向前發展。",
+            hero_create: "建立帳戶",
+            hero_explore: "探索平台",
+            market_activity: "市場活動",
+            market_realtime: "即時檢視",
+            features_title: "為清晰而設計。",
+            feature_account_title: "簡單控制",
+            feature_activity_title: "追蹤活動",
+            feature_interface_title: "現代介面",
+            about_title: "一個平台。",
+            cta_title: "準備開始了嗎？",
+            cta_button: "開啟 Space X 帳戶",
+            footer_platform: "數位資產平台"
+        },
+
+        ja: {
+            nav_home: "ホーム",
+            nav_platform: "プラットフォーム",
+            nav_about: "概要",
+            nav_login: "ログイン",
+            nav_register: "アカウント作成",
+            hero_eyebrow: "デジタル投資プラットフォーム",
+            hero_title: "デジタル資産を",
+            hero_title_accent: "前へ進める。",
+            hero_create: "アカウントを作成",
+            hero_explore: "プラットフォームを見る",
+            market_activity: "市場活動",
+            market_realtime: "リアルタイム表示",
+            features_title: "明確さのために設計。",
+            feature_account_title: "シンプルな管理",
+            feature_activity_title: "アクティビティを追跡",
+            feature_interface_title: "モダンなインターフェース",
+            about_title: "ひとつのプラットフォーム。",
+            cta_title: "始める準備はできましたか？",
+            cta_button: "Space X アカウントを開設",
+            footer_platform: "デジタル資産プラットフォーム"
+        },
+
+        ko: {
+            nav_home: "홈",
+            nav_platform: "플랫폼",
+            nav_about: "소개",
+            nav_login: "로그인",
+            nav_register: "계정 만들기",
+            hero_eyebrow: "디지털 투자 플랫폼",
+            hero_title: "디지털 자산을",
+            hero_title_accent: "앞으로 이동하세요.",
+            hero_create: "계정 만들기",
+            hero_explore: "플랫폼 둘러보기",
+            market_activity: "시장 활동",
+            market_realtime: "실시간 보기",
+            features_title: "명확성을 위해 설계되었습니다.",
+            feature_account_title: "간편한 관리",
+            feature_activity_title: "활동 추적",
+            feature_interface_title: "현대적인 인터페이스",
+            about_title: "하나의 플랫폼.",
+            cta_title: "시작할 준비가 되셨나요?",
+            cta_button: "Space X 계정 열기",
+            footer_platform: "디지털 자산 플랫폼"
+        },
+
+        vi: {
+            nav_home: "Trang chủ",
+            nav_platform: "Nền tảng",
+            nav_about: "Giới thiệu",
+            nav_login: "Đăng nhập",
+            nav_register: "Tạo tài khoản",
+            hero_eyebrow: "Nền tảng đầu tư kỹ thuật số",
+            hero_title: "Đưa tài sản kỹ thuật số",
+            hero_title_accent: "tiến về phía trước.",
+            hero_create: "Tạo tài khoản",
+            hero_explore: "Khám phá nền tảng",
+            market_activity: "HOẠT ĐỘNG THỊ TRƯỜNG",
+            market_realtime: "XEM THEO THỜI GIAN THỰC",
+            features_title: "Được xây dựng để rõ ràng.",
+            feature_account_title: "Kiểm soát đơn giản",
+            feature_activity_title: "Theo dõi hoạt động",
+            feature_interface_title: "Giao diện hiện đại",
+            about_title: "Một nền tảng.",
+            cta_title: "Sẵn sàng bắt đầu?",
+            cta_button: "Mở tài khoản Space X",
+            footer_platform: "Nền tảng tài sản kỹ thuật số"
+        },
+
+        th: {
+            nav_home: "หน้าหลัก",
+            nav_platform: "แพลตฟอร์ม",
+            nav_about: "เกี่ยวกับเรา",
+            nav_login: "เข้าสู่ระบบ",
+            nav_register: "สร้างบัญชี",
+            hero_eyebrow: "แพลตฟอร์มการลงทุนดิจิทัล",
+            hero_title: "ขับเคลื่อนสินทรัพย์ดิจิทัลของคุณ",
+            hero_title_accent: "ไปข้างหน้า",
+            hero_create: "สร้างบัญชี",
+            hero_explore: "สำรวจแพลตฟอร์ม",
+            market_activity: "กิจกรรมตลาด",
+            market_realtime: "ดูแบบเรียลไทม์",
+            features_title: "สร้างขึ้นเพื่อความชัดเจน",
+            feature_account_title: "ควบคุมง่าย",
+            feature_activity_title: "ติดตามกิจกรรม",
+            feature_interface_title: "อินเทอร์เฟซทันสมัย",
+            about_title: "แพลตฟอร์มเดียว",
+            cta_title: "พร้อมเริ่มต้นหรือยัง?",
+            cta_button: "เปิดบัญชี Space X",
+            footer_platform: "แพลตฟอร์มสินทรัพย์ดิจิทัล"
+        },
+
+        id: {
+            nav_home: "Beranda",
+            nav_platform: "Platform",
+            nav_about: "Tentang",
+            nav_login: "Masuk",
+            nav_register: "Buat Akun",
+            hero_eyebrow: "Platform investasi digital",
+            hero_title: "Majukan aset digital Anda",
+            hero_title_accent: "ke depan.",
+            hero_create: "Buat Akun",
+            hero_explore: "Jelajahi Platform",
+            market_activity: "AKTIVITAS PASAR",
+            market_realtime: "TAMPILAN REAL-TIME",
+            features_title: "Dibuat untuk kejelasan.",
+            feature_account_title: "Kontrol sederhana",
+            feature_activity_title: "Lacak aktivitas",
+            feature_interface_title: "Antarmuka modern",
+            about_title: "Satu platform.",
+            cta_title: "Siap untuk memulai?",
+            cta_button: "Buka Akun Space X",
+            footer_platform: "Platform Aset Digital"
+        },
+
+        ms: {
+            nav_home: "Laman Utama",
+            nav_platform: "Platform",
+            nav_about: "Tentang",
+            nav_login: "Log Masuk",
+            nav_register: "Cipta Akaun",
+            hero_eyebrow: "Platform pelaburan digital",
+            hero_title: "Gerakkan aset digital anda",
+            hero_title_accent: "ke hadapan.",
+            hero_create: "Cipta Akaun",
+            hero_explore: "Terokai Platform",
+            market_activity: "AKTIVITI PASARAN",
+            market_realtime: "PAPARAN MASA NYATA",
+            features_title: "Dibina untuk kejelasan.",
+            feature_account_title: "Kawalan mudah",
+            feature_activity_title: "Jejak aktiviti",
+            feature_interface_title: "Antara muka moden",
+            about_title: "Satu platform.",
+            cta_title: "Bersedia untuk bermula?",
+            cta_button: "Buka Akaun Space X",
+            footer_platform: "Platform Aset Digital"
+        },
+
+        fil: {
+            nav_home: "Home",
+            nav_platform: "Platform",
+            nav_about: "Tungkol sa Amin",
+            nav_login: "Mag-login",
+            nav_register: "Gumawa ng Account",
+            hero_eyebrow: "Digital investment platform",
+            hero_title: "Isulong ang iyong digital assets",
+            hero_title_accent: "pasulong.",
+            hero_create: "Gumawa ng Account",
+            hero_explore: "Tuklasin ang Platform",
+            market_activity: "AKTIBIDAD NG MARKET",
+            market_realtime: "REAL-TIME VIEW",
+            features_title: "Ginawa para sa kalinawan.",
+            feature_account_title: "Simpleng kontrol",
+            feature_activity_title: "Subaybayan ang aktibidad",
+            feature_interface_title: "Modernong interface",
+            about_title: "Isang platform.",
+            cta_title: "Handa nang magsimula?",
+            cta_button: "Buksan ang Space X Account",
+            footer_platform: "Digital Asset Platform"
+        }
+
+    };
+
+
+    /* =====================================================
+       MERGE ALL LANGUAGES
+       ===================================================== */
+
+    Object.keys(languageNames).forEach(language => {
+
+        if (language === "en") {
+            return;
+        }
+
+        translations[language] = {
+            ...translations.en,
+            ...(additionalTranslations[language] || {})
+        };
+
+    });
+
+
+    /* =====================================================
+       GET CURRENT LANGUAGE
        ===================================================== */
 
     function getCurrentLanguage() {
 
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
+        try {
 
-        if (saved) {
-            return saved;
+            const saved =
+                localStorage.getItem(STORAGE_KEY);
+
+            if (
+                saved &&
+                languageNames[saved]
+            ) {
+                return saved;
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Space X language storage unavailable.",
+                error
+            );
+
         }
 
         return "en";
+    }
+
+
+    /* =====================================================
+       SAVE LANGUAGE
+       ===================================================== */
+
+    function saveLanguage(language) {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                language
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Space X language could not be saved.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       UPDATE SELECTOR
+       ===================================================== */
+
+    function updateLanguageSelector(language) {
+
+        const selectedName =
+            document.getElementById(
+                "selectedLanguageName"
+            );
+
+        if (
+            selectedName &&
+            languageNames[language]
+        ) {
+
+            selectedName.textContent =
+                languageNames[language];
+
+        }
+
+
+        document
+            .querySelectorAll(".language-option")
+            .forEach(option => {
+
+                option.classList.toggle(
+                    "selected",
+                    option.dataset.value === language
+                );
+
+            });
+
+    }
+
+
+    /* =====================================================
+       APPLY RTL / LTR
+       ===================================================== */
+
+    function updateDirection(language) {
+
+        const isRTL =
+            rtlLanguages.includes(language);
+
+        document.documentElement.dir =
+            isRTL ? "rtl" : "ltr";
+
+        document.documentElement.lang =
+            language;
+
+        if (document.body) {
+
+            document.body.dir =
+                isRTL ? "rtl" : "ltr";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       TRANSLATE ELEMENT
+       ===================================================== */
+
+    function translateElement(element, language) {
+
+        const key =
+            element.getAttribute(
+                "data-translate"
+            );
+
+        if (!key) {
+            return;
+        }
+
+        const selected =
+            translations[language] ||
+            translations.en;
+
+        const value =
+            selected[key] !== undefined
+                ? selected[key]
+                : translations.en[key];
+
+        if (value !== undefined) {
+
+            element.textContent =
+                value;
+
+        }
+
     }
 
 
@@ -439,165 +1158,56 @@
 
     function translatePage(language) {
 
-        const selected =
-            translations[language] ||
-            translations.en;
+        if (
+            !language ||
+            !languageNames[language]
+        ) {
 
-        /*
-         * Elements with explicit data-translate keys
-         */
+            language = "en";
+
+        }
+
 
         document
             .querySelectorAll("[data-translate]")
             .forEach(element => {
 
-                const key =
-                    element.getAttribute("data-translate");
-
-                if (
-                    key &&
-                    selected[key] !== undefined
-                ) {
-
-                    element.textContent =
-                        selected[key];
-
-                    return;
-                }
-
-
-                /*
-                 * Backward compatibility:
-                 * if data-translate has no key,
-                 * identify the original English text.
-                 */
-
-                const original =
-                    element.dataset.originalText ||
-                    element.textContent.trim();
-
-                if (!element.dataset.originalText) {
-                    element.dataset.originalText =
-                        original;
-                }
-
-                const translationKey =
-                    fallbackTextMap[original];
-
-                if (
-                    translationKey &&
-                    selected[translationKey] !== undefined
-                ) {
-
-                    element.textContent =
-                        selected[translationKey];
-                }
+                translateElement(
+                    element,
+                    language
+                );
 
             });
 
 
-        /*
-         * Special hero title
-         */
-
-        const heroTitle =
-            document.querySelector(
-                '[data-translate="hero_title"]'
-            );
-
-        const heroAccent =
-            document.querySelector(
-                '[data-translate="hero_title_accent"]'
-            );
-
-        if (heroTitle && selected.hero_title) {
-
-            heroTitle.textContent =
-                selected.hero_title;
-        }
-
-        if (
-            heroAccent &&
-            selected.hero_title_accent
-        ) {
-
-            heroAccent.textContent =
-                selected.hero_title_accent;
-        }
-
-
-        /*
-         * Update document language
-         */
-
-        document.documentElement.lang =
-            language;
-
-
-        /*
-         * RTL languages
-         */
-
-        const rtlLanguages = [
-            "ar",
-            "he",
-            "fa",
-            "ur",
-            "ps",
-            "yi"
-        ];
-
-        if (
-            rtlLanguages.includes(language)
-        ) {
-
-            document.documentElement.dir =
-                "rtl";
-
-            document.body.dir =
-                "rtl";
-
-        } else {
-
-            document.documentElement.dir =
-                "ltr";
-
-            document.body.dir =
-                "ltr";
-        }
-
-
-        /*
-         * Update browser title
-         */
-
-        if (selected.digital_platform) {
-
-            document.title =
-                "Space X | " +
-                selected.digital_platform;
-        }
-
-
-        /*
-         * Save language
-         */
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            language
-        );
-
-
-        /*
-         * Update selector UI
-         */
+        updateDirection(language);
 
         updateLanguageSelector(language);
 
+        saveLanguage(language);
+
 
         /*
-         * Tell other scripts
+         * Update title.
+         */
+
+        const selected =
+            translations[language] ||
+            translations.en;
+
+        if (
+            selected.hero_eyebrow
+        ) {
+
+            document.title =
+                "Space X | " +
+                selected.hero_eyebrow;
+
+        }
+
+
+        /*
+         * Tell other scripts.
          */
 
         document.dispatchEvent(
@@ -615,40 +1225,29 @@
 
 
     /* =====================================================
-       UPDATE SELECTOR
+       SET LANGUAGE
        ===================================================== */
 
-    function updateLanguageSelector(language) {
-
-        const nameElement =
-            document.getElementById(
-                "selectedLanguageName"
-            );
+    function setLanguage(language) {
 
         if (
-            nameElement &&
-            languageNames[language]
+            !language ||
+            !languageNames[language]
         ) {
 
-            nameElement.textContent =
-                languageNames[language];
+            console.warn(
+                "Space X: unsupported language:",
+                language
+            );
+
+            return;
+
         }
 
 
-        document
-            .querySelectorAll(".language-option")
-            .forEach(option => {
+        saveLanguage(language);
 
-                const active =
-                    option.dataset.value ===
-                    language;
-
-                option.classList.toggle(
-                    "selected",
-                    active
-                );
-
-            });
+        translatePage(language);
 
     }
 
@@ -669,7 +1268,38 @@
                 return;
             }
 
-            translatePage(language);
+            setLanguage(language);
+
+        }
+    );
+
+
+    /* =====================================================
+       STORAGE EVENT
+       ===================================================== */
+
+    window.addEventListener(
+        "storage",
+        event => {
+
+            if (
+                event.key !== STORAGE_KEY
+            ) {
+
+                return;
+
+            }
+
+            if (
+                event.newValue &&
+                languageNames[event.newValue]
+            ) {
+
+                translatePage(
+                    event.newValue
+                );
+
+            }
 
         }
     );
@@ -689,10 +1319,6 @@
     }
 
 
-    /*
-     * Wait until the HTML is ready.
-     */
-
     if (
         document.readyState ===
         "loading"
@@ -700,7 +1326,10 @@
 
         document.addEventListener(
             "DOMContentLoaded",
-            initializeLanguageSystem
+            initializeLanguageSystem,
+            {
+                once: true
+            }
         );
 
     } else {
@@ -718,16 +1347,7 @@
 
         setLanguage(language) {
 
-            if (!language) {
-                return;
-            }
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                language
-            );
-
-            translatePage(language);
+            setLanguage(language);
 
         },
 
@@ -745,8 +1365,13 @@
 
         },
 
-        languages: languageNames
+        languages:
+            languageNames,
+
+        translations:
+            translations
 
     };
+
 
 })();
