@@ -129,7 +129,7 @@ font-weight:700;
 
 
 /* =================================================
-   MATURE LANGUAGE SELECTOR
+   LANGUAGE SELECTOR
    ================================================= */
 
 .language-wrap{
@@ -252,7 +252,7 @@ position:absolute;
 top:51px;
 right:0;
 
-width:290px;
+width:300px;
 
 background:
 linear-gradient(
@@ -426,6 +426,19 @@ display:flex;
 align-items:center;
 
 gap:9px;
+}
+
+.language-flag{
+width:25px;
+min-width:25px;
+
+font-size:17px;
+
+line-height:1;
+
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .language-code{
@@ -1229,933 +1242,306 @@ role="listbox">
 
 
 <!-- =================================================
-     100 LANGUAGE OPTIONS
+     LANGUAGES + COUNTRY FLAGS
      ================================================= -->
 
+
 <button class="language-option selected" data-value="en">
+
 <span class="language-option-left">
+<span class="language-flag">🇺🇸</span>
 <span class="language-code">EN</span>
 English
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="es">
+
 <span class="language-option-left">
+<span class="language-flag">🇪🇸</span>
 <span class="language-code">ES</span>
 Español
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="fr">
+
 <span class="language-option-left">
+<span class="language-flag">🇫🇷</span>
 <span class="language-code">FR</span>
 Français
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="de">
+
 <span class="language-option-left">
+<span class="language-flag">🇩🇪</span>
 <span class="language-code">DE</span>
 Deutsch
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="pt">
+
 <span class="language-option-left">
+<span class="language-flag">🇵🇹</span>
 <span class="language-code">PT</span>
 Português
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="it">
+
 <span class="language-option-left">
+<span class="language-flag">🇮🇹</span>
 <span class="language-code">IT</span>
 Italiano
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="nl">
+
 <span class="language-option-left">
+<span class="language-flag">🇳🇱</span>
 <span class="language-code">NL</span>
 Nederlands
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="tr">
+
 <span class="language-option-left">
+<span class="language-flag">🇹🇷</span>
 <span class="language-code">TR</span>
 Türkçe
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="ru">
+
 <span class="language-option-left">
+<span class="language-flag">🇷🇺</span>
 <span class="language-code">RU</span>
 Русский
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="uk">
+
 <span class="language-option-left">
+<span class="language-flag">🇺🇦</span>
 <span class="language-code">UK</span>
 Українська
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="pl">
+
 <span class="language-option-left">
+<span class="language-flag">🇵🇱</span>
 <span class="language-code">PL</span>
 Polski
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="ar">
+
 <span class="language-option-left">
+<span class="language-flag">🇸🇦</span>
 <span class="language-code">AR</span>
 العربية
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="hi">
+
 <span class="language-option-left">
+<span class="language-flag">🇮🇳</span>
 <span class="language-code">HI</span>
 हिन्दी
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="bn">
+
 <span class="language-option-left">
+<span class="language-flag">🇧🇩</span>
 <span class="language-code">BN</span>
 বাংলা
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="zh-CN">
+
 <span class="language-option-left">
+<span class="language-flag">🇨🇳</span>
 <span class="language-code">ZH</span>
 简体中文
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="zh-TW">
+
 <span class="language-option-left">
+<span class="language-flag">🇹🇼</span>
 <span class="language-code">ZH</span>
 繁體中文
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="ja">
+
 <span class="language-option-left">
+<span class="language-flag">🇯🇵</span>
 <span class="language-code">JA</span>
 日本語
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="ko">
+
 <span class="language-option-left">
+<span class="language-flag">🇰🇷</span>
 <span class="language-code">KO</span>
 한국어
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="vi">
+
 <span class="language-option-left">
+<span class="language-flag">🇻🇳</span>
 <span class="language-code">VI</span>
 Tiếng Việt
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="th">
+
 <span class="language-option-left">
+<span class="language-flag">🇹🇭</span>
 <span class="language-code">TH</span>
 ไทย
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="id">
+
 <span class="language-option-left">
+<span class="language-flag">🇮🇩</span>
 <span class="language-code">ID</span>
 Bahasa Indonesia
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="ms">
+
 <span class="language-option-left">
+<span class="language-flag">🇲🇾</span>
 <span class="language-code">MS</span>
 Bahasa Melayu
 </span>
+
 <span class="language-check">✓</span>
+
 </button>
 
 
 <button class="language-option" data-value="fil">
+
 <span class="language-option-left">
+<span class="language-flag">🇵🇭</span>
 <span class="language-code">TL</span>
 Filipino
 </span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sw">
-<span class="language-option-left">
-<span class="language-code">SW</span>
-Kiswahili
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="yo">
-<span class="language-option-left">
-<span class="language-code">YO</span>
-Yorùbá
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ig">
-<span class="language-option-left">
-<span class="language-code">IG</span>
-Igbo
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ha">
-<span class="language-option-left">
-<span class="language-code">HA</span>
-Hausa
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="am">
-<span class="language-option-left">
-<span class="language-code">AM</span>
-አማርኛ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="af">
-<span class="language-option-left">
-<span class="language-code">AF</span>
-Afrikaans
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sq">
-<span class="language-option-left">
-<span class="language-code">SQ</span>
-Shqip
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="hy">
-<span class="language-option-left">
-<span class="language-code">HY</span>
-Հայերեն
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="az">
-<span class="language-option-left">
-<span class="language-code">AZ</span>
-Azərbaycan
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="eu">
-<span class="language-option-left">
-<span class="language-code">EU</span>
-Euskara
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="be">
-<span class="language-option-left">
-<span class="language-code">BE</span>
-Беларуская
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="bs">
-<span class="language-option-left">
-<span class="language-code">BS</span>
-Bosanski
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="bg">
-<span class="language-option-left">
-<span class="language-code">BG</span>
-Български
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ca">
-<span class="language-option-left">
-<span class="language-code">CA</span>
-Català
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="hr">
-<span class="language-option-left">
-<span class="language-code">HR</span>
-Hrvatski
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="cs">
-<span class="language-option-left">
-<span class="language-code">CS</span>
-Čeština
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="da">
-<span class="language-option-left">
-<span class="language-code">DA</span>
-Dansk
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="et">
-<span class="language-option-left">
-<span class="language-code">ET</span>
-Eesti
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="fi">
-<span class="language-option-left">
-<span class="language-code">FI</span>
-Suomi
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="gl">
-<span class="language-option-left">
-<span class="language-code">GL</span>
-Galego
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ka">
-<span class="language-option-left">
-<span class="language-code">KA</span>
-ქართული
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="el">
-<span class="language-option-left">
-<span class="language-code">EL</span>
-Ελληνικά
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="he">
-<span class="language-option-left">
-<span class="language-code">HE</span>
-עברית
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="hu">
-<span class="language-option-left">
-<span class="language-code">HU</span>
-Magyar
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="is">
-<span class="language-option-left">
-<span class="language-code">IS</span>
-Íslenska
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ga">
-<span class="language-option-left">
-<span class="language-code">GA</span>
-Gaeilge
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="lv">
-<span class="language-option-left">
-<span class="language-code">LV</span>
-Latviešu
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="lt">
-<span class="language-option-left">
-<span class="language-code">LT</span>
-Lietuvių
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="lb">
-<span class="language-option-left">
-<span class="language-code">LB</span>
-Lëtzebuergesch
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mk">
-<span class="language-option-left">
-<span class="language-code">MK</span>
-Македонски
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mt">
-<span class="language-option-left">
-<span class="language-code">MT</span>
-Malti
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="no">
-<span class="language-option-left">
-<span class="language-code">NO</span>
-Norsk
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ro">
-<span class="language-option-left">
-<span class="language-code">RO</span>
-Română
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sr">
-<span class="language-option-left">
-<span class="language-code">SR</span>
-Српски
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sk">
-<span class="language-option-left">
-<span class="language-code">SK</span>
-Slovenčina
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sl">
-<span class="language-option-left">
-<span class="language-code">SL</span>
-Slovenščina
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sv">
-<span class="language-option-left">
-<span class="language-code">SV</span>
-Svenska
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="cy">
-<span class="language-option-left">
-<span class="language-code">CY</span>
-Cymraeg
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ur">
-<span class="language-option-left">
-<span class="language-code">UR</span>
-اردو
-</span>
-<span class="language-check">✓</span>
-</button>
-
 
-<button class="language-option" data-value="fa">
-<span class="language-option-left">
-<span class="language-code">FA</span>
-فارسی
-</span>
 <span class="language-check">✓</span>
-</button>
 
-
-<button class="language-option" data-value="ps">
-<span class="language-option-left">
-<span class="language-code">PS</span>
-پښتو
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ne">
-<span class="language-option-left">
-<span class="language-code">NE</span>
-नेपाली
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="si">
-<span class="language-option-left">
-<span class="language-code">SI</span>
-සිංහල
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ta">
-<span class="language-option-left">
-<span class="language-code">TA</span>
-தமிழ்
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="te">
-<span class="language-option-left">
-<span class="language-code">TE</span>
-తెలుగు
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="kn">
-<span class="language-option-left">
-<span class="language-code">KN</span>
-ಕನ್ನಡ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ml">
-<span class="language-option-left">
-<span class="language-code">ML</span>
-മലയാളം
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mr">
-<span class="language-option-left">
-<span class="language-code">MR</span>
-मराठी
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="gu">
-<span class="language-option-left">
-<span class="language-code">GU</span>
-ગુજરાતી
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="pa">
-<span class="language-option-left">
-<span class="language-code">PA</span>
-ਪੰਜਾਬੀ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="as">
-<span class="language-option-left">
-<span class="language-code">AS</span>
-অসমীয়া
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="or">
-<span class="language-option-left">
-<span class="language-code">OR</span>
-ଓଡ଼ିଆ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="km">
-<span class="language-option-left">
-<span class="language-code">KM</span>
-ខ្មែរ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="lo">
-<span class="language-option-left">
-<span class="language-code">LO</span>
-ລາວ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="my">
-<span class="language-option-left">
-<span class="language-code">MY</span>
-မြန်မာ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mn">
-<span class="language-option-left">
-<span class="language-code">MN</span>
-Монгол
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="kk">
-<span class="language-option-left">
-<span class="language-code">KK</span>
-Қазақша
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ky">
-<span class="language-option-left">
-<span class="language-code">KY</span>
-Кыргызча
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="uz">
-<span class="language-option-left">
-<span class="language-code">UZ</span>
-O‘zbek
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="tg">
-<span class="language-option-left">
-<span class="language-code">TG</span>
-Тоҷикӣ
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="tk">
-<span class="language-option-left">
-<span class="language-code">TK</span>
-Türkmençe
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="zu">
-<span class="language-option-left">
-<span class="language-code">ZU</span>
-isiZulu
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="xh">
-<span class="language-option-left">
-<span class="language-code">XH</span>
-isiXhosa
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="so">
-<span class="language-option-left">
-<span class="language-code">SO</span>
-Soomaali
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="rw">
-<span class="language-option-left">
-<span class="language-code">RW</span>
-Kinyarwanda
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ny">
-<span class="language-option-left">
-<span class="language-code">NY</span>
-Chichewa
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mg">
-<span class="language-option-left">
-<span class="language-code">MG</span>
-Malagasy
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="la">
-<span class="language-option-left">
-<span class="language-code">LA</span>
-Latin
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="eo">
-<span class="language-option-left">
-<span class="language-code">EO</span>
-Esperanto
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="jv">
-<span class="language-option-left">
-<span class="language-code">JV</span>
-Javanese
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="su">
-<span class="language-option-left">
-<span class="language-code">SU</span>
-Sundanese
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="mi">
-<span class="language-option-left">
-<span class="language-code">MI</span>
-Te Reo Māori
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="haw">
-<span class="language-option-left">
-<span class="language-code">HW</span>
-Hawaiian
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="sm">
-<span class="language-option-left">
-<span class="language-code">SM</span>
-Samoan
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="gd">
-<span class="language-option-left">
-<span class="language-code">GD</span>
-Scots Gaelic
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="yi">
-<span class="language-option-left">
-<span class="language-code">YI</span>
-ייִדיש
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="co">
-<span class="language-option-left">
-<span class="language-code">CO</span>
-Corsican
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="fy">
-<span class="language-option-left">
-<span class="language-code">FY</span>
-Frisian
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="ku">
-<span class="language-option-left">
-<span class="language-code">KU</span>
-Kurdî
-</span>
-<span class="language-check">✓</span>
-</button>
-
-
-<button class="language-option" data-value="br">
-<span class="language-option-left">
-<span class="language-code">BR</span>
-Brezhoneg
-</span>
-<span class="language-check">✓</span>
 </button>
 
 
@@ -2188,7 +1574,8 @@ Login
 <a
 href="login.html"
 class="nav-register"
-data-translate="nav_register">
+data-translate="nav_Login
+">
 
 Login
 
@@ -2534,7 +1921,7 @@ Digital Asset Platform
 
 
 <!-- =================================================
-     LANGUAGE SELECTOR UI
+     LANGUAGE SELECTOR SCRIPT
      ================================================= -->
 
 <script>
@@ -2561,23 +1948,64 @@ let selectedLanguage =
 localStorage.getItem("spaceXLanguage") || "en";
 
 
+/* =================================================
+   GET LANGUAGE NAME
+   ================================================= */
+
 function getLanguageName(option){
 
-const code =
-option
-.querySelector(".language-code")
-.textContent
-.trim();
+const nameElement =
+option.querySelector(
+".language-option-left"
+);
 
-return option
-.querySelector(".language-option-left")
-.textContent
-.trim()
-.replace(code,"")
-.trim();
+const codeElement =
+option.querySelector(
+".language-code"
+);
+
+const flagElement =
+option.querySelector(
+".language-flag"
+);
+
+if(!nameElement){
+
+return "";
 
 }
 
+let name =
+nameElement.textContent.trim();
+
+if(codeElement){
+
+name =
+name.replace(
+codeElement.textContent.trim(),
+""
+);
+
+}
+
+if(flagElement){
+
+name =
+name.replace(
+flagElement.textContent.trim(),
+""
+);
+
+}
+
+return name.trim();
+
+}
+
+
+/* =================================================
+   SET SELECTED LANGUAGE
+   ================================================= */
 
 function setSelectedLanguage(language){
 
@@ -2613,10 +2041,15 @@ selectedLanguage = language;
 }
 
 
+if(foundOption){
+
 foundOption.classList.add("selected");
 
 selectedLanguageName.textContent =
 getLanguageName(foundOption);
+
+}
+
 
 localStorage.setItem(
 "spaceXLanguage",
@@ -2625,6 +2058,10 @@ selectedLanguage
 
 }
 
+
+/* =================================================
+   CLOSE MENU
+   ================================================= */
 
 function closeLanguageMenu(){
 
@@ -2640,6 +2077,10 @@ languageTrigger.setAttribute(
 }
 
 
+/* =================================================
+   OPEN MENU
+   ================================================= */
+
 function openLanguageMenu(){
 
 languageDropdown.classList.add("show");
@@ -2653,6 +2094,10 @@ languageTrigger.setAttribute(
 
 }
 
+
+/* =================================================
+   TRIGGER
+   ================================================= */
 
 languageTrigger.addEventListener(
 "click",
@@ -2672,8 +2117,13 @@ openLanguageMenu();
 
 }
 
-});
+}
+);
 
+
+/* =================================================
+   LANGUAGE CLICK
+   ================================================= */
 
 languageOptions.forEach(option=>{
 
@@ -2688,7 +2138,8 @@ setSelectedLanguage(language);
 
 
 /*
-   Notify language.js
+   Send selected language
+   to language.js
 */
 
 document.dispatchEvent(
@@ -2702,6 +2153,7 @@ language:language
 )
 );
 
+
 closeLanguageMenu();
 
 }
@@ -2709,6 +2161,10 @@ closeLanguageMenu();
 
 });
 
+
+/* =================================================
+   SEARCH LANGUAGE
+   ================================================= */
 
 languageSearch.addEventListener(
 "input",
@@ -2744,6 +2200,10 @@ option.style.display =
 });
 
 
+/* =================================================
+   CLOSE WHEN CLICKING OUTSIDE
+   ================================================= */
+
 document.addEventListener(
 "click",
 function(event){
@@ -2761,7 +2221,30 @@ closeLanguageMenu();
 });
 
 
-setSelectedLanguage(selectedLanguage);
+/* =================================================
+   ESC KEY
+   ================================================= */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key === "Escape"){
+
+closeLanguageMenu();
+
+}
+
+});
+
+
+/* =================================================
+   INITIAL LANGUAGE
+   ================================================= */
+
+setSelectedLanguage(
+selectedLanguage
+);
 
 })();
 
@@ -2770,8 +2253,6 @@ setSelectedLanguage(selectedLanguage);
 
 <!-- =================================================
      FIREBASE
-     
-     ONLY INITIALIZE FIREBASE ONCE
      ================================================= -->
 
 <script type="module">
@@ -2801,7 +2282,7 @@ messagingSenderId:
 "203988106178",
 
 appId:
-"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+"1:203988106178:web:ab32a0c51effd3b5d4f45b6"
 
 };
 
@@ -2814,11 +2295,9 @@ initializeApp(firebaseConfig);
 <!-- =================================================
      TRANSLATION SYSTEM
      
-     IMPORTANT:
-     This file must exist at:
-
+     MAKE SURE THIS FILE EXISTS:
+     
      js/language.js
-
      ================================================= -->
 
 <script
