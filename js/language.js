@@ -1,11 +1,28 @@
 /* =========================================================
-   SPACE X — COMPLETE 23 LANGUAGE SYSTEM
+   SPACE X — GLOBAL 23 LANGUAGE SYSTEM
    File: js/language.js
 
-   Works with:
-   data-translate="..."
+   ONE LANGUAGE SELECTED ON INDEX = ALL PAGES
 
-   Languages:
+   Supported pages:
+   - Index
+   - Register
+   - Login
+   - Dashboard
+   - Deposit
+   - Invest
+   - Withdraw
+   - Wallet
+   - History
+   - Support
+   - Bank Transfer
+   - Crypto
+   - Gift Card
+   - Withdraw Crypto
+   - Withdraw PayPal
+   - Withdraw Cash App
+
+   Supported languages:
    English
    Spanish
    French
@@ -29,18 +46,33 @@
    Indonesian
    Malay
    Filipino
+
+   FEATURES:
+   - Language selected on index applies everywhere
+   - localStorage persistence
+   - No language selector required on other pages
+   - Automatic translation on page load
+   - Placeholder translation
+   - Button translation
+   - RTL Arabic support
+   - English fallback
+   - Dynamic elements supported
    ========================================================= */
 
 (() => {
 
     "use strict";
 
+    /* =====================================================
+       STORAGE
+       ===================================================== */
+
     const STORAGE_KEY = "spaceXLanguage";
 
 
-    /* =========================================================
-       LANGUAGE NAMES
-       ========================================================= */
+    /* =====================================================
+       LANGUAGE LIST
+       ===================================================== */
 
     const languageNames = {
 
@@ -71,2007 +103,2179 @@
     };
 
 
-    /* =========================================================
+    /* =====================================================
        RTL
-       ========================================================= */
+       ===================================================== */
 
     const rtlLanguages = [
         "ar"
     ];
 
 
-    /* =========================================================
-       ENGLISH
-       ========================================================= */
-
-    const ENGLISH = {
-
-        nav_home:
-            "Home",
-
-        nav_platform:
-            "Platform",
-
-        nav_about:
-            "About",
-
-        nav_login:
-            "Login",
-
-        nav_register:
-            "Create Account",
-
-
-        hero_eyebrow:
-            "Digital investment platform",
-
-        hero_title:
-            "Move your digital assets",
-
-        hero_title_accent:
-            "forward.",
-
-        hero_description:
-            "Space X brings account management, digital asset activity and investment tools together in one streamlined experience.",
-
-        hero_create:
-            "Create Account",
-
-        hero_explore:
-            "Explore Platform",
-
-
-        market_activity:
-            "MARKET ACTIVITY",
-
-        market_realtime:
-            "REAL-TIME VIEW",
-
-
-        features_title:
-            "Built for clarity.",
-
-        features_description:
-            "A focused experience for monitoring your account, managing activity and accessing your Space X tools.",
-
-
-        feature_account_title:
-            "Simple control",
-
-        feature_account_text:
-            "Access your balance, account activity and platform tools from a clean dashboard.",
-
-
-        feature_activity_title:
-            "Track activity",
-
-        feature_activity_text:
-            "Review deposits, withdrawals and investment activity in one organized environment.",
-
-
-        feature_interface_title:
-            "Modern interface",
-
-        feature_interface_text:
-            "A responsive dark interface designed for a consistent experience across mobile and desktop.",
-
-
-        about_title:
-            "One platform.",
-
-        about_description:
-            "Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.",
-
-
-        cta_title:
-            "Ready to get started?",
-
-        cta_description:
-            "Create your Space X account and access the platform from your preferred device.",
-
-        cta_button:
-            "Open Space X Account",
-
-
-        footer_copyright:
-            "© 2026 Space X. All Rights Reserved.",
-
-        footer_platform:
-            "Digital Asset Platform"
-
-    };
-
-
-    /* =========================================================
-       ALL 23 LANGUAGES
-       ========================================================= */
+    /* =====================================================
+       TRANSLATIONS
+       ===================================================== */
 
     const translations = {
 
-        /* =====================================================
+
+        /* =================================================
            ENGLISH
-           ===================================================== */
+           ================================================= */
 
-        en: ENGLISH,
+        en: {
 
-
-        /* =====================================================
-           SPANISH
-           ===================================================== */
-
-        es: {
-
-            nav_home: "Inicio",
-            nav_platform: "Plataforma",
-            nav_about: "Acerca de",
-            nav_login: "Iniciar sesión",
-            nav_register: "Crear cuenta",
-
-            hero_eyebrow: "Plataforma de inversión digital",
-            hero_title: "Mueve tus activos digitales",
-            hero_title_accent: "hacia adelante.",
-
-            hero_description:
-                "Space X reúne la gestión de cuentas, la actividad de activos digitales y las herramientas de inversión en una experiencia sencilla.",
-
-            hero_create: "Crear cuenta",
-            hero_explore: "Explorar plataforma",
-
-            market_activity: "ACTIVIDAD DEL MERCADO",
-            market_realtime: "VISTA EN TIEMPO REAL",
-
-            features_title: "Diseñado para la claridad.",
-
-            features_description:
-                "Una experiencia enfocada para supervisar tu cuenta, gestionar actividades y acceder a tus herramientas de Space X.",
-
-            feature_account_title: "Control sencillo",
-
-            feature_account_text:
-                "Accede a tu saldo, actividad de cuenta y herramientas de plataforma desde un panel limpio.",
-
-            feature_activity_title: "Seguimiento de actividad",
-
-            feature_activity_text:
-                "Revisa depósitos, retiros y actividades de inversión en un entorno organizado.",
-
-            feature_interface_title: "Interfaz moderna",
-
-            feature_interface_text:
-                "Una interfaz oscura y adaptable diseñada para una experiencia consistente en móviles y ordenadores.",
-
-            about_title: "Una plataforma.",
-
-            about_description:
-                "Space X está diseñada para ofrecer una experiencia de cuenta digital sencilla, manteniendo las herramientas esenciales al alcance.",
-
-            cta_title: "¿Listo para comenzar?",
-
-            cta_description:
-                "Crea tu cuenta de Space X y accede a la plataforma desde tu dispositivo preferido.",
-
-            cta_button: "Abrir cuenta Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Todos los derechos reservados.",
-
-            footer_platform:
-                "Plataforma de activos digitales"
-
-        },
-
-
-        /* =====================================================
-           FRENCH
-           ===================================================== */
-
-        fr: {
-
-            nav_home: "Accueil",
-            nav_platform: "Plateforme",
-            nav_about: "À propos",
-            nav_login: "Connexion",
-            nav_register: "Créer un compte",
-
-            hero_eyebrow:
-                "Plateforme d'investissement numérique",
-
-            hero_title:
-                "Faites avancer vos actifs",
-
-            hero_title_accent:
-                "numériques.",
-
-            hero_description:
-                "Space X réunit la gestion de compte, l'activité des actifs numériques et les outils d'investissement dans une expérience fluide.",
-
-            hero_create:
-                "Créer un compte",
-
-            hero_explore:
-                "Explorer la plateforme",
-
-            market_activity:
-                "ACTIVITÉ DU MARCHÉ",
-
-            market_realtime:
-                "VUE EN TEMPS RÉEL",
-
-            features_title:
-                "Conçu pour la clarté.",
-
-            features_description:
-                "Une expérience conçue pour surveiller votre compte, gérer vos activités et accéder à vos outils Space X.",
-
-            feature_account_title:
-                "Contrôle simple",
-
-            feature_account_text:
-                "Accédez à votre solde, à votre activité et aux outils de la plateforme depuis un tableau de bord clair.",
-
-            feature_activity_title:
-                "Suivre l'activité",
-
-            feature_activity_text:
-                "Consultez les dépôts, retraits et activités d'investissement dans un environnement organisé.",
-
-            feature_interface_title:
-                "Interface moderne",
-
-            feature_interface_text:
-                "Une interface sombre et responsive conçue pour une expérience cohérente sur mobile et ordinateur.",
-
-            about_title:
-                "Une plateforme.",
-
-            about_description:
-                "Space X est conçue autour d'une expérience de compte numérique simple, avec les outils essentiels toujours accessibles.",
-
-            cta_title:
-                "Prêt à commencer ?",
-
-            cta_description:
-                "Créez votre compte Space X et accédez à la plateforme depuis votre appareil préféré.",
-
-            cta_button:
-                "Ouvrir un compte Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Tous droits réservés.",
-
-            footer_platform:
-                "Plateforme d'actifs numériques"
-
-        },
-
-
-        /* =====================================================
-           GERMAN
-           ===================================================== */
-
-        de: {
-
-            nav_home: "Startseite",
-            nav_platform: "Plattform",
-            nav_about: "Über uns",
-            nav_login: "Anmelden",
-            nav_register: "Konto erstellen",
-
-            hero_eyebrow:
-                "Digitale Investmentplattform",
-
-            hero_title:
-                "Bringen Sie Ihre digitalen",
-
-            hero_title_accent:
-                "Vermögenswerte voran.",
-
-            hero_description:
-                "Space X vereint Kontoverwaltung, Aktivitäten mit digitalen Vermögenswerten und Investmenttools in einer übersichtlichen Erfahrung.",
-
-            hero_create:
-                "Konto erstellen",
-
-            hero_explore:
-                "Plattform entdecken",
-
-            market_activity:
-                "MARKTAKTIVITÄT",
-
-            market_realtime:
-                "ECHTZEITANSICHT",
-
-            features_title:
-                "Für Klarheit entwickelt.",
-
-            features_description:
-                "Eine fokussierte Umgebung zur Überwachung Ihres Kontos, Verwaltung Ihrer Aktivitäten und Nutzung Ihrer Space-X-Tools.",
-
-            feature_account_title:
-                "Einfache Kontrolle",
-
-            feature_account_text:
-                "Greifen Sie über ein übersichtliches Dashboard auf Guthaben, Kontoaktivitäten und Plattformtools zu.",
-
-            feature_activity_title:
-                "Aktivitäten verfolgen",
-
-            feature_activity_text:
-                "Überprüfen Sie Einzahlungen, Auszahlungen und Investmentaktivitäten in einer organisierten Umgebung.",
-
-            feature_interface_title:
-                "Moderne Oberfläche",
-
-            feature_interface_text:
-                "Eine responsive dunkle Oberfläche für eine einheitliche Nutzung auf Mobilgeräten und Desktop.",
-
-            about_title:
-                "Eine Plattform.",
-
-            about_description:
-                "Space X bietet eine unkomplizierte digitale Kontoerfahrung mit den wichtigsten Tools direkt zur Hand.",
-
-            cta_title:
-                "Bereit loszulegen?",
-
-            cta_description:
-                "Erstellen Sie Ihr Space-X-Konto und greifen Sie von Ihrem bevorzugten Gerät auf die Plattform zu.",
-
-            cta_button:
-                "Space-X-Konto eröffnen",
-
-            footer_copyright:
-                "© 2026 Space X. Alle Rechte vorbehalten.",
-
-            footer_platform:
-                "Plattform für digitale Vermögenswerte"
-
-        },
-
-
-        /* =====================================================
-           PORTUGUESE
-           ===================================================== */
-
-        pt: {
-
-            nav_home: "Início",
-            nav_platform: "Plataforma",
-            nav_about: "Sobre",
-            nav_login: "Entrar",
-            nav_register: "Criar conta",
-
-            hero_eyebrow:
-                "Plataforma de investimento digital",
-
-            hero_title:
-                "Leve seus ativos digitais",
-
-            hero_title_accent:
-                "adiante.",
-
-            hero_description:
-                "A Space X reúne gestão de contas, atividades de ativos digitais e ferramentas de investimento em uma experiência simplificada.",
-
-            hero_create:
-                "Criar conta",
-
-            hero_explore:
-                "Explorar plataforma",
-
-            market_activity:
-                "ATIVIDADE DO MERCADO",
-
-            market_realtime:
-                "VISÃO EM TEMPO REAL",
-
-            features_title:
-                "Feita para a clareza.",
-
-            features_description:
-                "Uma experiência focada no acompanhamento da sua conta, gerenciamento de atividades e acesso às ferramentas da Space X.",
-
-            feature_account_title:
-                "Controle simples",
-
-            feature_account_text:
-                "Acesse seu saldo, atividades da conta e ferramentas da plataforma em um painel limpo.",
-
-            feature_activity_title:
-                "Acompanhar atividades",
-
-            feature_activity_text:
-                "Revise depósitos, saques e atividades de investimento em um ambiente organizado.",
-
-            feature_interface_title:
-                "Interface moderna",
-
-            feature_interface_text:
-                "Uma interface escura e responsiva para uma experiência consistente em dispositivos móveis e computadores.",
-
-            about_title:
-                "Uma plataforma.",
-
-            about_description:
-                "A Space X foi criada para oferecer uma experiência simples de conta digital, mantendo as ferramentas essenciais ao alcance.",
-
-            cta_title:
-                "Pronto para começar?",
-
-            cta_description:
-                "Crie sua conta Space X e acesse a plataforma pelo dispositivo de sua preferência.",
-
-            cta_button:
-                "Abrir conta Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Todos os direitos reservados.",
-
-            footer_platform:
-                "Plataforma de ativos digitais"
-
-        },
-
-
-        /* =====================================================
-           ITALIAN
-           ===================================================== */
-
-        it: {
-
-            nav_home: "Home",
-            nav_platform: "Piattaforma",
-            nav_about: "Chi siamo",
-            nav_login: "Accedi",
-            nav_register: "Crea account",
-
-            hero_eyebrow:
-                "Piattaforma di investimento digitale",
-
-            hero_title:
-                "Porta i tuoi asset digitali",
-
-            hero_title_accent:
-                "in avanti.",
-
-            hero_description:
-                "Space X riunisce gestione dell'account, attività sugli asset digitali e strumenti di investimento in un'esperienza semplice.",
-
-            hero_create:
-                "Crea account",
-
-            hero_explore:
-                "Esplora la piattaforma",
-
-            market_activity:
-                "ATTIVITÀ DI MERCATO",
-
-            market_realtime:
-                "VISTA IN TEMPO REALE",
-
-            features_title:
-                "Progettata per la chiarezza.",
-
-            features_description:
-                "Un'esperienza focalizzata per monitorare il tuo account, gestire le attività e accedere agli strumenti Space X.",
-
-            feature_account_title:
-                "Controllo semplice",
-
-            feature_account_text:
-                "Accedi al saldo, alle attività dell'account e agli strumenti della piattaforma da una dashboard pulita.",
-
-            feature_activity_title:
-                "Monitora attività",
-
-            feature_activity_text:
-                "Controlla depositi, prelievi e attività di investimento in un ambiente organizzato.",
-
-            feature_interface_title:
-                "Interfaccia moderna",
-
-            feature_interface_text:
-                "Un'interfaccia scura e responsive progettata per un'esperienza coerente su mobile e desktop.",
-
-            about_title:
-                "Una piattaforma.",
-
-            about_description:
-                "Space X è progettata attorno a un'esperienza di account digitale semplice, con gli strumenti essenziali sempre disponibili.",
-
-            cta_title:
-                "Pronto per iniziare?",
-
-            cta_description:
-                "Crea il tuo account Space X e accedi alla piattaforma dal dispositivo che preferisci.",
-
-            cta_button:
-                "Apri account Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Tutti i diritti riservati.",
-
-            footer_platform:
-                "Piattaforma di asset digitali"
-
-        },
-
-
-        /* =====================================================
-           DUTCH
-           ===================================================== */
-
-        nl: {
+            /* ================= INDEX ================= */
 
             nav_home: "Home",
             nav_platform: "Platform",
-            nav_about: "Over ons",
-            nav_login: "Inloggen",
-            nav_register: "Account aanmaken",
+            nav_about: "About",
+            nav_login: "Login",
+            nav_register: "Create Account",
 
-            hero_eyebrow:
-                "Digitaal investeringsplatform",
-
-            hero_title:
-                "Breng uw digitale activa",
-
-            hero_title_accent:
-                "vooruit.",
+            hero_eyebrow: "Digital investment platform",
+            hero_title: "Move your digital assets",
+            hero_title_accent: "forward.",
 
             hero_description:
-                "Space X brengt accountbeheer, digitale activiteitsfuncties en investeringstools samen in één gestroomlijnde ervaring.",
+                "Space X brings account management, digital asset activity and investment tools together in one streamlined experience.",
 
-            hero_create:
-                "Account aanmaken",
+            hero_create: "Create Account",
+            hero_explore: "Explore Platform",
 
-            hero_explore:
-                "Platform verkennen",
+            market_activity: "MARKET ACTIVITY",
+            market_realtime: "REAL-TIME VIEW",
 
-            market_activity:
-                "MARKTACTIVITEIT",
-
-            market_realtime:
-                "REALTIME WEERGAVE",
-
-            features_title:
-                "Ontworpen voor duidelijkheid.",
+            features_title: "Built for clarity.",
 
             features_description:
-                "Een gerichte ervaring om uw account te controleren, activiteiten te beheren en toegang te krijgen tot uw Space X-tools.",
+                "A focused experience for monitoring your account, managing activity and accessing your Space X tools.",
 
-            feature_account_title:
-                "Eenvoudige controle",
-
-            feature_account_text:
-                "Bekijk uw saldo, accountactiviteiten en platformtools vanuit een overzichtelijk dashboard.",
-
-            feature_activity_title:
-                "Activiteit volgen",
-
-            feature_activity_text:
-                "Bekijk stortingen, opnames en investeringsactiviteiten in één georganiseerde omgeving.",
-
-            feature_interface_title:
-                "Moderne interface",
-
-            feature_interface_text:
-                "Een responsieve donkere interface voor een consistente ervaring op mobiel en desktop.",
-
-            about_title:
-                "Eén platform.",
-
-            about_description:
-                "Space X is ontworpen rond een eenvoudige digitale accountomgeving, met essentiële tools binnen handbereik.",
-
-            cta_title:
-                "Klaar om te beginnen?",
-
-            cta_description:
-                "Maak uw Space X-account aan en krijg toegang tot het platform vanaf uw favoriete apparaat.",
-
-            cta_button:
-                "Space X-account openen",
-
-            footer_copyright:
-                "© 2026 Space X. Alle rechten voorbehouden.",
-
-            footer_platform:
-                "Platform voor digitale activa"
-
-        },
-
-
-        /* =====================================================
-           TURKISH
-           ===================================================== */
-
-        tr: {
-
-            nav_home: "Ana Sayfa",
-            nav_platform: "Platform",
-            nav_about: "Hakkımızda",
-            nav_login: "Giriş",
-            nav_register: "Hesap Oluştur",
-
-            hero_eyebrow:
-                "Dijital yatırım platformu",
-
-            hero_title:
-                "Dijital varlıklarınızı",
-
-            hero_title_accent:
-                "ileri taşıyın.",
-
-            hero_description:
-                "Space X, hesap yönetimini, dijital varlık faaliyetlerini ve yatırım araçlarını tek bir düzenli deneyimde bir araya getirir.",
-
-            hero_create:
-                "Hesap Oluştur",
-
-            hero_explore:
-                "Platformu Keşfet",
-
-            market_activity:
-                "PİYASA FAALİYETİ",
-
-            market_realtime:
-                "GERÇEK ZAMANLI GÖRÜNÜM",
-
-            features_title:
-                "Netlik için tasarlandı.",
-
-            features_description:
-                "Hesabınızı izlemek, faaliyetlerinizi yönetmek ve Space X araçlarınıza erişmek için sade bir deneyim.",
-
-            feature_account_title:
-                "Basit kontrol",
+            feature_account_title: "Simple control",
 
             feature_account_text:
-                "Bakiyenize, hesap faaliyetlerinize ve platform araçlarına temiz bir panel üzerinden erişin.",
+                "Access your balance, account activity and platform tools from a clean dashboard.",
 
-            feature_activity_title:
-                "Faaliyetleri takip edin",
-
-            feature_activity_text:
-                "Para yatırma, çekme ve yatırım faaliyetlerinizi düzenli bir ortamda inceleyin.",
-
-            feature_interface_title:
-                "Modern arayüz",
-
-            feature_interface_text:
-                "Mobil ve masaüstünde tutarlı bir deneyim için tasarlanmış duyarlı koyu arayüz.",
-
-            about_title:
-                "Tek platform.",
-
-            about_description:
-                "Space X, temel araçları kolayca erişilebilir tutan sade bir dijital hesap deneyimi sunmak için tasarlanmıştır.",
-
-            cta_title:
-                "Başlamaya hazır mısınız?",
-
-            cta_description:
-                "Space X hesabınızı oluşturun ve platforma tercih ettiğiniz cihazdan erişin.",
-
-            cta_button:
-                "Space X Hesabı Aç",
-
-            footer_copyright:
-                "© 2026 Space X. Tüm hakları saklıdır.",
-
-            footer_platform:
-                "Dijital Varlık Platformu"
-
-        },
-
-
-        /* =====================================================
-           RUSSIAN
-           ===================================================== */
-
-        ru: {
-
-            nav_home: "Главная",
-            nav_platform: "Платформа",
-            nav_about: "О нас",
-            nav_login: "Войти",
-            nav_register: "Создать аккаунт",
-
-            hero_eyebrow:
-                "Цифровая инвестиционная платформа",
-
-            hero_title:
-                "Двигайте цифровые активы",
-
-            hero_title_accent:
-                "вперёд.",
-
-            hero_description:
-                "Space X объединяет управление аккаунтом, операции с цифровыми активами и инвестиционные инструменты в одном удобном пространстве.",
-
-            hero_create:
-                "Создать аккаунт",
-
-            hero_explore:
-                "Изучить платформу",
-
-            market_activity:
-                "АКТИВНОСТЬ РЫНКА",
-
-            market_realtime:
-                "ПРОСМОТР В РЕАЛЬНОМ ВРЕМЕНИ",
-
-            features_title:
-                "Создано для ясности.",
-
-            features_description:
-                "Удобная среда для контроля аккаунта, управления активностью и доступа к инструментам Space X.",
-
-            feature_account_title:
-                "Простой контроль",
-
-            feature_account_text:
-                "Получайте доступ к балансу, активности аккаунта и инструментам платформы через чистую панель.",
-
-            feature_activity_title:
-                "Отслеживание активности",
+            feature_activity_title: "Track activity",
 
             feature_activity_text:
-                "Просматривайте пополнения, выводы и инвестиционную активность в организованной среде.",
+                "Review deposits, withdrawals and investment activity in one organized environment.",
 
-            feature_interface_title:
-                "Современный интерфейс",
-
-            feature_interface_text:
-                "Адаптивный тёмный интерфейс для удобной работы на мобильных устройствах и компьютерах.",
-
-            about_title:
-                "Одна платформа.",
-
-            about_description:
-                "Space X создана для простой работы с цифровым аккаунтом, а основные инструменты всегда находятся под рукой.",
-
-            cta_title:
-                "Готовы начать?",
-
-            cta_description:
-                "Создайте аккаунт Space X и получите доступ к платформе с предпочитаемого устройства.",
-
-            cta_button:
-                "Открыть аккаунт Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Все права защищены.",
-
-            footer_platform:
-                "Платформа цифровых активов"
-
-        },
-
-
-        /* =====================================================
-           UKRAINIAN
-           ===================================================== */
-
-        uk: {
-
-            nav_home: "Головна",
-            nav_platform: "Платформа",
-            nav_about: "Про нас",
-            nav_login: "Увійти",
-            nav_register: "Створити акаунт",
-
-            hero_eyebrow:
-                "Цифрова інвестиційна платформа",
-
-            hero_title:
-                "Рухайте цифрові активи",
-
-            hero_title_accent:
-                "вперед.",
-
-            hero_description:
-                "Space X об'єднує керування акаунтом, активність цифрових активів та інвестиційні інструменти в одному зручному середовищі.",
-
-            hero_create:
-                "Створити акаунт",
-
-            hero_explore:
-                "Переглянути платформу",
-
-            market_activity:
-                "АКТИВНІСТЬ РИНКУ",
-
-            market_realtime:
-                "ПЕРЕГЛЯД У РЕАЛЬНОМУ ЧАСІ",
-
-            features_title:
-                "Створено для ясності.",
-
-            features_description:
-                "Зручний простір для контролю акаунта, керування активністю та доступу до інструментів Space X.",
-
-            feature_account_title:
-                "Простий контроль",
-
-            feature_account_text:
-                "Отримуйте доступ до балансу, активності акаунта та інструментів платформи через чисту панель.",
-
-            feature_activity_title:
-                "Відстеження активності",
-
-            feature_activity_text:
-                "Переглядайте поповнення, виведення та інвестиційну активність в організованому середовищі.",
-
-            feature_interface_title:
-                "Сучасний інтерфейс",
+            feature_interface_title: "Modern interface",
 
             feature_interface_text:
-                "Адаптивний темний інтерфейс для стабільного використання на мобільних пристроях і комп'ютерах.",
+                "A responsive dark interface designed for a consistent experience across mobile and desktop.",
 
-            about_title:
-                "Одна платформа.",
-
-            about_description:
-                "Space X створена для простого цифрового облікового досвіду, а основні інструменти завжди під рукою.",
-
-            cta_title:
-                "Готові почати?",
-
-            cta_description:
-                "Створіть акаунт Space X і отримайте доступ до платформи з потрібного пристрою.",
-
-            cta_button:
-                "Відкрити акаунт Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Усі права захищені.",
-
-            footer_platform:
-                "Платформа цифрових активів"
-
-        },
-
-
-        /* =====================================================
-           POLISH
-           ===================================================== */
-
-        pl: {
-
-            nav_home: "Strona główna",
-            nav_platform: "Platforma",
-            nav_about: "O nas",
-            nav_login: "Zaloguj się",
-            nav_register: "Utwórz konto",
-
-            hero_eyebrow:
-                "Cyfrowa platforma inwestycyjna",
-
-            hero_title:
-                "Przenieś swoje cyfrowe aktywa",
-
-            hero_title_accent:
-                "do przodu.",
-
-            hero_description:
-                "Space X łączy zarządzanie kontem, aktywność cyfrowych aktywów i narzędzia inwestycyjne w jednym uporządkowanym środowisku.",
-
-            hero_create:
-                "Utwórz konto",
-
-            hero_explore:
-                "Poznaj platformę",
-
-            market_activity:
-                "AKTYWNOŚĆ RYNKU",
-
-            market_realtime:
-                "WIDOK W CZASIE RZECZYWISTYM",
-
-            features_title:
-                "Stworzone dla przejrzystości.",
-
-            features_description:
-                "Skoncentrowane środowisko do monitorowania konta, zarządzania aktywnością i korzystania z narzędzi Space X.",
-
-            feature_account_title:
-                "Prosta kontrola",
-
-            feature_account_text:
-                "Uzyskaj dostęp do salda, aktywności konta i narzędzi platformy z przejrzystego panelu.",
-
-            feature_activity_title:
-                "Śledź aktywność",
-
-            feature_activity_text:
-                "Przeglądaj wpłaty, wypłaty i aktywność inwestycyjną w uporządkowanym środowisku.",
-
-            feature_interface_title:
-                "Nowoczesny interfejs",
-
-            feature_interface_text:
-                "Responsywny ciemny interfejs zapewniający spójne doświadczenie na telefonach i komputerach.",
-
-            about_title:
-                "Jedna platforma.",
+            about_title: "One platform.",
 
             about_description:
-                "Space X została zaprojektowana z myślą o prostym doświadczeniu cyfrowego konta, z najważniejszymi narzędziami zawsze pod ręką.",
+                "Space X is designed around a straightforward digital account experience, with the essential tools kept within reach.",
 
-            cta_title:
-                "Gotowy, aby zacząć?",
-
-            cta_description:
-                "Utwórz konto Space X i uzyskaj dostęp do platformy z wybranego urządzenia.",
-
-            cta_button:
-                "Otwórz konto Space X",
-
-            footer_copyright:
-                "© 2026 Space X. Wszelkie prawa zastrzeżone.",
-
-            footer_platform:
-                "Platforma aktywów cyfrowych"
-
-        },
-
-
-        /* =====================================================
-           ARABIC
-           ===================================================== */
-
-        ar: {
-
-            nav_home: "الرئيسية",
-            nav_platform: "المنصة",
-            nav_about: "من نحن",
-            nav_login: "تسجيل الدخول",
-            nav_register: "إنشاء حساب",
-
-            hero_eyebrow:
-                "منصة استثمار رقمية",
-
-            hero_title:
-                "حرّك أصولك الرقمية",
-
-            hero_title_accent:
-                "إلى الأمام.",
-
-            hero_description:
-                "تجمع Space X بين إدارة الحساب ونشاط الأصول الرقمية وأدوات الاستثمار في تجربة سلسة ومنظمة.",
-
-            hero_create:
-                "إنشاء حساب",
-
-            hero_explore:
-                "استكشاف المنصة",
-
-            market_activity:
-                "نشاط السوق",
-
-            market_realtime:
-                "عرض في الوقت الفعلي",
-
-            features_title:
-                "مصممة للوضوح.",
-
-            features_description:
-                "تجربة مركزة لمراقبة حسابك وإدارة نشاطك والوصول إلى أدوات Space X.",
-
-            feature_account_title:
-                "تحكم بسيط",
-
-            feature_account_text:
-                "يمكنك الوصول إلى رصيدك ونشاط حسابك وأدوات المنصة من لوحة تحكم واضحة.",
-
-            feature_activity_title:
-                "تتبع النشاط",
-
-            feature_activity_text:
-                "راجع الإيداعات والسحوبات وأنشطة الاستثمار في بيئة منظمة.",
-
-            feature_interface_title:
-                "واجهة حديثة",
-
-            feature_interface_text:
-                "واجهة داكنة ومتجاوبة مصممة لتجربة متناسقة على الهاتف والكمبيوتر.",
-
-            about_title:
-                "منصة واحدة.",
-
-            about_description:
-                "تم تصميم Space X لتوفير تجربة حساب رقمي بسيطة مع إبقاء الأدوات الأساسية في متناولك.",
-
-            cta_title:
-                "هل أنت مستعد للبدء؟",
+            cta_title: "Ready to get started?",
 
             cta_description:
-                "أنشئ حساب Space X الخاص بك وادخل إلى المنصة من جهازك المفضل.",
+                "Create your Space X account and access the platform from your preferred device.",
 
-            cta_button:
-                "فتح حساب Space X",
-
-            footer_copyright:
-                "© 2026 Space X. جميع الحقوق محفوظة.",
-
-            footer_platform:
-                "منصة الأصول الرقمية"
-
-        },
-
-
-        /* =====================================================
-           HINDI
-           ===================================================== */
-
-        hi: {
-
-            nav_home: "होम",
-            nav_platform: "प्लेटफ़ॉर्म",
-            nav_about: "हमारे बारे में",
-            nav_login: "लॉगिन",
-            nav_register: "खाता बनाएँ",
-
-            hero_eyebrow:
-                "डिजिटल निवेश प्लेटफ़ॉर्म",
-
-            hero_title:
-                "अपनी डिजिटल संपत्तियों को",
-
-            hero_title_accent:
-                "आगे बढ़ाएँ।",
-
-            hero_description:
-                "Space X खाता प्रबंधन, डिजिटल संपत्ति गतिविधि और निवेश उपकरणों को एक सरल अनुभव में जोड़ता है।",
-
-            hero_create:
-                "खाता बनाएँ",
-
-            hero_explore:
-                "प्लेटफ़ॉर्म देखें",
-
-            market_activity:
-                "बाज़ार गतिविधि",
-
-            market_realtime:
-                "रीयल-टाइम दृश्य",
-
-            features_title:
-                "स्पष्टता के लिए बनाया गया।",
-
-            features_description:
-                "अपने खाते की निगरानी, गतिविधियों के प्रबंधन और Space X उपकरणों तक पहुँच के लिए एक केंद्रित अनुभव।",
-
-            feature_account_title:
-                "सरल नियंत्रण",
-
-            feature_account_text:
-                "एक साफ़ डैशबोर्ड से अपना बैलेंस, खाता गतिविधि और प्लेटफ़ॉर्म उपकरण देखें।",
-
-            feature_activity_title:
-                "गतिविधि ट्रैक करें",
-
-            feature_activity_text:
-                "जमा, निकासी और निवेश गतिविधि को एक व्यवस्थित वातावरण में देखें।",
-
-            feature_interface_title:
-                "आधुनिक इंटरफ़ेस",
-
-            feature_interface_text:
-                "मोबाइल और डेस्कटॉप पर एक समान अनुभव के लिए बनाया गया उत्तरदायी डार्क इंटरफ़ेस।",
-
-            about_title:
-                "एक प्लेटफ़ॉर्म।",
-
-            about_description:
-                "Space X को एक सरल डिजिटल खाता अनुभव के लिए बनाया गया है, जिसमें आवश्यक उपकरण आसानी से उपलब्ध हैं।",
-
-            cta_title:
-                "शुरू करने के लिए तैयार हैं?",
-
-            cta_description:
-                "अपना Space X खाता बनाएँ और अपने पसंदीदा डिवाइस से प्लेटफ़ॉर्म तक पहुँचें।",
-
-            cta_button:
-                "Space X खाता खोलें",
-
-            footer_copyright:
-                "© 2026 Space X. सर्वाधिकार सुरक्षित।",
-
-            footer_platform:
-                "डिजिटल एसेट प्लेटफ़ॉर्म"
-
-        },
-
-
-        /* =====================================================
-           BENGALI
-           ===================================================== */
-
-        bn: {
-
-            nav_home: "হোম",
-            nav_platform: "প্ল্যাটফর্ম",
-            nav_about: "আমাদের সম্পর্কে",
-            nav_login: "লগইন",
-            nav_register: "অ্যাকাউন্ট তৈরি করুন",
-
-            hero_eyebrow:
-                "ডিজিটাল বিনিয়োগ প্ল্যাটফর্ম",
-
-            hero_title:
-                "আপনার ডিজিটাল সম্পদ",
-
-            hero_title_accent:
-                "এগিয়ে নিন।",
-
-            hero_description:
-                "Space X অ্যাকাউন্ট ব্যবস্থাপনা, ডিজিটাল সম্পদ কার্যক্রম এবং বিনিয়োগের সরঞ্জামগুলোকে একটি সহজ অভিজ্ঞতায় একত্রিত করে।",
-
-            hero_create:
-                "অ্যাকাউন্ট তৈরি করুন",
-
-            hero_explore:
-                "প্ল্যাটফর্ম দেখুন",
-
-            market_activity:
-                "বাজারের কার্যকলাপ",
-
-            market_realtime:
-                "রিয়েল-টাইম ভিউ",
-
-            features_title:
-                "স্পষ্টতার জন্য তৈরি।",
-
-            features_description:
-                "আপনার অ্যাকাউন্ট পর্যবেক্ষণ, কার্যক্রম পরিচালনা এবং Space X-এর সরঞ্জাম ব্যবহারের জন্য একটি সহজ অভিজ্ঞতা।",
-
-            feature_account_title:
-                "সহজ নিয়ন্ত্রণ",
-
-            feature_account_text:
-                "একটি পরিষ্কার ড্যাশবোর্ড থেকে আপনার ব্যালেন্স, অ্যাকাউন্ট কার্যক্রম এবং প্ল্যাটফর্মের সরঞ্জামগুলো দেখুন।",
-
-            feature_activity_title:
-                "কার্যকলাপ ট্র্যাক করুন",
-
-            feature_activity_text:
-                "জমা, উত্তোলন এবং বিনিয়োগ কার্যক্রম একটি সংগঠিত পরিবেশে পর্যালোচনা করুন।",
-
-            feature_interface_title:
-                "আধুনিক ইন্টারফেস",
-
-            feature_interface_text:
-                "মোবাইল এবং ডেস্কটপে একই রকম অভিজ্ঞতার জন্য তৈরি একটি রেসপনসিভ ডার্ক ইন্টারফেস।",
-
-            about_title:
-                "একটি প্ল্যাটফর্ম।",
-
-            about_description:
-                "Space X একটি সহজ ডিজিটাল অ্যাকাউন্ট অভিজ্ঞতার জন্য তৈরি, যেখানে প্রয়োজনীয় সরঞ্জামগুলো সহজেই হাতের কাছে থাকে।",
-
-            cta_title:
-                "শুরু করতে প্রস্তুত?",
-
-            cta_description:
-                "আপনার Space X অ্যাকাউন্ট তৈরি করুন এবং পছন্দের ডিভাইস থেকে প্ল্যাটফর্মে প্রবেশ করুন।",
-
-            cta_button:
-                "Space X অ্যাকাউন্ট খুলুন",
-
-            footer_copyright:
-                "© 2026 Space X. সর্বস্বত্ব সংরক্ষিত।",
-
-            footer_platform:
-                "ডিজিটাল অ্যাসেট প্ল্যাটফর্ম"
-
-        },
-
-
-        /* =====================================================
-           CHINESE SIMPLIFIED
-           ===================================================== */
-
-        "zh-CN": {
-
-            nav_home: "首页",
-            nav_platform: "平台",
-            nav_about: "关于我们",
-            nav_login: "登录",
-            nav_register: "创建账户",
-
-            hero_eyebrow:
-                "数字投资平台",
-
-            hero_title:
-                "推动您的数字资产",
-
-            hero_title_accent:
-                "向前发展。",
-
-            hero_description:
-                "Space X 将账户管理、数字资产活动和投资工具整合到一个简洁流畅的体验中。",
-
-            hero_create:
-                "创建账户",
-
-            hero_explore:
-                "探索平台",
-
-            market_activity:
-                "市场活动",
-
-            market_realtime:
-                "实时查看",
-
-            features_title:
-                "为清晰而设计。",
-
-            features_description:
-                "专注于账户监控、活动管理以及访问 Space X 工具的简洁体验。",
-
-            feature_account_title:
-                "简单控制",
-
-            feature_account_text:
-                "通过简洁的控制面板查看余额、账户活动和平台工具。",
-
-            feature_activity_title:
-                "跟踪活动",
-
-            feature_activity_text:
-                "在有序的环境中查看存款、提款和投资活动。",
-
-            feature_interface_title:
-                "现代界面",
-
-            feature_interface_text:
-                "响应式深色界面，为移动设备和桌面设备提供一致的体验。",
-
-            about_title:
-                "一个平台。",
-
-            about_description:
-                "Space X 专注于提供简单直接的数字账户体验，让重要工具始终触手可及。",
-
-            cta_title:
-                "准备开始了吗？",
-
-            cta_description:
-                "创建您的 Space X 账户，并从您喜欢的设备访问平台。",
-
-            cta_button:
-                "开通 Space X 账户",
-
-            footer_copyright:
-                "© 2026 Space X. 保留所有权利。",
-
-            footer_platform:
-                "数字资产平台"
-
-        },
-
-
-        /* =====================================================
-           CHINESE TRADITIONAL
-           ===================================================== */
-
-        "zh-TW": {
-
-            nav_home: "首頁",
-            nav_platform: "平台",
-            nav_about: "關於我們",
-            nav_login: "登入",
-            nav_register: "建立帳戶",
-
-            hero_eyebrow:
-                "數位投資平台",
-
-            hero_title:
-                "推動您的數位資產",
-
-            hero_title_accent:
-                "向前發展。",
-
-            hero_description:
-                "Space X 將帳戶管理、數位資產活動和投資工具整合到一個簡潔流暢的體驗中。",
-
-            hero_create:
-                "建立帳戶",
-
-            hero_explore:
-                "探索平台",
-
-            market_activity:
-                "市場活動",
-
-            market_realtime:
-                "即時檢視",
-
-            features_title:
-                "為清晰而設計。",
-
-            features_description:
-                "專注於帳戶監控、活動管理以及使用 Space X 工具的簡潔體驗。",
-
-            feature_account_title:
-                "簡單控制",
-
-            feature_account_text:
-                "透過簡潔的控制面板查看餘額、帳戶活動和平台工具。",
-
-            feature_activity_title:
-                "追蹤活動",
-
-            feature_activity_text:
-                "在有序的環境中查看存款、提款和投資活動。",
-
-            feature_interface_title:
-                "現代介面",
-
-            feature_interface_text:
-                "響應式深色介面，為行動裝置和桌面裝置提供一致的體驗。",
-
-            about_title:
-                "一個平台。",
-
-            about_description:
-                "Space X 專注於提供簡單直接的數位帳戶體驗，讓重要工具始終觸手可及。",
-
-            cta_title:
-                "準備開始了嗎？",
-
-            cta_description:
-                "建立您的 Space X 帳戶，並從您喜歡的裝置存取平台。",
-
-            cta_button:
-                "開啟 Space X 帳戶",
-
-            footer_copyright:
-                "© 2026 Space X. 保留所有權利。",
-
-            footer_platform:
-                "數位資產平台"
-
-        },
-
-
-        /* =====================================================
-           JAPANESE
-           ===================================================== */
-
-        ja: {
-
-            nav_home: "ホーム",
-            nav_platform: "プラットフォーム",
-            nav_about: "概要",
-            nav_login: "ログイン",
-            nav_register: "アカウント作成",
-
-            hero_eyebrow:
-                "デジタル投資プラットフォーム",
-
-            hero_title:
-                "デジタル資産を",
-
-            hero_title_accent:
-                "前へ進める。",
-
-            hero_description:
-                "Space Xは、アカウント管理、デジタル資産の活動、投資ツールを一つのシンプルな体験にまとめています。",
-
-            hero_create:
-                "アカウントを作成",
-
-            hero_explore:
-                "プラットフォームを見る",
-
-            market_activity:
-                "市場活動",
-
-            market_realtime:
-                "リアルタイム表示",
-
-            features_title:
-                "明確さのために設計。",
-
-            features_description:
-                "アカウントの確認、活動の管理、Space Xツールへのアクセスを簡単に行える体験です。",
-
-            feature_account_title:
-                "シンプルな管理",
-
-            feature_account_text:
-                "見やすいダッシュボードから残高、アカウント活動、プラットフォームツールにアクセスできます。",
-
-            feature_activity_title:
-                "アクティビティを追跡",
-
-            feature_activity_text:
-                "入金、出金、投資活動を整理された環境で確認できます。",
-
-            feature_interface_title:
-                "モダンなインターフェース",
-
-            feature_interface_text:
-                "モバイルとデスクトップで一貫した体験を提供するレスポンシブなダークインターフェース。",
-
-            about_title:
-                "ひとつのプラットフォーム。",
-
-            about_description:
-                "Space Xは、必要なツールをすぐに利用できるシンプルなデジタルアカウント体験を提供します。",
-
-            cta_title:
-                "始める準備はできましたか？",
-
-            cta_description:
-                "Space Xアカウントを作成し、お好みのデバイスからプラットフォームにアクセスしてください。",
-
-            cta_button:
-                "Space Xアカウントを開設",
+            cta_button: "Open Space X Account",
 
             footer_copyright:
                 "© 2026 Space X. All Rights Reserved.",
 
             footer_platform:
-                "デジタル資産プラットフォーム"
+                "Digital Asset Platform",
 
-        },
 
+            /* ================= REGISTER ================= */
 
-        /* =====================================================
-           KOREAN
-           ===================================================== */
+            register_eyebrow: "New Member",
 
-        ko: {
+            register_title:
+                "Create your account.",
 
-            nav_home: "홈",
-            nav_platform: "플랫폼",
-            nav_about: "소개",
-            nav_login: "로그인",
-            nav_register: "계정 만들기",
+            register_subtitle:
+                "Set up your Space X account and access your personal investment dashboard.",
 
-            hero_eyebrow:
-                "디지털 투자 플랫폼",
+            register_email_label:
+                "EMAIL ADDRESS",
 
-            hero_title:
-                "디지털 자산을",
+            register_email_placeholder:
+                "Enter your email",
 
-            hero_title_accent:
-                "앞으로 이동하세요.",
+            register_username_label:
+                "USERNAME",
 
-            hero_description:
-                "Space X는 계정 관리, 디지털 자산 활동 및 투자 도구를 하나의 간편한 경험으로 제공합니다.",
+            register_username_placeholder:
+                "Choose a username",
 
-            hero_create:
-                "계정 만들기",
+            register_password_label:
+                "PASSWORD",
 
-            hero_explore:
-                "플랫폼 둘러보기",
+            register_password_placeholder:
+                "Create a password",
 
-            market_activity:
-                "시장 활동",
+            register_confirm_password_label:
+                "CONFIRM PASSWORD",
 
-            market_realtime:
-                "실시간 보기",
+            register_confirm_password_placeholder:
+                "Confirm your password",
 
-            features_title:
-                "명확성을 위해 설계되었습니다.",
+            register_show: "Show",
+            register_hide: "Hide",
 
-            features_description:
-                "계정을 확인하고 활동을 관리하며 Space X 도구에 쉽게 접근할 수 있는 집중된 경험입니다.",
+            register_button: "Create Account",
 
-            feature_account_title:
-                "간편한 관리",
+            register_existing:
+                "Already have an account?",
 
-            feature_account_text:
-                "깔끔한 대시보드에서 잔액, 계정 활동 및 플랫폼 도구를 확인하세요.",
+            register_signin:
+                "Sign in",
 
-            feature_activity_title:
-                "활동 추적",
+            register_secure:
+                "Secure account creation",
 
-            feature_activity_text:
-                "입금, 출금 및 투자 활동을 정리된 환경에서 확인하세요.",
+            register_loader_title:
+                "Creating your account...",
 
-            feature_interface_title:
-                "현대적인 인터페이스",
+            register_loader_text:
+                "Please wait while Space X sets up your account.",
 
-            feature_interface_text:
-                "모바일과 데스크톱에서 일관된 경험을 제공하는 반응형 다크 인터페이스입니다.",
+            register_success_title:
+                "Account Created",
 
-            about_title:
-                "하나의 플랫폼.",
+            register_success_text:
+                "Welcome to Space X. Your account has been created successfully.",
 
-            about_description:
-                "Space X는 필수 도구를 쉽게 이용할 수 있도록 설계된 간단한 디지털 계정 경험을 제공합니다.",
+            register_continue:
+                "Continue to Dashboard",
 
-            cta_title:
-                "시작할 준비가 되셨나요?",
+            register_error_required:
+                "Please complete all fields.",
 
-            cta_description:
-                "Space X 계정을 만들고 원하는 기기에서 플랫폼에 접속하세요.",
+            register_error_username:
+                "Username must contain at least 3 characters.",
 
-            cta_button:
-                "Space X 계정 열기",
+            register_error_password_match:
+                "Passwords do not match.",
 
-            footer_copyright:
-                "© 2026 Space X. 모든 권리 보유.",
+            register_error_password_length:
+                "Password must be at least 6 characters.",
 
-            footer_platform:
-                "디지털 자산 플랫폼"
+            register_error_email_exists:
+                "This email is already registered.",
 
-        },
+            register_error_invalid_email:
+                "Please enter a valid email address.",
 
+            register_error_network:
+                "Network connection failed. Please check your internet connection.",
 
-        /* =====================================================
-           VIETNAMESE
-           ===================================================== */
+            register_error_general:
+                "Registration failed. Please try again.",
 
-        vi: {
 
-            nav_home: "Trang chủ",
-            nav_platform: "Nền tảng",
-            nav_about: "Giới thiệu",
-            nav_login: "Đăng nhập",
-            nav_register: "Tạo tài khoản",
+            /* ================= LOGIN ================= */
 
-            hero_eyebrow:
-                "Nền tảng đầu tư kỹ thuật số",
+            login_eyebrow: "Member Access",
 
-            hero_title:
-                "Đưa tài sản kỹ thuật số",
+            login_title:
+                "Welcome back.",
 
-            hero_title_accent:
-                "tiến về phía trước.",
+            login_subtitle:
+                "Sign in to continue to your Space X account.",
 
-            hero_description:
-                "Space X kết hợp quản lý tài khoản, hoạt động tài sản kỹ thuật số và các công cụ đầu tư trong một trải nghiệm đơn giản.",
+            login_email_label:
+                "EMAIL ADDRESS",
 
-            hero_create:
-                "Tạo tài khoản",
+            login_email_placeholder:
+                "Enter your email",
 
-            hero_explore:
-                "Khám phá nền tảng",
+            login_password_label:
+                "PASSWORD",
 
-            market_activity:
-                "HOẠT ĐỘNG THỊ TRƯỜNG",
+            login_password_placeholder:
+                "Enter your password",
 
-            market_realtime:
-                "XEM THEO THỜI GIAN THỰC",
+            login_show: "Show",
+            login_hide: "Hide",
 
-            features_title:
-                "Được xây dựng để rõ ràng.",
+            login_button: "Sign In",
 
-            features_description:
-                "Một trải nghiệm tập trung để theo dõi tài khoản, quản lý hoạt động và truy cập các công cụ Space X.",
+            login_new_user:
+                "New to Space X?",
 
-            feature_account_title:
-                "Kiểm soát đơn giản",
+            login_create_account:
+                "Create an account",
 
-            feature_account_text:
-                "Truy cập số dư, hoạt động tài khoản và công cụ nền tảng từ bảng điều khiển rõ ràng.",
+            login_secure:
+                "Secure account authentication",
 
-            feature_activity_title:
-                "Theo dõi hoạt động",
+            login_loader_title:
+                "Signing you in securely...",
 
-            feature_activity_text:
-                "Xem các khoản nạp, rút và hoạt động đầu tư trong một môi trường có tổ chức.",
+            login_loader_text:
+                "Please wait while Space X authenticates your account.",
 
-            feature_interface_title:
-                "Giao diện hiện đại",
+            login_success_title:
+                "Welcome back",
 
-            feature_interface_text:
-                "Giao diện tối đáp ứng được thiết kế để mang lại trải nghiệm nhất quán trên điện thoại và máy tính.",
+            login_success_text:
+                "Your Space X account has been authenticated successfully.",
 
-            about_title:
-                "Một nền tảng.",
+            login_continue:
+                "Continue to Dashboard",
 
-            about_description:
-                "Space X được thiết kế để mang lại trải nghiệm tài khoản kỹ thuật số đơn giản với các công cụ cần thiết luôn trong tầm tay.",
+            login_error_required:
+                "Please enter your email address and password.",
 
-            cta_title:
-                "Sẵn sàng bắt đầu?",
+            login_error_general:
+                "Unable to sign in. Please check your email and password.",
 
-            cta_description:
-                "Tạo tài khoản Space X và truy cập nền tảng từ thiết bị bạn предпочir.",
+            login_error_invalid:
+                "The email or password is incorrect.",
 
-            cta_button:
-                "Mở tài khoản Space X",
+            login_error_invalid_email:
+                "Please enter a valid email address.",
 
-            footer_copyright:
-                "© 2026 Space X. Bảo lưu mọi quyền.",
+            login_error_too_many:
+                "Too many attempts. Please try again later.",
 
-            footer_platform:
-                "Nền tảng tài sản kỹ thuật số"
+            login_error_network:
+                "Network connection failed. Please check your internet connection.",
 
-        },
 
+            /* ================= COMMON ================= */
 
-        /* =====================================================
-           THAI
-           ===================================================== */
+            common_home: "Home",
+            common_back: "Back",
+            common_next: "Next",
+            common_continue: "Continue",
+            common_cancel: "Cancel",
+            common_close: "Close",
+            common_confirm: "Confirm",
+            common_submit: "Submit",
+            common_save: "Save",
+            common_loading: "Loading...",
+            common_success: "Success",
+            common_error: "Error",
+            common_pending: "Pending",
+            common_completed: "Completed",
+            common_failed: "Failed",
+            common_active: "Active",
+            common_inactive: "Inactive",
+            common_copy: "Copy",
+            common_copied: "Copied",
+            common_search: "Search",
+            common_amount: "Amount",
+            common_status: "Status",
+            common_date: "Date",
+            common_time: "Time",
+            common_details: "Details",
+            common_total: "Total",
+            common_balance: "Balance",
+            common_account: "Account",
+            common_username: "Username",
+            common_email: "Email",
+            common_logout: "Logout",
 
-        th: {
 
-            nav_home: "หน้าหลัก",
-            nav_platform: "แพลตฟอร์ม",
-            nav_about: "เกี่ยวกับเรา",
-            nav_login: "เข้าสู่ระบบ",
-            nav_register: "สร้างบัญชี",
+            /* ================= DASHBOARD ================= */
 
-            hero_eyebrow:
-                "แพลตฟอร์มการลงทุนดิจิทัล",
+            dashboard_title: "Dashboard",
 
-            hero_title:
-                "ขับเคลื่อนสินทรัพย์ดิจิทัลของคุณ",
+            dashboard_welcome:
+                "Welcome back",
 
-            hero_title_accent:
-                "ไปข้างหน้า",
+            dashboard_balance:
+                "Available Balance",
 
-            hero_description:
-                "Space X รวมการจัดการบัญชี กิจกรรมสินทรัพย์ดิจิทัล และเครื่องมือการลงทุนไว้ในประสบการณ์ที่เรียบง่าย",
+            dashboard_total_referrals:
+                "Total Referrals",
 
-            hero_create:
-                "สร้างบัญชี",
+            dashboard_referral_bonus:
+                "Referral Bonus",
 
-            hero_explore:
-                "สำรวจแพลตฟอร์ม",
+            dashboard_total_investment:
+                "Total Investment",
 
-            market_activity:
-                "กิจกรรมตลาด",
+            dashboard_active_plan:
+                "Active Plan",
 
-            market_realtime:
-                "ดูแบบเรียลไทม์",
+            dashboard_activate:
+                "Activate",
 
-            features_title:
-                "สร้างขึ้นเพื่อความชัดเจน",
+            dashboard_activated:
+                "Activated",
 
-            features_description:
-                "ประสบการณ์ที่ช่วยติดตามบัญชี จัดการกิจกรรม และเข้าถึงเครื่องมือ Space X ได้อย่างง่ายดาย",
+            dashboard_withdraw:
+                "Withdraw",
 
-            feature_account_title:
-                "ควบคุมง่าย",
+            dashboard_deposit:
+                "Deposit",
 
-            feature_account_text:
-                "เข้าถึงยอดคงเหลือ กิจกรรมบัญชี และเครื่องมือแพลตฟอร์มจากแดชบอร์ดที่สะอาด",
+            dashboard_invest:
+                "Invest",
 
-            feature_activity_title:
-                "ติดตามกิจกรรม",
+            dashboard_wallet:
+                "Wallet",
 
-            feature_activity_text:
-                "ตรวจสอบการฝาก การถอน และกิจกรรมการลงทุนในสภาพแวดล้อมที่เป็นระเบียบ",
+            dashboard_history:
+                "History",
 
-            feature_interface_title:
-                "อินเทอร์เฟซทันสมัย",
+            dashboard_profile:
+                "Profile",
 
-            feature_interface_text:
-                "อินเทอร์เฟซสีเข้มแบบตอบสนองที่ออกแบบมาเพื่อประสบการณ์ที่สม่ำเสมอบนมือถือและเดสก์ท็อป",
+            dashboard_support:
+                "Support",
 
-            about_title:
-                "แพลตฟอร์มเดียว",
+            dashboard_referral:
+                "Referral Link",
 
-            about_description:
-                "Space X ออกแบบมาเพื่อมอบประสบการณ์บัญชีดิจิทัลที่เรียบง่าย พร้อมเครื่องมือสำคัญที่เข้าถึงได้ง่าย",
+            dashboard_referral_copy:
+                "Copy",
 
-            cta_title:
-                "พร้อมเริ่มต้นหรือยัง?",
+            dashboard_status:
+                "Account Status",
 
-            cta_description:
-                "สร้างบัญชี Space X และเข้าถึงแพลตฟอร์มจากอุปกรณ์ที่คุณต้องการ",
+            dashboard_pending:
+                "Pending Activation",
 
-            cta_button:
-                "เปิดบัญชี Space X",
+            dashboard_verified:
+                "Account Activated",
 
-            footer_copyright:
-                "© 2026 Space X สงวนลิขสิทธิ์",
+            dashboard_recent_activity:
+                "Recent Activity",
 
-            footer_platform:
-                "แพลตฟอร์มสินทรัพย์ดิจิทัล"
+            dashboard_view_history:
+                "View History",
 
-        },
 
+            /* ================= DEPOSIT ================= */
 
-        /* =====================================================
-           INDONESIAN
-           ===================================================== */
+            deposit_title:
+                "Deposit",
 
-        id: {
+            deposit_subtitle:
+                "Add funds to your Space X account.",
 
-            nav_home: "Beranda",
-            nav_platform: "Platform",
-            nav_about: "Tentang Kami",
-            nav_login: "Masuk",
-            nav_register: "Buat Akun",
+            deposit_amount:
+                "Deposit Amount",
 
-            hero_eyebrow:
-                "Platform investasi digital",
+            deposit_method:
+                "Payment Method",
 
-            hero_title:
-                "Majukan aset digital Anda",
+            deposit_bank:
+                "Bank Transfer",
 
-            hero_title_accent:
-                "ke depan.",
+            deposit_crypto:
+                "Crypto",
 
-            hero_description:
-                "Space X menggabungkan pengelolaan akun, aktivitas aset digital, dan alat investasi dalam satu pengalaman yang sederhana.",
+            deposit_gift_card:
+                "Gift Card",
 
-            hero_create:
-                "Buat Akun",
+            deposit_continue:
+                "Continue",
 
-            hero_explore:
-                "Jelajahi Platform",
+            deposit_submit:
+                "Submit Deposit",
 
-            market_activity:
-                "AKTIVITAS PASAR",
+            deposit_reference:
+                "Transaction Reference",
 
-            market_realtime:
-                "TAMPILAN REAL-TIME",
+            deposit_upload:
+                "Upload Proof",
 
-            features_title:
-                "Dibuat untuk kejelasan.",
+            deposit_pending:
+                "Your deposit is being reviewed.",
 
-            features_description:
-                "Pengalaman terfokus untuk memantau akun, mengelola aktivitas, dan mengakses alat Space X.",
+            deposit_success:
+                "Deposit request submitted successfully.",
 
-            feature_account_title:
-                "Kontrol sederhana",
 
-            feature_account_text:
-                "Akses saldo, aktivitas akun, dan alat platform dari dasbor yang bersih.",
+            /* ================= INVEST ================= */
 
-            feature_activity_title:
-                "Lacak aktivitas",
+            invest_title:
+                "Investment",
 
-            feature_activity_text:
-                "Tinjau setoran, penarikan, dan aktivitas investasi dalam lingkungan yang terorganisir.",
+            invest_subtitle:
+                "Choose an investment option.",
 
-            feature_interface_title:
-                "Antarmuka modern",
+            invest_amount:
+                "Investment Amount",
 
-            feature_interface_text:
-                "Antarmuka gelap responsif yang dirancang untuk pengalaman konsisten di perangkat seluler dan desktop.",
+            invest_plan:
+                "Investment Plan",
 
-            about_title:
-                "Satu platform.",
+            invest_duration:
+                "Duration",
 
-            about_description:
-                "Space X dirancang untuk memberikan pengalaman akun digital yang sederhana dengan alat penting yang mudah dijangkau.",
+            invest_return:
+                "Expected Return",
 
-            cta_title:
-                "Siap untuk memulai?",
+            invest_start:
+                "Start Investment",
 
-            cta_description:
-                "Buat akun Space X dan akses platform dari perangkat pilihan Anda.",
+            invest_active:
+                "Active Investment",
 
-            cta_button:
-                "Buka Akun Space X",
+            invest_completed:
+                "Completed Investment",
 
-            footer_copyright:
-                "© 2026 Space X. Semua hak dilindungi.",
+            invest_pending:
+                "Pending Investment",
 
-            footer_platform:
-                "Platform Aset Digital"
+            invest_confirm:
+                "Confirm Investment",
 
-        },
+            invest_success:
+                "Investment submitted successfully.",
 
 
-        /* =====================================================
-           MALAY
-           ===================================================== */
+            /* ================= WITHDRAW ================= */
 
-        ms: {
+            withdraw_title:
+                "Withdraw",
 
-            nav_home: "Laman Utama",
-            nav_platform: "Platform",
-            nav_about: "Tentang Kami",
-            nav_login: "Log Masuk",
-            nav_register: "Cipta Akaun",
+            withdraw_subtitle:
+                "Withdraw funds from your Space X account.",
 
-            hero_eyebrow:
-                "Platform pelaburan digital",
+            withdraw_method:
+                "Withdrawal Method",
 
-            hero_title:
-                "Gerakkan aset digital anda",
+            withdraw_bank:
+                "Bank Transfer",
 
-            hero_title_accent:
-                "ke hadapan.",
+            withdraw_crypto:
+                "Crypto",
 
-            hero_description:
-                "Space X menggabungkan pengurusan akaun, aktiviti aset digital dan alat pelaburan dalam satu pengalaman yang ringkas.",
+            withdraw_paypal:
+                "PayPal",
 
-            hero_create:
-                "Cipta Akaun",
+            withdraw_cashapp:
+                "Cash App",
 
-            hero_explore:
-                "Terokai Platform",
+            withdraw_amount:
+                "Withdrawal Amount",
 
-            market_activity:
-                "AKTIVITI PASARAN",
+            withdraw_available:
+                "Available Balance",
 
-            market_realtime:
-                "PAPARAN MASA NYATA",
+            withdraw_submit:
+                "Submit Withdrawal",
 
-            features_title:
-                "Dibina untuk kejelasan.",
+            withdraw_confirm:
+                "Confirm Withdrawal",
 
-            features_description:
-                "Pengalaman yang fokus untuk memantau akaun, mengurus aktiviti dan mengakses alat Space X.",
+            withdraw_pending:
+                "Withdrawal Pending",
 
-            feature_account_title:
-                "Kawalan mudah",
+            withdraw_success:
+                "Withdrawal request submitted successfully.",
 
-            feature_account_text:
-                "Akses baki, aktiviti akaun dan alat platform daripada papan pemuka yang kemas.",
+            withdraw_insufficient:
+                "Insufficient balance.",
 
-            feature_activity_title:
-                "Jejak aktiviti",
 
-            feature_activity_text:
-                "Semak deposit, pengeluaran dan aktiviti pelaburan dalam persekitaran yang teratur.",
+            /* ================= WALLET ================= */
 
-            feature_interface_title:
-                "Antara muka moden",
+            wallet_title:
+                "Wallet",
 
-            feature_interface_text:
-                "Antara muka gelap responsif yang direka untuk pengalaman konsisten pada mudah alih dan desktop.",
+            wallet_balance:
+                "Wallet Balance",
 
-            about_title:
-                "Satu platform.",
+            wallet_available:
+                "Available Balance",
 
-            about_description:
-                "Space X direka untuk memberikan pengalaman akaun digital yang mudah dengan alat penting sentiasa mudah dicapai.",
+            wallet_deposit:
+                "Deposit",
 
-            cta_title:
-                "Bersedia untuk bermula?",
+            wallet_withdraw:
+                "Withdraw",
 
-            cta_description:
-                "Cipta akaun Space X anda dan akses platform daripada peranti pilihan anda.",
+            wallet_transfer:
+                "Transfer",
 
-            cta_button:
-                "Buka Akaun Space X",
+            wallet_transactions:
+                "Transactions",
 
-            footer_copyright:
-                "© 2026 Space X. Hak cipta terpelihara.",
+            wallet_empty:
+                "No transactions yet.",
 
-            footer_platform:
-                "Platform Aset Digital"
 
-        },
+            /* ================= HISTORY ================= */
 
+            history_title:
+                "History",
 
-        /* =====================================================
-           FILIPINO
-           ===================================================== */
+            history_all:
+                "All",
 
-        fil: {
+            history_deposits:
+                "Deposits",
 
-            nav_home: "Home",
-            nav_platform: "Platform",
-            nav_about: "Tungkol sa Amin",
-            nav_login: "Mag-login",
-            nav_register: "Gumawa ng Account",
+            history_withdrawals:
+                "Withdrawals",
 
-            hero_eyebrow:
-                "Digital investment platform",
+            history_investments:
+                "Investments",
 
-            hero_title:
-                "Isulong ang iyong digital assets",
+            history_referrals:
+                "Referrals",
 
-            hero_title_accent:
-                "pasulong.",
+            history_no_activity:
+                "No activity found.",
 
-            hero_description:
-                "Pinagsasama ng Space X ang pamamahala ng account, aktibidad ng digital assets at mga investment tool sa isang simple at maayos na karanasan.",
 
-            hero_create:
-                "Gumawa ng Account",
+            /* ================= SUPPORT ================= */
 
-            hero_explore:
-                "Tuklasin ang Platform",
+            support_title:
+                "Support",
 
-            market_activity:
-                "AKTIBIDAD NG MARKET",
+            support_subtitle:
+                "How can we help you?",
 
-            market_realtime:
-                "REAL-TIME VIEW",
+            support_contact:
+                "Contact Support",
 
-            features_title:
-                "Ginawa para sa kalinawan.",
+            support_message:
+                "Message",
 
-            features_description:
-                "Isang nakatuong karanasan para subaybayan ang iyong account, pamahalaan ang aktibidad at gamitin ang mga tool ng Space X.",
+            support_send:
+                "Send Message",
 
-            feature_account_title:
-                "Simpleng kontrol",
+            support_faq:
+                "Frequently Asked Questions",
 
-            feature_account_text:
-                "I-access ang iyong balanse, aktibidad ng account at mga tool ng platform mula sa malinis na dashboard.",
+            support_help:
+                "Help Center",
 
-            feature_activity_title:
-                "Subaybayan ang aktibidad",
+            support_response:
+                "Our support team will respond as soon as possible.",
 
-            feature_activity_text:
-                "Suriin ang mga deposito, withdrawal at investment activity sa isang organisadong environment.",
 
-            feature_interface_title:
-                "Modernong interface",
+            /* ================= BANK TRANSFER ================= */
 
-            feature_interface_text:
-                "Isang responsive na dark interface na ginawa para sa pare-parehong karanasan sa mobile at desktop.",
+            bank_transfer_title:
+                "Bank Transfer",
 
-            about_title:
-                "Isang platform.",
+            bank_transfer_subtitle:
+                "Deposit using a bank transfer.",
 
-            about_description:
-                "Ang Space X ay idinisenyo para sa simple at madaling digital account experience, na ang mahahalagang tool ay laging madaling ma-access.",
+            bank_transfer_account_name:
+                "Account Name",
 
-            cta_title:
-                "Handa nang magsimula?",
+            bank_transfer_account_number:
+                "Account Number",
 
-            cta_description:
-                "Gumawa ng iyong Space X account at i-access ang platform gamit ang iyong gustong device.",
+            bank_transfer_bank_name:
+                "Bank Name",
 
-            cta_button:
-                "Buksan ang Space X Account",
+            bank_transfer_amount:
+                "Amount",
 
-            footer_copyright:
-                "© 2026 Space X. Nakalaan ang lahat ng karapatan.",
+            bank_transfer_reference:
+                "Reference",
 
-            footer_platform:
-                "Digital Asset Platform"
+            bank_transfer_confirm:
+                "I have completed the transfer",
+
+            bank_transfer_submit:
+                "Submit Transfer",
+
+
+            /* ================= CRYPTO ================= */
+
+            crypto_title:
+                "Crypto",
+
+            crypto_subtitle:
+                "Deposit using cryptocurrency.",
+
+            crypto_network:
+                "Network",
+
+            crypto_address:
+                "Wallet Address",
+
+            crypto_amount:
+                "Amount",
+
+            crypto_copy_address:
+                "Copy Address",
+
+            crypto_transaction_hash:
+                "Transaction Hash",
+
+            crypto_submit:
+                "Submit Transaction",
+
+
+            /* ================= GIFT CARD ================= */
+
+            giftcard_title:
+                "Gift Card",
+
+            giftcard_subtitle:
+                "Deposit using a gift card.",
+
+            giftcard_type:
+                "Gift Card Type",
+
+            giftcard_code:
+                "Gift Card Code",
+
+            giftcard_amount:
+                "Gift Card Amount",
+
+            giftcard_submit:
+                "Submit Gift Card",
+
+            giftcard_pending:
+                "Gift card submission is being reviewed.",
+
+
+            /* ================= WITHDRAW CRYPTO ================= */
+
+            withdraw_crypto_title:
+                "Withdraw Crypto",
+
+            withdraw_crypto_subtitle:
+                "Send your funds to a cryptocurrency wallet.",
+
+            withdraw_crypto_network:
+                "Network",
+
+            withdraw_crypto_address:
+                "Wallet Address",
+
+            withdraw_crypto_amount:
+                "Amount",
+
+            withdraw_crypto_submit:
+                "Submit Withdrawal",
+
+            withdraw_crypto_confirm:
+                "Confirm Crypto Withdrawal",
+
+
+            /* ================= WITHDRAW PAYPAL ================= */
+
+            withdraw_paypal_title:
+                "Withdraw with PayPal",
+
+            withdraw_paypal_subtitle:
+                "Withdraw your funds to your PayPal account.",
+
+            withdraw_paypal_email:
+                "PayPal Email",
+
+            withdraw_paypal_amount:
+                "Amount",
+
+            withdraw_paypal_submit:
+                "Submit Withdrawal",
+
+            withdraw_paypal_confirm:
+                "Confirm PayPal Withdrawal",
+
+
+            /* ================= WITHDRAW CASH APP ================= */
+
+            withdraw_cashapp_title:
+                "Withdraw with Cash App",
+
+            withdraw_cashapp_subtitle:
+                "Withdraw your funds to your Cash App account.",
+
+            withdraw_cashapp_tag:
+                "Cash App $Cashtag",
+
+            withdraw_cashapp_amount:
+                "Amount",
+
+            withdraw_cashapp_submit:
+                "Submit Withdrawal",
+
+            withdraw_cashapp_confirm:
+                "Confirm Cash App Withdrawal"
 
         }
 
     };
 
 
-    /* =========================================================
-       VALIDATE LANGUAGES
-       ========================================================= */
+    /* =====================================================
+       SPANISH
+       ===================================================== */
+
+    translations.es = {
+
+        ...translations.en,
+
+        nav_home: "Inicio",
+        nav_platform: "Plataforma",
+        nav_about: "Acerca de",
+        nav_login: "Iniciar sesión",
+        nav_register: "Crear cuenta",
+
+        hero_eyebrow: "Plataforma de inversión digital",
+        hero_title: "Mueve tus activos digitales",
+        hero_title_accent: "hacia adelante.",
+        hero_description: "Space X reúne la gestión de cuentas, la actividad de activos digitales y las herramientas de inversión en una experiencia sencilla.",
+        hero_create: "Crear cuenta",
+        hero_explore: "Explorar plataforma",
+
+        register_eyebrow: "Nuevo miembro",
+        register_title: "Crea tu cuenta.",
+        register_subtitle: "Configura tu cuenta de Space X y accede a tu panel de inversión personal.",
+        register_email_label: "CORREO ELECTRÓNICO",
+        register_email_placeholder: "Introduce tu correo electrónico",
+        register_username_label: "NOMBRE DE USUARIO",
+        register_username_placeholder: "Elige un nombre de usuario",
+        register_password_label: "CONTRASEÑA",
+        register_password_placeholder: "Crea una contraseña",
+        register_confirm_password_label: "CONFIRMAR CONTRASEÑA",
+        register_confirm_password_placeholder: "Confirma tu contraseña",
+        register_show: "Mostrar",
+        register_hide: "Ocultar",
+        register_button: "Crear cuenta",
+        register_existing: "¿Ya tienes una cuenta?",
+        register_signin: "Iniciar sesión",
+        register_secure: "Creación segura de cuenta",
+
+        login_eyebrow: "Acceso de miembros",
+        login_title: "Bienvenido de nuevo.",
+        login_subtitle: "Inicia sesión para continuar con tu cuenta de Space X.",
+        login_email_label: "CORREO ELECTRÓNICO",
+        login_email_placeholder: "Introduce tu correo electrónico",
+        login_password_label: "CONTRASEÑA",
+        login_password_placeholder: "Introduce tu contraseña",
+        login_show: "Mostrar",
+        login_hide: "Ocultar",
+        login_button: "Iniciar sesión",
+        login_new_user: "¿Nuevo en Space X?",
+        login_create_account: "Crear una cuenta",
+        login_secure: "Autenticación segura de la cuenta",
+
+        dashboard_title: "Panel",
+        dashboard_welcome: "Bienvenido de nuevo",
+        dashboard_balance: "Saldo disponible",
+        dashboard_total_referrals: "Referidos totales",
+        dashboard_referral_bonus: "Bono por referidos",
+        dashboard_total_investment: "Inversión total",
+        dashboard_active_plan: "Plan activo",
+        dashboard_activate: "Activar",
+        dashboard_activated: "Activado",
+        dashboard_withdraw: "Retirar",
+        dashboard_deposit: "Depositar",
+        dashboard_invest: "Invertir",
+        dashboard_wallet: "Billetera",
+        dashboard_history: "Historial",
+        dashboard_support: "Soporte",
+
+        deposit_title: "Depositar",
+        deposit_subtitle: "Añade fondos a tu cuenta de Space X.",
+        deposit_amount: "Importe del depósito",
+        deposit_method: "Método de pago",
+        deposit_bank: "Transferencia bancaria",
+        deposit_crypto: "Cripto",
+        deposit_gift_card: "Tarjeta regalo",
+        deposit_continue: "Continuar",
+        deposit_submit: "Enviar depósito",
+
+        invest_title: "Inversión",
+        invest_subtitle: "Elige una opción de inversión.",
+        invest_amount: "Importe de inversión",
+        invest_plan: "Plan de inversión",
+        invest_duration: "Duración",
+        invest_return: "Rendimiento esperado",
+        invest_start: "Iniciar inversión",
+
+        withdraw_title: "Retirar",
+        withdraw_subtitle: "Retira fondos de tu cuenta de Space X.",
+        withdraw_method: "Método de retiro",
+        withdraw_bank: "Transferencia bancaria",
+        withdraw_crypto: "Cripto",
+        withdraw_paypal: "PayPal",
+        withdraw_cashapp: "Cash App",
+        withdraw_amount: "Importe del retiro",
+        withdraw_available: "Saldo disponible",
+        withdraw_submit: "Enviar retiro",
+        withdraw_confirm: "Confirmar retiro",
+
+        wallet_title: "Billetera",
+        wallet_balance: "Saldo de la billetera",
+        wallet_available: "Saldo disponible",
+        wallet_deposit: "Depositar",
+        wallet_withdraw: "Retirar",
+        wallet_transactions: "Transacciones",
+
+        history_title: "Historial",
+        history_all: "Todo",
+        history_deposits: "Depósitos",
+        history_withdrawals: "Retiros",
+        history_investments: "Inversiones",
+        history_referrals: "Referidos",
+        history_no_activity: "No se encontró actividad.",
+
+        support_title: "Soporte",
+        support_subtitle: "¿Cómo podemos ayudarte?",
+        support_contact: "Contactar con soporte",
+        support_message: "Mensaje",
+        support_send: "Enviar mensaje",
+        support_faq: "Preguntas frecuentes",
+
+        bank_transfer_title: "Transferencia bancaria",
+        bank_transfer_account_name: "Nombre de la cuenta",
+        bank_transfer_account_number: "Número de cuenta",
+        bank_transfer_bank_name: "Nombre del banco",
+        bank_transfer_amount: "Importe",
+        bank_transfer_submit: "Enviar transferencia",
+
+        crypto_title: "Cripto",
+        crypto_subtitle: "Deposita usando criptomonedas.",
+        crypto_network: "Red",
+        crypto_address: "Dirección de billetera",
+        crypto_amount: "Importe",
+        crypto_copy_address: "Copiar dirección",
+        crypto_submit: "Enviar transacción",
+
+        giftcard_title: "Tarjeta regalo",
+        giftcard_subtitle: "Deposita usando una tarjeta regalo.",
+        giftcard_type: "Tipo de tarjeta regalo",
+        giftcard_code: "Código de tarjeta regalo",
+        giftcard_amount: "Importe de la tarjeta",
+        giftcard_submit: "Enviar tarjeta regalo",
+
+        withdraw_crypto_title: "Retirar cripto",
+        withdraw_crypto_subtitle: "Envía tus fondos a una billetera de criptomonedas.",
+        withdraw_crypto_network: "Red",
+        withdraw_crypto_address: "Dirección de billetera",
+        withdraw_crypto_amount: "Importe",
+        withdraw_crypto_submit: "Enviar retiro",
+
+        withdraw_paypal_title: "Retirar con PayPal",
+        withdraw_paypal_subtitle: "Retira tus fondos a tu cuenta de PayPal.",
+        withdraw_paypal_email: "Correo de PayPal",
+        withdraw_paypal_amount: "Importe",
+        withdraw_paypal_submit: "Enviar retiro",
+
+        withdraw_cashapp_title: "Retirar con Cash App",
+        withdraw_cashapp_subtitle: "Retira tus fondos a tu cuenta de Cash App.",
+        withdraw_cashapp_tag: "Cashtag de Cash App",
+        withdraw_cashapp_amount: "Importe",
+        withdraw_cashapp_submit: "Enviar retiro"
+
+    };
+
+
+    /* =====================================================
+       FRENCH
+       ===================================================== */
+
+    translations.fr = {
+
+        ...translations.en,
+
+        nav_home: "Accueil",
+        nav_platform: "Plateforme",
+        nav_about: "À propos",
+        nav_login: "Connexion",
+        nav_register: "Créer un compte",
+
+        hero_eyebrow: "Plateforme d'investissement numérique",
+        hero_title: "Faites avancer vos actifs numériques",
+        hero_title_accent: "vers l'avant.",
+        hero_create: "Créer un compte",
+        hero_explore: "Explorer la plateforme",
+
+        register_eyebrow: "Nouveau membre",
+        register_title: "Créez votre compte.",
+        register_subtitle: "Configurez votre compte Space X et accédez à votre tableau de bord d'investissement personnel.",
+        register_email_label: "ADRESSE E-MAIL",
+        register_email_placeholder: "Entrez votre adresse e-mail",
+        register_username_label: "NOM D'UTILISATEUR",
+        register_username_placeholder: "Choisissez un nom d'utilisateur",
+        register_password_label: "MOT DE PASSE",
+        register_password_placeholder: "Créez un mot de passe",
+        register_confirm_password_label: "CONFIRMER LE MOT DE PASSE",
+        register_confirm_password_placeholder: "Confirmez votre mot de passe",
+        register_show: "Afficher",
+        register_hide: "Masquer",
+        register_button: "Créer un compte",
+        register_existing: "Vous avez déjà un compte ?",
+        register_signin: "Se connecter",
+
+        login_eyebrow: "Accès membre",
+        login_title: "Bon retour.",
+        login_subtitle: "Connectez-vous pour continuer vers votre compte Space X.",
+        login_email_label: "ADRESSE E-MAIL",
+        login_email_placeholder: "Entrez votre adresse e-mail",
+        login_password_label: "MOT DE PASSE",
+        login_password_placeholder: "Entrez votre mot de passe",
+        login_show: "Afficher",
+        login_hide: "Masquer",
+        login_button: "Se connecter",
+        login_new_user: "Nouveau sur Space X ?",
+        login_create_account: "Créer un compte",
+
+        dashboard_title: "Tableau de bord",
+        dashboard_welcome: "Bon retour",
+        dashboard_balance: "Solde disponible",
+        dashboard_total_referrals: "Total des parrainages",
+        dashboard_referral_bonus: "Bonus de parrainage",
+        dashboard_total_investment: "Investissement total",
+        dashboard_active_plan: "Plan actif",
+        dashboard_activate: "Activer",
+        dashboard_activated: "Activé",
+        dashboard_withdraw: "Retirer",
+        dashboard_deposit: "Déposer",
+        dashboard_invest: "Investir",
+        dashboard_wallet: "Portefeuille",
+        dashboard_history: "Historique",
+        dashboard_support: "Assistance",
+
+        deposit_title: "Dépôt",
+        deposit_subtitle: "Ajoutez des fonds à votre compte Space X.",
+        deposit_amount: "Montant du dépôt",
+        deposit_method: "Méthode de paiement",
+        deposit_bank: "Virement bancaire",
+        deposit_crypto: "Crypto",
+        deposit_gift_card: "Carte cadeau",
+        deposit_continue: "Continuer",
+        deposit_submit: "Envoyer le dépôt",
+
+        invest_title: "Investissement",
+        invest_subtitle: "Choisissez une option d'investissement.",
+        invest_amount: "Montant de l'investissement",
+        invest_plan: "Plan d'investissement",
+        invest_duration: "Durée",
+        invest_return: "Rendement attendu",
+        invest_start: "Démarrer l'investissement",
+
+        withdraw_title: "Retrait",
+        withdraw_subtitle: "Retirez des fonds de votre compte Space X.",
+        withdraw_method: "Méthode de retrait",
+        withdraw_bank: "Virement bancaire",
+        withdraw_crypto: "Crypto",
+        withdraw_paypal: "PayPal",
+        withdraw_cashapp: "Cash App",
+        withdraw_amount: "Montant du retrait",
+        withdraw_available: "Solde disponible",
+        withdraw_submit: "Envoyer le retrait",
+        withdraw_confirm: "Confirmer le retrait",
+
+        wallet_title: "Portefeuille",
+        wallet_balance: "Solde du portefeuille",
+        wallet_available: "Solde disponible",
+        wallet_deposit: "Dépôt",
+        wallet_withdraw: "Retrait",
+        wallet_transactions: "Transactions",
+
+        history_title: "Historique",
+        history_all: "Tout",
+        history_deposits: "Dépôts",
+        history_withdrawals: "Retraits",
+        history_investments: "Investissements",
+        history_referrals: "Parrainages",
+        history_no_activity: "Aucune activité trouvée.",
+
+        support_title: "Assistance",
+        support_subtitle: "Comment pouvons-nous vous aider ?",
+        support_contact: "Contacter l'assistance",
+        support_message: "Message",
+        support_send: "Envoyer le message",
+        support_faq: "Questions fréquentes",
+
+        bank_transfer_title: "Virement bancaire",
+        bank_transfer_account_name: "Nom du compte",
+        bank_transfer_account_number: "Numéro de compte",
+        bank_transfer_bank_name: "Nom de la banque",
+        bank_transfer_amount: "Montant",
+        bank_transfer_submit: "Envoyer le virement",
+
+        crypto_title: "Crypto",
+        crypto_subtitle: "Déposez avec une cryptomonnaie.",
+        crypto_network: "Réseau",
+        crypto_address: "Adresse du portefeuille",
+        crypto_amount: "Montant",
+        crypto_copy_address: "Copier l'adresse",
+        crypto_submit: "Envoyer la transaction",
+
+        giftcard_title: "Carte cadeau",
+        giftcard_subtitle: "Déposez avec une carte cadeau.",
+        giftcard_type: "Type de carte cadeau",
+        giftcard_code: "Code de carte cadeau",
+        giftcard_amount: "Montant de la carte",
+        giftcard_submit: "Envoyer la carte cadeau",
+
+        withdraw_crypto_title: "Retrait crypto",
+        withdraw_crypto_subtitle: "Envoyez vos fonds vers un portefeuille crypto.",
+        withdraw_crypto_network: "Réseau",
+        withdraw_crypto_address: "Adresse du portefeuille",
+        withdraw_crypto_amount: "Montant",
+        withdraw_crypto_submit: "Envoyer le retrait",
+
+        withdraw_paypal_title: "Retrait PayPal",
+        withdraw_paypal_subtitle: "Retirez vos fonds vers votre compte PayPal.",
+        withdraw_paypal_email: "E-mail PayPal",
+        withdraw_paypal_amount: "Montant",
+        withdraw_paypal_submit: "Envoyer le retrait",
+
+        withdraw_cashapp_title: "Retrait Cash App",
+        withdraw_cashapp_subtitle: "Retirez vos fonds vers votre compte Cash App.",
+        withdraw_cashapp_tag: "Cashtag Cash App",
+        withdraw_cashapp_amount: "Montant",
+        withdraw_cashapp_submit: "Envoyer le retrait"
+
+    };
+
+
+    /* =====================================================
+       GERMAN
+       ===================================================== */
+
+    translations.de = {
+
+        ...translations.en,
+
+        nav_home: "Startseite",
+        nav_platform: "Plattform",
+        nav_about: "Über uns",
+        nav_login: "Anmelden",
+        nav_register: "Konto erstellen",
+
+        hero_eyebrow: "Digitale Investmentplattform",
+        hero_title: "Bringen Sie Ihre digitalen Vermögenswerte",
+        hero_title_accent: "voran.",
+        hero_create: "Konto erstellen",
+        hero_explore: "Plattform entdecken",
+
+        register_eyebrow: "Neues Mitglied",
+        register_title: "Erstellen Sie Ihr Konto.",
+        register_subtitle: "Richten Sie Ihr Space-X-Konto ein und greifen Sie auf Ihr persönliches Investment-Dashboard zu.",
+        register_email_label: "E-MAIL-ADRESSE",
+        register_email_placeholder: "E-Mail-Adresse eingeben",
+        register_username_label: "BENUTZERNAME",
+        register_username_placeholder: "Benutzernamen auswählen",
+        register_password_label: "PASSWORT",
+        register_password_placeholder: "Passwort erstellen",
+        register_confirm_password_label: "PASSWORT BESTÄTIGEN",
+        register_confirm_password_placeholder: "Passwort bestätigen",
+        register_show: "Anzeigen",
+        register_hide: "Ausblenden",
+        register_button: "Konto erstellen",
+        register_existing: "Sie haben bereits ein Konto?",
+        register_signin: "Anmelden",
+
+        login_eyebrow: "Mitgliederzugang",
+        login_title: "Willkommen zurück.",
+        login_subtitle: "Melden Sie sich an, um mit Ihrem Space-X-Konto fortzufahren.",
+        login_email_label: "E-MAIL-ADRESSE",
+        login_email_placeholder: "E-Mail-Adresse eingeben",
+        login_password_label: "PASSWORT",
+        login_password_placeholder: "Passwort eingeben",
+        login_show: "Anzeigen",
+        login_hide: "Ausblenden",
+        login_button: "Anmelden",
+        login_new_user: "Neu bei Space X?",
+        login_create_account: "Konto erstellen",
+
+        dashboard_title: "Dashboard",
+        dashboard_welcome: "Willkommen zurück",
+        dashboard_balance: "Verfügbares Guthaben",
+        dashboard_total_referrals: "Gesamte Empfehlungen",
+        dashboard_referral_bonus: "Empfehlungsbonus",
+        dashboard_total_investment: "Gesamtinvestition",
+        dashboard_active_plan: "Aktiver Plan",
+        dashboard_activate: "Aktivieren",
+        dashboard_activated: "Aktiviert",
+        dashboard_withdraw: "Auszahlen",
+        dashboard_deposit: "Einzahlen",
+        dashboard_invest: "Investieren",
+        dashboard_wallet: "Wallet",
+        dashboard_history: "Verlauf",
+        dashboard_support: "Support",
+
+        deposit_title: "Einzahlung",
+        deposit_subtitle: "Fügen Sie Ihrem Space-X-Konto Geld hinzu.",
+        deposit_amount: "Einzahlungsbetrag",
+        deposit_method: "Zahlungsmethode",
+        deposit_bank: "Banküberweisung",
+        deposit_crypto: "Krypto",
+        deposit_gift_card: "Geschenkkarte",
+        deposit_continue: "Weiter",
+        deposit_submit: "Einzahlung senden",
+
+        invest_title: "Investition",
+        invest_subtitle: "Wählen Sie eine Investmentoption.",
+        invest_amount: "Investitionsbetrag",
+        invest_plan: "Investmentplan",
+        invest_duration: "Laufzeit",
+        invest_return: "Erwartete Rendite",
+        invest_start: "Investition starten",
+
+        withdraw_title: "Auszahlung",
+        withdraw_subtitle: "Geld von Ihrem Space-X-Konto auszahlen.",
+        withdraw_method: "Auszahlungsmethode",
+        withdraw_bank: "Banküberweisung",
+        withdraw_crypto: "Krypto",
+        withdraw_paypal: "PayPal",
+        withdraw_cashapp: "Cash App",
+        withdraw_amount: "Auszahlungsbetrag",
+        withdraw_available: "Verfügbares Guthaben",
+        withdraw_submit: "Auszahlung senden",
+        withdraw_confirm: "Auszahlung bestätigen",
+
+        wallet_title: "Wallet",
+        wallet_balance: "Wallet-Guthaben",
+        wallet_available: "Verfügbares Guthaben",
+        wallet_deposit: "Einzahlung",
+        wallet_withdraw: "Auszahlung",
+        wallet_transactions: "Transaktionen",
+
+        history_title: "Verlauf",
+        history_all: "Alle",
+        history_deposits: "Einzahlungen",
+        history_withdrawals: "Auszahlungen",
+        history_investments: "Investitionen",
+        history_referrals: "Empfehlungen",
+        history_no_activity: "Keine Aktivitäten gefunden.",
+
+        support_title: "Support",
+        support_subtitle: "Wie können wir Ihnen helfen?",
+        support_contact: "Support kontaktieren",
+        support_message: "Nachricht",
+        support_send: "Nachricht senden",
+        support_faq: "Häufig gestellte Fragen",
+
+        bank_transfer_title: "Banküberweisung",
+        bank_transfer_account_name: "Kontoname",
+        bank_transfer_account_number: "Kontonummer",
+        bank_transfer_bank_name: "Bankname",
+        bank_transfer_amount: "Betrag",
+        bank_transfer_submit: "Überweisung senden",
+
+        crypto_title: "Krypto",
+        crypto_subtitle: "Mit Kryptowährung einzahlen.",
+        crypto_network: "Netzwerk",
+        crypto_address: "Wallet-Adresse",
+        crypto_amount: "Betrag",
+        crypto_copy_address: "Adresse kopieren",
+        crypto_submit: "Transaktion senden",
+
+        giftcard_title: "Geschenkkarte",
+        giftcard_subtitle: "Mit einer Geschenkkarte einzahlen.",
+        giftcard_type: "Geschenkkartentyp",
+        giftcard_code: "Geschenkkartencode",
+        giftcard_amount: "Geschenkkartenbetrag",
+        giftcard_submit: "Geschenkkarte senden",
+
+        withdraw_crypto_title: "Krypto-Auszahlung",
+        withdraw_crypto_subtitle: "Senden Sie Ihr Geld an eine Krypto-Wallet.",
+        withdraw_crypto_network: "Netzwerk",
+        withdraw_crypto_address: "Wallet-Adresse",
+        withdraw_crypto_amount: "Betrag",
+        withdraw_crypto_submit: "Auszahlung senden",
+
+        withdraw_paypal_title: "PayPal-Auszahlung",
+        withdraw_paypal_subtitle: "Zahlen Sie Geld auf Ihr PayPal-Konto aus.",
+        withdraw_paypal_email: "PayPal-E-Mail",
+        withdraw_paypal_amount: "Betrag",
+        withdraw_paypal_submit: "Auszahlung senden",
+
+        withdraw_cashapp_title: "Cash-App-Auszahlung",
+        withdraw_cashapp_subtitle: "Zahlen Sie Geld auf Ihr Cash-App-Konto aus.",
+        withdraw_cashapp_tag: "Cash-App-$Cashtag",
+        withdraw_cashapp_amount: "Betrag",
+        withdraw_cashapp_submit: "Auszahlung senden"
+
+    };
+
+
+    /* =====================================================
+       PORTUGUESE
+       ===================================================== */
+
+    translations.pt = {
+
+        ...translations.en,
+
+        nav_home: "Início",
+        nav_platform: "Plataforma",
+        nav_about: "Sobre",
+        nav_login: "Entrar",
+        nav_register: "Criar conta",
+
+        hero_eyebrow: "Plataforma de investimento digital",
+        hero_title: "Leve seus ativos digitais",
+        hero_title_accent: "adiante.",
+        hero_create: "Criar conta",
+        hero_explore: "Explorar plataforma",
+
+        register_eyebrow: "Novo membro",
+        register_title: "Crie sua conta.",
+        register_subtitle: "Configure sua conta Space X e acesse seu painel pessoal de investimentos.",
+        register_email_label: "ENDEREÇO DE E-MAIL",
+        register_email_placeholder: "Digite seu e-mail",
+        register_username_label: "NOME DE USUÁRIO",
+        register_username_placeholder: "Escolha um nome de usuário",
+        register_password_label: "SENHA",
+        register_password_placeholder: "Crie uma senha",
+        register_confirm_password_label: "CONFIRMAR SENHA",
+        register_confirm_password_placeholder: "Confirme sua senha",
+        register_show: "Mostrar",
+        register_hide: "Ocultar",
+        register_button: "Criar conta",
+        register_existing: "Já possui uma conta?",
+        register_signin: "Entrar",
+
+        login_eyebrow: "Acesso de membro",
+        login_title: "Bem-vindo de volta.",
+        login_subtitle: "Entre para continuar na sua conta Space X.",
+        login_email_label: "ENDEREÇO DE E-MAIL",
+        login_email_placeholder: "Digite seu e-mail",
+        login_password_label: "SENHA",
+        login_password_placeholder: "Digite sua senha",
+        login_show: "Mostrar",
+        login_hide: "Ocultar",
+        login_button: "Entrar",
+        login_new_user: "Novo na Space X?",
+        login_create_account: "Criar uma conta",
+
+        dashboard_title: "Painel",
+        dashboard_welcome: "Bem-vindo de volta",
+        dashboard_balance: "Saldo disponível",
+        dashboard_total_referrals: "Total de indicações",
+        dashboard_referral_bonus: "Bônus de indicação",
+        dashboard_total_investment: "Investimento total",
+        dashboard_active_plan: "Plano ativo",
+        dashboard_activate: "Ativar",
+        dashboard_activated: "Ativado",
+        dashboard_withdraw: "Sacar",
+        dashboard_deposit: "Depositar",
+        dashboard_invest: "Investir",
+        dashboard_wallet: "Carteira",
+        dashboard_history: "Histórico",
+        dashboard_support: "Suporte",
+
+        deposit_title: "Depósito",
+        deposit_subtitle: "Adicione fundos à sua conta Space X.",
+        deposit_amount: "Valor do depósito",
+        deposit_method: "Método de pagamento",
+        deposit_bank: "Transferência bancária",
+        deposit_crypto: "Cripto",
+        deposit_gift_card: "Cartão-presente",
+        deposit_continue: "Continuar",
+        deposit_submit: "Enviar depósito",
+
+        invest_title: "Investimento",
+        invest_subtitle: "Escolha uma opção de investimento.",
+        invest_amount: "Valor do investimento",
+        invest_plan: "Plano de investimento",
+        invest_duration: "Duração",
+        invest_return: "Retorno esperado",
+        invest_start: "Iniciar investimento",
+
+        withdraw_title: "Saque",
+        withdraw_subtitle: "Saque fundos da sua conta Space X.",
+        withdraw_method: "Método de saque",
+        withdraw_bank: "Transferência bancária",
+        withdraw_crypto: "Cripto",
+        withdraw_paypal: "PayPal",
+        withdraw_cashapp: "Cash App",
+        withdraw_amount: "Valor do saque",
+        withdraw_available: "Saldo disponível",
+        withdraw_submit: "Enviar saque",
+        withdraw_confirm: "Confirmar saque",
+
+        wallet_title: "Carteira",
+        wallet_balance: "Saldo da carteira",
+        wallet_available: "Saldo disponível",
+        wallet_deposit: "Depósito",
+        wallet_withdraw: "Saque",
+        wallet_transactions: "Transações",
+
+        history_title: "Histórico",
+        history_all: "Todos",
+        history_deposits: "Depósitos",
+        history_withdrawals: "Saques",
+        history_investments: "Investimentos",
+        history_referrals: "Indicações",
+        history_no_activity: "Nenhuma atividade encontrada.",
+
+        support_title: "Suporte",
+        support_subtitle: "Como podemos ajudar?",
+        support_contact: "Contatar suporte",
+        support_message: "Mensagem",
+        support_send: "Enviar mensagem",
+        support_faq: "Perguntas frequentes",
+
+        bank_transfer_title: "Transferência bancária",
+        bank_transfer_account_name: "Nome da conta",
+        bank_transfer_account_number: "Número da conta",
+        bank_transfer_bank_name: "Nome do banco",
+        bank_transfer_amount: "Valor",
+        bank_transfer_submit: "Enviar transferência",
+
+        crypto_title: "Cripto",
+        crypto_subtitle: "Deposite usando criptomoedas.",
+        crypto_network: "Rede",
+        crypto_address: "Endereço da carteira",
+        crypto_amount: "Valor",
+        crypto_copy_address: "Copiar endereço",
+        crypto_submit: "Enviar transação",
+
+        giftcard_title: "Cartão-presente",
+        giftcard_subtitle: "Deposite usando um cartão-presente.",
+        giftcard_type: "Tipo de cartão",
+        giftcard_code: "Código do cartão",
+        giftcard_amount: "Valor do cartão",
+        giftcard_submit: "Enviar cartão",
+
+        withdraw_crypto_title: "Saque de cripto",
+        withdraw_crypto_subtitle: "Envie seus fundos para uma carteira de criptomoedas.",
+        withdraw_crypto_network: "Rede",
+        withdraw_crypto_address: "Endereço da carteira",
+        withdraw_crypto_amount: "Valor",
+        withdraw_crypto_submit: "Enviar saque",
+
+        withdraw_paypal_title: "Saque via PayPal",
+        withdraw_paypal_subtitle: "Saque seus fundos para sua conta PayPal.",
+        withdraw_paypal_email: "E-mail do PayPal",
+        withdraw_paypal_amount: "Valor",
+        withdraw_paypal_submit: "Enviar saque",
+
+        withdraw_cashapp_title: "Saque via Cash App",
+        withdraw_cashapp_subtitle: "Saque seus fundos para sua conta Cash App.",
+        withdraw_cashapp_tag: "Cashtag do Cash App",
+        withdraw_cashapp_amount: "Valor",
+        withdraw_cashapp_submit: "Enviar saque"
+
+    };
+
+
+    /* =====================================================
+       ITALIAN
+       ===================================================== */
+
+    translations.it = {
+
+        ...translations.en,
+
+        nav_home: "Home",
+        nav_platform: "Piattaforma",
+        nav_about: "Chi siamo",
+        nav_login: "Accedi",
+        nav_register: "Crea account",
+
+        hero_eyebrow: "Piattaforma di investimento digitale",
+        hero_title: "Porta avanti i tuoi asset digitali",
+        hero_title_accent: "verso il futuro.",
+        hero_create: "Crea account",
+        hero_explore: "Esplora la piattaforma",
+
+        register_eyebrow: "Nuovo membro",
+        register_title: "Crea il tuo account.",
+        register_subtitle: "Configura il tuo account Space X e accedi alla tua dashboard personale.",
+        register_email_label: "INDIRIZZO E-MAIL",
+        register_email_placeholder: "Inserisci la tua e-mail",
+        register_username_label: "NOME UTENTE",
+        register_username_placeholder: "Scegli un nome utente",
+        register_password_label: "PASSWORD",
+        register_password_placeholder: "Crea una password",
+        register_confirm_password_label: "CONFERMA PASSWORD",
+        register_confirm_password_placeholder: "Conferma la password",
+        register_show: "Mostra",
+        register_hide: "Nascondi",
+        register_button: "Crea account",
+        register_existing: "Hai già un account?",
+        register_signin: "Accedi",
+
+        login_eyebrow: "Accesso membri",
+        login_title: "Bentornato.",
+        login_subtitle: "Accedi per continuare al tuo account Space X.",
+        login_email_label: "INDIRIZZO E-MAIL",
+        login_email_placeholder: "Inserisci la tua e-mail",
+        login_password_label: "PASSWORD",
+        login_password_placeholder: "Inserisci la password",
+        login_show: "Mostra",
+        login_hide: "Nascondi",
+        login_button: "Accedi",
+        login_new_user: "Nuovo su Space X?",
+        login_create_account: "Crea un account",
+
+        dashboard_title: "Dashboard",
+        dashboard_welcome: "Bentornato",
+        dashboard_balance: "Saldo disponibile",
+        dashboard_total_referrals: "Referral totali",
+        dashboard_referral_bonus: "Bonus referral",
+        dashboard_total_investment: "Investimento totale",
+        dashboard_active_plan: "Piano attivo",
+        dashboard_activate: "Attiva",
+        dashboard_activated: "Attivato",
+        dashboard_withdraw: "Preleva",
+        dashboard_deposit: "Deposita",
+        dashboard_invest: "Investi",
+        dashboard_wallet: "Portafoglio",
+        dashboard_history: "Cronologia",
+        dashboard_support: "Supporto",
+
+        deposit_title: "Deposito",
+        deposit_subtitle: "Aggiungi fondi al tuo account Space X.",
+        deposit_amount: "Importo del deposito",
+        deposit_method: "Metodo di pagamento",
+        deposit_bank: "Bonifico bancario",
+        deposit_crypto: "Crypto",
+        deposit_gift_card: "Carta regalo",
+        deposit_continue: "Continua",
+        deposit_submit: "Invia deposito",
+
+        invest_title: "Investimento",
+        invest_subtitle: "Scegli un'opzione di investimento.",
+        invest_amount: "Importo dell'investimento",
+        invest_plan: "Piano di investimento",
+        invest_duration: "Durata",
+        invest_return: "Rendimento previsto",
+        invest_start: "Avvia investimento",
+
+        withdraw_title: "Prelievo",
+        withdraw_subtitle: "Preleva fondi dal tuo account Space X.",
+        withdraw_method: "Metodo di prelievo",
+        withdraw_bank: "Bonifico bancario",
+        withdraw_crypto: "Crypto",
+        withdraw_paypal: "PayPal",
+        withdraw_cashapp: "Cash App",
+        withdraw_amount: "Importo del prelievo",
+        withdraw_available: "Saldo disponibile",
+        withdraw_submit: "Invia prelievo",
+        withdraw_confirm: "Conferma prelievo",
+
+        wallet_title: "Portafoglio",
+        wallet_balance: "Saldo portafoglio",
+        wallet_available: "Saldo disponibile",
+        wallet_deposit: "Deposito",
+        wallet_withdraw: "Prelievo",
+        wallet_transactions: "Transazioni",
+
+        history_title: "Cronologia",
+        history_all: "Tutto",
+        history_deposits: "Depositi",
+        history_withdrawals: "Prelievi",
+        history_investments: "Investimenti",
+        history_referrals: "Referral",
+        history_no_activity: "Nessuna attività trovata.",
+
+        support_title: "Supporto",
+        support_subtitle: "Come possiamo aiutarti?",
+        support_contact: "Contatta il supporto",
+        support_message: "Messaggio",
+        support_send: "Invia messaggio",
+        support_faq: "Domande frequenti",
+
+        bank_transfer_title: "Bonifico bancario",
+        bank_transfer_account_name: "Nome conto",
+        bank_transfer_account_number: "Numero conto",
+        bank_transfer_bank_name: "Nome banca",
+        bank_transfer_amount: "Importo",
+        bank_transfer_submit: "Invia bonifico",
+
+        crypto_title: "Crypto",
+        crypto_subtitle: "Deposita usando criptovalute.",
+        crypto_network: "Rete",
+        crypto_address: "Indirizzo wallet",
+        crypto_amount: "Importo",
+        crypto_copy_address: "Copia indirizzo",
+        crypto_submit: "Invia transazione",
+
+        giftcard_title: "Carta regalo",
+        giftcard_subtitle: "Deposita usando una carta regalo.",
+        giftcard_type: "Tipo di carta",
+        giftcard_code: "Codice carta",
+        giftcard_amount: "Importo carta",
+        giftcard_submit: "Invia carta",
+
+        withdraw_crypto_title: "Prelievo crypto",
+        withdraw_crypto_subtitle: "Invia i fondi a un wallet di criptovalute.",
+        withdraw_crypto_network: "Rete",
+        withdraw_crypto_address: "Indirizzo wallet",
+        withdraw_crypto_amount: "Importo",
+        withdraw_crypto_submit: "Invia prelievo",
+
+        withdraw_paypal_title: "Prelievo PayPal",
+        withdraw_paypal_subtitle: "Preleva i fondi sul tuo account PayPal.",
+        withdraw_paypal_email: "E-mail PayPal",
+        withdraw_paypal_amount: "Importo",
+        withdraw_paypal_submit: "Invia prelievo",
+
+        withdraw_cashapp_title: "Prelievo Cash App",
+        withdraw_cashapp_subtitle: "Preleva i fondi sul tuo account Cash App.",
+        withdraw_cashapp_tag: "Cashtag Cash App",
+        withdraw_cashapp_amount: "Importo",
+        withdraw_cashapp_submit: "Invia prelievo"
+
+    };
+
+
+    /* =====================================================
+       OTHER LANGUAGES
+       =====================================================
+       These inherit the complete English key set.
+       Their common/page labels are translated below.
+       ===================================================== */
+
+    translations.nl = {
+        ...translations.en,
+        nav_home:"Home",
+        nav_platform:"Platform",
+        nav_about:"Over ons",
+        nav_login:"Inloggen",
+        nav_register:"Account aanmaken",
+        register_title:"Maak uw account aan.",
+        register_button:"Account aanmaken",
+        register_signin:"Inloggen",
+        login_title:"Welkom terug.",
+        login_button:"Inloggen",
+        login_create_account:"Een account aanmaken",
+        dashboard_title:"Dashboard",
+        dashboard_balance:"Beschikbaar saldo",
+        dashboard_deposit:"Storten",
+        dashboard_withdraw:"Opnemen",
+        dashboard_invest:"Investeren",
+        dashboard_wallet:"Wallet",
+        dashboard_history:"Geschiedenis",
+        dashboard_support:"Support",
+        deposit_title:"Storten",
+        invest_title:"Investering",
+        withdraw_title:"Opnemen",
+        wallet_title:"Wallet",
+        history_title:"Geschiedenis",
+        support_title:"Support",
+        bank_transfer_title:"Bankoverschrijving",
+        crypto_title:"Crypto",
+        giftcard_title:"Cadeaukaart",
+        withdraw_crypto_title:"Crypto opnemen",
+        withdraw_paypal_title:"Opnemen via PayPal",
+        withdraw_cashapp_title:"Opnemen via Cash App"
+    };
+
+
+    translations.tr = {
+        ...translations.en,
+        nav_home:"Ana Sayfa",
+        nav_platform:"Platform",
+        nav_about:"Hakkımızda",
+        nav_login:"Giriş",
+        nav_register:"Hesap Oluştur",
+        register_title:"Hesabınızı oluşturun.",
+        register_button:"Hesap Oluştur",
+        register_signin:"Giriş yap",
+        login_title:"Tekrar hoş geldiniz.",
+        login_button:"Giriş Yap",
+        login_create_account:"Hesap oluştur",
+        dashboard_title:"Panel",
+        dashboard_balance:"Kullanılabilir Bakiye",
+        dashboard_deposit:"Para Yatır",
+        dashboard_withdraw:"Para Çek",
+        dashboard_invest:"Yatırım Yap",
+        dashboard_wallet:"Cüzdan",
+        dashboard_history:"Geçmiş",
+        dashboard_support:"Destek",
+        deposit_title:"Para Yatır",
+        invest_title:"Yatırım",
+        withdraw_title:"Para Çek",
+        wallet_title:"Cüzdan",
+        history_title:"Geçmiş",
+        support_title:"Destek",
+        bank_transfer_title:"Banka Transferi",
+        crypto_title:"Kripto",
+        giftcard_title:"Hediye Kartı",
+        withdraw_crypto_title:"Kripto Çekimi",
+        withdraw_paypal_title:"PayPal ile Para Çek",
+        withdraw_cashapp_title:"Cash App ile Para Çek"
+    };
+
+
+    translations.ru = {
+        ...translations.en,
+        nav_home:"Главная",
+        nav_platform:"Платформа",
+        nav_about:"О нас",
+        nav_login:"Войти",
+        nav_register:"Создать аккаунт",
+        register_title:"Создайте аккаунт.",
+        register_button:"Создать аккаунт",
+        register_signin:"Войти",
+        login_title:"С возвращением.",
+        login_button:"Войти",
+        login_create_account:"Создать аккаунт",
+        dashboard_title:"Панель управления",
+        dashboard_balance:"Доступный баланс",
+        dashboard_deposit:"Пополнить",
+        dashboard_withdraw:"Вывести",
+        dashboard_invest:"Инвестировать",
+        dashboard_wallet:"Кошелёк",
+        dashboard_history:"История",
+        dashboard_support:"Поддержка",
+        deposit_title:"Пополнение",
+        invest_title:"Инвестиции",
+        withdraw_title:"Вывод",
+        wallet_title:"Кошелёк",
+        history_title:"История",
+        support_title:"Поддержка",
+        bank_transfer_title:"Банковский перевод",
+        crypto_title:"Крипто",
+        giftcard_title:"Подарочная карта",
+        withdraw_crypto_title:"Вывод крипто",
+        withdraw_paypal_title:"Вывод через PayPal",
+        withdraw_cashapp_title:"Вывод через Cash App"
+    };
+
+
+    translations.uk = {
+        ...translations.en,
+        nav_home:"Головна",
+        nav_platform:"Платформа",
+        nav_about:"Про нас",
+        nav_login:"Увійти",
+        nav_register:"Створити акаунт",
+        register_title:"Створіть свій акаунт.",
+        register_button:"Створити акаунт",
+        register_signin:"Увійти",
+        login_title:"З поверненням.",
+        login_button:"Увійти",
+        login_create_account:"Створити акаунт",
+        dashboard_title:"Панель",
+        dashboard_balance:"Доступний баланс",
+        dashboard_deposit:"Поповнити",
+        dashboard_withdraw:"Вивести",
+        dashboard_invest:"Інвестувати",
+        dashboard_wallet:"Гаманець",
+        dashboard_history:"Історія",
+        dashboard_support:"Підтримка",
+        deposit_title:"Поповнення",
+        invest_title:"Інвестиції",
+        withdraw_title:"Виведення",
+        wallet_title:"Гаманець",
+        history_title:"Історія",
+        support_title:"Підтримка",
+        bank_transfer_title:"Банківський переказ",
+        crypto_title:"Крипто",
+        giftcard_title:"Подарункова картка",
+        withdraw_crypto_title:"Виведення крипто",
+        withdraw_paypal_title:"Виведення через PayPal",
+        withdraw_cashapp_title:"Виведення через Cash App"
+    };
+
+
+    translations.pl = {
+        ...translations.en,
+        nav_home:"Strona główna",
+        nav_platform:"Platforma",
+        nav_about:"O nas",
+        nav_login:"Zaloguj się",
+        nav_register:"Utwórz konto",
+        register_title:"Utwórz swoje konto.",
+        register_button:"Utwórz konto",
+        register_signin:"Zaloguj się",
+        login_title:"Witaj ponownie.",
+        login_button:"Zaloguj się",
+        login_create_account:"Utwórz konto",
+        dashboard_title:"Panel",
+        dashboard_balance:"Dostępne saldo",
+        dashboard_deposit:"Wpłać",
+        dashboard_withdraw:"Wypłać",
+        dashboard_invest:"Inwestuj",
+        dashboard_wallet:"Portfel",
+        dashboard_history:"Historia",
+        dashboard_support:"Wsparcie",
+        deposit_title:"Wpłata",
+        invest_title:"Inwestycja",
+        withdraw_title:"Wypłata",
+        wallet_title:"Portfel",
+        history_title:"Historia",
+        support_title:"Wsparcie",
+        bank_transfer_title:"Przelew bankowy",
+        crypto_title:"Krypto",
+        giftcard_title:"Karta podarunkowa",
+        withdraw_crypto_title:"Wypłata kryptowalut",
+        withdraw_paypal_title:"Wypłata przez PayPal",
+        withdraw_cashapp_title:"Wypłata przez Cash App"
+    };
+
+
+    translations.ar = {
+        ...translations.en,
+        nav_home:"الرئيسية",
+        nav_platform:"المنصة",
+        nav_about:"من نحن",
+        nav_login:"تسجيل الدخول",
+        nav_register:"إنشاء حساب",
+        register_eyebrow:"عضو جديد",
+        register_title:"أنشئ حسابك.",
+        register_subtitle:"أنشئ حساب Space X الخاص بك وادخل إلى لوحة الاستثمار الشخصية.",
+        register_email_label:"البريد الإلكتروني",
+        register_email_placeholder:"أدخل بريدك الإلكتروني",
+        register_username_label:"اسم المستخدم",
+        register_username_placeholder:"اختر اسم مستخدم",
+        register_password_label:"كلمة المرور",
+        register_password_placeholder:"أنشئ كلمة مرور",
+        register_confirm_password_label:"تأكيد كلمة المرور",
+        register_confirm_password_placeholder:"أكد كلمة المرور",
+        register_show:"إظهار",
+        register_hide:"إخفاء",
+        register_button:"إنشاء حساب",
+        register_existing:"لديك حساب بالفعل؟",
+        register_signin:"تسجيل الدخول",
+        login_eyebrow:"دخول الأعضاء",
+        login_title:"مرحباً بعودتك.",
+        login_subtitle:"سجل الدخول للمتابعة إلى حساب Space X الخاص بك.",
+        login_email_label:"البريد الإلكتروني",
+        login_email_placeholder:"أدخل بريدك الإلكتروني",
+        login_password_label:"كلمة المرور",
+        login_password_placeholder:"أدخل كلمة المرور",
+        login_show:"إظهار",
+        login_hide:"إخفاء",
+        login_button:"تسجيل الدخول",
+        login_new_user:"جديد في Space X؟",
+        login_create_account:"إنشاء حساب",
+        dashboard_title:"لوحة التحكم",
+        dashboard_balance:"الرصيد المتاح",
+        dashboard_deposit:"إيداع",
+        dashboard_withdraw:"سحب",
+        dashboard_invest:"استثمار",
+        dashboard_wallet:"المحفظة",
+        dashboard_history:"السجل",
+        dashboard_support:"الدعم",
+        deposit_title:"إيداع",
+        invest_title:"استثمار",
+        withdraw_title:"سحب",
+        wallet_title:"المحفظة",
+        history_title:"السجل",
+        support_title:"الدعم",
+        bank_transfer_title:"تحويل بنكي",
+        crypto_title:"العملات الرقمية",
+        giftcard_title:"بطاقة هدية",
+        withdraw_crypto_title:"سحب العملات الرقمية",
+        withdraw_paypal_title:"السحب عبر PayPal",
+        withdraw_cashapp_title:"السحب عبر Cash App"
+    };
+
+
+    translations.hi = {
+        ...translations.en,
+        nav_home:"होम",
+        nav_platform:"प्लेटफ़ॉर्म",
+        nav_about:"हमारे बारे में",
+        nav_login:"लॉगिन",
+        nav_register:"खाता बनाएँ",
+        register_title:"अपना खाता बनाएँ।",
+        register_button:"खाता बनाएँ",
+        register_signin:"लॉगिन",
+        login_title:"वापसी पर स्वागत है।",
+        login_button:"लॉगिन",
+        login_create_account:"खाता बनाएँ",
+        dashboard_title:"डैशबोर्ड",
+        dashboard_balance:"उपलब्ध बैलेंस",
+        dashboard_deposit:"जमा करें",
+        dashboard_withdraw:"निकासी",
+        dashboard_invest:"निवेश करें",
+        dashboard_wallet:"वॉलेट",
+        dashboard_history:"इतिहास",
+        dashboard_support:"सहायता",
+        deposit_title:"जमा",
+        invest_title:"निवेश",
+        withdraw_title:"निकासी",
+        wallet_title:"वॉलेट",
+        history_title:"इतिहास",
+        support_title:"सहायता",
+        bank_transfer_title:"बैंक ट्रांसफर",
+        crypto_title:"क्रिप्टो",
+        giftcard_title:"गिफ्ट कार्ड",
+        withdraw_crypto_title:"क्रिप्टो निकासी",
+        withdraw_paypal_title:"PayPal निकासी",
+        withdraw_cashapp_title:"Cash App निकासी"
+    };
+
+
+    translations.bn = {
+        ...translations.en,
+        nav_home:"হোম",
+        nav_platform:"প্ল্যাটফর্ম",
+        nav_about:"আমাদের সম্পর্কে",
+        nav_login:"লগইন",
+        nav_register:"অ্যাকাউন্ট তৈরি করুন",
+        register_title:"আপনার অ্যাকাউন্ট তৈরি করুন।",
+        register_button:"অ্যাকাউন্ট তৈরি করুন",
+        register_signin:"লগইন",
+        login_title:"আবার স্বাগতম।",
+        login_button:"লগইন",
+        login_create_account:"অ্যাকাউন্ট তৈরি করুন",
+        dashboard_title:"ড্যাশবোর্ড",
+        dashboard_balance:"উপলব্ধ ব্যালেন্স",
+        dashboard_deposit:"ডিপোজিট",
+        dashboard_withdraw:"উত্তোলন",
+        dashboard_invest:"বিনিয়োগ",
+        dashboard_wallet:"ওয়ালেট",
+        dashboard_history:"ইতিহাস",
+        dashboard_support:"সাপোর্ট",
+        deposit_title:"ডিপোজিট",
+        invest_title:"বিনিয়োগ",
+        withdraw_title:"উত্তোলন",
+        wallet_title:"ওয়ালেট",
+        history_title:"ইতিহাস",
+        support_title:"সাপোর্ট",
+        bank_transfer_title:"ব্যাংক ট্রান্সফার",
+        crypto_title:"ক্রিপ্টো",
+        giftcard_title:"গিফট কার্ড",
+        withdraw_crypto_title:"ক্রিপ্টো উত্তোলন",
+        withdraw_paypal_title:"PayPal উত্তোলন",
+        withdraw_cashapp_title:"Cash App উত্তোলন"
+    };
+
+
+    translations["zh-CN"] = {
+        ...translations.en,
+        nav_home:"首页",
+        nav_platform:"平台",
+        nav_about:"关于我们",
+        nav_login:"登录",
+        nav_register:"创建账户",
+        register_title:"创建您的账户。",
+        register_button:"创建账户",
+        register_signin:"登录",
+        login_title:"欢迎回来。",
+        login_button:"登录",
+        login_create_account:"创建账户",
+        dashboard_title:"仪表板",
+        dashboard_balance:"可用余额",
+        dashboard_deposit:"充值",
+        dashboard_withdraw:"提现",
+        dashboard_invest:"投资",
+        dashboard_wallet:"钱包",
+        dashboard_history:"历史记录",
+        dashboard_support:"客服",
+        deposit_title:"充值",
+        invest_title:"投资",
+        withdraw_title:"提现",
+        wallet_title:"钱包",
+        history_title:"历史记录",
+        support_title:"客服",
+        bank_transfer_title:"银行转账",
+        crypto_title:"加密货币",
+        giftcard_title:"礼品卡",
+        withdraw_crypto_title:"加密货币提现",
+        withdraw_paypal_title:"PayPal 提现",
+        withdraw_cashapp_title:"Cash App 提现"
+    };
+
+
+    translations["zh-TW"] = {
+        ...translations.en,
+        nav_home:"首頁",
+        nav_platform:"平台",
+        nav_about:"關於我們",
+        nav_login:"登入",
+        nav_register:"建立帳戶",
+        register_title:"建立您的帳戶。",
+        register_button:"建立帳戶",
+        register_signin:"登入",
+        login_title:"歡迎回來。",
+        login_button:"登入",
+        login_create_account:"建立帳戶",
+        dashboard_title:"儀表板",
+        dashboard_balance:"可用餘額",
+        dashboard_deposit:"存款",
+        dashboard_withdraw:"提款",
+        dashboard_invest:"投資",
+        dashboard_wallet:"錢包",
+        dashboard_history:"歷史記錄",
+        dashboard_support:"支援",
+        deposit_title:"存款",
+        invest_title:"投資",
+        withdraw_title:"提款",
+        wallet_title:"錢包",
+        history_title:"歷史記錄",
+        support_title:"支援",
+        bank_transfer_title:"銀行轉帳",
+        crypto_title:"加密貨幣",
+        giftcard_title:"禮品卡",
+        withdraw_crypto_title:"加密貨幣提款",
+        withdraw_paypal_title:"PayPal 提款",
+        withdraw_cashapp_title:"Cash App 提款"
+    };
+
+
+    translations.ja = {
+        ...translations.en,
+        nav_home:"ホーム",
+        nav_platform:"プラットフォーム",
+        nav_about:"概要",
+        nav_login:"ログイン",
+        nav_register:"アカウント作成",
+        register_title:"アカウントを作成してください。",
+        register_button:"アカウントを作成",
+        register_signin:"ログイン",
+        login_title:"おかえりなさい。",
+        login_button:"ログイン",
+        login_create_account:"アカウントを作成",
+        dashboard_title:"ダッシュボード",
+        dashboard_balance:"利用可能残高",
+        dashboard_deposit:"入金",
+        dashboard_withdraw:"出金",
+        dashboard_invest:"投資",
+        dashboard_wallet:"ウォレット",
+        dashboard_history:"履歴",
+        dashboard_support:"サポート",
+        deposit_title:"入金",
+        invest_title:"投資",
+        withdraw_title:"出金",
+        wallet_title:"ウォレット",
+        history_title:"履歴",
+        support_title:"サポート",
+        bank_transfer_title:"銀行振込",
+        crypto_title:"暗号資産",
+        giftcard_title:"ギフトカード",
+        withdraw_crypto_title:"暗号資産の出金",
+        withdraw_paypal_title:"PayPal出金",
+        withdraw_cashapp_title:"Cash App出金"
+    };
+
+
+    translations.ko = {
+        ...translations.en,
+        nav_home:"홈",
+        nav_platform:"플랫폼",
+        nav_about:"소개",
+        nav_login:"로그인",
+        nav_register:"계정 만들기",
+        register_title:"계정을 만들어 보세요.",
+        register_button:"계정 만들기",
+        register_signin:"로그인",
+        login_title:"다시 오신 것을 환영합니다.",
+        login_button:"로그인",
+        login_create_account:"계정 만들기",
+        dashboard_title:"대시보드",
+        dashboard_balance:"사용 가능한 잔액",
+        dashboard_deposit:"입금",
+        dashboard_withdraw:"출금",
+        dashboard_invest:"투자",
+        dashboard_wallet:"지갑",
+        dashboard_history:"기록",
+        dashboard_support:"지원",
+        deposit_title:"입금",
+        invest_title:"투자",
+        withdraw_title:"출금",
+        wallet_title:"지갑",
+        history_title:"기록",
+        support_title:"지원",
+        bank_transfer_title:"은행 송금",
+        crypto_title:"암호화폐",
+        giftcard_title:"기프트 카드",
+        withdraw_crypto_title:"암호화폐 출금",
+        withdraw_paypal_title:"PayPal 출금",
+        withdraw_cashapp_title:"Cash App 출금"
+    };
+
+
+    translations.vi = {
+        ...translations.en,
+        nav_home:"Trang chủ",
+        nav_platform:"Nền tảng",
+        nav_about:"Giới thiệu",
+        nav_login:"Đăng nhập",
+        nav_register:"Tạo tài khoản",
+        register_title:"Tạo tài khoản của bạn.",
+        register_button:"Tạo tài khoản",
+        register_signin:"Đăng nhập",
+        login_title:"Chào mừng bạn trở lại.",
+        login_button:"Đăng nhập",
+        login_create_account:"Tạo tài khoản",
+        dashboard_title:"Bảng điều khiển",
+        dashboard_balance:"Số dư khả dụng",
+        dashboard_deposit:"Nạp tiền",
+        dashboard_withdraw:"Rút tiền",
+        dashboard_invest:"Đầu tư",
+        dashboard_wallet:"Ví",
+        dashboard_history:"Lịch sử",
+        dashboard_support:"Hỗ trợ",
+        deposit_title:"Nạp tiền",
+        invest_title:"Đầu tư",
+        withdraw_title:"Rút tiền",
+        wallet_title:"Ví",
+        history_title:"Lịch sử",
+        support_title:"Hỗ trợ",
+        bank_transfer_title:"Chuyển khoản ngân hàng",
+        crypto_title:"Tiền điện tử",
+        giftcard_title:"Thẻ quà tặng",
+        withdraw_crypto_title:"Rút tiền điện tử",
+        withdraw_paypal_title:"Rút tiền PayPal",
+        withdraw_cashapp_title:"Rút tiền Cash App"
+    };
+
+
+    translations.th = {
+        ...translations.en,
+        nav_home:"หน้าหลัก",
+        nav_platform:"แพลตฟอร์ม",
+        nav_about:"เกี่ยวกับเรา",
+        nav_login:"เข้าสู่ระบบ",
+        nav_register:"สร้างบัญชี",
+        register_title:"สร้างบัญชีของคุณ",
+        register_button:"สร้างบัญชี",
+        register_signin:"เข้าสู่ระบบ",
+        login_title:"ยินดีต้อนรับกลับ",
+        login_button:"เข้าสู่ระบบ",
+        login_create_account:"สร้างบัญชี",
+        dashboard_title:"แดชบอร์ด",
+        dashboard_balance:"ยอดคงเหลือที่ใช้ได้",
+        dashboard_deposit:"ฝากเงิน",
+        dashboard_withdraw:"ถอนเงิน",
+        dashboard_invest:"ลงทุน",
+        dashboard_wallet:"กระเป๋าเงิน",
+        dashboard_history:"ประวัติ",
+        dashboard_support:"ฝ่ายสนับสนุน",
+        deposit_title:"ฝากเงิน",
+        invest_title:"การลงทุน",
+        withdraw_title:"ถอนเงิน",
+        wallet_title:"กระเป๋าเงิน",
+        history_title:"ประวัติ",
+        support_title:"ฝ่ายสนับสนุน",
+        bank_transfer_title:"โอนผ่านธนาคาร",
+        crypto_title:"คริปโต",
+        giftcard_title:"บัตรของขวัญ",
+        withdraw_crypto_title:"ถอนคริปโต",
+        withdraw_paypal_title:"ถอนผ่าน PayPal",
+        withdraw_cashapp_title:"ถอนผ่าน Cash App"
+    };
+
+
+    translations.id = {
+        ...translations.en,
+        nav_home:"Beranda",
+        nav_platform:"Platform",
+        nav_about:"Tentang Kami",
+        nav_login:"Masuk",
+        nav_register:"Buat Akun",
+        register_title:"Buat akun Anda.",
+        register_button:"Buat Akun",
+        register_signin:"Masuk",
+        login_title:"Selamat datang kembali.",
+        login_button:"Masuk",
+        login_create_account:"Buat akun",
+        dashboard_title:"Dasbor",
+        dashboard_balance:"Saldo Tersedia",
+        dashboard_deposit:"Deposit",
+        dashboard_withdraw:"Tarik",
+        dashboard_invest:"Investasi",
+        dashboard_wallet:"Dompet",
+        dashboard_history:"Riwayat",
+        dashboard_support:"Dukungan",
+        deposit_title:"Deposit",
+        invest_title:"Investasi",
+        withdraw_title:"Penarikan",
+        wallet_title:"Dompet",
+        history_title:"Riwayat",
+        support_title:"Dukungan",
+        bank_transfer_title:"Transfer Bank",
+        crypto_title:"Kripto",
+        giftcard_title:"Kartu Hadiah",
+        withdraw_crypto_title:"Penarikan Kripto",
+        withdraw_paypal_title:"Penarikan PayPal",
+        withdraw_cashapp_title:"Penarikan Cash App"
+    };
+
+
+    translations.ms = {
+        ...translations.en,
+        nav_home:"Laman Utama",
+        nav_platform:"Platform",
+        nav_about:"Tentang Kami",
+        nav_login:"Log Masuk",
+        nav_register:"Cipta Akaun",
+        register_title:"Cipta akaun anda.",
+        register_button:"Cipta Akaun",
+        register_signin:"Log Masuk",
+        login_title:"Selamat kembali.",
+        login_button:"Log Masuk",
+        login_create_account:"Cipta akaun",
+        dashboard_title:"Papan Pemuka",
+        dashboard_balance:"Baki Tersedia",
+        dashboard_deposit:"Deposit",
+        dashboard_withdraw:"Pengeluaran",
+        dashboard_invest:"Pelaburan",
+        dashboard_wallet:"Dompet",
+        dashboard_history:"Sejarah",
+        dashboard_support:"Sokongan",
+        deposit_title:"Deposit",
+        invest_title:"Pelaburan",
+        withdraw_title:"Pengeluaran",
+        wallet_title:"Dompet",
+        history_title:"Sejarah",
+        support_title:"Sokongan",
+        bank_transfer_title:"Pindahan Bank",
+        crypto_title:"Kripto",
+        giftcard_title:"Kad Hadiah",
+        withdraw_crypto_title:"Pengeluaran Kripto",
+        withdraw_paypal_title:"Pengeluaran PayPal",
+        withdraw_cashapp_title:"Pengeluaran Cash App"
+    };
+
+
+    translations.fil = {
+        ...translations.en,
+        nav_home:"Home",
+        nav_platform:"Platform",
+        nav_about:"Tungkol sa Amin",
+        nav_login:"Mag-login",
+        nav_register:"Gumawa ng Account",
+        register_title:"Gawin ang iyong account.",
+        register_button:"Gumawa ng Account",
+        register_signin:"Mag-login",
+        login_title:"Maligayang pagbabalik.",
+        login_button:"Mag-login",
+        login_create_account:"Gumawa ng account",
+        dashboard_title:"Dashboard",
+        dashboard_balance:"Available na Balanse",
+        dashboard_deposit:"Magdeposito",
+        dashboard_withdraw:"Mag-withdraw",
+        dashboard_invest:"Mamuhunan",
+        dashboard_wallet:"Wallet",
+        dashboard_history:"Kasaysayan",
+        dashboard_support:"Suporta",
+        deposit_title:"Deposit",
+        invest_title:"Investment",
+        withdraw_title:"Withdrawal",
+        wallet_title:"Wallet",
+        history_title:"Kasaysayan",
+        support_title:"Suporta",
+        bank_transfer_title:"Bank Transfer",
+        crypto_title:"Crypto",
+        giftcard_title:"Gift Card",
+        withdraw_crypto_title:"Crypto Withdrawal",
+        withdraw_paypal_title:"PayPal Withdrawal",
+        withdraw_cashapp_title:"Cash App Withdrawal"
+    };
+
+
+    /* =====================================================
+       MAKE SURE ALL 23 LANGUAGES EXIST
+       ===================================================== */
 
     Object.keys(languageNames).forEach(language => {
 
         if (!translations[language]) {
-
-            translations[language] = {};
-
+            translations[language] = {
+                ...translations.en
+            };
         }
 
     });
 
 
-    /* =========================================================
-       IMPORTANT FIX
-       
-       Every language gets every translation key.
-       But this is ONLY a safety fallback.
-       
-       All 23 languages above already contain the
-       complete index-page translation set.
-       ========================================================= */
-
-    Object.keys(languageNames).forEach(language => {
-
-        if (language === "en") {
-            return;
-        }
-
-        translations[language] = {
-
-            ...ENGLISH,
-
-            ...translations[language]
-
-        };
-
-    });
-
-
-    /* =========================================================
-       GET CURRENT LANGUAGE
-       ========================================================= */
+    /* =====================================================
+       GET SAVED LANGUAGE
+       ===================================================== */
 
     function getCurrentLanguage() {
 
@@ -2082,14 +2286,9 @@
 
             if (
                 saved &&
-                Object.prototype.hasOwnProperty.call(
-                    languageNames,
-                    saved
-                )
+                languageNames[saved]
             ) {
-
                 return saved;
-
             }
 
         } catch (error) {
@@ -2102,13 +2301,12 @@
         }
 
         return "en";
-
     }
 
 
-    /* =========================================================
+    /* =====================================================
        SAVE LANGUAGE
-       ========================================================= */
+       ===================================================== */
 
     function saveLanguage(language) {
 
@@ -2131,9 +2329,146 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
+       GET TRANSLATION
+       ===================================================== */
+
+    function getTranslation(language, key) {
+
+        const selected =
+            translations[language] ||
+            translations.en;
+
+        if (
+            selected &&
+            selected[key] !== undefined
+        ) {
+            return selected[key];
+        }
+
+        if (
+            translations.en &&
+            translations.en[key] !== undefined
+        ) {
+            return translations.en[key];
+        }
+
+        return null;
+    }
+
+
+    /* =====================================================
+       TRANSLATE NORMAL TEXT
+       ===================================================== */
+
+    function translateTextElements(language) {
+
+        document
+            .querySelectorAll("[data-translate]")
+            .forEach(element => {
+
+                const key =
+                    element.getAttribute(
+                        "data-translate"
+                    );
+
+                if (!key) return;
+
+                const value =
+                    getTranslation(
+                        language,
+                        key
+                    );
+
+                if (value !== null) {
+
+                    element.textContent =
+                        value;
+
+                }
+
+            });
+
+    }
+
+
+    /* =====================================================
+       TRANSLATE PLACEHOLDERS
+       ===================================================== */
+
+    function translatePlaceholders(language) {
+
+        document
+            .querySelectorAll(
+                "[data-translate-placeholder]"
+            )
+            .forEach(element => {
+
+                const key =
+                    element.getAttribute(
+                        "data-translate-placeholder"
+                    );
+
+                if (!key) return;
+
+                const value =
+                    getTranslation(
+                        language,
+                        key
+                    );
+
+                if (value !== null) {
+
+                    element.placeholder =
+                        value;
+
+                }
+
+            });
+
+    }
+
+
+    /* =====================================================
+       TRANSLATE VALUE
+       ===================================================== */
+
+    function translateValues(language) {
+
+        document
+            .querySelectorAll(
+                "[data-translate-value]"
+            )
+            .forEach(element => {
+
+                const key =
+                    element.getAttribute(
+                        "data-translate-value"
+                    );
+
+                if (!key) return;
+
+                const value =
+                    getTranslation(
+                        language,
+                        key
+                    );
+
+                if (value !== null) {
+
+                    element.value =
+                        value;
+
+                }
+
+            });
+
+    }
+
+
+    /* =====================================================
        UPDATE LANGUAGE SELECTOR
-       ========================================================= */
+       ===================================================== */
 
     function updateLanguageSelector(language) {
 
@@ -2141,7 +2476,6 @@
             document.getElementById(
                 "selectedLanguageName"
             );
-
 
         if (
             selectedName &&
@@ -2155,12 +2489,40 @@
 
 
         document
-            .querySelectorAll(".language-option")
+            .querySelectorAll(
+                ".language-option"
+            )
             .forEach(option => {
+
+                const optionLanguage =
+                    option.dataset.value ||
+                    option.getAttribute(
+                        "data-language"
+                    );
 
                 option.classList.toggle(
                     "selected",
-                    option.dataset.value === language
+                    optionLanguage === language
+                );
+
+            });
+
+
+        document
+            .querySelectorAll(
+                "[data-language]"
+            )
+            .forEach(option => {
+
+                if (
+                    option.classList.contains(
+                        "language-option"
+                    )
+                ) return;
+
+                option.classList.toggle(
+                    "selected",
+                    option.dataset.language === language
                 );
 
             });
@@ -2168,23 +2530,20 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        RTL / LTR
-       ========================================================= */
+       ===================================================== */
 
     function updateDirection(language) {
 
         const isRTL =
             rtlLanguages.includes(language);
 
-
         document.documentElement.dir =
             isRTL ? "rtl" : "ltr";
 
-
         document.documentElement.lang =
             language;
-
 
         if (document.body) {
 
@@ -2196,65 +2555,169 @@
     }
 
 
-    /* =========================================================
-       TRANSLATE ONE ELEMENT
-       ========================================================= */
+    /* =====================================================
+       PAGE TITLE
+       ===================================================== */
 
-    function translateElement(
-        element,
-        language
-    ) {
+    function updateDocumentTitle(language) {
 
-        const key =
-            element.getAttribute(
-                "data-translate"
-            );
+        const page =
+            (
+                document.body?.dataset.page ||
+                ""
+            ).toLowerCase();
 
-
-        if (!key) {
-            return;
-        }
-
-
-        const languagePack =
+        const selected =
             translations[language] ||
             translations.en;
 
+        let title = "Space X";
 
-        let value =
-            languagePack[key];
+        if (page === "register") {
 
+            title =
+                "Space X | " +
+                (
+                    selected.register_title ||
+                    translations.en.register_title
+                );
 
-        if (
-            value === undefined ||
-            value === null
-        ) {
+        } else if (page === "login") {
 
-            value =
-                translations.en[key];
+            title =
+                "Space X | " +
+                (
+                    selected.login_title ||
+                    translations.en.login_title
+                );
+
+        } else if (page === "dashboard") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.dashboard_title ||
+                    translations.en.dashboard_title
+                );
+
+        } else if (page === "deposit") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.deposit_title ||
+                    translations.en.deposit_title
+                );
+
+        } else if (page === "invest") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.invest_title ||
+                    translations.en.invest_title
+                );
+
+        } else if (page === "withdraw") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.withdraw_title ||
+                    translations.en.withdraw_title
+                );
+
+        } else if (page === "wallet") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.wallet_title ||
+                    translations.en.wallet_title
+                );
+
+        } else if (page === "history") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.history_title ||
+                    translations.en.history_title
+                );
+
+        } else if (page === "support") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.support_title ||
+                    translations.en.support_title
+                );
+
+        } else if (page === "bank-transfer") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.bank_transfer_title ||
+                    translations.en.bank_transfer_title
+                );
+
+        } else if (page === "crypto") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.crypto_title ||
+                    translations.en.crypto_title
+                );
+
+        } else if (page === "gift-card") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.giftcard_title ||
+                    translations.en.giftcard_title
+                );
+
+        } else if (page === "withdraw-crypto") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.withdraw_crypto_title ||
+                    translations.en.withdraw_crypto_title
+                );
+
+        } else if (page === "withdraw-paypal") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.withdraw_paypal_title ||
+                    translations.en.withdraw_paypal_title
+                );
+
+        } else if (page === "withdraw-cash-app") {
+
+            title =
+                "Space X | " +
+                (
+                    selected.withdraw_cashapp_title ||
+                    translations.en.withdraw_cashapp_title
+                );
 
         }
 
-
-        if (value !== undefined) {
-
-            /*
-             * textContent is intentional.
-             * It prevents HTML injection and keeps
-             * translations clean.
-             */
-
-            element.textContent =
-                value;
-
-        }
+        document.title = title;
 
     }
 
 
-    /* =========================================================
-       TRANSLATE ALL PAGE CONTENT
-       ========================================================= */
+    /* =====================================================
+       TRANSLATE EVERYTHING
+       ===================================================== */
 
     function translatePage(language) {
 
@@ -2267,61 +2730,22 @@
 
         }
 
+        translateTextElements(language);
 
-        const elements =
-            document.querySelectorAll(
-                "[data-translate]"
-            );
+        translatePlaceholders(language);
 
+        translateValues(language);
 
-        elements.forEach(element => {
+        updateDirection(language);
 
-            translateElement(
-                element,
-                language
-            );
+        updateLanguageSelector(language);
 
-        });
+        updateDocumentTitle(language);
+
+        saveLanguage(language);
 
 
-        updateDirection(
-            language
-        );
-
-
-        updateLanguageSelector(
-            language
-        );
-
-
-        saveLanguage(
-            language
-        );
-
-
-        /*
-         * Update browser title.
-         */
-
-        const selected =
-            translations[language] ||
-            translations.en;
-
-
-        if (
-            selected.hero_eyebrow
-        ) {
-
-            document.title =
-                "Space X | " +
-                selected.hero_eyebrow;
-
-        }
-
-
-        /*
-         * Notify other scripts.
-         */
+        /* Notify other scripts */
 
         document.dispatchEvent(
             new CustomEvent(
@@ -2337,9 +2761,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        SET LANGUAGE
-       ========================================================= */
+       ===================================================== */
 
     function setLanguage(language) {
 
@@ -2357,28 +2781,16 @@
 
         }
 
+        saveLanguage(language);
 
-        saveLanguage(
-            language
-        );
-
-
-        translatePage(
-            language
-        );
+        translatePage(language);
 
     }
 
 
-    /* =========================================================
-       CONNECT TO YOUR EXISTING INDEX SELECTOR
-       
-       Your index.html already dispatches:
-       
-       spaceXLanguageChanged
-       
-       so we listen for it here.
-       ========================================================= */
+    /* =====================================================
+       LANGUAGE CHANGE EVENT
+       ===================================================== */
 
     document.addEventListener(
         "spaceXLanguageChanged",
@@ -2388,23 +2800,40 @@
                 event.detail &&
                 event.detail.language;
 
+            if (!language) return;
 
-            if (!language) {
-                return;
-            }
-
-
-            setLanguage(
-                language
-            );
+            setLanguage(language);
 
         }
     );
 
 
-    /* =========================================================
-       CROSS-TAB LANGUAGE SYNC
-       ========================================================= */
+    /* =====================================================
+       ALSO SUPPORT:
+       window.dispatchEvent(
+           new CustomEvent(...)
+       )
+       ===================================================== */
+
+    window.addEventListener(
+        "spaceXLanguageChanged",
+        event => {
+
+            const language =
+                event.detail &&
+                event.detail.language;
+
+            if (!language) return;
+
+            setLanguage(language);
+
+        }
+    );
+
+
+    /* =====================================================
+       STORAGE EVENT
+       ===================================================== */
 
     window.addEventListener(
         "storage",
@@ -2413,11 +2842,8 @@
             if (
                 event.key !== STORAGE_KEY
             ) {
-
                 return;
-
             }
-
 
             if (
                 event.newValue &&
@@ -2434,19 +2860,87 @@
     );
 
 
-    /* =========================================================
+    /* =====================================================
+       MUTATION OBSERVER
+       =====================================================
+       This catches elements added later by JavaScript.
+       ===================================================== */
+
+    let observerStarted = false;
+
+    function startObserver() {
+
+        if (observerStarted) return;
+
+        if (!document.body) return;
+
+        observerStarted = true;
+
+        const observer =
+            new MutationObserver(
+                mutations => {
+
+                    let shouldTranslate = false;
+
+                    for (
+                        const mutation
+                        of mutations
+                    ) {
+
+                        if (
+                            mutation.type ===
+                            "childList"
+                        ) {
+
+                            if (
+                                mutation.addedNodes &&
+                                mutation.addedNodes.length
+                            ) {
+
+                                shouldTranslate = true;
+
+                                break;
+
+                            }
+
+                        }
+
+                    }
+
+                    if (shouldTranslate) {
+
+                        translatePage(
+                            getCurrentLanguage()
+                        );
+
+                    }
+
+                }
+            );
+
+        observer.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
+
+    }
+
+
+    /* =====================================================
        INITIALIZE
-       ========================================================= */
+       ===================================================== */
 
     function initializeLanguageSystem() {
 
         const language =
             getCurrentLanguage();
 
+        translatePage(language);
 
-        translatePage(
-            language
-        );
+        startObserver();
 
     }
 
@@ -2471,27 +2965,23 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        PUBLIC API
-       ========================================================= */
+       ===================================================== */
 
     window.SpaceXLanguage = {
 
         setLanguage(language) {
 
-            setLanguage(
-                language
-            );
+            setLanguage(language);
 
         },
-
 
         getLanguage() {
 
             return getCurrentLanguage();
 
         },
-
 
         translate() {
 
@@ -2501,13 +2991,31 @@
 
         },
 
+        getText(key) {
+
+            return getTranslation(
+                getCurrentLanguage(),
+                key
+            );
+
+        },
 
         languages:
             languageNames,
 
-
         translations:
             translations
+
+    };
+
+
+    /* =====================================================
+       GLOBAL HELPER
+       ===================================================== */
+
+    window.setSpaceXLanguage = function(language) {
+
+        setLanguage(language);
 
     };
 
