@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>Space X | Create Account</title>
 
 <style>
@@ -13,6 +14,7 @@
   font-family:Arial,Helvetica,sans-serif;
   -webkit-tap-highlight-color:transparent;
 }
+
 html,body{
   width:100%;
   min-height:100%;
@@ -21,6 +23,7 @@ html,body{
   touch-action:manipulation;
   overscroll-behavior:none;
 }
+
 body{
   min-height:100vh;
   display:flex;
@@ -30,6 +33,7 @@ body{
   position:relative;
   overflow:hidden;
 }
+
 body:before{
   content:"";
   position:fixed;
@@ -40,6 +44,7 @@ body:before{
   top:-245px;
   left:-210px;
 }
+
 body:after{
   content:"";
   position:fixed;
@@ -50,12 +55,14 @@ body:after{
   right:-220px;
   bottom:-230px;
 }
+
 .shell{
   width:100%;
   max-width:440px;
   position:relative;
   z-index:2;
 }
+
 .brand{
   display:flex;
   justify-content:center;
@@ -63,23 +70,32 @@ body:after{
   gap:12px;
   margin-bottom:24px;
 }
+
 .brand img{
   width:50px;
   height:50px;
   object-fit:contain;
 }
+
 .brand-name{
   font-size:24px;
   font-weight:700;
   letter-spacing:1.5px;
 }
+
 .card{
-  background:linear-gradient(145deg,#111 0%,#080808 70%,#050505 100%);
+  background:linear-gradient(
+    145deg,
+    #111 0%,
+    #080808 70%,
+    #050505 100%
+  );
   border:1px solid #292929;
   border-radius:28px;
   padding:28px 26px 24px;
   box-shadow:0 25px 70px rgba(255,255,255,.055);
 }
+
 .eyebrow{
   color:#777;
   font-size:11px;
@@ -87,25 +103,30 @@ body:after{
   text-transform:uppercase;
   margin-bottom:9px;
 }
+
 h1{
   font-size:30px;
   margin-bottom:8px;
 }
+
 .subtitle{
   color:#888;
   font-size:13px;
   line-height:1.65;
   margin-bottom:22px;
 }
+
 .field{
   margin-bottom:14px;
 }
+
 label{
   display:block;
   color:#aaa;
   font-size:12px;
   margin-bottom:7px;
 }
+
 input{
   width:100%;
   height:52px;
@@ -118,16 +139,24 @@ input{
   font-size:14px;
   transition:.25s;
 }
+
+input::placeholder{
+  color:#555;
+}
+
 input:focus{
   border-color:#777;
   box-shadow:0 0 0 3px rgba(255,255,255,.035);
 }
+
 .password-wrap{
   position:relative;
 }
+
 .password-wrap input{
   padding-right:75px;
 }
+
 .toggle{
   position:absolute;
   right:7px;
@@ -141,6 +170,11 @@ input:focus{
   font-size:11px;
   cursor:pointer;
 }
+
+.toggle:active{
+  transform:scale(.97);
+}
+
 .create-btn{
   width:100%;
   height:54px;
@@ -154,24 +188,30 @@ input:focus{
   cursor:pointer;
   transition:.2s;
 }
+
 .create-btn:active{
   transform:scale(.985);
 }
+
 .create-btn:disabled{
   opacity:.5;
   cursor:not-allowed;
 }
+
 .footer{
   text-align:center;
   color:#666;
   font-size:13px;
   margin-top:19px;
+  line-height:1.6;
 }
+
 .footer a{
   color:#fff;
   text-decoration:none;
   font-weight:600;
 }
+
 .secure{
   display:flex;
   justify-content:center;
@@ -181,12 +221,14 @@ input:focus{
   font-size:10px;
   margin-top:18px;
 }
+
 .secure-dot{
   width:6px;
   height:6px;
   background:#777;
   border-radius:50%;
 }
+
 #loader{
   display:none;
   position:fixed;
@@ -197,12 +239,14 @@ input:focus{
   flex-direction:column;
   z-index:9999;
 }
+
 .loader-logo{
   width:64px;
   height:64px;
   object-fit:contain;
   margin-bottom:20px;
 }
+
 .spinner{
   width:44px;
   height:44px;
@@ -211,16 +255,22 @@ input:focus{
   border-radius:50%;
   animation:spin 1s linear infinite;
 }
+
 .loader-title{
   margin-top:17px;
   font-size:15px;
   font-weight:600;
+  text-align:center;
 }
+
 .loader-text{
   margin-top:7px;
   color:#777;
   font-size:12px;
+  text-align:center;
+  padding:0 20px;
 }
+
 #successModal{
   display:none;
   position:fixed;
@@ -232,6 +282,7 @@ input:focus{
   padding:22px;
   z-index:10000;
 }
+
 .success-card{
   width:100%;
   max-width:360px;
@@ -241,6 +292,7 @@ input:focus{
   padding:30px 24px;
   text-align:center;
 }
+
 .success-icon{
   width:55px;
   height:55px;
@@ -252,14 +304,17 @@ input:focus{
   align-items:center;
   font-size:23px;
 }
+
 .success-card h2{
   margin-bottom:9px;
 }
+
 .success-card p{
   color:#888;
   line-height:1.7;
   font-size:13px;
 }
+
 .continue{
   width:100%;
   height:50px;
@@ -271,12 +326,27 @@ input:focus{
   font-weight:700;
   cursor:pointer;
 }
+
 @keyframes spin{
-  to{transform:rotate(360deg);}
+  to{
+    transform:rotate(360deg);
+  }
 }
+
 @media(max-width:380px){
-  .card{padding:25px 20px 22px;}
-  h1{font-size:27px;}
+
+  body{
+    padding:18px;
+  }
+
+  .card{
+    padding:25px 20px 22px;
+  }
+
+  h1{
+    font-size:27px;
+  }
+
 }
 </style>
 </head>
@@ -291,69 +361,1671 @@ input:focus{
   </div>
 
   <section class="card">
-    <div class="eyebrow">New Member</div>
-    <h1>Create your account.</h1>
-    <p class="subtitle">Set up your Space X account and access your personal investment dashboard.</p>
 
-    <div class="field">
-      <label for="email">EMAIL ADDRESS</label>
-      <input id="email" type="email" autocomplete="email" placeholder="Enter your email">
+    <div
+      class="eyebrow"
+      data-translate="register_eyebrow">
+      New Member
     </div>
 
-    <div class="field">
-      <label for="username">USERNAME</label>
-      <input id="username" type="text" autocomplete="username" placeholder="Choose a username">
-    </div>
+    <h1 data-translate="register_title">
+      Create your account.
+    </h1>
+
+    <p
+      class="subtitle"
+      data-translate="register_subtitle">
+      Set up your Space X account and access your personal investment dashboard.
+    </p>
+
+
+    <!-- EMAIL -->
 
     <div class="field">
-      <label for="password">PASSWORD</label>
+
+      <label
+        for="email"
+        data-translate="register_email_label">
+        EMAIL ADDRESS
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        data-translate-placeholder="register_email_placeholder"
+        placeholder="Enter your email">
+
+    </div>
+
+
+    <!-- USERNAME -->
+
+    <div class="field">
+
+      <label
+        for="username"
+        data-translate="register_username_label">
+        USERNAME
+      </label>
+
+      <input
+        id="username"
+        type="text"
+        autocomplete="username"
+        data-translate-placeholder="register_username_placeholder"
+        placeholder="Choose a username">
+
+    </div>
+
+
+    <!-- PASSWORD -->
+
+    <div class="field">
+
+      <label
+        for="password"
+        data-translate="register_password_label">
+        PASSWORD
+      </label>
+
       <div class="password-wrap">
-        <input id="password" type="password" autocomplete="new-password" placeholder="Create a password">
-        <button type="button" class="toggle" id="showPassword">Show</button>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="new-password"
+          data-translate-placeholder="register_password_placeholder"
+          placeholder="Create a password">
+
+        <button
+          type="button"
+          class="toggle"
+          id="showPassword"
+          data-translate="register_show">
+          Show
+        </button>
+
       </div>
+
     </div>
+
+
+    <!-- CONFIRM PASSWORD -->
 
     <div class="field">
-      <label for="confirmPassword">CONFIRM PASSWORD</label>
+
+      <label
+        for="confirmPassword"
+        data-translate="register_confirm_label">
+        CONFIRM PASSWORD
+      </label>
+
       <div class="password-wrap">
-        <input id="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password">
-        <button type="button" class="toggle" id="showConfirm">Show</button>
+
+        <input
+          id="confirmPassword"
+          type="password"
+          autocomplete="new-password"
+          data-translate-placeholder="register_confirm_placeholder"
+          placeholder="Confirm your password">
+
+        <button
+          type="button"
+          class="toggle"
+          id="showConfirm"
+          data-translate="register_show">
+          Show
+        </button>
+
       </div>
+
     </div>
 
-    <button class="create-btn" id="registerBtn">Create Account</button>
+
+    <!-- CREATE -->
+
+    <button
+      class="create-btn"
+      id="registerBtn"
+      data-translate="register_create">
+      Create Account
+    </button>
+
+
+    <!-- FOOTER -->
 
     <div class="footer">
-      Already have an account?
-      <a href="login.html">Sign in</a>
+
+      <span data-translate="register_existing">
+        Already have an account?
+      </span>
+
+      <a
+        href="login.html"
+        data-translate="register_signin">
+        Sign in
+      </a>
+
     </div>
 
+
+    <!-- SECURITY -->
+
     <div class="secure">
+
       <span class="secure-dot"></span>
-      Secure account creation
+
+      <span data-translate="register_secure">
+        Secure account creation
+      </span>
+
     </div>
+
   </section>
 
 </main>
 
+
+<!-- LOADER -->
+
 <div id="loader">
-  <img src="logo.png" class="loader-logo" alt="Space X">
+
+  <img
+    src="logo.png"
+    class="loader-logo"
+    alt="Space X">
+
   <div class="spinner"></div>
-  <div class="loader-title">Creating your account...</div>
-  <div class="loader-text">Please wait while Space X sets up your account.</div>
+
+  <div
+    class="loader-title"
+    data-translate="register_loader_title">
+    Creating your account...
+  </div>
+
+  <div
+    class="loader-text"
+    data-translate="register_loader_text">
+    Please wait while Space X sets up your account.
+  </div>
+
 </div>
+
+
+<!-- SUCCESS MODAL -->
 
 <div id="successModal">
+
   <div class="success-card">
-    <div class="success-icon">✓</div>
-    <h2>Account Created</h2>
-    <p>Welcome to Space X. Your account has been created successfully.</p>
-    <button class="continue" id="continueBtn">Continue to Dashboard</button>
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h2 data-translate="register_success_title">
+      Account Created
+    </h2>
+
+    <p data-translate="register_success_text">
+      Welcome to Space X. Your account has been created successfully.
+    </p>
+
+    <button
+      class="continue"
+      id="continueBtn"
+      data-translate="register_continue">
+      Continue to Dashboard
+    </button>
+
   </div>
+
 </div>
 
+
+<!-- =====================================================
+     LANGUAGE SYSTEM
+     IMPORTANT:
+     This uses the SAME language.js and SAME localStorage
+     language selected on index.html.
+     ===================================================== -->
+
+<script src="js/language.js"></script>
+
+
+<script>
+
+/* =========================================================
+   REGISTER PAGE TRANSLATIONS
+   These are added to the existing SpaceXLanguage system.
+   No language selector is needed on this page.
+   ========================================================= */
+
+(function(){
+
+"use strict";
+
+function addRegisterTranslations(){
+
+  if(!window.SpaceXLanguage){
+    return;
+  }
+
+  const T = window.SpaceXLanguage.translations;
+
+
+  /* =====================================================
+     ENGLISH
+     ===================================================== */
+
+  T.en = {
+    ...T.en,
+
+    register_eyebrow:"New Member",
+    register_title:"Create your account.",
+    register_subtitle:
+      "Set up your Space X account and access your personal investment dashboard.",
+
+    register_email_label:"EMAIL ADDRESS",
+    register_email_placeholder:"Enter your email",
+
+    register_username_label:"USERNAME",
+    register_username_placeholder:"Choose a username",
+
+    register_password_label:"PASSWORD",
+    register_password_placeholder:"Create a password",
+
+    register_confirm_label:"CONFIRM PASSWORD",
+    register_confirm_placeholder:"Confirm your password",
+
+    register_show:"Show",
+    register_hide:"Hide",
+
+    register_create:"Create Account",
+
+    register_existing:"Already have an account?",
+    register_signin:"Sign in",
+
+    register_secure:"Secure account creation",
+
+    register_loader_title:"Creating your account...",
+    register_loader_text:
+      "Please wait while Space X sets up your account.",
+
+    register_success_title:"Account Created",
+    register_success_text:
+      "Welcome to Space X. Your account has been created successfully.",
+
+    register_continue:"Continue to Dashboard",
+
+    error_complete:"Please complete all fields.",
+    error_username:"Username must contain at least 3 characters.",
+    error_password_match:"Passwords do not match.",
+    error_password_length:
+      "Password must be at least 6 characters.",
+
+    error_registration:
+      "Registration failed. Please try again.",
+
+    error_email_exists:
+      "This email is already registered.",
+
+    error_invalid_email:
+      "Please enter a valid email address.",
+
+    error_weak_password:
+      "Password must contain at least 6 characters.",
+
+    error_network:
+      "Network connection failed. Please check your internet connection."
+  };
+
+
+  /* =====================================================
+     SPANISH
+     ===================================================== */
+
+  T.es = {
+    ...T.es,
+
+    register_eyebrow:"Nuevo miembro",
+    register_title:"Crea tu cuenta.",
+    register_subtitle:
+      "Configura tu cuenta de Space X y accede a tu panel de inversión personal.",
+
+    register_email_label:"DIRECCIÓN DE CORREO",
+    register_email_placeholder:"Introduce tu correo",
+
+    register_username_label:"NOMBRE DE USUARIO",
+    register_username_placeholder:"Elige un nombre de usuario",
+
+    register_password_label:"CONTRASEÑA",
+    register_password_placeholder:"Crea una contraseña",
+
+    register_confirm_label:"CONFIRMAR CONTRASEÑA",
+    register_confirm_placeholder:"Confirma tu contraseña",
+
+    register_show:"Mostrar",
+    register_hide:"Ocultar",
+
+    register_create:"Crear cuenta",
+
+    register_existing:"¿Ya tienes una cuenta?",
+    register_signin:"Iniciar sesión",
+
+    register_secure:"Creación segura de cuenta",
+
+    register_loader_title:"Creando tu cuenta...",
+    register_loader_text:
+      "Espera mientras Space X configura tu cuenta.",
+
+    register_success_title:"Cuenta creada",
+    register_success_text:
+      "Bienvenido a Space X. Tu cuenta se ha creado correctamente.",
+
+    register_continue:"Continuar al panel",
+
+    error_complete:"Completa todos los campos.",
+    error_username:"El nombre de usuario debe tener al menos 3 caracteres.",
+    error_password_match:"Las contraseñas no coinciden.",
+    error_password_length:"La contraseña debe tener al menos 6 caracteres.",
+
+    error_registration:"El registro ha fallado. Inténtalo de nuevo.",
+    error_email_exists:"Este correo ya está registrado.",
+    error_invalid_email:"Introduce un correo electrónico válido.",
+    error_weak_password:"La contraseña debe tener al menos 6 caracteres.",
+    error_network:"Error de conexión. Comprueba tu conexión a Internet."
+  };
+
+
+  /* =====================================================
+     FRENCH
+     ===================================================== */
+
+  T.fr = {
+    ...T.fr,
+
+    register_eyebrow:"Nouveau membre",
+    register_title:"Créez votre compte.",
+    register_subtitle:
+      "Configurez votre compte Space X et accédez à votre tableau de bord d'investissement personnel.",
+
+    register_email_label:"ADRESSE E-MAIL",
+    register_email_placeholder:"Entrez votre e-mail",
+
+    register_username_label:"NOM D'UTILISATEUR",
+    register_username_placeholder:"Choisissez un nom d'utilisateur",
+
+    register_password_label:"MOT DE PASSE",
+    register_password_placeholder:"Créez un mot de passe",
+
+    register_confirm_label:"CONFIRMER LE MOT DE PASSE",
+    register_confirm_placeholder:"Confirmez votre mot de passe",
+
+    register_show:"Afficher",
+    register_hide:"Masquer",
+
+    register_create:"Créer un compte",
+
+    register_existing:"Vous avez déjà un compte ?",
+    register_signin:"Se connecter",
+
+    register_secure:"Création de compte sécurisée",
+
+    register_loader_title:"Création de votre compte...",
+    register_loader_text:
+      "Veuillez patienter pendant que Space X configure votre compte.",
+
+    register_success_title:"Compte créé",
+    register_success_text:
+      "Bienvenue sur Space X. Votre compte a été créé avec succès.",
+
+    register_continue:"Continuer vers le tableau de bord",
+
+    error_complete:"Veuillez remplir tous les champs.",
+    error_username:"Le nom d'utilisateur doit contenir au moins 3 caractères.",
+    error_password_match:"Les mots de passe ne correspondent pas.",
+    error_password_length:"Le mot de passe doit contenir au moins 6 caractères.",
+
+    error_registration:"Échec de l'inscription. Veuillez réessayer.",
+    error_email_exists:"Cette adresse e-mail est déjà enregistrée.",
+    error_invalid_email:"Veuillez saisir une adresse e-mail valide.",
+    error_weak_password:"Le mot de passe doit contenir au moins 6 caractères.",
+    error_network:"Échec de la connexion. Vérifiez votre connexion Internet."
+  };
+
+
+  /* =====================================================
+     GERMAN
+     ===================================================== */
+
+  T.de = {
+    ...T.de,
+
+    register_eyebrow:"Neues Mitglied",
+    register_title:"Erstellen Sie Ihr Konto.",
+    register_subtitle:
+      "Richten Sie Ihr Space-X-Konto ein und greifen Sie auf Ihr persönliches Investment-Dashboard zu.",
+
+    register_email_label:"E-MAIL-ADRESSE",
+    register_email_placeholder:"E-Mail eingeben",
+
+    register_username_label:"BENUTZERNAME",
+    register_username_placeholder:"Benutzernamen wählen",
+
+    register_password_label:"PASSWORT",
+    register_password_placeholder:"Passwort erstellen",
+
+    register_confirm_label:"PASSWORT BESTÄTIGEN",
+    register_confirm_placeholder:"Passwort bestätigen",
+
+    register_show:"Anzeigen",
+    register_hide:"Verbergen",
+
+    register_create:"Konto erstellen",
+
+    register_existing:"Sie haben bereits ein Konto?",
+    register_signin:"Anmelden",
+
+    register_secure:"Sichere Kontoerstellung",
+
+    register_loader_title:"Konto wird erstellt...",
+    register_loader_text:
+      "Bitte warten Sie, während Space X Ihr Konto einrichtet.",
+
+    register_success_title:"Konto erstellt",
+    register_success_text:
+      "Willkommen bei Space X. Ihr Konto wurde erfolgreich erstellt.",
+
+    register_continue:"Zum Dashboard",
+
+    error_complete:"Bitte füllen Sie alle Felder aus.",
+    error_username:"Der Benutzername muss mindestens 3 Zeichen enthalten.",
+    error_password_match:"Die Passwörter stimmen nicht überein.",
+    error_password_length:"Das Passwort muss mindestens 6 Zeichen enthalten.",
+
+    error_registration:"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    error_email_exists:"Diese E-Mail-Adresse ist bereits registriert.",
+    error_invalid_email:"Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    error_weak_password:"Das Passwort muss mindestens 6 Zeichen enthalten.",
+    error_network:"Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung."
+  };
+
+
+  /* =====================================================
+     PORTUGUESE
+     ===================================================== */
+
+  T.pt = {
+    ...T.pt,
+
+    register_eyebrow:"Novo membro",
+    register_title:"Crie sua conta.",
+    register_subtitle:
+      "Configure sua conta Space X e acesse seu painel de investimento pessoal.",
+
+    register_email_label:"ENDEREÇO DE E-MAIL",
+    register_email_placeholder:"Digite seu e-mail",
+
+    register_username_label:"NOME DE USUÁRIO",
+    register_username_placeholder:"Escolha um nome de usuário",
+
+    register_password_label:"SENHA",
+    register_password_placeholder:"Crie uma senha",
+
+    register_confirm_label:"CONFIRMAR SENHA",
+    register_confirm_placeholder:"Confirme sua senha",
+
+    register_show:"Mostrar",
+    register_hide:"Ocultar",
+
+    register_create:"Criar conta",
+
+    register_existing:"Já possui uma conta?",
+    register_signin:"Entrar",
+
+    register_secure:"Criação segura de conta",
+
+    register_loader_title:"Criando sua conta...",
+    register_loader_text:
+      "Aguarde enquanto a Space X configura sua conta.",
+
+    register_success_title:"Conta criada",
+    register_success_text:
+      "Bem-vindo à Space X. Sua conta foi criada com sucesso.",
+
+    register_continue:"Continuar para o painel",
+
+    error_complete:"Preencha todos os campos.",
+    error_username:"O nome de usuário deve conter pelo menos 3 caracteres.",
+    error_password_match:"As senhas não coincidem.",
+    error_password_length:"A senha deve conter pelo menos 6 caracteres.",
+
+    error_registration:"Falha no cadastro. Tente novamente.",
+    error_email_exists:"Este e-mail já está registrado.",
+    error_invalid_email:"Digite um endereço de e-mail válido.",
+    error_weak_password:"A senha deve conter pelo menos 6 caracteres.",
+    error_network:"Falha na conexão. Verifique sua conexão com a internet."
+  };
+
+
+  /* =====================================================
+     ITALIAN
+     ===================================================== */
+
+  T.it = {
+    ...T.it,
+
+    register_eyebrow:"Nuovo membro",
+    register_title:"Crea il tuo account.",
+    register_subtitle:
+      "Configura il tuo account Space X e accedi alla tua dashboard di investimento personale.",
+
+    register_email_label:"INDIRIZZO E-MAIL",
+    register_email_placeholder:"Inserisci la tua e-mail",
+
+    register_username_label:"NOME UTENTE",
+    register_username_placeholder:"Scegli un nome utente",
+
+    register_password_label:"PASSWORD",
+    register_password_placeholder:"Crea una password",
+
+    register_confirm_label:"CONFERMA PASSWORD",
+    register_confirm_placeholder:"Conferma la password",
+
+    register_show:"Mostra",
+    register_hide:"Nascondi",
+
+    register_create:"Crea account",
+
+    register_existing:"Hai già un account?",
+    register_signin:"Accedi",
+
+    register_secure:"Creazione sicura dell'account",
+
+    register_loader_title:"Creazione dell'account...",
+    register_loader_text:
+      "Attendi mentre Space X configura il tuo account.",
+
+    register_success_title:"Account creato",
+    register_success_text:
+      "Benvenuto in Space X. Il tuo account è stato creato con successo.",
+
+    register_continue:"Continua alla dashboard",
+
+    error_complete:"Completa tutti i campi.",
+    error_username:"Il nome utente deve contenere almeno 3 caratteri.",
+    error_password_match:"Le password non corrispondono.",
+    error_password_length:"La password deve contenere almeno 6 caratteri.",
+
+    error_registration:"Registrazione non riuscita. Riprova.",
+    error_email_exists:"Questa e-mail è già registrata.",
+    error_invalid_email:"Inserisci un indirizzo e-mail valido.",
+    error_weak_password:"La password deve contenere almeno 6 caratteri.",
+    error_network:"Connessione di rete non riuscita. Controlla la tua connessione."
+  };
+
+
+  /* =====================================================
+     DUTCH
+     ===================================================== */
+
+  T.nl = {
+    ...T.nl,
+
+    register_eyebrow:"Nieuw lid",
+    register_title:"Maak uw account aan.",
+    register_subtitle:
+      "Stel uw Space X-account in en krijg toegang tot uw persoonlijke investeringsdashboard.",
+
+    register_email_label:"E-MAILADRES",
+    register_email_placeholder:"Voer uw e-mail in",
+
+    register_username_label:"GEBRUIKERSNAAM",
+    register_username_placeholder:"Kies een gebruikersnaam",
+
+    register_password_label:"WACHTWOORD",
+    register_password_placeholder:"Maak een wachtwoord",
+
+    register_confirm_label:"WACHTWOORD BEVESTIGEN",
+    register_confirm_placeholder:"Bevestig uw wachtwoord",
+
+    register_show:"Tonen",
+    register_hide:"Verbergen",
+
+    register_create:"Account aanmaken",
+
+    register_existing:"Heeft u al een account?",
+    register_signin:"Inloggen",
+
+    register_secure:"Veilige accountregistratie",
+
+    register_loader_title:"Account wordt aangemaakt...",
+    register_loader_text:
+      "Even geduld terwijl Space X uw account instelt.",
+
+    register_success_title:"Account aangemaakt",
+    register_success_text:
+      "Welkom bij Space X. Uw account is succesvol aangemaakt.",
+
+    register_continue:"Doorgaan naar dashboard",
+
+    error_complete:"Vul alle velden in.",
+    error_username:"De gebruikersnaam moet minimaal 3 tekens bevatten.",
+    error_password_match:"De wachtwoorden komen niet overeen.",
+    error_password_length:"Het wachtwoord moet minimaal 6 tekens bevatten.",
+
+    error_registration:"Registratie mislukt. Probeer het opnieuw.",
+    error_email_exists:"Dit e-mailadres is al geregistreerd.",
+    error_invalid_email:"Voer een geldig e-mailadres in.",
+    error_weak_password:"Het wachtwoord moet minimaal 6 tekens bevatten.",
+    error_network:"Netwerkverbinding mislukt. Controleer uw internetverbinding."
+  };
+
+
+  /* =====================================================
+     TURKISH
+     ===================================================== */
+
+  T.tr = {
+    ...T.tr,
+
+    register_eyebrow:"Yeni Üye",
+    register_title:"Hesabınızı oluşturun.",
+    register_subtitle:
+      "Space X hesabınızı oluşturun ve kişisel yatırım panelinize erişin.",
+
+    register_email_label:"E-POSTA ADRESİ",
+    register_email_placeholder:"E-postanızı girin",
+
+    register_username_label:"KULLANICI ADI",
+    register_username_placeholder:"Bir kullanıcı adı seçin",
+
+    register_password_label:"ŞİFRE",
+    register_password_placeholder:"Bir şifre oluşturun",
+
+    register_confirm_label:"ŞİFREYİ ONAYLA",
+    register_confirm_placeholder:"Şifrenizi onaylayın",
+
+    register_show:"Göster",
+    register_hide:"Gizle",
+
+    register_create:"Hesap Oluştur",
+
+    register_existing:"Zaten hesabınız var mı?",
+    register_signin:"Giriş yap",
+
+    register_secure:"Güvenli hesap oluşturma",
+
+    register_loader_title:"Hesabınız oluşturuluyor...",
+    register_loader_text:
+      "Space X hesabınızı oluştururken lütfen bekleyin.",
+
+    register_success_title:"Hesap oluşturuldu",
+    register_success_text:
+      "Space X'e hoş geldiniz. Hesabınız başarıyla oluşturuldu.",
+
+    register_continue:"Panele devam et",
+
+    error_complete:"Lütfen tüm alanları doldurun.",
+    error_username:"Kullanıcı adı en az 3 karakter içermelidir.",
+    error_password_match:"Şifreler eşleşmiyor.",
+    error_password_length:"Şifre en az 6 karakter içermelidir.",
+
+    error_registration:"Kayıt başarısız. Lütfen tekrar deneyin.",
+    error_email_exists:"Bu e-posta zaten kayıtlı.",
+    error_invalid_email:"Lütfen geçerli bir e-posta adresi girin.",
+    error_weak_password:"Şifre en az 6 karakter içermelidir.",
+    error_network:"Ağ bağlantısı başarısız. İnternet bağlantınızı kontrol edin."
+  };
+
+
+  /* =====================================================
+     RUSSIAN
+     ===================================================== */
+
+  T.ru = {
+    ...T.ru,
+
+    register_eyebrow:"Новый участник",
+    register_title:"Создайте свой аккаунт.",
+    register_subtitle:
+      "Создайте аккаунт Space X и получите доступ к личной инвестиционной панели.",
+
+    register_email_label:"ЭЛЕКТРОННАЯ ПОЧТА",
+    register_email_placeholder:"Введите электронную почту",
+
+    register_username_label:"ИМЯ ПОЛЬЗОВАТЕЛЯ",
+    register_username_placeholder:"Выберите имя пользователя",
+
+    register_password_label:"ПАРОЛЬ",
+    register_password_placeholder:"Создайте пароль",
+
+    register_confirm_label:"ПОДТВЕРДИТЕ ПАРОЛЬ",
+    register_confirm_placeholder:"Подтвердите пароль",
+
+    register_show:"Показать",
+    register_hide:"Скрыть",
+
+    register_create:"Создать аккаунт",
+
+    register_existing:"Уже есть аккаунт?",
+    register_signin:"Войти",
+
+    register_secure:"Безопасное создание аккаунта",
+
+    register_loader_title:"Создание аккаунта...",
+    register_loader_text:
+      "Подождите, пока Space X настроит ваш аккаунт.",
+
+    register_success_title:"Аккаунт создан",
+    register_success_text:
+      "Добро пожаловать в Space X. Ваш аккаунт успешно создан.",
+
+    register_continue:"Перейти в панель",
+
+    error_complete:"Заполните все поля.",
+    error_username:"Имя пользователя должно содержать не менее 3 символов.",
+    error_password_match:"Пароли не совпадают.",
+    error_password_length:"Пароль должен содержать не менее 6 символов.",
+
+    error_registration:"Регистрация не удалась. Попробуйте снова.",
+    error_email_exists:"Этот адрес электронной почты уже зарегистрирован.",
+    error_invalid_email:"Введите действительный адрес электронной почты.",
+    error_weak_password:"Пароль должен содержать не менее 6 символов.",
+    error_network:"Ошибка сети. Проверьте подключение к Интернету."
+  };
+
+
+  /* =====================================================
+     UKRAINIAN
+     ===================================================== */
+
+  T.uk = {
+    ...T.uk,
+
+    register_eyebrow:"Новий учасник",
+    register_title:"Створіть свій акаунт.",
+    register_subtitle:
+      "Налаштуйте акаунт Space X та отримайте доступ до особистої інвестиційної панелі.",
+
+    register_email_label:"ЕЛЕКТРОННА ПОШТА",
+    register_email_placeholder:"Введіть електронну пошту",
+
+    register_username_label:"ІМ'Я КОРИСТУВАЧА",
+    register_username_placeholder:"Оберіть ім'я користувача",
+
+    register_password_label:"ПАРОЛЬ",
+    register_password_placeholder:"Створіть пароль",
+
+    register_confirm_label:"ПІДТВЕРДІТЬ ПАРОЛЬ",
+    register_confirm_placeholder:"Підтвердіть пароль",
+
+    register_show:"Показати",
+    register_hide:"Приховати",
+
+    register_create:"Створити акаунт",
+
+    register_existing:"Вже маєте акаунт?",
+    register_signin:"Увійти",
+
+    register_secure:"Безпечне створення акаунта",
+
+    register_loader_title:"Створення акаунта...",
+    register_loader_text:
+      "Зачекайте, поки Space X налаштує ваш акаунт.",
+
+    register_success_title:"Акаунт створено",
+    register_success_text:
+      "Ласкаво просимо до Space X. Ваш акаунт успішно створено.",
+
+    register_continue:"Перейти до панелі",
+
+    error_complete:"Заповніть усі поля.",
+    error_username:"Ім'я користувача має містити щонайменше 3 символи.",
+    error_password_match:"Паролі не збігаються.",
+    error_password_length:"Пароль має містити щонайменше 6 символів.",
+
+    error_registration:"Не вдалося зареєструватися. Спробуйте ще раз.",
+    error_email_exists:"Ця електронна адреса вже зареєстрована.",
+    error_invalid_email:"Введіть дійсну електронну адресу.",
+    error_weak_password:"Пароль має містити щонайменше 6 символів.",
+    error_network:"Помилка мережі. Перевірте підключення до Інтернету."
+  };
+
+
+  /* =====================================================
+     POLISH
+     ===================================================== */
+
+  T.pl = {
+    ...T.pl,
+
+    register_eyebrow:"Nowy członek",
+    register_title:"Utwórz swoje konto.",
+    register_subtitle:
+      "Skonfiguruj konto Space X i uzyskaj dostęp do osobistego panelu inwestycyjnego.",
+
+    register_email_label:"ADRES E-MAIL",
+    register_email_placeholder:"Wpisz swój e-mail",
+
+    register_username_label:"NAZWA UŻYTKOWNIKA",
+    register_username_placeholder:"Wybierz nazwę użytkownika",
+
+    register_password_label:"HASŁO",
+    register_password_placeholder:"Utwórz hasło",
+
+    register_confirm_label:"POTWIERDŹ HASŁO",
+    register_confirm_placeholder:"Potwierdź hasło",
+
+    register_show:"Pokaż",
+    register_hide:"Ukryj",
+
+    register_create:"Utwórz konto",
+
+    register_existing:"Masz już konto?",
+    register_signin:"Zaloguj się",
+
+    register_secure:"Bezpieczne tworzenie konta",
+
+    register_loader_title:"Tworzenie konta...",
+    register_loader_text:
+      "Poczekaj, aż Space X skonfiguruje Twoje konto.",
+
+    register_success_title:"Konto utworzone",
+    register_success_text:
+      "Witamy w Space X. Twoje konto zostało pomyślnie utworzone.",
+
+    register_continue:"Przejdź do panelu",
+
+    error_complete:"Wypełnij wszystkie pola.",
+    error_username:"Nazwa użytkownika musi zawierać co najmniej 3 znaki.",
+    error_password_match:"Hasła nie są zgodne.",
+    error_password_length:"Hasło musi zawierać co najmniej 6 znaków.",
+
+    error_registration:"Rejestracja nie powiodła się. Spróbuj ponownie.",
+    error_email_exists:"Ten adres e-mail jest już zarejestrowany.",
+    error_invalid_email:"Wprowadź prawidłowy adres e-mail.",
+    error_weak_password:"Hasło musi zawierać co najmniej 6 znaków.",
+    error_network:"Błąd połączenia. Sprawdź połączenie z Internetem."
+  };
+
+
+  /* =====================================================
+     ARABIC
+     ===================================================== */
+
+  T.ar = {
+    ...T.ar,
+
+    register_eyebrow:"عضو جديد",
+    register_title:"أنشئ حسابك.",
+    register_subtitle:
+      "أنشئ حساب Space X الخاص بك وادخل إلى لوحة الاستثمار الشخصية.",
+
+    register_email_label:"عنوان البريد الإلكتروني",
+    register_email_placeholder:"أدخل بريدك الإلكتروني",
+
+    register_username_label:"اسم المستخدم",
+    register_username_placeholder:"اختر اسم مستخدم",
+
+    register_password_label:"كلمة المرور",
+    register_password_placeholder:"أنشئ كلمة مرور",
+
+    register_confirm_label:"تأكيد كلمة المرور",
+    register_confirm_placeholder:"أكد كلمة المرور",
+
+    register_show:"إظهار",
+    register_hide:"إخفاء",
+
+    register_create:"إنشاء حساب",
+
+    register_existing:"هل لديك حساب بالفعل؟",
+    register_signin:"تسجيل الدخول",
+
+    register_secure:"إنشاء حساب آمن",
+
+    register_loader_title:"جارٍ إنشاء حسابك...",
+    register_loader_text:
+      "يرجى الانتظار بينما تقوم Space X بإعداد حسابك.",
+
+    register_success_title:"تم إنشاء الحساب",
+    register_success_text:
+      "مرحبًا بك في Space X. تم إنشاء حسابك بنجاح.",
+
+    register_continue:"متابعة إلى لوحة التحكم",
+
+    error_complete:"يرجى إكمال جميع الحقول.",
+    error_username:"يجب أن يحتوي اسم المستخدم على 3 أحرف على الأقل.",
+    error_password_match:"كلمتا المرور غير متطابقتين.",
+    error_password_length:"يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل.",
+
+    error_registration:"فشل التسجيل. يرجى المحاولة مرة أخرى.",
+    error_email_exists:"هذا البريد الإلكتروني مسجل بالفعل.",
+    error_invalid_email:"يرجى إدخال بريد إلكتروني صالح.",
+    error_weak_password:"يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل.",
+    error_network:"فشل الاتصال بالشبكة. تحقق من اتصال الإنترنت."
+  };
+
+
+  /* =====================================================
+     HINDI
+     ===================================================== */
+
+  T.hi = {
+    ...T.hi,
+
+    register_eyebrow:"नया सदस्य",
+    register_title:"अपना खाता बनाएँ।",
+    register_subtitle:
+      "अपना Space X खाता सेट करें और अपने व्यक्तिगत निवेश डैशबोर्ड तक पहुँचें।",
+
+    register_email_label:"ईमेल पता",
+    register_email_placeholder:"अपना ईमेल दर्ज करें",
+
+    register_username_label:"यूज़रनेम",
+    register_username_placeholder:"यूज़रनेम चुनें",
+
+    register_password_label:"पासवर्ड",
+    register_password_placeholder:"पासवर्ड बनाएँ",
+
+    register_confirm_label:"पासवर्ड की पुष्टि करें",
+    register_confirm_placeholder:"पासवर्ड की पुष्टि करें",
+
+    register_show:"दिखाएँ",
+    register_hide:"छिपाएँ",
+
+    register_create:"खाता बनाएँ",
+
+    register_existing:"क्या आपके पास पहले से खाता है?",
+    register_signin:"लॉगिन करें",
+
+    register_secure:"सुरक्षित खाता निर्माण",
+
+    register_loader_title:"आपका खाता बनाया जा रहा है...",
+    register_loader_text:
+      "कृपया प्रतीक्षा करें जब तक Space X आपका खाता सेट करता है।",
+
+    register_success_title:"खाता बनाया गया",
+    register_success_text:
+      "Space X में आपका स्वागत है। आपका खाता सफलतापूर्वक बनाया गया है।",
+
+    register_continue:"डैशबोर्ड पर जाएँ",
+
+    error_complete:"कृपया सभी फ़ील्ड भरें।",
+    error_username:"यूज़रनेम में कम से कम 3 अक्षर होने चाहिए।",
+    error_password_match:"पासवर्ड मेल नहीं खाते।",
+    error_password_length:"पासवर्ड में कम से कम 6 अक्षर होने चाहिए।",
+
+    error_registration:"पंजीकरण विफल हुआ। कृपया पुनः प्रयास करें।",
+    error_email_exists:"यह ईमेल पहले से पंजीकृत है।",
+    error_invalid_email:"कृपया मान्य ईमेल पता दर्ज करें।",
+    error_weak_password:"पासवर्ड में कम से कम 6 अक्षर होने चाहिए।",
+    error_network:"नेटवर्क कनेक्शन विफल हुआ। अपना इंटरनेट कनेक्शन जाँचें।"
+  };
+
+
+  /* =====================================================
+     BENGALI
+     ===================================================== */
+
+  T.bn = {
+    ...T.bn,
+
+    register_eyebrow:"নতুন সদস্য",
+    register_title:"আপনার অ্যাকাউন্ট তৈরি করুন।",
+    register_subtitle:
+      "আপনার Space X অ্যাকাউন্ট সেটআপ করুন এবং ব্যক্তিগত বিনিয়োগ ড্যাশবোর্ডে প্রবেশ করুন।",
+
+    register_email_label:"ইমেইল ঠিকানা",
+    register_email_placeholder:"আপনার ইমেইল লিখুন",
+
+    register_username_label:"ইউজারনেম",
+    register_username_placeholder:"একটি ইউজারনেম নির্বাচন করুন",
+
+    register_password_label:"পাসওয়ার্ড",
+    register_password_placeholder:"একটি পাসওয়ার্ড তৈরি করুন",
+
+    register_confirm_label:"পাসওয়ার্ড নিশ্চিত করুন",
+    register_confirm_placeholder:"আপনার পাসওয়ার্ড নিশ্চিত করুন",
+
+    register_show:"দেখান",
+    register_hide:"লুকান",
+
+    register_create:"অ্যাকাউন্ট তৈরি করুন",
+
+    register_existing:"ইতিমধ্যে অ্যাকাউন্ট আছে?",
+    register_signin:"লগইন করুন",
+
+    register_secure:"নিরাপদ অ্যাকাউন্ট তৈরি",
+
+    register_loader_title:"আপনার অ্যাকাউন্ট তৈরি হচ্ছে...",
+    register_loader_text:
+      "Space X আপনার অ্যাকাউন্ট সেটআপ করা পর্যন্ত অপেক্ষা করুন।",
+
+    register_success_title:"অ্যাকাউন্ট তৈরি হয়েছে",
+    register_success_text:
+      "Space X-এ স্বাগতম। আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে।",
+
+    register_continue:"ড্যাশবোর্ডে যান",
+
+    error_complete:"অনুগ্রহ করে সব ক্ষেত্র পূরণ করুন।",
+    error_username:"ইউজারনেমে কমপক্ষে ৩টি অক্ষর থাকতে হবে।",
+    error_password_match:"পাসওয়ার্ড মিলছে না।",
+    error_password_length:"পাসওয়ার্ডে কমপক্ষে ৬টি অক্ষর থাকতে হবে।",
+
+    error_registration:"নিবন্ধন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+    error_email_exists:"এই ইমেইল ইতিমধ্যে নিবন্ধিত।",
+    error_invalid_email:"একটি বৈধ ইমেইল ঠিকানা লিখুন।",
+    error_weak_password:"পাসওয়ার্ডে কমপক্ষে ৬টি অক্ষর থাকতে হবে।",
+    error_network:"নেটওয়ার্ক সংযোগ ব্যর্থ হয়েছে। আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন।"
+  };
+
+
+  /* =====================================================
+     CHINESE SIMPLIFIED
+     ===================================================== */
+
+  T["zh-CN"] = {
+    ...T["zh-CN"],
+
+    register_eyebrow:"新成员",
+    register_title:"创建您的账户。",
+    register_subtitle:
+      "设置您的 Space X 账户并访问个人投资仪表板。",
+
+    register_email_label:"电子邮箱",
+    register_email_placeholder:"输入您的电子邮箱",
+
+    register_username_label:"用户名",
+    register_username_placeholder:"选择用户名",
+
+    register_password_label:"密码",
+    register_password_placeholder:"创建密码",
+
+    register_confirm_label:"确认密码",
+    register_confirm_placeholder:"确认您的密码",
+
+    register_show:"显示",
+    register_hide:"隐藏",
+
+    register_create:"创建账户",
+
+    register_existing:"已经有账户？",
+    register_signin:"登录",
+
+    register_secure:"安全创建账户",
+
+    register_loader_title:"正在创建您的账户...",
+    register_loader_text:
+      "请稍候，Space X 正在设置您的账户。",
+
+    register_success_title:"账户已创建",
+    register_success_text:
+      "欢迎来到 Space X。您的账户已成功创建。",
+
+    register_continue:"继续前往仪表板",
+
+    error_complete:"请完成所有字段。",
+    error_username:"用户名至少需要 3 个字符。",
+    error_password_match:"密码不匹配。",
+    error_password_length:"密码至少需要 6 个字符。",
+
+    error_registration:"注册失败，请重试。",
+    error_email_exists:"此电子邮箱已经注册。",
+    error_invalid_email:"请输入有效的电子邮箱地址。",
+    error_weak_password:"密码至少需要 6 个字符。",
+    error_network:"网络连接失败，请检查您的互联网连接。"
+  };
+
+
+  /* =====================================================
+     CHINESE TRADITIONAL
+     ===================================================== */
+
+  T["zh-TW"] = {
+    ...T["zh-TW"],
+
+    register_eyebrow:"新成員",
+    register_title:"建立您的帳戶。",
+    register_subtitle:
+      "設定您的 Space X 帳戶並進入個人投資儀表板。",
+
+    register_email_label:"電子郵件地址",
+    register_email_placeholder:"輸入您的電子郵件",
+
+    register_username_label:"使用者名稱",
+    register_username_placeholder:"選擇使用者名稱",
+
+    register_password_label:"密碼",
+    register_password_placeholder:"建立密碼",
+
+    register_confirm_label:"確認密碼",
+    register_confirm_placeholder:"確認您的密碼",
+
+    register_show:"顯示",
+    register_hide:"隱藏",
+
+    register_create:"建立帳戶",
+
+    register_existing:"已經有帳戶？",
+    register_signin:"登入",
+
+    register_secure:"安全建立帳戶",
+
+    register_loader_title:"正在建立您的帳戶...",
+    register_loader_text:
+      "請稍候，Space X 正在設定您的帳戶。",
+
+    register_success_title:"帳戶已建立",
+    register_success_text:
+      "歡迎來到 Space X。您的帳戶已成功建立。",
+
+    register_continue:"繼續前往儀表板",
+
+    error_complete:"請完成所有欄位。",
+    error_username:"使用者名稱至少需要 3 個字元。",
+    error_password_match:"密碼不一致。",
+    error_password_length:"密碼至少需要 6 個字元。",
+
+    error_registration:"註冊失敗，請再試一次。",
+    error_email_exists:"此電子郵件已經註冊。",
+    error_invalid_email:"請輸入有效的電子郵件地址。",
+    error_weak_password:"密碼至少需要 6 個字元。",
+    error_network:"網路連線失敗，請檢查您的網路連線。"
+  };
+
+
+  /* =====================================================
+     JAPANESE
+     ===================================================== */
+
+  T.ja = {
+    ...T.ja,
+
+    register_eyebrow:"新規メンバー",
+    register_title:"アカウントを作成してください。",
+    register_subtitle:
+      "Space Xアカウントを設定して、個人投資ダッシュボードにアクセスします。",
+
+    register_email_label:"メールアドレス",
+    register_email_placeholder:"メールアドレスを入力",
+
+    register_username_label:"ユーザー名",
+    register_username_placeholder:"ユーザー名を選択",
+
+    register_password_label:"パスワード",
+    register_password_placeholder:"パスワードを作成",
+
+    register_confirm_label:"パスワードを確認",
+    register_confirm_placeholder:"パスワードを確認",
+
+    register_show:"表示",
+    register_hide:"非表示",
+
+    register_create:"アカウントを作成",
+
+    register_existing:"すでにアカウントをお持ちですか？",
+    register_signin:"ログイン",
+
+    register_secure:"安全なアカウント作成",
+
+    register_loader_title:"アカウントを作成しています...",
+    register_loader_text:
+      "Space Xがアカウントを設定しています。しばらくお待ちください。",
+
+    register_success_title:"アカウント作成完了",
+    register_success_text:
+      "Space Xへようこそ。アカウントが正常に作成されました。",
+
+    register_continue:"ダッシュボードへ",
+
+    error_complete:"すべての項目を入力してください。",
+    error_username:"ユーザー名は3文字以上で入力してください。",
+    error_password_match:"パスワードが一致しません。",
+    error_password_length:"パスワードは6文字以上必要です。",
+
+    error_registration:"登録に失敗しました。もう一度お試しください。",
+    error_email_exists:"このメールアドレスはすでに登録されています。",
+    error_invalid_email:"有効なメールアドレスを入力してください。",
+    error_weak_password:"パスワードは6文字以上必要です。",
+    error_network:"ネットワーク接続に失敗しました。接続を確認してください。"
+  };
+
+
+  /* =====================================================
+     KOREAN
+     ===================================================== */
+
+  T.ko = {
+    ...T.ko,
+
+    register_eyebrow:"신규 회원",
+    register_title:"계정을 만들어 보세요.",
+    register_subtitle:
+      "Space X 계정을 설정하고 개인 투자 대시보드에 액세스하세요.",
+
+    register_email_label:"이메일 주소",
+    register_email_placeholder:"이메일을 입력하세요",
+
+    register_username_label:"사용자 이름",
+    register_username_placeholder:"사용자 이름을 선택하세요",
+
+    register_password_label:"비밀번호",
+    register_password_placeholder:"비밀번호를 만드세요",
+
+    register_confirm_label:"비밀번호 확인",
+    register_confirm_placeholder:"비밀번호를 확인하세요",
+
+    register_show:"표시",
+    register_hide:"숨기기",
+
+    register_create:"계정 만들기",
+
+    register_existing:"이미 계정이 있으신가요?",
+    register_signin:"로그인",
+
+    register_secure:"안전한 계정 생성",
+
+    register_loader_title:"계정을 생성하는 중...",
+    register_loader_text:
+      "Space X가 계정을 설정하는 동안 잠시 기다려 주세요.",
+
+    register_success_title:"계정 생성 완료",
+    register_success_text:
+      "Space X에 오신 것을 환영합니다. 계정이 성공적으로 생성되었습니다.",
+
+    register_continue:"대시보드로 계속",
+
+    error_complete:"모든 필드를 입력해 주세요.",
+    error_username:"사용자 이름은 3자 이상이어야 합니다.",
+    error_password_match:"비밀번호가 일치하지 않습니다.",
+    error_password_length:"비밀번호는 최소 6자 이상이어야 합니다.",
+
+    error_registration:"등록에 실패했습니다. 다시 시도해 주세요.",
+    error_email_exists:"이 이메일은 이미 등록되어 있습니다.",
+    error_invalid_email:"유효한 이메일 주소를 입력해 주세요.",
+    error_weak_password:"비밀번호는 최소 6자 이상이어야 합니다.",
+    error_network:"네트워크 연결에 실패했습니다. 인터넷 연결을 확인해 주세요."
+  };
+
+
+  /* =====================================================
+     VIETNAMESE
+     ===================================================== */
+
+  T.vi = {
+    ...T.vi,
+
+    register_eyebrow:"Thành viên mới",
+    register_title:"Tạo tài khoản của bạn.",
+    register_subtitle:
+      "Thiết lập tài khoản Space X và truy cập bảng điều khiển đầu tư cá nhân.",
+
+    register_email_label:"ĐỊA CHỈ EMAIL",
+    register_email_placeholder:"Nhập email của bạn",
+
+    register_username_label:"TÊN NGƯỜI DÙNG",
+    register_username_placeholder:"Chọn tên người dùng",
+
+    register_password_label:"MẬT KHẨU",
+    register_password_placeholder:"Tạo mật khẩu",
+
+    register_confirm_label:"XÁC NHẬN MẬT KHẨU",
+    register_confirm_placeholder:"Xác nhận mật khẩu",
+
+    register_show:"Hiện",
+    register_hide:"Ẩn",
+
+    register_create:"Tạo tài khoản",
+
+    register_existing:"Bạn đã có tài khoản?",
+    register_signin:"Đăng nhập",
+
+    register_secure:"Tạo tài khoản an toàn",
+
+    register_loader_title:"Đang tạo tài khoản...",
+    register_loader_text:
+      "Vui lòng chờ trong khi Space X thiết lập tài khoản của bạn.",
+
+    register_success_title:"Đã tạo tài khoản",
+    register_success_text:
+      "Chào mừng bạn đến với Space X. Tài khoản của bạn đã được tạo thành công.",
+
+    register_continue:"Tiếp tục đến bảng điều khiển",
+
+    error_complete:"Vui lòng hoàn thành tất cả các trường.",
+    error_username:"Tên người dùng phải có ít nhất 3 ký tự.",
+    error_password_match:"Mật khẩu không khớp.",
+    error_password_length:"Mật khẩu phải có ít nhất 6 ký tự.",
+
+    error_registration:"Đăng ký thất bại. Vui lòng thử lại.",
+    error_email_exists:"Email này đã được đăng ký.",
+    error_invalid_email:"Vui lòng nhập địa chỉ email hợp lệ.",
+    error_weak_password:"Mật khẩu phải có ít nhất 6 ký tự.",
+    error_network:"Kết nối mạng thất bại. Vui lòng kiểm tra kết nối Internet."
+  };
+
+
+  /* =====================================================
+     THAI
+     ===================================================== */
+
+  T.th = {
+    ...T.th,
+
+    register_eyebrow:"สมาชิกใหม่",
+    register_title:"สร้างบัญชีของคุณ",
+    register_subtitle:
+      "ตั้งค่าบัญชี Space X และเข้าถึงแดชบอร์ดการลงทุนส่วนตัวของคุณ",
+
+    register_email_label:"ที่อยู่อีเมล",
+    register_email_placeholder:"กรอกอีเมลของคุณ",
+
+    register_username_label:"ชื่อผู้ใช้",
+    register_username_placeholder:"เลือกชื่อผู้ใช้",
+
+    register_password_label:"รหัสผ่าน",
+    register_password_placeholder:"สร้างรหัสผ่าน",
+
+    register_confirm_label:"ยืนยันรหัสผ่าน",
+    register_confirm_placeholder:"ยืนยันรหัสผ่านของคุณ",
+
+    register_show:"แสดง",
+    register_hide:"ซ่อน",
+
+    register_create:"สร้างบัญชี",
+
+    register_existing:"มีบัญชีอยู่แล้วใช่ไหม?",
+    register_signin:"เข้าสู่ระบบ",
+
+    register_secure:"การสร้างบัญชีที่ปลอดภัย",
+
+    register_loader_title:"กำลังสร้างบัญชีของคุณ...",
+    register_loader_text:
+      "โปรดรอสักครู่ขณะที่ Space X กำลังตั้งค่าบัญชีของคุณ",
+
+    register_success_title:"สร้างบัญชีสำเร็จ",
+    register_success_text:
+      "ยินดีต้อนรับสู่ Space X บัญชีของคุณถูกสร้างเรียบร้อยแล้ว",
+
+    register_continue:"ไปยังแดชบอร์ด",
+
+    error_complete:"กรุณากรอกข้อมูลให้ครบทุกช่อง",
+    error_username:"ชื่อผู้ใช้ต้องมีอย่างน้อย 3 ตัวอักษร",
+    error_password_match:"รหัสผ่านไม่ตรงกัน",
+    error_password_length:"รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+
+    error_registration:"การสมัครไม่สำเร็จ กรุณาลองอีกครั้ง",
+    error_email_exists:"อีเมลนี้ลงทะเบียนไว้แล้ว",
+    error_invalid_email:"กรุณากรอกอีเมลที่ถูกต้อง",
+    error_weak_password:"รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+    error_network:"การเชื่อมต่อเครือข่ายล้มเหลว กรุณาตรวจสอบอินเทอร์เน็ต"
+  };
+
+
+  /* =====================================================
+     INDONESIAN
+     ===================================================== */
+
+  T.id = {
+    ...T.id,
+
+    register_eyebrow:"Anggota Baru",
+    register_title:"Buat akun Anda.",
+    register_subtitle:
+      "Siapkan akun Space X Anda dan akses dasbor investasi pribadi.",
+
+    register_email_label:"ALAMAT EMAIL",
+    register_email_placeholder:"Masukkan email Anda",
+
+    register_username_label:"NAMA PENGGUNA",
+    register_username_placeholder:"Pilih nama pengguna",
+
+    register_password_label:"KATA SANDI",
+    register_password_placeholder:"Buat kata sandi",
+
+    register_confirm_label:"KONFIRMASI KATA SANDI",
+    register_confirm_placeholder:"Konfirmasi kata sandi Anda",
+
+    register_show:"Tampilkan",
+    register_hide:"Sembunyikan",
+
+    register_create:"Buat Akun",
+
+    register_existing:"Sudah memiliki akun?",
+    register_signin:"Masuk",
+
+    register_secure:"Pembuatan akun aman",
+
+    register_loader_title:"Membuat akun Anda...",
+    register_loader_text:
+      "Harap tunggu sementara Space X menyiapkan akun Anda.",
+
+    register_success_title:"Akun Dibuat",
+    register_success_text:
+      "Selamat datang di Space X. Akun Anda berhasil dibuat.",
+
+    register_continue:"Lanjut ke Dasbor",
+
+    error_complete:"Silakan lengkapi semua kolom.",
+    error_username:"Nama pengguna harus memiliki minimal 3 karakter.",
+    error_password_match:"Kata sandi tidak cocok.",
+    error_password_length:"Kata sandi harus memiliki minimal 6 karakter.",
+
+    error_registration:"Pendaftaran gagal. Silakan coba lagi.",
+    error_email_exists:"Email ini sudah terdaftar.",
+    error_invalid_email:"Masukkan alamat email yang valid.",
+    error_weak_password:"Kata sandi harus memiliki minimal 6 karakter.",
+    error_network:"Koneksi jaringan gagal. Periksa koneksi internet Anda."
+  };
+
+
+  /* =====================================================
+     MALAY
+     ===================================================== */
+
+  T.ms = {
+    ...T.ms,
+
+    register_eyebrow:"Ahli Baharu",
+    register_title:"Cipta akaun anda.",
+    register_subtitle:
+      "Sediakan akaun Space X anda dan akses papan pemuka pelaburan peribadi anda.",
+
+    register_email_label:"ALAMAT E-MEL",
+    register_email_placeholder:"Masukkan e-mel anda",
+
+    register_username_label:"NAMA PENGGUNA",
+    register_username_placeholder:"Pilih nama pengguna",
+
+    register_password_label:"KATA LALUAN",
+    register_password_placeholder:"Cipta kata laluan",
+
+    register_confirm_label:"SAHKAN KATA LALUAN",
+    register_confirm_placeholder:"Sahkan kata laluan anda",
+
+    register_show:"Tunjukkan",
+    register_hide:"Sembunyikan",
+
+    register_create:"Cipta Akaun",
+
+    register_existing:"Sudah mempunyai akaun?",
+    register_signin:"Log Masuk",
+
+    register_secure:"Penciptaan akaun selamat",
+
+    register_loader_title:"Mencipta akaun anda...",
+    register_loader_text:
+      "Sila tunggu sementara Space X menyediakan akaun anda.",
+
+    register_success_title:"Akaun Dicipta",
+    register_success_text:
+      "Selamat datang ke Space X. Akaun anda telah berjaya dicipta.",
+
+    register_continue:"Teruskan ke Papan Pemuka",
+
+    error_complete:"Sila lengkapkan semua medan.",
+    error_username:"Nama pengguna mesti mengandungi sekurang-kurangnya 3 aksara.",
+    error_password_match:"Kata laluan tidak sepadan.",
+    error_password_length:"Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara.",
+
+    error_registration:"Pendaftaran gagal. Sila cuba lagi.",
+    error_email_exists:"E-mel ini telah didaftarkan.",
+    error_invalid_email:"Sila masukkan alamat e-mel yang sah.",
+    error_weak_password:"Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara.",
+    error_network:"Sambungan rangkaian gagal. Sila semak sambungan internet anda."
+  };
+
+
+  /* =====================================================
+     FILIPINO
+     ===================================================== */
+
+  T.fil = {
+    ...T.fil,
+
+    register_eyebrow:"Bagong Miyembro",
+    register_title:"Gawin ang iyong account.",
+    register_subtitle:
+      "I-set up ang iyong Space X account at i-access ang iyong personal investment dashboard.",
+
+    register_email_label:"EMAIL ADDRESS",
+    register_email_placeholder:"Ilagay ang iyong email",
+
+    register_username_label:"USERNAME",
+    register_username_placeholder:"Pumili ng username",
+
+    register_password_label:"PASSWORD",
+    register_password_placeholder:"Gumawa ng password",
+
+    register_confirm_label:"KUMPIRMAHIN ANG PASSWORD",
+    register_confirm_placeholder:"Kumpirmahin ang iyong password",
+
+    register_show:"Ipakita",
+    register_hide:"Itago",
+
+    register_create:"Gumawa ng Account",
+
+    register_existing:"May account ka na?",
+    register_signin:"Mag-login",
+
+    register_secure:"Secure na paggawa ng account",
+
+    register_loader_title:"Ginagawa ang iyong account...",
+    register_loader_text:
+      "Mangyaring maghintay habang sine-set up ng Space X ang iyong account.",
+
+    register_success_title:"Nagawa ang Account",
+    register_success_text:
+      "Maligayang pagdating sa Space X. Matagumpay na nagawa ang iyong account.",
+
+    register_continue:"Magpatuloy sa Dashboard",
+
+    error_complete:"Pakikumpleto ang lahat ng field.",
+    error_username:"Ang username ay dapat may hindi bababa sa 3 character.",
+    error_password_match:"Hindi magkatugma ang mga password.",
+    error_password_length:"Ang password ay dapat may hindi bababa sa 6 na character.",
+
+    error_registration:"Hindi nagtagumpay ang registration. Pakisubukan muli.",
+    error_email_exists:"Nakarehistro na ang email na ito.",
+    error_invalid_email:"Mangyaring maglagay ng wastong email address.",
+    error_weak_password:"Ang password ay dapat may hindi bababa sa 6 na character.",
+    error_network:"Nabigo ang network connection. Suriin ang iyong internet connection."
+  };
+
+
+  /* =====================================================
+     APPLY CURRENT LANGUAGE
+     ===================================================== */
+
+  const currentLanguage =
+    window.SpaceXLanguage.getLanguage();
+
+  window.SpaceXLanguage.translate();
+
+  console.log(
+    "Space X Register Language:",
+    currentLanguage
+  );
+
+}
+
+
+/*
+ * language.js is loaded immediately before this script.
+ */
+
+addRegisterTranslations();
+
+
+/*
+ * Translate placeholders.
+ */
+
+function translateRegisterPlaceholders(){
+
+  if(!window.SpaceXLanguage){
+    return;
+  }
+
+  const language =
+    window.SpaceXLanguage.getLanguage();
+
+  const translations =
+    window.SpaceXLanguage.translations[language] ||
+    window.SpaceXLanguage.translations.en;
+
+  document
+    .querySelectorAll("[data-translate-placeholder]")
+    .forEach(input => {
+
+      const key =
+        input.getAttribute(
+          "data-translate-placeholder"
+        );
+
+      if(
+        translations[key] !== undefined
+      ){
+
+        input.placeholder =
+          translations[key];
+
+      }
+
+    });
+
+}
+
+translateRegisterPlaceholders();
+
+
+/*
+ * Re-translate placeholders whenever
+ * the language changes.
+ */
+
+document.addEventListener(
+  "spaceXTranslationComplete",
+  translateRegisterPlaceholders
+);
+
+})();
+
+</script>
+
+
+<!-- =====================================================
+     FIREBASE
+     ===================================================== -->
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
 
 import {
   getAuth,
@@ -363,6 +2035,7 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
+
 import {
   getFirestore,
   doc,
@@ -370,139 +2043,547 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
+
+/* =====================================================
+   FIREBASE CONFIG
+   ===================================================== */
+
 const firebaseConfig = {
-  apiKey:"AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
-  authDomain:"novax-acb23.firebaseapp.com",
-  projectId:"novax-acb23",
-  storageBucket:"novax-acb23.firebasestorage.app",
-  messagingSenderId:"203988106178",
-  appId:"1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
+  apiKey:
+    "AIzaSyDPEZtkQNsWIiiwc08C-4iHEyDR9N0ZvZc",
+
+  authDomain:
+    "novax-acb23.firebaseapp.com",
+
+  projectId:
+    "novax-acb23",
+
+  storageBucket:
+    "novax-acb23.firebasestorage.app",
+
+  messagingSenderId:
+    "203988106178",
+
+  appId:
+    "1:203988106178:web:ab32a0c51effd3b5d4f45b"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
 
-await setPersistence(auth,browserLocalPersistence);
+const app =
+  initializeApp(firebaseConfig);
 
-const registerBtn = document.getElementById("registerBtn");
-const loader = document.getElementById("loader");
-const successModal = document.getElementById("successModal");
-const continueBtn = document.getElementById("continueBtn");
+const auth =
+  getAuth(app);
 
-function setupToggle(buttonId,inputId){
-  document.getElementById(buttonId).onclick = () => {
-    const input = document.getElementById(inputId);
-    const visible = input.type === "text";
-    input.type = visible ? "password" : "text";
-    document.getElementById(buttonId).textContent = visible ? "Show" : "Hide";
-  };
-}
+const db =
+  getFirestore(app);
 
-setupToggle("showPassword","password");
-setupToggle("showConfirm","confirmPassword");
 
-registerBtn.addEventListener("click", async () => {
+await setPersistence(
+  auth,
+  browserLocalPersistence
+);
 
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
 
-  if(!email || !username || !password || !confirmPassword){
-    alert("Please complete all fields.");
-    return;
-  }
+/* =====================================================
+   ELEMENTS
+   ===================================================== */
 
-  if(username.length < 3){
-    alert("Username must contain at least 3 characters.");
-    return;
-  }
+const registerBtn =
+  document.getElementById("registerBtn");
 
-  if(password !== confirmPassword){
-    alert("Passwords do not match.");
-    return;
-  }
+const loader =
+  document.getElementById("loader");
 
-  if(password.length < 6){
-    alert("Password must be at least 6 characters.");
-    return;
-  }
+const successModal =
+  document.getElementById("successModal");
 
-  registerBtn.disabled = true;
-  loader.style.display = "flex";
+const continueBtn =
+  document.getElementById("continueBtn");
 
-  try{
 
-    const credential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+/* =====================================================
+   TRANSLATION HELPER
+   ===================================================== */
 
-    const user = credential.user;
+function t(key){
 
-    await updateProfile(user,{
-      displayName: username
-    });
+  if(
+    window.SpaceXLanguage &&
+    window.SpaceXLanguage.translations
+  ){
 
-    await setDoc(doc(db,"users",user.uid),{
-      uid:user.uid,
-      email:email,
-      username:username,
-      balance:0,
-      investment:0,
-      referralCode:"",
-      createdAt:serverTimestamp()
-    });
+    const language =
+      window.SpaceXLanguage.getLanguage();
 
-    await setDoc(doc(db,"notifications",user.uid),{
-      userId:user.uid,
-      title:"Welcome to Space X",
-      message:"Welcome to Space X! Your account has been created successfully.",
-      createdAt:serverTimestamp()
-    });
+    const selected =
+      window.SpaceXLanguage.translations[language] ||
+      window.SpaceXLanguage.translations.en;
 
-    loader.style.display = "none";
-    successModal.style.display = "flex";
+    if(
+      selected &&
+      selected[key] !== undefined
+    ){
 
-  }catch(error){
+      return selected[key];
 
-    loader.style.display = "none";
-    registerBtn.disabled = false;
-
-    let msg = "Registration failed. Please try again.";
-
-    switch(error.code){
-      case "auth/email-already-in-use":
-        msg = "This email is already registered.";
-        break;
-      case "auth/invalid-email":
-        msg = "Please enter a valid email address.";
-        break;
-      case "auth/weak-password":
-        msg = "Password must contain at least 6 characters.";
-        break;
-      case "auth/network-request-failed":
-        msg = "Network connection failed. Please check your internet connection.";
-        break;
-      default:
-        msg = error.message;
     }
 
-    alert(msg);
+    if(
+      window.SpaceXLanguage.translations.en[key]
+    ){
+
+      return window.SpaceXLanguage.translations.en[key];
+
+    }
+
   }
+
+  return key;
+}
+
+
+/* =====================================================
+   PASSWORD TOGGLE
+   ===================================================== */
+
+function setupToggle(
+  buttonId,
+  inputId
+){
+
+  const button =
+    document.getElementById(buttonId);
+
+  const input =
+    document.getElementById(inputId);
+
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const visible =
+        input.type === "text";
+
+
+      input.type =
+        visible
+          ? "password"
+          : "text";
+
+
+      button.textContent =
+        visible
+          ? t("register_show")
+          : t("register_hide");
+
+    }
+  );
+
+}
+
+
+setupToggle(
+  "showPassword",
+  "password"
+);
+
+setupToggle(
+  "showConfirm",
+  "confirmPassword"
+);
+
+
+/* =====================================================
+   REGISTER
+   ===================================================== */
+
+registerBtn.addEventListener(
+  "click",
+  async () => {
+
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const username =
+      document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+
+    const confirmPassword =
+      document
+        .getElementById("confirmPassword")
+        .value;
+
+
+    /* ================================================
+       VALIDATION
+       ================================================ */
+
+    if(
+      !email ||
+      !username ||
+      !password ||
+      !confirmPassword
+    ){
+
+      alert(
+        t("error_complete")
+      );
+
+      return;
+
+    }
+
+
+    if(
+      username.length < 3
+    ){
+
+      alert(
+        t("error_username")
+      );
+
+      return;
+
+    }
+
+
+    if(
+      password !== confirmPassword
+    ){
+
+      alert(
+        t("error_password_match")
+      );
+
+      return;
+
+    }
+
+
+    if(
+      password.length < 6
+    ){
+
+      alert(
+        t("error_password_length")
+      );
+
+      return;
+
+    }
+
+
+    /* ================================================
+       START LOADING
+       ================================================ */
+
+    registerBtn.disabled = true;
+
+    loader.style.display =
+      "flex";
+
+
+    try{
+
+
+      /* ==============================================
+         CREATE FIREBASE ACCOUNT
+         ============================================== */
+
+      const credential =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      const user =
+        credential.user;
+
+
+      /* ==============================================
+         SAVE USERNAME TO AUTH PROFILE
+         ============================================== */
+
+      await updateProfile(
+        user,
+        {
+          displayName:username
+        }
+      );
+
+
+      /* ==============================================
+         CREATE FIRESTORE USER
+         ============================================== */
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          user.uid
+        ),
+        {
+
+          uid:user.uid,
+
+          email:email,
+
+          username:username,
+
+          balance:0,
+
+          investment:0,
+
+          referralCode:"",
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+      /* ==============================================
+         CREATE WELCOME NOTIFICATION
+         ============================================== */
+
+      await setDoc(
+        doc(
+          db,
+          "notifications",
+          user.uid
+        ),
+        {
+
+          userId:user.uid,
+
+          title:
+            "Welcome to Space X",
+
+          message:
+            "Welcome to Space X! Your account has been created successfully.",
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+      /* ==============================================
+         SUCCESS
+         ============================================== */
+
+      loader.style.display =
+        "none";
+
+      successModal.style.display =
+        "flex";
+
+
+    }catch(error){
+
+
+      console.error(
+        "Space X registration error:",
+        error
+      );
+
+
+      loader.style.display =
+        "none";
+
+      registerBtn.disabled =
+        false;
+
+
+      let msg =
+        t("error_registration");
+
+
+      switch(error.code){
+
+        case "auth/email-already-in-use":
+
+          msg =
+            t("error_email_exists");
+
+          break;
+
+
+        case "auth/invalid-email":
+
+          msg =
+            t("error_invalid_email");
+
+          break;
+
+
+        case "auth/weak-password":
+
+          msg =
+            t("error_weak_password");
+
+          break;
+
+
+        case "auth/network-request-failed":
+
+          msg =
+            t("error_network");
+
+          break;
+
+
+        default:
+
+          /*
+           * Do not expose raw Firebase
+           * error messages to users.
+           */
+
+          msg =
+            t("error_registration");
+
+      }
+
+
+      alert(msg);
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CONTINUE TO DASHBOARD
+   ===================================================== */
+
+continueBtn.addEventListener(
+  "click",
+  () => {
+
+    window.location.replace(
+      "dashboard.html"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   ENTER KEY
+   ===================================================== */
+
+[
+  "email",
+  "username",
+  "password",
+  "confirmPassword"
+]
+.forEach(id => {
+
+  document
+    .getElementById(id)
+    .addEventListener(
+      "keydown",
+      event => {
+
+        if(
+          event.key === "Enter"
+        ){
+
+          event.preventDefault();
+
+          registerBtn.click();
+
+        }
+
+      }
+    );
+
 });
 
-continueBtn.onclick = () => {
-  window.location.replace("dashboard.html");
-};
 
-[email,username,password,confirmPassword].forEach(input => {
-  input.addEventListener("keydown", e => {
-    if(e.key === "Enter") registerBtn.click();
-  });
-});
+/* =====================================================
+   LANGUAGE CHANGE
+   ===================================================== */
+
+document.addEventListener(
+  "spaceXTranslationComplete",
+  () => {
+
+    /*
+     * Keep Show/Hide buttons correct
+     * after changing language.
+     */
+
+    const password =
+      document.getElementById(
+        "password"
+      );
+
+    const confirm =
+      document.getElementById(
+        "confirmPassword"
+      );
+
+
+    const showPassword =
+      document.getElementById(
+        "showPassword"
+      );
+
+    const showConfirm =
+      document.getElementById(
+        "showConfirm"
+      );
+
+
+    if(password && showPassword){
+
+      showPassword.textContent =
+        password.type === "text"
+          ? t("register_hide")
+          : t("register_show");
+
+    }
+
+
+    if(confirm && showConfirm){
+
+      showConfirm.textContent =
+        confirm.type === "text"
+          ? t("register_hide")
+          : t("register_show");
+
+    }
+
+  }
+);
+
 </script>
 
 </body>
